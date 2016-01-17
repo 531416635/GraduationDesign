@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.DispatchBillDao">
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.DispatchBill">
+		SELECT
+		d.id,DispatchBillID, OrderID, CompanyProductID,
+		ProductUnit, UnitPrice, Amount, StorageID,
+		shoppingAddressId,
+		DeliveryUser, DeliveryTime, Accepter,
+		AcceptTime, CheckUser, CheckTime,
+		STATUS, PurchaseQuantity,
+		PackagesNumber,s.storageName
+		FROM DispatchBill
+		d left join Storage s
+		on d.storageId = s.ID
+		order by d.ID limit
+		#{begin},#{pageNum}
+	</select>
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM
+		DispatchBill
+	</select>
+	<select id="findOrdersId" resultType="Integer">
+		select ID from Orders
+	</select>
+	<!-- 根据订单Id查询配送单 -->
+	<select id="findOrderId" parameterType="string"
+		resultType="com.wit.model.DispatchBill">
+		SELECT
+		d.id,DispatchBillID, OrderID, CompanyProductID,
+		ProductUnit, UnitPrice, Amount, StorageID,
+		shoppingAddressId,
+		DeliveryUser, DeliveryTime, Accepter,
+		AcceptTime, CheckUser, CheckTime,
+		STATUS, PurchaseQuantity,
+		PackagesNumber,s.storageName
+		FROM DispatchBill
+		d left join Storage s
+		on d.storageId = s.ID
+		WHERE
+		OrderID=#{orderId}
+	</select>
+	<select id="findStorageId" resultType="Integer">
+		select ID from Storage
+	</select>
+	<select id="findById" parameterType="int"
+		resultType="com.wit.model.DispatchBill">
+		SELECT ID, DispatchBillID, OrderID, CompanyProductID,
+		ProductUnit, UnitPrice, Amount, StorageID,
+		ShoppingAddressID,
+		DeliveryUser, DeliveryTime, Accepter,
+		AcceptTime, CheckUser, CheckTime,
+		STATUS, PurchaseQuantity,
+		PackagesNumber FROM DispatchBill WHERE
+		id=#{id}
+	</select>
+	<delete id="deleteById" parameterType="int">
+		delete from DispatchBill
+		where id=#{id}
+	</delete>
+	<insert id="insertData" parameterType="com.wit.model.DispatchBill">
+		<selectKey order="BEFORE" keyProperty="dispatchBillId"
+			resultType="String">
+			select
+			CONCAT('DB',DATE_FORMAT(CURDATE(),'%Y%m%d'),RIGHT(CONCAT('00000',(select
+			count(id) from DispatchBill
+			where
+			0=DATEDIFF(DispatchBillTime,NOW()))+1),6))
+		</selectKey>
+		insert into
+		DispatchBill(dispatchBillId,orderId,CompanyProductID,purchaseQuantity,PackagesNumber,productUnit,unitPrice,amount,storageId,
+		ShoppingAddressID,
+		DeliveryUser, DeliveryTime , Accepter , AcceptTime ,
+		CheckUser, CheckTime , Status,DispatchBillTime
+		)values(
+		#{dispatchBillId},#{orderId},#{companyProductId},#{purchaseQuantity},
+		#{packagesNumber},#{productUnit},#{unitPrice},
+		#{amount},
+		#{storageId},#{shoppingAddressId},#{deliveryUser}, #{deliveryTime} ,
+		#{accepter} , #{acceptTime} , #{checkUser},
+		#{checkTime} ,
+		#{status},now()
+		)
+	</insert>
+	<update id="updateById" parameterType="com.wit.model.DispatchBill">
+		UPDATE DispatchBill
+		SET
+		dispatchBillId=#{dispatchBillId},
+		orderId=#{orderId},
+		CompanyProductID=#{companyProductId},
+		purchaseQuantity=#{purchaseQuantity},
+		PackagesNumber=#{PackagesNumber},
+		productUnit=#{productUnit},
+		unitPrice=#{unitPrice},
+		amount= #{amount},
+		storageId=#{storageId},
+		ShoppingAddressID=#{shoppingAddressId},
+		DeliveryUser=#{DeliveryUser},
+		DeliveryTime=#{DeliveryTime} ,
+		Accepter=#{Accepter} ,
+		AcceptTime=#{AcceptTime} ,
+		CheckUser=#{CheckUser},
+		CheckTime=#{CheckTime} ,
+		Status=#{Status}
+		where
+		id=#{id}
+	</update>
+	<!-- 根据公司ID显示所有配送单（微信端） -->
+	<select id="findBillByCompanyId" parameterType="hashMap"
+		resultType="com.wit.model.DispatchBill">
+		SELECT
+		d.ID, d.DispatchBillID, d.ShoppingAddressID, d.DeliveryUser,
+		d.STATUS,
+		d.UnitPrice, d.PurchaseQuantity,d.Amount, d.DeliveryTime,
+		getAddress(d.ShoppingAddressID) as ShoppingAddressName,
+		getUserName(d.DeliveryUser) as DeliveryUserName, cp.CompanyID,
+		getProductName(cp.ProductID) as ProductName
+		FROM DispatchBill d
+		LEFT
+		JOIN CompanyProducts cp ON d.CompanyProductID=cp.ID
+		WHERE
+		cp.CompanyID=#{companyId}
+		<if test="page.shoppingAddressName!='' and  page.shoppingAddressName!=null">
+			AND getAddress(d.ShoppingAddressID) like
+			concat('%',#{page.shoppingAddressName},'%')
+		</if>
+		<if test="page.dispatchBillId!='' and page.dispatchBillId!=null">
+			AND d.DispatchBillID=#{page.dispatchBillId}
+		</if>
+		<if test="page.deliveryUserName!='' and page.deliveryUserName!=null">
+			AND getUserName(d.DeliveryUser) like
+			concat('%',#{page.deliveryUserName},'%')
+		</if>
+		<if test="page.status!='' and page.status!=null">
+			AND d.STATUS=#{page.status}
+		</if>
+		order by d.ID DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 根据公司ID查询配送单条数(微信端) -->
+	<select id="findBillRowByCompanyId" parameterType="hashMap"
+		resultType="Integer">
+		select count(d.ID)
+		FROM DispatchBill d
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID=cp.ID
+		WHERE cp.CompanyID=#{companyId}
+		<if test="page.shoppingAddressName!='' and  page.shoppingAddressName!=null">
+			AND getAddress(d.ShoppingAddressID) like
+			concat('%',#{page.shoppingAddressName},'%')
+		</if>
+		<if test="page.dispatchBillId!='' and page.dispatchBillId!=null">
+			AND d.DispatchBillID=#{page.dispatchBillId}
+		</if>
+
+		<if test="page.deliveryUserName!='' and page.deliveryUserName!=null">
+			AND getUserName(d.DeliveryUser) like
+			concat('%',#{page.deliveryUserName},'%')
+		</if>
+		<if test="page.status!='' and page.status!=null">
+
+			AND d.STATUS=#{page.status}
+		</if>
+		order by d.ID
+	</select>
+	<!-- <select id="findBillByCompanyIdRows" parameterType="hashMap" resultType="com.wit.model.DispatchBill"> 
+		SELECT d.ID, d.DispatchBillID, d.ShoppingAddressID, d.DeliveryUser, d.STATUS, 
+		d.UnitPrice, d.PurchaseQuantity,d.Amount, d.DeliveryTime, getAddress(d.ShoppingAddressID) 
+		as ShoppingAddressName, getUserName(d.DeliveryUser) as DeliveryUserName, 
+		cp.CompanyID, getProductName(cp.ProductID) as ProductName FROM DispatchBill 
+		d LEFT JOIN CompanyProducts cp ON d.CompanyProductID=cp.ID WHERE cp.CompanyID=#{companyId} 
+		<if test="page.shoppingAddressName!='' and page.shoppingAddressName!=null"> 
+		AND getAddress(d.ShoppingAddressID) like concat('%',#{page.shoppingAddressName},'%') 
+		</if> <if test="page.dispatchBillId!='' and page.dispatchBillId!=null" > 
+		AND d.DispatchBillID=#{page.dispatchBillId} </if> <if test="page.deliveryUserName!='' 
+		and page.deliveryUserName!=null"> AND getUserName(d.DeliveryUser) like concat('%',#{page.deliveryUserName},'%') 
+		</if> <if test="page.status!='' and page.status!=null"> AND d.STATUS=#{page.status} 
+		</if> order by d.ID limit #{page.begin},#{page.pageNum} </select> -->
+	<!--根据用户ID显示其所有发货单 -->
+	<select id="getAll" parameterType="hashMap"
+		resultType="com.wit.model.DispatchBill">
+		SELECT
+		d.ID, d.DispatchBillID, d.OrderID,o.OrderID as OrderCode,
+		d.CompanyProductID, d.ProductUnit, d.UnitPrice, d.Amount, d.StorageID,
+		d.ShoppingAddressID, d.DeliveryUser, d.DeliveryTime,d.Accepter,
+		d.AcceptTime, d.CheckUser, d.CheckTime, d.STATUS, d.PurchaseQuantity,p.ProductModel,
+		d.PackagesNumber,getAddress(d.ShoppingAddressID) as
+		ShoppingAddressName,
+		getUserName(d.DeliveryUser) as DeliveryUserName,
+		getUserName(d.Accepter) as AccepterUserName,
+		getUserName(d.CheckUser)
+		as CheckUserName,
+		getProductName(cp.ProductID) as ProductName,
+		getStorageName(d.StorageID) as StorageName,
+		getProductPic(cp.ProductID) as ProductPic,
+		getCompanyName(cp.CompanyID) as SupplierName
+		FROM DispatchBill d
+		LEFT
+		JOIN Orders o ON o.id =d.orderId
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID=cp.ID
+		LEFT JOIN Products p ON p.ID=cp.ProductID
+		<if test="userRole=='Supplier'">
+			LEFT JOIN Companys c ON c.ID=cp.CompanyID
+			where c.ID
+			=#{companyId} and
+			d.Status=0
+		</if>
+		<if test="userRole=='DeliveryUser'">
+			LEFT JOIN Users u ON d.DeliveryUser = u.id
+			where u.ID =
+			#{userId} and d.Status=2
+		</if>
+		<if test="userRole=='Checker'">
+			LEFT JOIN Users u ON d.CheckUser = u.id
+			where u.ID =
+			#{userId} and d.Status=3
+		</if>
+		<if test="userRole=='PurchaseFinancial'">
+			LEFT JOIN Users u ON o.userId = u.id
+			where d.Status=4
+			<if test="companyId!=null and companyId!=''">
+				and u.CompanyID = #{companyId}
+			</if>
+		</if>
+		<if test="userRole=='Accepter'">
+			LEFT JOIN Users u ON d.Accepter = u.id
+			where u.ID =
+			#{userId} and d.Status=5
+		</if>
+		<if test="userRole=='PurchaseUser'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="userId!=null and userId!=''">
+				and u.ID = #{userId}
+			</if>
+			<if test="id!=null and id !=''">
+				AND d.OrderID=#{id}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+		<if test="userRole=='PurchaseCompany'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="companyId!=null and companyId!=''">
+				and u.CompanyID = #{companyId}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+		<if test="userRole=='PurchaseDepart'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="departmentId!=null and departmentId!=''">
+				and u.DepartmentID = #{departmentId}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+
+		order by d.Id Desc
+		limit #{page.begin},#{page.pageNum}
+	</select>
+	<!--根据用户ID分行 -->
+	<select id="getMyDispatchBillrows" parameterType="hashMap"
+		resultType="int">
+		SELECT
+		COUNT(d.id)
+		FROM DispatchBill d
+		LEFT JOIN Orders o ON o.id
+		=d.orderId
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID=cp.ID
+		<if test="userRole=='Supplier'">
+			LEFT JOIN Companys c ON c.ID=cp.CompanyID
+			where c.ID
+			=#{companyId} and
+			d.Status=0
+		</if>
+		<if test="userRole=='DeliveryUser'">
+			LEFT JOIN Users u ON d.DeliveryUser = u.id
+			where u.ID =
+			#{userId} and d.Status=2
+		</if>
+		<if test="userRole=='Checker'">
+			LEFT JOIN Users u ON d.CheckUser = u.id
+			where u.ID =
+			#{userId} and d.Status=3
+		</if>
+		<if test="userRole=='PurchaseFinancial'">
+			LEFT JOIN Users u ON o.userId = u.id
+			where d.Status=4
+			<if test="companyId!=null and companyId!=''">
+				and u.CompanyID = #{companyId}
+			</if>
+		</if>
+		<if test="userRole=='Accepter'">
+			LEFT JOIN Users u ON d.Accepter = u.id
+			where u.ID =
+			#{userId} and d.Status=5
+		</if>
+		<if test="userRole=='PurchaseUser'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="userId!=null and userId!=''">
+				and u.ID = #{userId}
+			</if>
+			<if test="id!=null and id !=''">
+				AND d.OrderID=#{id}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+		<if test="userRole=='PurchaseCompany'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="companyId!=null and companyId!=''">
+				and u.CompanyID = #{companyId}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+		<if test="userRole=='PurchaseDepart'">
+			LEFT JOIN Users u ON o.userId = u.id
+			WHERE 1=1
+			<if test="departmentId!=null and departmentId!=''">
+				and u.DepartmentID = #{departmentId}
+			</if>
+			<if test="orderCode!=null and orderCode!=''">
+				and o.OrderID like CONCAT('%',#{orderCode},'%')
+			</if>
+			<if test="productName!=null and productName!=''">
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
+			</if>
+			<if test="supplierName!=null and supplierName!=''">
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
+			</if>
+			<if test="status!=null and status !=10">
+				AND d.STATUS=#{status}
+			</if>
+		</if>
+
+	</select>
+	<!--根据用户ID分行 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		SELECT
+		COUNT(d.id)
+		FROM DispatchBill d
+		LEFT JOIN Orders f ON f.id = d.orderId
+		LEFT JOIN Users u ON f.userId = u.id
+		WHERE u.ID = #{u.userId}
+	</select>
+
+	<!-- 门户根据用户ID展示验收结算信息 -->
+	<select id="dispatchBillInfo" parameterType="Integer"
+		resultType="hashMap">
+		SELECT
+		p.ProductName,d.OrderID,d.AcceptTime,d.ProductUnit,d.PackagesNumber,d.Accepter
+		from DispatchBill d
+		LEFT JOIN CompanyProducts cp ON d.CompanyProductID
+		= cp.ID
+		LEFT JOIN Products p ON p.ID = cp.ProductID
+		LEFT JOIN Orders f
+		ON f.id = d.orderId
+		LEFT JOIN Users u ON f.userId = u.id
+		WHERE u.ID
+		=#{userId}
+	</select>
+
+	<!--修改配送状态 -->
+	<!-- void updatePackagesNumber(String id, String num); -->
+	<update id="updatePackagesNumber" parameterType="String">
+		UPDATE
+		DispatchBill SET
+		PackagesNumber=#{num},Status=3,Amount=IFNULL(UnitPrice,0)*#{num} WHERE
+		ID=#{id}
+	</update>
+	<!-- void updateDispatchBillUser(String userId, String ids); -->
+	<update id="updateDispatchBillUser" parameterType="String">
+		UPDATE DispatchBill SET Status=#{status}
+		<if test="status==5">
+			,Accepter=#{userId}
+		</if>
+		<if test="status==2">
+			,DeliveryUser=#{userId},DeliveryTime=now()
+		</if>
+		WHERE FIND_IN_SET(ID,#{ids})>0
+	</update>
+	<update id="updateDispatchBillStatus" parameterType="String">
+		UPDATE DispatchBill SET Status=#{status}
+		<if test="status==6">
+			,AcceptTime=now()
+		</if>
+		<if test="status==4">
+			,CheckTime=now()
+		</if>
+		WHERE FIND_IN_SET(ID,#{ids})>0
+	</update>
+
+	<!--统计采购业务发货单状态为未验收数量 -->
+	<select id="purchaserCheckNum" parameterType="Integer"
+		resultType="int">
+		SELECT COUNT(DispatchBillID) from DispatchBill
+		where
+		Accepter=#{accepter} and status = 3
+	</select>
+
+	<!--统计供应业务发货单状态为未验收数量 -->
+	<select id="supplierCheckNum" parameterType="Integer"
+		resultType="int">
+		SELECT COUNT(DispatchBillID) from DispatchBill
+		where
+		DeliveryUser=#{deliveryUser} and status = 2
+	</select>
+</mapper>

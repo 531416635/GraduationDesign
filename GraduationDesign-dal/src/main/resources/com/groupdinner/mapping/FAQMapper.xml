@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.FAQDao">
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.FAQ">
+		select id,questionType,title,answer,showIndex,
+		createTime,createBy,getUserName(createBy) as  createByName
+		from FAQ
+		order by ID limit
+		#{begin},#{pageNum}
+	</select>
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM
+		FAQ
+	</select>
+	<!-- 查询所有 -->
+	<select id="getAll" resultType="com.wit.model.FAQ">
+		select
+		id,questionType,title,answer,showIndex, createTime,createBy
+		from FAQ
+	</select>
+	
+	<select id="getFaqByType" parameterType="java.lang.Integer" resultType="com.wit.model.FAQ">
+		select
+		id,questionType,title,answer,showIndex, createTime,createBy
+		from FAQ where questionType=#{faqType} order by showIndex
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from FAQ
+		where id=#{id}
+	</delete>
+	<delete id="deleteByIds" parameterType="java.lang.String">
+		delete from FAQ
+		where  FIND_IN_SET(id,#{ids})
+	</delete>
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.FAQ">
+		insert into FAQ
+		(questionType,title,answer,showIndex, createTime,createBy)
+		values (
+		#{questionType},#{title},#{answer},
+		#{showIndex},NOW(),#{createBy}
+		)
+	</insert>
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.FAQ"
+		parameterType="Integer">
+		select id,questionType,title,answer,showIndex,
+		createTime,createBy,getUserName(createBy) as  createByName
+		from FAQ
+		where id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="updateById" parameterType="com.wit.model.FAQ">
+		update FAQ set
+		questionType=#{questionType},title=#{title},answer=#{answer},
+		showIndex=#{showIndex},createBy=#{createBy}
+		where id=#{id}
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

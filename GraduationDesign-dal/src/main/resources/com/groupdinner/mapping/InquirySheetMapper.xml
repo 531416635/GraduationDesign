@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.InquirySheetDao">
+	<!-- 查看所有数据关联用户名称 -->
+	<select id="getAll" parameterType="com.wit.model.Page"
+		resultMap="inquirySheetMap">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productID,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status
+		from InquirySheet
+		where status != 3
+		order by ID limit #{begin},#{pageNum};
+	</select>
+	<select id="findUserName" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Users">
+		select userName from Users where id=#{id}
+	</select>
+	<resultMap type="com.wit.model.InquirySheet" id="inquirySheetMap">
+		<association property="users" column="id"
+			javaType="com.wit.model.Users" select="findUserName">
+		</association>
+	</resultMap>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		update InquirySheet
+		set status = 3
+		where id=#{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.InquirySheet">
+		<selectKey order="BEFORE" keyProperty="inquiryId"
+			resultType="String">
+			select
+			CONCAT('IS',DATE_FORMAT(CURDATE(),'%Y%m%d'),RIGHT(CONCAT('00000',(select
+			count(id) from InquirySheet
+			where 0=DATEDIFF(ordertime,NOW()))+1),6))
+		</selectKey>
+		insert into InquirySheet
+		(userId,address,inquiryId,currency,deliveryType,productModel,productID,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status)
+		values(
+		#{userId},#{address},#{inquiryId},#{currency},#{deliveryType},#{productModel},#{productID},
+		#{productQuantity},#{productUnit},#{refPrice},#{expectPrice},#{expectTime},NOW(),0)
+	</insert>
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.InquirySheet"
+		parameterType="Integer">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productID,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status,address
+		from InquirySheet where id=#{id}
+	</select>
+	<!--根据Id查询 -->
+	<select id="findByInquiryId" resultType="com.wit.model.InquirySheet"
+		parameterType="Integer">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productID,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status,address
+		from InquirySheet where inquiryId=#{inquiryId}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.InquirySheet">
+		update InquirySheet set
+		userId=#{userId},inquiryId=#{inquiryId}, currency=#{currency},
+		deliveryType=#{deliveryType}, productModel=#{productModel},
+		productID=#{productID},productQuantity=#{productQuantity},
+		productUnit=#{productUnit},
+		refPrice=#{refPrice},expectPrice=#{expectPrice},expectTime=#{expectTime},
+		orderTime=#{orderTime},status=#{status}
+		where id=#{id}
+	</update>
+
+	<!-- 分页 -->
+	<select id="findRows" resultType="int">
+		select
+		count(id)
+		from
+		InquirySheet
+		where status != 3
+	</select>
+
+	<!--根据用户ID显示其询价单(系统后台) -->
+	<select id="findAll" parameterType="hashMap"
+		resultType="com.wit.model.InquirySheet">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productId,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status
+		from InquirySheet
+		where userId=#{userId} and status=0
+		order by ID DESC limit
+		#{page.begin},#{page.pageNum};
+	</select>
+
+	<select id="findAllByIds" parameterType="hashMap" resultType="hashMap">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productId,
+		productQuantity,productUnit,address,refPrice,expectPrice,expectTime,orderTime,status,
+		getAddressName(address) as inquiryAddressName,getAddressNameShoppingCart(address) as inquiryAddressNames,
+		getProductName(ProductID) AS productName,
+		getProductPic(ProductID) AS
+		productPic
+		from InquirySheet
+		where userId=#{userId}
+		and status=0
+		<if test="ids != null">
+			and FIND_IN_SET(inquiryId,#{ids})>0
+		</if>
+		<if test="inquiryId!=null and inquiryId!=''">
+			and inquiryId like CONCAT('%',#{inquiryId},'%')
+		</if>
+		<if test="productName!=null and productName!=''">
+			and getProductName(ProductID) like CONCAT('%',#{productName},'%')
+		</if>
+		<if test="orderTime!= null and orderTime!=''">
+			AND orderTime like CONCAT('%',#{orderTime},'%')
+		</if>
+		<if test="status!= null and status!=10">
+			AND status =#{status}
+		</if>
+
+		order by ID DESC
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="weChatFindAllByIds" parameterType="hashMap"
+		resultType="hashMap">
+		select
+		id,userId,inquiryId,currency,deliveryType,productModel,productId,
+		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status,
+		getProductName(ProductID) AS productName,
+		getProductPic(ProductID) AS
+		productPic
+		from InquirySheet
+		where userId=#{userId}
+		and FIND_IN_SET(status,'0,1')
+		<if test="page.inquiryId != null and page.inquiryId != ''">
+			and inquiryId = #{page.inquiryId}
+		</if>
+		<if test="page.productName != null and page.productName !=''">
+			and
+			FIND_IN_SET(productId,getProductIdByProductName(#{page.productName}))
+		</if>
+		<if test="page.inquiryTimeStart != null and page.inquiryTimeStart != ''">
+			and orderTime &gt;= #{page.inquiryTimeStart}
+		</if>
+		<if test="page.inquiryTimeStop != null and page.inquiryTimeStop != ''">
+			and orderTime &lt;= #{page.inquiryTimeStop}
+		</if>
+		order by ID DESC
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="weChatFindAllRowsByIds" parameterType="hashMap"
+		resultType="Integer">
+		select count(ID) from InquirySheet where userId=#{userId}
+		and FIND_IN_SET(status,'0,1')
+		<if test="page.inquiryId != null and page.inquiryId != ''">
+			and inquiryId = #{page.inquiryId}
+		</if>
+		<if test="page.productName != null and page.productName !=''">
+			and
+			FIND_IN_SET(productId,getProductIdByProductName(#{page.productName}))
+		</if>
+		<if test="page.inquiryTimeStart != null and page.inquiryTimeStart != ''">
+			and orderTime &gt;= #{page.inquiryTimeStart}
+		</if>
+		<if test="page.inquiryTimeStop != null and page.inquiryTimeStop != ''">
+			and orderTime &lt;= #{page.inquiryTimeStop}
+		</if>
+	</select>
+	<select id="findAllByIdsRows" parameterType="hashMap"
+		resultType="Integer">
+		select count(ID)
+		from InquirySheet
+		where userId=#{userId}
+		and status=0
+		<if test="ids != null">
+			and FIND_IN_SET(inquiryId,#{ids})>0
+		</if>
+		<if test="inquiryId!=null and inquiryId!=''">
+			and inquiryId like CONCAT('%',#{inquiryId},'%')
+		</if>
+		<if test="productName!=null and productName!=''">
+			and getProductName(ProductID) like CONCAT('%',#{productName},'%')
+		</if>
+		<if test="orderTime!= null and orderTime!=''">
+			AND orderTime like CONCAT('%',#{orderTime},'%')
+		</if>
+		<if test="status!= null and status!=10">
+			AND status =#{status}
+		</if>
+		order by ID DESC;
+	</select>
+	<!--根据用户ID查询行数 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		select
+		count(id) from InquirySheet
+		where userId=#{userId}
+	</select>
+
+
+	<!--修改询价单信息 -->
+	<update id="updateInquirySheetInfo" parameterType="com.wit.model.InquirySheet">
+		update
+		InquirySheet
+		set ProductQuantity=#{ProductQuantity},ExpectPrice=#{ExpectPrice}
+		where
+		InquiryID=#{InquiryID}
+	</update>
+
+	<!--逻辑删除询价单信息 -->
+	<update id="deleteInquirySheetInfo" parameterType="String">
+		update
+		InquirySheet set status = 1
+		where InquiryID=#{inquiryId}
+	</update>
+	<update id="updateStatusByIds" parameterType="com.wit.model.InquirySheet">
+		update InquirySheet
+		set Status = #{status}
+		where FIND_IN_SET(inquiryId,#{ids})>0
+	</update>
+</mapper>
+
+
+
+

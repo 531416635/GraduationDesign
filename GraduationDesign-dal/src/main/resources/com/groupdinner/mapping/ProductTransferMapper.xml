@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.ProductTransferDao" >
+	<!--新闻公告商信息列表  -->
+	<select id="findProductTransfer" resultType="com.wit.model.ProductTransfer">
+		SELECT
+		ID, CompanyProductID, TransitShipment, LinkMan, LinkTel, ArrivalTime, Batch
+		FROM ProductTransfer
+	</select>
+	<!--根据ID删除物流信息 -->
+	<delete id="deleteProductTransfer" parameterType="Integer">
+		delete from ProductTransfer where ID=#{id}
+	</delete>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteProductTransferByIds" parameterType="string">
+		delete from ProductTransfer where FIND_IN_SET(id,#{ids})
+	</delete>
+	<!-- 添加新闻-->
+	<insert id="addProductTransfer" parameterType="com.wit.model.ProductTransfer">
+		insert into ProductTransfer (CompanyProductID, TransitShipment, LinkMan, LinkTel, ArrivalTime, Batch
+		) values(
+		#{companyProductId},
+		#{transitShipment},
+		#{linkMan},
+		#{linkTel},
+		#{arrivalTime},
+		#{batch}
+		)
+	</insert>
+	<!--根据Id查询新闻公告信息  -->
+	<select id="findbyId" parameterType="Integer" resultType="com.wit.model.ProductTransfer">
+		select ID, CompanyProductID, TransitShipment, LinkMan, LinkTel, ArrivalTime, Batch from ProductTransfer where id=#{id}
+	</select>
+	
+	<!--根据companyProductId查询新闻公告信息  -->
+	<select id="findbycompanyProductId" parameterType="Integer" resultType="com.wit.model.ProductTransfer">
+		select ID, CompanyProductID, TransitShipment, LinkMan, LinkTel, ArrivalTime, Batch from ProductTransfer where CompanyProductID=#{companyProductId}
+	</select>
+	<!--根据companyProductId及分页查询新闻公告信息  -->
+	<select id="findbycompanyProductIds" parameterType="hashMap" resultType="com.wit.model.ProductTransfer">
+		select ID, CompanyProductID, TransitShipment, LinkMan, LinkTel, ArrivalTime, Batch from ProductTransfer where CompanyProductID=#{companyProductId}
+		order by ID limit #{page.begin},#{page.pageNum}
+	</select>
+	<!--更新新闻公告  -->
+	<update id="updateProductTransfer" parameterType="com.wit.model.ProductTransfer">
+		update ProductTransfer set 
+		CompanyProductID=#{companyProductId},TransitShipment=#{transitShipment},
+		linkMan=#{linkMan},linkTel=#{linkTel},
+		arrivalTime=#{arrivalTime},batch=#{batch} 
+		where id=#{id}
+	</update> 
+	<!-- findRows -->
+	<select id="findRows" resultType="int" parameterType="Integer">
+		SELECT
+		COUNT(id)
+		FROM ProductTransfer WHERE
+		CompanyProductID=#{companyProductID}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

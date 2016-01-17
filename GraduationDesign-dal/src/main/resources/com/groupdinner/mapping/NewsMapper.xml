@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.NewsDao">
+	<!--新闻公告商信息列表 -->
+	<select id="findNews" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.News">
+		select
+		id,title,content,releaseTime,releaseAging,publishers,status,newType,newsIndex
+		from News where NewType=#{newType} and FIND_IN_SET(status,'0,1') order
+		by News.ID,News.releaseTime
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 查询所有新闻公告的标题用于制作新闻列表 -->
+	<select id="findNewsTitle" parameterType="hashMap" resultType="com.wit.model.News">
+	select
+	id,title,releaseTime,newType
+	from News 
+	where NewType=#{newType} AND Status=1
+	order by News.releaseTime
+	limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 查询新闻列表中标题数量 -->
+	<select id="findTitleRows" parameterType="Integer" resultType="Integer">
+		SELECT
+		COUNT(id)
+		FROM News where newType=#{newType} and
+		status=1
+	</select>
+	<!-- 删除新闻公告 -->
+	<update id="deleteNew" parameterType="Integer">
+		update News set
+		status=2
+		where id=#{id}
+	</update>
+	<!-- 根据ID字符数组删除数据 -->
+	<update id="deleteByIds" parameterType="string">
+		update News set
+		status=2
+		where FIND_IN_SET(id,#{ids})
+	</update>
+	<!-- 添加新闻 -->
+	<insert id="addNew" parameterType="com.wit.model.News">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into News
+		(title,content,releaseTime,releaseAging,publishers,status,newType,newsIndex)
+		values(
+		#{title},
+		#{content},
+		NOW(),
+		#{releaseAging},
+		#{publishers},
+		0,
+		#{newType},
+		#{newsIndex}
+		)
+	</insert>
+	<!--根据Id查询新闻公告信息 -->
+	<select id="findbyId" parameterType="Integer" resultType="com.wit.model.News">
+		select
+		id,title,content,releaseTime,releaseAging,publishers,status,newType,newsIndex
+		from News where id=#{id}
+	</select>
+	<!--更新新闻公告 -->
+	<update id="updateNew" parameterType="com.wit.model.News">
+		update News set
+		title=#{title},content=#{content},
+		releaseTime=#{releaseTime},releaseAging=#{releaseAging},
+		publishers=#{publishers},status=#{status},newType=#{newType},
+		newsIndex=#{newsIndex}
+		where id=#{id}
+	</update>
+
+	<!-- findRows -->
+	<select id="findRows" parameterType="Integer" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM News where newType=#{newType} and
+		FIND_IN_SET(status,'0,1')
+	</select>
+	<!-- findRows -->
+	<select id="findNewsLimit" resultType="com.wit.model.News">
+		select
+		id,title,content,releaseTime,releaseAging,publishers,status,newType,newsIndex
+		from News where status=1
+		<if test="newsType != 0">
+			and newType=#{newsType}
+		</if>
+		order by releaseTime desc
+		limit #{top}
+	</select>
+	<!-- 门户商户控制台-->
+  <select id="findAllNews"  resultType="com.wit.model.News">
+	select
+	id,title,releaseTime,newType
+	from News 
+	where FIND_IN_SET(NewType,'1,2') AND Status=1
+	order by News.releaseTime
+	limit 7
+	</select>
+	
+	<!--新闻搜索-->
+	<select id="searchNewsInfo" resultType="com.wit.model.News" parameterType="hashMap">
+	SELECT ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
+ 	FROM news WHERE NewType = #{newType} AND status = 1  AND Title LIKE CONCAT('%',IFNULL(#{title},'%'),'%')
+ 	order by ReleaseTime
+ 	limit #{page.begin},#{page.pageNum};
+	</select>
+	
+	<!--新闻搜索行数  -->
+	<select id="searchNewsRows" resultType="int" parameterType="hashMap">
+	SELECT COUNT(asd.id) FROM 
+	(SELECT ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
+ 	FROM news WHERE NewType = #{newType} AND status = 1  AND Title LIKE CONCAT('%',IFNULL(#{title},'%'),'%')
+ 	order by ReleaseTime)asd
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.GrouponDao">
+	<!-- 后端列出商品 -->
+	<select id="findAll" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,g.ValidityTime
+		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut
+		from Groupon g
+		LEFT JOIN
+		Products p ON g.ProductID =p.id
+		<if test="productName!=null and productName!=''">
+		where p.ProductName like CONCAT('%',#{productName},'%')
+		</if>
+		order by ID limit #{page.begin},#{page.pageNum};
+	</select>
+
+	<select id="findById" parameterType="int"
+		resultType="hashMap">
+		select
+		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,pc.filePath,g.ValidityTime
+		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut,pc.IsDefault
+		from groupon g
+		LEFT JOIN
+		Products p ON g.ProductID =p.id
+		LEFT JOIN Productpic pc ON g.ProductID
+		= pc.ProductID
+		where pc.IsDefault=1 and g.id=#{id}
+	</select>
+	<select id="findByProductId" parameterType="int"
+		resultType="com.wit.model.Groupon">
+		SELECT
+		id,productId,grouponPrice,validityTime,remark,discount,
+		spare,status,soldOut
+		FROM Groupon
+		WHERE productId=#{productId}
+	</select>
+	<delete id="deleteById" parameterType="int">
+		delete from Groupon where
+		id=#{id}
+	</delete>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteByIds" parameterType="string">
+		delete from Groupon
+		where FIND_IN_SET(id,#{ids})
+	</delete>
+	<insert id="insert" parameterType="com.wit.model.Groupon">
+		insert into Groupon(
+		productId,grouponPrice,validityTime,remark,discount,
+		spare,status,soldOut
+		)values(
+		#{productId},
+		#{grouponPrice},
+		#{validityTime},
+		#{remark},
+		#{discount},
+		#{spare},
+		#{status},
+		#{soldOut}
+		)
+	</insert>
+	<update id="update" parameterType="com.wit.model.Groupon">
+		UPDATE Groupon
+		SET
+		productId=#{productId},
+		grouponPrice= #{grouponPrice},
+		validityTime=#{validityTime},
+		remark=#{remark},
+		discount=#{discount},
+		spare=#{spare},
+		status=#{status},
+		soldOut= #{soldOut}
+		where
+		id=#{id}
+	</update>
+
+	<select id="countAll">
+		SELECT
+		COUNT(*)
+		FROM Groupon
+	</select>
+
+	<!--团购商品显示 findGroupon -->
+	<select id="findGroupon" parameterType="hashMap" resultType="hashMap">
+		select
+		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,pc.filePath,g.ValidityTime
+		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut,p.productCategory
+		from groupon g
+		LEFT JOIN
+		Products p ON g.ProductID =p.id
+		LEFT JOIN Productpic pc ON g.ProductID
+		= pc.ProductID
+		LEFT JOIN CompanyProducts c ON g.ProductID
+		= c.ProductID
+		where pc.IsDefault=1 and g.Status=2 
+		<if test="cateGoryId!=null and cateGoryId!=''">
+			and FIND_IN_SET(#{cateGoryId},p.productCategory)
+		</if>
+		and g.ProductID	= c.ProductID  GROUP BY c.ProductID
+		limit #{page.begin},#{page.pageNum}
+	</select>
+	
+	<!--团购热销商品显示 findGrouponHot -->
+	<select id="findGrouponHot" parameterType="hashMap" resultType="hashMap">
+		select
+		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,pc.filePath,g.ValidityTime
+		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut
+		from groupon g
+		LEFT JOIN
+		Products p ON g.ProductID =p.id
+		LEFT JOIN Productpic pc ON g.ProductID
+		= pc.ProductID
+		LEFT JOIN CompanyProducts c ON g.ProductID
+		= c.ProductID
+		where pc.IsDefault=1 and g.Status=2  and p.IsHotShow = 1
+		<if test="cateGoryId!=null and cateGoryId!=''">
+			and FIND_IN_SET(#{cateGoryId},p.productCategory)
+		</if>
+		and g.ProductID	= c.ProductID  GROUP BY c.ProductID
+		limit #{begin},#{pageNum}
+	</select>
+
+	<update id="checkStatus" parameterType="com.wit.model.Groupon">
+		UPDATE Groupon
+		SET
+		status=
+		#{status}
+		where
+		id=#{id}
+	</update>
+	<select id="findRows" parameterType="hashMap" resultType="int">
+		SELECT
+		COUNT(g.id)
+		FROM Groupon g
+		LEFT JOIN
+		Products p ON g.ProductID =p.id
+		<if test="productName!=null and productName!=''">
+		where p.ProductName like CONCAT('%',#{productName},'%')
+		</if>
+	</select>
+	<!-- 更新售出数量 -->
+	<update id="addSoldOut" parameterType="hashMap">
+		UPDATE Groupon
+		SET
+		SoldOut=SoldOut+#{soldOut}
+		where
+		id=#{id}
+	</update>
+</mapper>

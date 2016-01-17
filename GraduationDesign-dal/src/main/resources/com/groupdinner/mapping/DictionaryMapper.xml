@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.DictionaryDao">
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="com.wit.model.DictionaryPage"
+		resultType="com.wit.model.Dictionarys">
+		select
+		d.id,d.dicName,d.dicCode,d.dicValue,d.dicParent,d.dicType,ds.typeName,pd.dicName
+		as dicParentName
+		from Dictionarys d right join DictionaryType ds on
+		ds.id=d.dicType
+		left join Dictionarys pd on d.dicParent=pd.id
+		where 1=1
+		<if test="typeName!=null  and typeName!=''">
+			and ds.typeName like CONCAT('%',#{typeName},'%')
+		</if>
+		<if test="dicName!=null and dicName!=''">
+			and d.dicName like CONCAT('%',#{dicName},'%')
+		</if>
+		order by ID limit #{begin},#{pageNum};
+	</select>
+	<!-- 查询所有父类字典 -->
+	<select id="findParentDic" resultType="com.wit.model.Dictionarys">
+		SELECT
+		DISTINCT d1.id,d1.dicName,d1.dicCode,d1.dicValue,d1.dicParent,d1.dicType
+		FROM
+		Dictionarys d1 LEFT JOIN Dictionarys d2
+		on d1.id = d2.dicParent
+	</select>
+	<!-- 删除字典 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from Dictionarys
+		where id=#{id}
+	</delete>
+
+	<!-- 插入字典 -->
+	<insert id="insert" parameterType="com.wit.model.Dictionarys">
+		insert into Dictionarys(
+		dicName,dicCode,dicValue,dicParent,dicType
+		)values(
+		#{dicName},
+		#{dicCode},
+		#{dicValue},
+		#{dicParent},
+		#{dicType}
+		)
+	</insert>
+	<!-- 根据Id查询字典 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.Dictionarys">
+		SELECT
+		id,dicName,dicCode,dicValue,dicParent,dicType
+		FROM
+		Dictionarys
+		WHERE id=#{id}
+	</select>
+
+	<!-- 根据字典类型查询字典 -->
+	<select id="getDicsByDicType" parameterType="Integer"
+		resultType="com.wit.model.Dictionarys">
+		SELECT
+		id,dicName,dicCode,dicValue,dicParent,dicType
+		FROM
+		Dictionarys
+		WHERE dicType=#{dicType}
+	</select>
+	<!-- 废弃的关联查询 -->
+	<resultMap type="com.wit.model.Dictionarys" id="pageDicMap">
+		<id property="id" column="id" />
+		<collection property="dictionarys" column="id"
+			javaType="java.util.ArrayList" select="findDictionarys"
+			ofType="com.wit.model.Dictionarys">
+		</collection>
+	</resultMap>
+	<!-- 废弃的查询 -->
+	<select id="findDictionarys" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Dictionarys">
+		SELECT
+		id,dicName,dicCode,dicValue,dicParent,dicType
+		FROM
+		Dictionarys
+		WHERE
+		dicParent=#{id} limit 5
+	</select>
+
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.Dictionarys">
+		update Dictionarys set
+		dicName=#{dicName},dicCode=#{dicCode},
+		dicValue=#{dicValue},dicParent=#{dicParent},dicType=#{dicType}
+		where
+		id=#{id}
+	</update>
+	<!-- 分页 -->
+	<select id="findRows" parameterType="Integer" resultType="int">
+		SELECT
+		COUNT(d.id)
+		FROM Dictionarys d right join DictionaryType ds on
+		ds.id=d.dicType
+		<where>
+			<if test="dicType!=null">
+				and ds.id=#{dicType}
+			</if>
+			<if test="dicName!=null &amp;&amp; dicName.length()>0">
+				and d.dicName like CONCAT('%',#{dicName},'%')
+			</if>
+		</where>
+	</select>
+
+	<!--省市区三级联动查询 -->
+	<select id="findByParentId" parameterType="Integer"
+		resultType="com.wit.model.Dictionarys">
+		SELECT DISTINCT
+		d.DicName,d.DicCode,d.DicParent,d.DicType,d.DicValue,d.ID
+		from Dictionarys d
+		INNER JOIN Dictionarys ds WHERE d.DicParent = #{id}
+	</select>
+
+	<!--查询所有省的信息 -->
+	<select id="findProvinceInfo" resultType="com.wit.model.Dictionarys">
+		SELECT
+		d.ID,d.DicName,d.DicCode,d.DicValue,d.DicParent,d.DicType from
+		Dictionarys d
+		WHERE d.DicParent is null and d.id != 40
+	</select>
+	
+</mapper>

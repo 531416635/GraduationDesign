@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ProductTypeDao">
+	<!-- 查询所有 -->
+	<select id="getAll" resultType="com.wit.model.ProductType">
+	   select id,typeName,parentType,typeCode
+	   from ProductType 
+	</select>
+	<!-- 根据Page查询所有 -->
+	<select id="getAlls" parameterType="com.wit.model.Page" resultMap="productTypeMap">
+	   select id,typeName,parentType,typeCode
+	   from ProductType order by ID limit #{begin},#{pageNum}
+	</select>
+	<!-- 根据品类和商品属性查询所有属性值 -->
+	<select id="getproductTypeSon" resultType="com.wit.model.ProductType">
+	   select id,typeName,parentType,typeCode,productCategoryId
+	   from ProductType where parentType=#{parentType} and productCategoryId=#{categoryId} order by ID
+	</select>
+	<resultMap type="com.wit.model.ProductType" id="findproductTypeSonSMap">
+	 	<association property="parentTypee" column="parentType"
+            javaType="com.wit.model.ProductType" select="findbyId">
+        </association>
+	</resultMap>
+	<resultMap type="com.wit.model.ProductType" id="productTypeMap">
+	 	<association property="parentTypee" column="parentType"
+            javaType="com.wit.model.ProductType" select="findbyId">
+        </association>
+	</resultMap>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+		delete from ProductType
+		where id=#{id}
+	</delete>
+	<!--根据ID字符数组删除数据 -->
+	<delete id="deleteByIds" parameterType="string">
+		delete from ProductType
+		where FIND_IN_SET(id,#{ids})
+	</delete>
+	<!--添加 -->
+	<insert id="add" parameterType="com.wit.model.ProductType">
+		insert into ProductType(typeName,parentType,typeCode)
+		values(#{typeName},#{parentType},#{typeCode})
+	</insert>
+	<!--根据Id查询 -->
+	<select id="findbyId" parameterType="Integer" 
+	resultType="com.wit.model.ProductType">
+	select id,typeName,parentType,typeCode
+	from ProductType 
+	where id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.ProductType">
+	update ProductType set
+	typeName=#{typeName},parentType=#{parentType},typeCode=#{typeCode}
+	where id=#{id}
+	</update>
+	<!-- findRows -->
+	<select id="findRows" resultType="int">
+	    SELECT
+		COUNT(id) 
+		FROM ProductType
+	</select>
+	
+	
+
+</mapper>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.MenusDao">
+	<!-- 查询所有 -->
+	<select id="getAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.Menus">
+
+		select
+		id,menuName,menuCode,menuUrl,parentMenu,status,createTime,createBy,menuType,patform
+		from Menus order by ID,menuName limit #{begin},#{pageNum};
+
+	</select>
+	<select id="findAll" resultType="com.wit.model.Menus">
+
+		select
+		id,menuName,menuCode,menuUrl,parentMenu,status,createTime,createBy,menuType,patform
+		from Menus
+
+	</select>
+	<select id="getAllMenu" resultType="com.wit.model.Menus">
+
+		select
+		id,menuName,menuCode,menuUrl,parentMenu,status,createTime,createBy,menuType,patform
+		from Menus where MenuType=1 and status=1
+
+	</select>
+	<select id="getAllByPatform" resultType="com.wit.model.Menus">
+		select
+		m1.id,m1.menuName,m1.menuCode,m1.menuUrl,m1.parentMenu,m1.status,
+		m1.createTime,m1.createBy,m1.menuType,m1.patform,
+		m2.MenuName as
+		parentMenuName,u.UserName as createByName
+		from Menus m1 LEFT JOIN Menus
+		m2 on
+		m1.ParentMenu=m2.ID LEFT JOIN Users
+		u on u.ID=m1.CreateBy
+		where 1=1
+		<if test="patform!=null and patform!=''">
+			and m1.patform = #{patform}
+		</if>
+		<if test="menuName!=null and menuName!=''">
+			and m1.menuName like CONCAT('%',#{menuName},'%')
+		</if>
+		order by m1.ID,m1.menuName limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Menus
+		where
+		id=#{id}
+	</delete>
+	<delete id="deleteByIDs" parameterType="java.lang.String">
+		delete from Menus
+		where
+		FIND_IN_SET(id,#{id})>0
+	</delete>
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.Menus">
+		insert into Menus
+		(id,menuName,menuCode,menuUrl,parentMenu,
+		status,createTime,createBy,menuType,patform)
+		values (
+		#{id},#{menuName},#{menuCode},
+		#{menuUrl},#{parentMenu},#{status},
+		now(),#{createBy},#{menuType},#{patform}
+		)
+	</insert>
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.Menus"
+		parameterType="Integer">
+		select id,menuName,menuCode,menuUrl,parentMenu,
+		status,createTime,createBy,menuType,patform
+		from Menus
+		where id=#{id}
+	</select>
+
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.Menus">
+		update Menus set
+		id=#{id},menuName=#{menuName},menuCode=#{menuCode},menuUrl=#{menuUrl},
+		parentMenu=#{parentMenu},status=#{status},createTime=#{createTime},
+		createBy=#{createBy},menuType=#{menuType},patform=#{patform}
+		where
+		id=#{id}
+	</update>
+
+	<!-- 分页 -->
+	<select id="findRows" resultType="int">
+		select
+		count(id)
+		from Menus
+	</select>
+	<select id="findRow" resultType="int">
+		select
+		count(id)
+		from Menus where patform=#{patform}
+		<if test="menuName!=null and menuName!=''">
+			and menuName like CONCAT('%',#{menuName},'%')
+		</if>
+	</select>
+	<select id="getMenusByUser" resultType="com.wit.model.Menus">
+		select
+		id,menuName,menuCode,menuUrl,parentMenu,status,createTime,createBy,menuType,patform
+		FROM Menus
+		<where>
+			<if test="strPatform !=null and strPatform !=''">
+				patform = #{strPatform}
+			</if>
+			<if test="menuType !=null and menuType !=0">
+				and menuType=#{menuType}
+			</if>
+			<if test="status !=null ">
+				and status=#{status}
+			</if>
+			<if test="userID !=null and userID !=0">
+				and FIND_IN_SET(id,
+				( SELECT rightID FROM
+				Roles INNER JOIN
+				Users on Roles.ID=Users.RoleID WHERE Users.ID =#{userID}))>0
+			</if>
+		</where>
+	</select>
+	<select id="getMenusByMenuUrl" resultType="com.wit.model.Menus">
+		select
+		id,menuName,menuCode,menuUrl,parentMenu,status,createTime,createBy,menuType,patform
+		FROM Menus
+		<where>
+			<if test="strPatform !=null and strPatform !=''">
+				patform = #{strPatform}
+			</if>
+			<if test="menuType !=null and menuType !=0">
+				and menuType=#{menuType}
+			</if>
+			<if test="status !=null ">
+				and status=#{status}
+			</if>
+			<if test="menuUrl !=null ">
+				and menuUrl like CONCAT('%',#{menuUrl},'%')
+			</if>
+			<if test="userID !=null and userID !=0">
+				and FIND_IN_SET(id,
+				( SELECT rightID FROM
+				Roles INNER JOIN
+				Users on Roles.ID=Users.RoleID WHERE Users.ID =#{userID}))>0
+			</if>
+		</where>
+	</select>
+</mapper>

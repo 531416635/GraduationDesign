@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.JobsDao">
+	<!--查询所有 -->
+	<select id="findAll"  parameterType="com.wit.model.Page" resultType="com.wit.model.Jobs">
+		SELECT
+		j.ID, DepartmentID,DepartmentName,
+		JobName, j.Status, j.CreateBy, j.CreateAt
+		FROM Jobs j left join Departments d on j.DepartmentID=d.ID
+		order by j.ID limit #{begin},#{pageNum}
+	</select>
+	<select id="findRows" resultType="int">
+	    SELECT
+		COUNT(id) 
+		FROM Jobs
+	</select>
+	<select id="findDeptId" resultType="Integer">
+	  select ID from Departments;
+	</select>
+
+	<!--根据ID查找 -->
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Jobs">
+		SELECT
+		ID, DepartmentID, JobName, Status, CreateBy, CreateAt
+		FROM Jobs
+		WHERE
+		ID=#{id}
+	</select>
+
+	<!--增加 -->
+	<insert id="insertJob" parameterType="com.wit.model.Jobs">
+		INSERT INTO Jobs (
+		DepartmentID, JobName, Status, CreateBy, CreateAt
+		) VALUES (
+		 #{departmentId}, #{jobName}, #{status}, #{createBy}, #{createAt}
+		)
+	</insert>
+
+	<!--修改 -->
+	<update id="updateJob" parameterType="com.wit.model.Jobs">
+		UPDATE Jobs
+		SET
+		ID=#{id}, DepartmentID=#{departmentId}, JobName=#{jobName},
+		Status=#{status}, CreateBy=#{createBy}, CreateAt=#{createAt}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateJobName" parameterType="com.wit.model.Jobs">
+		UPDATE Jobs
+		SET
+		JobName=#{jobName}
+		WHERE
+		ID=#{id}
+	</update>
+	<!--删除 -->
+	<delete id="deleteJob" parameterType="Integer">
+		DELETE FROM 
+		Jobs
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<!-- 根据部门ID查找岗位名称 -->
+	<select id="findByDeptId" parameterType="Integer" resultType="com.wit.model.Jobs">
+		select ID,jobName from Jobs
+		WHERE departmentId=#{departmentId}
+	</select>
+</mapper>

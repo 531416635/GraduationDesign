@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.QuestionTypeDao">
+	<!-- 查看所有问题类型 -->
+	<select id="getAll" parameterType="Integer"
+		resultType="com.wit.model.QuestionType">
+		select ID,TypeName from QuestionType
+	</select>
+
+	<select id="getFaqType" parameterType="Integer"
+		resultType="com.wit.model.QuestionType">
+		select ID,TypeName from QuestionType order by ID limit 0,#{top}
+	</select>
+
+	<insert id="addquestionType" parameterType="com.wit.model.QuestionType">
+		insert into
+		QuestionType(ID,TypeName)values(
+		#{ID},
+		#{TypeName}
+		)
+	</insert>
+
+	<delete id="delquestionType" parameterType="Integer">
+		delete from
+		QuestionType where ID=#{ID}
+	</delete>
+
+	<update id="updatequestionType" parameterType="com.wit.model.QuestionType">
+		update
+		QuestionType set
+		ID=#{ID},
+		TypeName=#{TypeName}
+	</update>
+
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.QuestionType">
+		select ID,TypeName from QuestionType where ID=#{ID}
+	</select>
+</mapper>

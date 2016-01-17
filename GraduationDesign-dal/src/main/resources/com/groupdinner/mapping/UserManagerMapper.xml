@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.UserManagerDao">
+	<!--查询所有 -->
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.Users">
+		SELECT
+		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
+		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId,u.gender,r.roleName
+		FROM Users u left join Roles r on u.RoleID = r.ID
+		order by u.ID limit
+		#{begin},#{pageNum}
+	</select>
+	<!--后台根据公司Id查看所有用户信息 -->
+	<select id="findAllByCompanyId" parameterType="hashMap"
+		resultType="com.wit.model.Users">
+		SELECT
+		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
+		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
+		FROM Users u where u.companyId = #{companyId}
+		order by u.ID limit
+		#{page.begin},#{page.pageNum}
+	</select>
+	<!--前台根据Id查看所有用户信息 -->
+	<select id="webfindAllByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.Users">
+		SELECT
+		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
+		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
+		FROM Users u where u.companyId = #{companyId}
+		order by u.ID
+	</select>
+	<select id="webfindAllByDepartID" parameterType="Integer"
+		resultType="com.wit.model.Users">
+		SELECT
+		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
+		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
+		FROM Users u where 1=1 
+		<if test="companyId!=null and companyId!=''">
+			and u.companyId = #{companyId}
+		</if>
+		<if test="departmentId!=null and departmentId!=''">
+			and u.departmentId = #{departmentId}
+		</if>	
+		order by u.ID
+	</select>
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Users
+	</select>
+	<select id="findRowsByCompanyId" parameterType="Integer"
+		resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Users where companyId = #{companyId}
+	</select>
+	<select id="findRowsByCompanyIds" parameterType="hashMap"
+		resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Users where companyId = #{companyId} and status IN
+		<foreach collection="statuss" item="status" open="(" close=")"
+			separator=",">
+			#{status}
+		</foreach>
+	</select>
+	<!--根据ID查找 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.Users">
+		SELECT
+		id,userCode,userName,userPsw,userType,userUnits,regTime,email,tel,getAddressName(address) as addressName,zipCode,fixedLineTel,fax,
+		status,roleId,isEmailVerify,isTelVerify,companyId,departmentId,jobsId,companyPlant
+		FROM Users
+		WHERE
+		ID=#{id}
+	</select>
+
+	<!--增加 -->
+	<insert id="insertUsers" parameterType="com.wit.model.Users">
+		INSERT INTO Users (
+		userCode,userName,userPsw,userType,userUnits,regTime,email,tel,address,zipCode,fixedLineTel,fax,
+		status,roleId,isEmailVerify,isTelVerify,companyId,departmentId,jobsId,gender
+		) VALUES (
+		#{userCode}, #{userName}, #{userPsw}, #{userType},
+		#{userUnits},CURDATE(),#{email},#{tel},#{address},#{zipCode},
+		#{fixedLineTel},#{fax},#{status},#{roleId},#{isEmailVerify},#{isTelVerify},#{companyId},#{departmentId},#{jobsId},#{gender}
+		)
+	</insert>
+
+	<!--修改 -->
+	<update id="updateUsers" parameterType="com.wit.model.Users">
+		UPDATE Users
+		SET
+		userCode=#{userCode}, userName=#{userName},
+		 userType=#{userType}, <!-- userUnits=#{userUnits}, -->
+		email=#{email},tel=#{tel},address=#{address},zipCode=#{zipCode},
+		fixedLineTel=#{fixedLineTel},fax=#{fax},status=#{status},
+		roleId=#{roleId},isEmailVerify=#{isEmailVerify},
+		isTelVerify=#{isTelVerify},companyId=#{companyId},departmentId=#{departmentId}, jobsId=#{jobsId}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateStatus" parameterType="hashMap">
+		update Users
+		set
+		status=#{status}
+		where id=#{userId}
+	</update>
+	<!-- <update id="deleteUsers" parameterType="Integer"> update Users set 
+		status=3 where id=#{id} </update> -->
+	<!--批量逻辑删除 -->
+	<update id="deleteCompanyUsers" parameterType="String">
+		update Users
+		set
+		status=3
+		where FIND_IN_SET(id,#{ids})
+	</update>
+	<!--根据名字查找 -->
+	<select resultType="com.wit.model.Users" parameterType="String"
+		id="findByName">
+		SELECT
+		id,userCode,userName,userPsw,userType,userUnits,regTime,email,tel,address,zipCode,fixedLineTel,fax,
+		status,roleId,isEmailVerify,isTelVerify,companyId,departmentId,jobsId,
+		CompanyName,DepartmentName,JobName,CompanyStatus,CompanyType,UserPhoto
+		FROM vUsers WHERE userCode=#{userName} or email=#{userName} or
+		tel=#{userName}
+	</select>
+
+	<!-- 完善门户用户信息 -->
+	<update id="completeUserInfo" parameterType="com.wit.model.Users">
+		UPDATE Users
+		SET
+		<if test="userName != null and userName != '' ">
+		userName=#{userName}
+		</if>
+		<if test="gender != null and gender != '' ">,</if>
+		<if test="gender != null and gender != '' ">
+		gender=#{gender}
+		</if>
+		<if test="email != null and email != '' ">,</if>
+		<if test="email != null and email != '' ">
+		email=#{email}
+		</if>
+		<if test="tel != null and tel != '' ">,</if>
+		<if test="tel != null and tel != '' ">
+		tel=#{tel}
+		</if>
+		<if test="address != null and address != '' ">,</if>
+		<if test="address != null and address != '' ">
+		address=#{address}
+		</if>
+		<if test="zipCode != null and zipCode != '' ">,</if>
+		<if test="zipCode != null and zipCode != '' ">
+		zipCode=#{zipCode}
+		</if>
+		<if test="fixedLineTel != null and fixedLineTel != '' ">,</if>
+		<if test="fixedLineTel != null and fixedLineTel != '' ">
+		fixedLineTel=#{fixedLineTel}
+		</if>
+		<if test="fax != null and fax != '' ">,</if>
+		<if test="fax != null and fax != '' ">
+		fax=#{fax}
+		</if>
+		<if test="companyPlant != null and companyPlant !='' ">,</if>
+		<if test="companyPlant != null and companyPlant !='' ">
+		companyPlant = #{companyPlant}
+		</if>
+		WHERE
+		ID=#{id}
+	</update>
+
+	<!--门户子账户列表 -->
+	<select id="findSonAccountByCompanyId" resultType="hashMap">
+		SELECT
+		u.ID,u.UserCode,u.UserName,u.UserPsw,u.UserType,u.Email,u.Tel,
+		u.Address,u.ZipCode,u.CompanyID,u.JobsID,u.DepartmentID,
+		u.Fax,u.FixedlineTel,u.`Status`,d.DepartmentName,j.JobName,r.RoleName
+		from Users u
+		LEFT JOIN Departments d ON u.departmentId = d.id
+		LEFT JOIN Jobs j ON
+		u.jobsId = j.id
+		LEFT JOIN Roles r ON u.RoleID = r.ID
+		where u.CompanyID =
+		#{companyId} and u.ParentID !=0 and u.`Status` !=3
+		order by u.ID limit
+		#{page.begin},#{page.pageNum}
+	</select>
+
+</mapper>

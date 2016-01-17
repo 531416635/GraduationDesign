@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ProductCategoryDao">
+	<!-- 获取主品类 -->
+	<select id="getAllSSS" resultType="com.wit.model.ProductCategory">
+		select
+		id,cateGoryName,parentCateGory,cateGoryCode
+		from ProductCategory where
+		parentCateGory is null order by ID
+	</select>
+	<!-- 获取子品类及一下品类属性 -->
+	<select id="getAllSSs" parameterType="Integer"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory p1 left join ProductCategory p2
+		on
+		p1.id=p2.parentCateGory
+		where p1.parentCateGory = #{id} order by ID
+	</select>
+	<!-- 根据公司Id查询规格 -->
+	<select id="getCategoryByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.ProductCategory">
+		select CateGoryName from ProductCategory where
+		ParentCateGory=
+		(select ID from ProductCategory
+		where
+		FIND_IN_SET(id,(select ProductCategory from Products where
+		id=#{companyId}))>0 and CateGoryCode=3)
+	</select>
+	<!-- 获取子品类 -->
+	<select id="getChildrens" parameterType="int"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode,parentCateGory
+		from
+		ProductCategory
+		where
+		<choose>
+			<when test="_parameter !=0">
+				parentCateGory = #{id}
+			</when>
+			<otherwise>
+				parentCateGory is null
+			</otherwise>
+		</choose>
+		order by ID
+	</select>
+	<!--门户中商品管理中商品上架商品列表获取规格 -->
+	<select id="getWebStandard" parameterType="Integer" resultType="string">
+		SELECT CateGoryName FROM (SELECT ID, CateGoryName FROM ProductCategory
+		WHERE ParentCateGory = (SELECT ID from ProductCategory where
+		FIND_IN_SET(ID,(select ProductCategory from Products where id =
+		#{productId} )) and CateGoryCode = '3')) as t1 WHERE
+		FIND_IN_SET(t1.ID,(select ProductCategory from Products where id =
+		#{productId} ))
+	</select>
+	<!-- 分界线 -->
+
+
+	<!-- 查询所有 1 -->
+	<select id="getAll" parameterType="com.wit.model.Page"
+		resultMap="productCategoryMap">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		FROM
+		ProductCategory order by ID limit #{begin},#{pageNum};
+	</select>
+	<resultMap type="com.wit.model.ProductCategory" id="productCategoryMap">
+		<association property="parentCateGoryy" column="parentCateGory"
+			javaType="com.wit.model.ProductCategory" select="findProductCategory">
+		</association>
+	</resultMap>
+	<!-- findProductCategory -->
+	<select id="findProductCategory" parameterType="java.lang.Integer"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where id=#{parentCateGory}
+	</select>
+	<!-- 查询所有 2 -->
+	<select id="getAlls" resultType="com.wit.model.ProductCategory">
+		select
+		id,cateGoryName,parentCateGory,cateGoryCode
+		from ProductCategory order
+		by ID
+	</select>
+	<!-- 前台二级页面查询品类 -->
+	<select id="findWebbyId" resultMap="categoryMaps" parameterType="Integer">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from ProductCategory
+		where id=#{id}
+	</select>
+	<!-- 前台二级页关联子品类 -->
+	<resultMap type="com.wit.model.ProductCategory" id="categoryMaps">
+		<id property="id" column="id" />
+		<collection property="productCategorys" column="id"
+			javaType="java.util.ArrayList" select="findProductCategorys"
+			ofType="com.wit.model.ProductCategory">
+		</collection>
+	</resultMap>
+	<!-- 前台二级页面关联子品类查询 -->
+	<select id="findProductCategorys" resultMap="ProductCategoryMaps"
+		parameterType="Integer">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where
+		parentCateGory=#{id}
+	</select>
+	<select id="findProductCategorysSun" resultType="com.wit.model.ProductCategory"
+		parameterType="Integer">
+		SELECT id, cateGoryName,parentCateGory,cateGoryCode FROM
+		ProductCategory WHERE
+		parentCateGory = #{cateGoryId} OR (
+		parentCateGory IN (
+		SELECT
+		id
+		FROM
+		ProductCategory
+		WHERE
+		parentCateGory =
+		#{cateGoryId}
+		)
+		AND cateGoryCode = 1) OR (
+		parentCategory IN (
+		SELECT
+		id
+		FROM
+		ProductCategory
+		WHERE
+		parentCateGory IN (
+		SELECT
+		id
+		FROM
+		ProductCategory
+		WHERE
+		parentCateGory = #{cateGoryId}
+		)
+		AND cateGoryCode =
+		1
+		)
+		)
+	</select>
+	<!-- 前台二级页子品类关联商标 -->
+	<resultMap type="com.wit.model.ProductCategory" id="ProductCategoryMaps">
+		<id property="id" column="id" />
+		<collection property="productCategorys" column="id"
+			javaType="java.util.ArrayList" select="findProductCategorysSun"
+			ofType="com.wit.model.ProductCategory">
+		</collection>
+	</resultMap>
+	<!-- 前台二级页子品类关联商标查询 -->
+	<select id="findproductBrandIDs" resultType="com.wit.model.ProductBrand">
+		select
+		id,brandName,logoPath,isHomeShow
+		from ProductBrand where isHomeShow=1
+		and
+		FIND_IN_SET(id,(select GROUP_CONCAT(productBrandID SEPARATOR ',')
+		from Products where
+		ProductCategory=#{id})) order by ID
+	</select>
+	<!-- 前台二级页子品类类别筛选列表 -->
+	<select id="findWebProductCategory" parameterType="java.lang.Integer"
+		resultMap="productTypeMaps">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where id=#{id}
+	</select>
+	<!-- 前台二级页子品类类别筛选列表关联 -->
+	<resultMap type="com.wit.model.ProductCategory" id="productTypeMaps">
+		<id property="id" column="id" />
+		<collection property="commodityBrands" column="id"
+			javaType="java.util.ArrayList" select="findproductBrandIDs"
+			ofType="com.wit.model.ProductBrand">
+		</collection>
+		<collection property="productTypes" column="id"
+			javaType="java.util.ArrayList" select="webFindProductTypes"
+			ofType="com.wit.model.ProductType">
+		</collection>
+
+	</resultMap>
+	<!-- 前台二级页子品类类别筛选列表关联查询 -->
+	<select id="webFindProductTypes" parameterType="Integer"
+		resultType="com.wit.model.ProductType">
+		select id,typeName,parentType,typeCode,productCategoryId
+		from ProductType where parentType is null and
+		productCategoryId=#{productCategoryId}
+	</select>
+	<!-- 二级页面推荐商品查询 -->
+	<select id="findSecondProducts" parameterType="Integer"
+		resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory,isHomeShow,isSubPageShow,isHotShow
+		FROM Products where IsSubpageShow=1 and
+		FIND_IN_SET(#{id},productCategory) limit 4
+	</select>
+	<!-- 二级页面热销商品查询 -->
+	<select id="findHotProducts" parameterType="Integer" resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory,isHomeShow,isSubPageShow,isHotShow
+		FROM Products where IsHotShow=1 and
+		FIND_IN_SET(productCategory,(select GROUP_CONCAT(ID SEPARATOR ',')
+		from ProductCategory where ParentCateGory=#{id} GROUP BY
+		ParentCateGory)) order by ID limit 10
+	</select>
+	<!-- 二级页面商品筛选列表 -->
+	<select id="findWebProductList" resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory,isHomeShow,isSubPageShow,isHotShow
+		FROM Products
+		where 1=1
+		<if test="productCategoryId!=null">
+			and productCategory=#{productCategoryId}
+		</if>
+		<if test="productBrandId!=null">
+			and productBrandID=#{productBrandId}
+		</if>
+		<if test="productType!=null and productType!=''">
+			and productType=#{productType}
+		</if>
+		order by ID limit 10
+	</select>
+	<!-- 前台index查询所有品类 -->
+	<select id="getWebAll" resultType="com.wit.model.ProductCategory">
+		select
+		id,cateGoryName,parentCateGory,cateGoryCode
+		from ProductCategory WHERE
+		parentCateGory is null order by ID
+	</select>
+	<select id="getWebAllSun" resultType="com.wit.model.ProductCategory">
+		select
+		id,cateGoryName,parentCateGory,cateGoryCode
+		from ProductCategory WHERE
+		parentCateGory IN (
+		SELECT
+		id
+		FROM
+		ProductCategory
+		WHERE
+		parentCateGory is
+		null
+		) order by ID
+	</select>
+	<!-- categoryMap -->
+	<!-- 前台index查询关联商品 -->
+	<resultMap type="com.wit.model.ProductCategory" id="categoryMap">
+		<id property="id" column="id" />
+		<collection property="productCategorys" column="id"
+			javaType="java.util.ArrayList" select="findProductCategorys"
+			ofType="com.wit.model.ProductCategory">
+		</collection>
+	</resultMap>
+	<!-- 门户首页根据类别Id查询类别展示商品 -->
+	<select id="findProducts" resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory,isHomeShow,isSubPageShow,isHotShow
+		FROM Products where IsHomeShow=1 and
+		FIND_IN_SET(productCategory,(select GROUP_CONCAT(ID SEPARATOR ',')
+		from ProductCategory where ParentCateGory=#{id} GROUP BY
+		ParentCateGory)) limit 8
+	</select>
+	<!-- productMap -->
+	<!-- 门户商品关联图片 -->
+	<resultMap type="com.wit.model.Products" id="productMap">
+		<id property="id" column="id" />
+		<association property="productPic" column="id"
+			javaType="com.wit.model.ProductPic" select="findProductPic">
+		</association>
+	</resultMap>
+	<!-- 门户商品关联图片 查询 -->
+	<select id="findProductPic" resultType="com.wit.model.ProductPic">
+		SELECT
+		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+		FROM ProductPic where IsDefault=1 and productId=#{id}
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from ProductCategory
+		where id=#{id}
+	</delete>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteByIds" parameterType="string">
+		delete from
+		ProductCategory where FIND_IN_SET(id,#{ids})
+	</delete>
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.ProductCategory">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ProductCategory
+		(cateGoryName,parentCateGory,cateGoryCode)
+		values(
+		#{cateGoryName},#{parentCateGory},#{cateGoryCode}
+		)
+	</insert>
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.ProductCategory"
+		parameterType="Integer">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where id=#{id}
+	</select>
+
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.ProductCategory">
+		update ProductCategory set
+		cateGoryName=#{cateGoryName}
+		where id=#{id}
+
+	</update>
+
+	<!-- findRows -->
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM
+		ProductCategory
+	</select>
+
+	<select id="getCateGoryByIds" parameterType="java.lang.String"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where FIND_IN_SET(id,#{ids}) order by ID
+	</select>
+	<select id="findSuperParent" parameterType="java.lang.String"
+		resultType="integer">
+		select id
+		from
+		ProductCategory where parentCateGory is Null
+	</select>
+	
+	<!-- 查询现货子类 -->
+	<select id="findByCateGoryId" parameterType="Integer"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where parentCateGory=#{cateGoryId} order by ID
+	</select>
+
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+		<property name="timeToIdleSeconds" value="3600" /><!--1 hour -->
+		<property name="timeToLiveSeconds" value="3600" /><!--1 hour -->
+		<property name="maxEntriesLocalHeap" value="1000" />
+		<property name="maxEntriesLocalDisk" value="10000000" />
+		<property name="memoryStoreEvictionPolicy" value="LRU" />
+	</cache>
+</mapper>
+
+

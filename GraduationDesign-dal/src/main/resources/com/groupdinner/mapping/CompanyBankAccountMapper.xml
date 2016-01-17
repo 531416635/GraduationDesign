@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.CompanyBankAccountDao">
+	<!--查询供应商银行账户信息 -->
+	<select id="findSupplierBankAccount" resultType="com.wit.model.CompanyBankAccount">
+		SELECT
+		cb.id,
+		cb.companyId, cb.bankAccount, cb.bankAddress, cb.bankName, cb.status,
+		cb.createTime
+		FROM
+		CompanyBankAccount cb LEFT JOIN Companys c on cb.companyId = c.id
+		WHERE c.companyType=1 and cb.status !=3
+	</select>
+	
+	<!--查询采购商银行账户信息 -->
+	<select id="findBuyerBankAccount" resultType="com.wit.model.CompanyBankAccount">
+		SELECT
+		cb.id,
+		cb.companyId, cb.bankAccount, cb.bankAddress, cb.bankName, cb.status,
+		cb.createTime
+		FROM
+		CompanyBankAccount cb LEFT JOIN Companys c on cb.companyId = c.id
+		WHERE c.companyType=2 and cb.status !=3
+	</select>
+
+	<!--根据id查找银行账号 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.CompanyBankAccount">
+		SELECT
+		id,
+		companyId, bankAccount, bankAddress, bankName,
+		status, createTime
+		FROM
+		CompanyBankAccount
+		WHERE
+		companyId=#{companyId}
+	</select>
+
+	<!--删除银行账户信息 -->
+	<update id="deleteCompanyBankAccount" parameterType="Integer">
+		update
+		CompanyBankAccount
+		set status=3
+		WHERE companyId=#{companyId}
+	</update>
+
+	<!--添加银行账号 -->
+	<insert id="addBankAccount" parameterType="com.wit.model.CompanyBankAccount">
+		INSERT INTO
+		CompanyBankAccount (
+		companyId, bankAccount, bankAddress, bankName,
+		status, createTime
+		)
+		VALUES (
+		#{companyId}, #{bankAccount},
+		#{bankAddress}, #{bankName},
+		0,NOW()
+		)
+	</insert>
+
+	<!--修改银行账号 -->
+	<update id="updateCompanyBankAccount" parameterType="com.wit.model.CompanyBankAccount">
+		UPDATE
+		CompanyBankAccount
+		SET
+		bankAccount=#{bankAccount},
+		bankAddress=#{bankAddress},
+		bankName=#{bankName}, status=#{status},
+		createTime=#{createTime}
+		WHERE
+		companyId=#{companyId}
+	</update>
+	
+	<!--查询采购商银行账户行数  -->
+	<select id="findBuyerRows" resultType="int">
+		select count(cba.id) from CompanyBankAccount cba
+		left join Companys  c on cba.companyId=c.id
+		where c.companyType=2 and cba.status !=3
+	</select>
+	
+	<!--查询供应商银行账户行数  -->
+	<select id="findSupplierRows" resultType="int">
+		select count(cba.id) from CompanyBankAccount cba
+		left join Companys  c on cba.companyId=c.id
+		where companyType=1 and cba.status !=3
+	</select>
+	
+	<!--根据公司ID查找银行账号信息 -->
+	<select id="findByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.CompanyBankAccount">
+		SELECT
+		id,
+		companyId, bankAccount, bankAddress, bankName,
+		status, createTime
+		FROM
+		CompanyBankAccount
+		WHERE
+		companyId=#{companyId}
+	</select>
+</mapper>

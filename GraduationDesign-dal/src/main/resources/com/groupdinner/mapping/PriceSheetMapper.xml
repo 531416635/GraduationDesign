@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.PriceSheetDao">
+	<!-- 查询所有关联用户名 -->
+	<select id="getAll" parameterType="com.wit.model.Page"
+		resultMap="priceSheetMap">
+		select id,userId,priceSheetId,CompanyProductID,quantity,
+		productUnit,unitPrice,deliveryDate,validUntil,status
+		from PriceSheet
+		where status != 3
+		order by ID limit #{begin},#{pageNum};
+	</select>
+	<select id="findUserName" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Users">
+		select userName from Users where id=#{id}
+	</select>
+	<resultMap type="com.wit.model.PriceSheet" id="priceSheetMap">
+		<association property="users" column="id"
+			javaType="com.wit.model.Users" select="findUserName">
+		</association>
+	</resultMap>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		update PriceSheet
+		set status =
+		3
+		where id=#{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.PriceSheet">
+		insert into PriceSheet
+		(userId,priceSheetId,companyProductId,quantity,
+		productUnit,unitPrice,deliveryDate,validUntil,status)
+		values(
+		#{userId},CONCAT('PS',DATE_FORMAT(CURDATE(),'%Y%m%d'),RIGHT(CONCAT('00000',LAST_INSERT_ID()+1),6)),#{companyProductId},#{quantity},
+		#{productUnit},#{unitPrice},#{deliveryDate},#{validUntil},0
+		)
+	</insert>
+	<insert id="addByIds" parameterType="String">
+		<![CDATA[
+		CALL AddPriceSheet(#{ids, mode=IN, jdbcType=VARCHAR},#{times, mode=IN, jdbcType=VARCHAR},#{num, mode=IN, jdbcType=VARCHAR},#{address, mode=IN, jdbcType=VARCHAR});
+		]]>
+	</insert>
+
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.PriceSheet"
+		parameterType="Integer">
+		select id,userId,priceSheetId,CompanyProductID,quantity,
+		productUnit,unitPrice,deliveryDate,validUntil,status
+		from PriceSheet
+		where id=#{id}
+	</select>
+
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.PriceSheet">
+		update PriceSheet set
+		userId=#{userId},priceSheetId=#{priceSheetId},CompanyProductID=#{CompanyProductID},quantity=#{quantity},productUnit=#{productUnit},
+		unitPrice=#{unitPrice},deliveryDate=#{deliveryDate},validUntil=#{validUntil},
+		status=#{status}
+		where id=#{id}
+	</update>
+	<!-- 分页 -->
+	<select id="findRows" resultType="int">
+		select
+		count(id)
+		from PriceSheet
+		where status != 3
+	</select>
+
+	<!--根据用户ID显示其报价单 -->
+	<select id="findAll" parameterType="hashMap"
+		resultType="com.wit.model.PriceSheet">
+		select
+		id,userId,priceSheetId,CompanyProductID,quantity,
+		productUnit,unitPrice,deliveryDate,validUntil,status,PriceSheetID
+		from
+		PriceSheet
+		where userId=#{userId}
+		order by ID limit
+		#{page.begin},#{page.pageNum};
+	</select>
+
+	<!--根据用户ID查询行数 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		select
+		count(id) from PriceSheet
+		where userId=#{userId}
+	</select>
+
+	<!-- 门户报价单信息 -->
+	<select id="getPriceSheetInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		ps.ID,p.ProductName,cp.ProductID,cp.CompanyID,cp.IsSample,p.ProductUnit,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.ValidUntil,ps.DeliveryDate,p.ProductModel,
+		ps.CompanyProductID,getCompanyProductPic(cp.ID) as
+		FilePath,getProductPic(cp.ProductID) AS productPic,ps.Status,ps.PriceSheetID,s.IsDefault,s.IsLock,c.CompanyTel,c.Salesman
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		LEFT JOIN Companys c ON cp.CompanyID = c.ID
+		LEFT JOIN Users u on ps.UserID=u.ID
+		LEFT JOIN Suppliers s on s.BuyCompanyID=u.CompanyID and s.SellCompanyProductID=ps.CompanyProductID
+		WHERE ps.UserID = #{userId} 
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.PriceSheetID,#{ids})>0
+		</if>
+		<if test="priceSheetId!=null and priceSheetId!=''">
+			and ps.PriceSheetID like CONCAT('%',#{priceSheetId},'%')
+		</if>
+		<if test="productName != null and productName !=''">
+		and p.ProductName like CONCAT('%',#{productName},'%')
+		</if>
+		<if test="createDateStart != null and createDateStart != ''">
+		and ps.CreateDate &gt;= #{createDateStart}
+		</if>
+		<if test="createDateStop != null and createDateStop != ''">
+		and ps.CreateDate  &lt;= #{createDateStop}
+		</if>
+		<if test="companyName != null and companyName != ''">
+		and c.CompanyName like CONCAT('%',#{companyName},'%')
+		</if>
+		<if test="status1 != null and status1 != 10">
+		and ps.Status=#{status1}
+		</if>
+		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="getPriceSheetInfoRow" parameterType="hashMap"
+		resultType="Integer">
+		SELECT
+		count(ps.ID)
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		= cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		LEFT JOIN Companys c
+		ON cp.CompanyID = c.ID
+		WHERE ps.UserID = #{userId}
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.PriceSheetID,#{ids})>0
+		</if>
+		<if test="priceSheetId!=null and priceSheetId!=''">
+			and ps.PriceSheetID like CONCAT('%',#{priceSheetId},'%')
+		</if>
+		<if test="productName != null and productName !=''">
+		and p.ProductName like CONCAT('%',#{productName},'%')
+		</if>
+		<if test="createDateStart != null and createDateStart != ''">
+		and ps.CreateDate &gt;= #{createDateStart}
+		</if>
+		<if test="createDateStop != null and createDateStop != ''">
+		and ps.CreateDate  &lt;= #{createDateStop}
+		</if>
+		<if test="companyName != null and companyName != ''">
+		and c.CompanyName like CONCAT('%',#{companyName},'%')
+		</if>
+		<if test="status1 != null and status1 != 10">
+		and ps.Status=#{status1}
+		</if>
+		order by ps.ID;
+	</select>
+	<select id="getWeChatPriceSheetInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		ps.ID,p.ProductName,cp.ProductID,cp.CompanyID,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.ValidUntil,ps.DeliveryDate,p.ProductModel,ps.Status,ps.PriceSheetID
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		WHERE ps.UserID = #{userId} 
+		<if test="page.priceSheetId!=null and page.priceSheetId!=''">
+			and FIND_IN_SET(ps.PriceSheetID,#{page.priceSheetId})>0
+		</if>
+		<if test="page.productName != null and page.productName !=''">
+		and FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
+		</if>
+		<if test="page.createDateStart != null and page.createDateStart != ''">
+		and ps.CreateDate &gt;= #{page.createDateStart}
+		</if>
+		<if test="page.createDateStop != null and page.createDateStop != ''">
+		and ps.CreateDate  &lt;= #{page.createDateStop}
+		</if>
+		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="getWeChatPriceSheetInfoRow" parameterType="hashMap"
+		resultType="Integer">
+		SELECT
+		count(ps.ID)
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		WHERE ps.UserID = #{userId}
+		<if test="page.priceSheetId!=null and page.priceSheetId!=''">
+			and FIND_IN_SET(ps.PriceSheetID,#{page.priceSheetId})>0
+		</if>
+		<if test="page.productName != null and page.productName !=''">
+		and FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
+		</if>
+		<if test="page.createDateStart != null and page.createDateStart != ''">
+		and ps.CreateDate &gt;= #{page.createDateStart}
+		</if>
+		<if test="page.createDateStop != null and page.createDateStop != ''">
+		and ps.CreateDate  &lt;= #{page.createDateStop}
+		</if>
+		order by ps.ID;
+	</select>
+	<!--议价单数据展示 -->
+	<select id="getBargainingInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		ps.ID,p.ProductName,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
+		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
+		as FilePath,c.CompanyTel,c.Salesman,getProductPic(cp.ProductID) AS productPic,p.ProductModel,
+		ps.Status,ps.PriceSheetID,getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress
+		from PriceSheet ps
+		LEFT JOIN
+		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p
+		ON cp.ProductID = p.ID
+		LEFT JOIN Companys c ON cp.CompanyID = c.ID
+		WHERE ps.UserID = #{userId}
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.ID,#{ids})>0
+		</if>
+		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="getBargainingInfoRow" parameterType="hashMap"
+		resultType="Integer">
+		SELECT
+		count(ps.ID)
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		= cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		LEFT JOIN Companys c
+		ON cp.CompanyID = c.ID
+		WHERE ps.UserID = #{userId}
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.ID,#{ids})>0
+		</if>
+		order by ps.ID;
+	</select>
+	<select id="getCompanyBargainingInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		ps.ID,p.ProductName,p.ProductModel,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
+		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
+		as FilePath,c.CompanyTel,c.Salesman,
+		getUserCompanyName(ps.UserID) as UserCompanyName,getProductPic(cp.ProductID) AS productPic,
+		getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress,
+		ps.Status,ps.PriceSheetID
+		from PriceSheet ps
+		LEFT JOIN
+		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p
+		ON cp.ProductID = p.ID
+		LEFT JOIN Companys c ON cp.CompanyID = c.ID
+		WHERE cp.CompanyID = #{companyId}
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.ID,#{ids})>0
+		</if>
+		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="getCompanyBargainingInfoRow" parameterType="hashMap"
+		resultType="Integer">
+		SELECT
+		count(ps.ID)
+		from PriceSheet ps
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		= cp.ID
+		LEFT JOIN Products p ON cp.ProductID = p.ID
+		LEFT JOIN Companys c
+		ON cp.CompanyID = c.ID
+		WHERE cp.CompanyID = #{companyId}
+		<if test="status!=null and status!=''">
+			and FIND_IN_SET(ps.Status,#{status})>0
+		</if>
+		<if test="ids!=null and ids!=''">
+			and FIND_IN_SET(ps.ID,#{ids})>0
+		</if>
+		order by ps.ID;
+	</select>
+	<!-- 议价 -->
+	<update id="bargaining"  parameterType="hashMap">
+		UPDATE PriceSheet set Status=#{status}
+		<if test="status==2">
+			,BargainPrice=#{bargainPrice}
+		</if>
+		<if test="status==3">
+			,UnitPrice=#{unitPrice}
+		</if>
+		<if test="IsBargain!=null">
+			,IsBargain=#{IsBargain}
+		</if>
+		where id = #{id}
+		<choose>
+		<when test="status==2">
+		and status=0
+		</when>
+		<when test="status==3">
+		and status=2
+		</when>
+		<when test="status==4">
+		and status=2
+		</when>
+		</choose>
+	</update>
+
+	<!--逻辑删除报价单信息 -->
+	<update id="deletePriceSheetInfo" parameterType="com.wit.model.PriceSheet">
+		update
+		PriceSheet set status = 1
+		where id=#{priceSheetId}
+	</update>
+	<update id="updateByIds" parameterType="hashMap">
+		update PriceSheet set
+		Status = #{status}
+		where FIND_IN_SET(ID,#{ids})>0 and FIND_IN_SET(status,'0,3')>0
+	</update>
+
+	<!--议价供应商已响应  -->
+	<select id="bargainingResponse" resultType="int" parameterType="Integer">
+		SELECT COUNT(ID) from PriceSheet 
+		where status IN(3,4) and userId=#{userId}
+	</select>
+	
+	<!--议价等待处理  -->
+	<select id="bargainingWait" resultType="int" parameterType="Integer">
+		SELECT COUNT(asd.id) from(
+		SELECT
+		ps.ID,p.ProductName,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
+		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
+		as FilePath,c.CompanyTel,c.Salesman,
+		getUserCompanyName(ps.UserID) as UserCompanyName,getProductPic(cp.ProductID) AS productPic,
+		getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress,
+		ps.Status,ps.PriceSheetID
+		from PriceSheet ps
+		LEFT JOIN
+		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN Products p
+		ON cp.ProductID = p.ID
+		LEFT JOIN Companys c ON cp.CompanyID = c.ID
+		WHERE cp.CompanyID =#{companyId}
+		and ps.Status=2 ) asd
+	</select>
+</mapper>
+
+

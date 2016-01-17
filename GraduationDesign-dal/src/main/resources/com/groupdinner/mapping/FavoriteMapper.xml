@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.FavoriteDao">
+	<!-- 查询所有 -->
+	<select id="getAll" resultType="com.wit.model.Favorite">
+		select
+		id,userId,productId,favoriteName,favoriteType
+		from Favorite
+	</select>
+	<!-- 根据userID查询 -->
+	<select id="getAlls" resultMap="favoriteMap" parameterType="hashmap">
+		select id,userId,productId,favoriteName,favoriteType
+		from Favorite
+		where userId=#{userID} order by ID limit
+		#{page.begin},#{page.pageNum};
+	</select>
+	<!-- productMap -->
+	<resultMap type="com.wit.model.Favorite" id="favoriteMap">
+		<association property="product" column="productId"
+			javaType="com.wit.model.Products" select="findProduct">
+		</association>
+	</resultMap>
+	<select id="findProduct" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Products">
+		SELECT
+		id,productName,productType,unitPrice,productInfo,productCategory
+		FROM
+		Products
+		WHERE id=#{productId}
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Favorite
+		where
+		id=#{id}
+	</delete>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteByIds" parameterType="string">
+		delete from Favorite
+		where FIND_IN_SET(id,#{ids})
+	</delete>
+
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.Favorite">
+		insert into Favorite
+		(userId,productId,favoriteName,favoriteType,favoriteAddress)
+		values (
+		#{userId},#{productId},#{favoriteName},#{favoriteType},#{favoriteAddress}
+		)
+	</insert>
+	<!--根据Id查询 -->
+	<select id="findbyId" parameterType="java.lang.Integer"
+		resultMap="favoriteMap">
+		select id,userId,productId,favoriteName,favoriteType
+		from
+		Favorite
+		where id=#{id}
+	</select>
+	<!--根据ProductId查询 -->
+	<select id="findbyProdcutId" parameterType="hashmap"
+		resultType="com.wit.model.Favorite">
+		select id,userId,productId,favoriteName,favoriteType
+		from
+		Favorite
+		where ProductID=#{productId} and UserID=#{userId} and
+		FavoriteType=#{favoriteType}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.Favorite">
+		update Favorite set
+		userId=#{userId},productId=#{productId},
+		favoriteName=#{favoriteName},favoriteType=#{favoriteType}
+		where
+		id=#{id}
+	</update>
+	<!-- findRows -->
+	<select id="findRows" parameterType="Integer" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Favorite where UserID = #{userId}
+	</select>
+
+	<!--根据用户ID查看商品收藏 -->
+	<select id="findFavoriteInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		f.ID,p.ProductName,f.ProductID,f.FavoriteType,getAddressName(f.FavoriteAddress)
+		as FavoriteAddressName,getAddressNameShoppingCart(f.FavoriteAddress)
+		as FavoriteAddressNameJson,getProductPic(f.ProductID) as FilePath,
+		getCateGoryName(f.ProductID,3) as
+		ProductCategoryName,p.ProductTitle,p.IsHotShow,p.ProductType
+		<if test="favoriteType==1">
+			,FIND_IN_SET(1,GROUP_CONCAT(c.Status)) AS CompanyStatus
+		</if>
+		from Favorite f
+		LEFT JOIN Products p ON f.ProductID = p.ID
+		LEFT JOIN
+		CompanyProducts c ON c.ProductID = p.ID
+		where f.UserID =#{userId}
+		and
+		f.FavoriteType=#{favoriteType}
+		
+			GROUP BY f.ProductID
+		
+		order by f.ID limit #{page.begin},#{page.pageNum};
+	</select>
+
+	<select id="findFavoriteInfoRows" parameterType="hashMap"
+		resultType="int">
+		SELECT count(f.ID)
+		from Favorite f
+		LEFT JOIN Products p ON
+		f.ProductID = p.ID
+		where f.UserID =#{userId}
+		and
+		f.FavoriteType=#{favoriteType}
+		order by f.ID;
+	</select>
+</mapper>

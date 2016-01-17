@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.CompanysDao">
+	<!--采购商信息列表 -->
+	<select id="findBuyer" resultType="com.wit.model.Companys">
+		select
+		id, companyName,
+		companyAddress, companyScale, registeredCapital,
+		companyTel, companyZipCode,
+		companyInfo, salesMan, companyWebsite,
+		companyContact,
+		companyType,status,maxAccount,isDefault,
+		isLock,maxPic
+		from
+		Companys
+		WHERE status!=2
+		order by id limit
+		#{begin},#{pageNum}
+
+	</select>
+
+
+
+	<!--供应商信息列表 -->
+	<select id="findSupplier" resultType="com.wit.model.Companys">
+		select
+		id, companyName,
+		companyAddress, companyScale, registeredCapital,
+		companyTel, companyZipCode,
+		companyInfo, salesMan, companyWebsite,
+		companyContact,
+		companyType,status,maxAccount,isDefault,
+		isLock,maxPic
+		from
+		Companys
+		where  status!=2
+		order by id limit
+		#{begin},#{pageNum}
+	</select>
+
+	<!--根据ID查找公司 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,status,companyFax,
+		companyContact, companyType
+		from Companys where
+		id=#{companyId} and status!=2
+	</select>
+	<!--根据ID查找公司 -->
+	<select id="webfindById" parameterType="Integer"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,status,
+		companyContact, companyType
+		from Companys where
+		id=#{companyId}
+	</select>
+
+
+	<!--根据公司ID查找公司及关联商品价位 -->
+	<select id="findByIds" parameterType="Integer" resultType="hashmap">
+		select
+		c1.ID, c1.CompanyProductID, c1.MinNum, c1.MaxNum, c1.Price,
+		c1.GrossmMarginPriceID, c1.UserID, c1.CompanyProductCode，
+		c2.CompanyID,c2.ProductID FROM CompanyProductPrice as c1 join
+		CompanyProducts as c2 on c1.CompanyProductID=c2.ID
+		where
+		c2.CompanyID=#{id}
+	</select>
+
+	<!--根据公司名称搜索供应商信息 -->
+	<select id="findSupplierInfo" parameterType="hashMap"
+		resultType="com.wit.model.Companys">
+		select
+		id,
+		companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,
+		companyContact, companyType,status
+		from
+		Companys where
+		status != 2 and
+		companyName like
+		concat('%',#{companyName},'%')
+		order
+		by id limit
+		#{page.begin},#{page.pageNum}
+	</select>
+
+	<!--根据公司名称搜索采购商信息 -->
+	<select id="findBuyerInfo" parameterType="hashMap"
+		resultType="com.wit.model.Companys">
+		select
+		id,
+		companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,
+		companyContact, companyType,status
+		from
+		Companys where
+		status != 2 and
+		companyName like
+		concat('%',#{companyName},'%')
+		order
+		by id limit #{page.begin},#{page.pageNum}
+	</select>
+
+	<!-- 删除采购商/供应商 -->
+	<update id="delete" parameterType="Integer">
+		<!-- delete from Companys -->
+		update Companys set status=2
+		where
+		id=#{id}
+	</update>
+
+	<!--增加采购商/供应商 -->
+	<insert id="add" parameterType="com.wit.model.Companys">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() 
+		</selectKey>
+		INSERT INTO Companys (
+		companyName, companyAddress, companyScale,
+		registeredCapital,companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,CompanyContact,
+		CompanyType,status,maxAccount,isDefault,
+		isLock,maxPic
+		) VALUES
+		(#{companyName},#{companyAddress},#{companyScale},#{registeredCapital},#{companyTel},#{companyZipCode},#{companyInfo},#{salesMan},#{companyWebsite},#{companyContact},#{companyType},0,
+		#{maxAccount},#{isDefault},#{isLock},#{maxPic}
+		)
+
+	</insert>
+
+	<!-- 修改采购商/供应商信息 -->
+	<update id="updateCompany" parameterType="com.wit.model.Companys">
+		update Companys set
+		id=#{id},
+		companyName=#{companyName},companyAddress=#{companyAddress},
+		companyScale=#{companyScale},registeredCapital=#{registeredCapital},
+		companyTel=#{companyTel},companyZipCode=#{companyZipCode},companyInfo=#{companyInfo},
+		salesMan=#{salesMan},companyWebsite=#{companyWebsite},
+		companyContact=#{companyContact},companyType=#{companyType}
+		where id=#{id}
+	</update>
+
+
+	<!--查询采购商行数 -->
+	<select id="findBuyerRows" resultType="int">
+		select count(id) from
+		Companys where status!=2
+	</select>
+
+	<!--查询供应商行数 -->
+	<select id="findSupplierRows" resultType="int">
+		select count(id) from
+		Companys where status!=2
+	</select>
+
+	<!--搜索供应商行数 -->
+	<select id="supplierRows" resultType="int" parameterType="String">
+		select
+		count(id) from Companys where
+		status != 2 and
+		companyName like
+		concat('%',#{companyName},'%')
+	</select>
+
+	<!--搜索采购商行数 -->
+	<select id="buyerRows" resultType="int" parameterType="String">
+		select
+		count(id) from Companys where
+		status != 2 and
+		companyName like
+		concat('%',#{companyName},'%')
+	</select>
+
+	<!-- 根据ID字符数组删除数据 -->
+	<update id="deleteByIds" parameterType="string">
+		update Companys set
+		status=2
+		where FIND_IN_SET(id,#{ids})
+	</update>
+	
+	<!--门户后台公司信息添加-->
+	<update id="completeCompanyInfo" parameterType="com.wit.model.Companys">
+		update Companys set
+		<if test="companyName != null and companyName != '' ">
+		companyName=#{companyName}
+		</if>
+		<if test="companyAddress != null and companyAddress != '' ">,</if>
+		<if test="companyAddress != null and companyAddress != '' ">
+		companyAddress=#{companyAddress}
+		</if>
+		<if test="companyTel != null and companyTel !='' ">,</if>
+		<if test="companyTel != null and companyTel !='' ">
+		companyTel=#{companyTel}
+		</if>
+		<if test="companyZipCode!= null  and companyZipCode != '' ">,</if>
+		<if test="companyZipCode!= null  and companyZipCode != '' ">
+		companyZipCode=#{companyZipCode}
+		</if>
+		<if test="companyInfo != null and companyInfo != '' ">,</if>
+		<if test="companyInfo != null and companyInfo != '' ">
+		companyInfo=#{companyInfo}
+		</if>
+		<if test="companyScale!= null and companyScale != '' ">,</if>
+		<if test="companyScale!= null and companyScale != '' ">
+		companyScale=#{companyScale}
+		</if>
+		<if test="registeredCapital != null and registeredCapital != '' ">,</if>
+		<if test="registeredCapital != null and registeredCapital != '' ">
+		registeredCapital=#{registeredCapital}
+		</if>
+		<if test="distributionCar != null and distributionCar != '' ">,</if>
+		<if test="distributionCar != null and distributionCar != '' ">
+		distributionCar=#{distributionCar}
+		</if>
+		<if test="diningRoomNumber != null and diningRoomNumber != ''">,</if>
+		<if test="diningRoomNumber != null and diningRoomNumber != ''">
+		diningRoomNumber=#{diningRoomNumber}
+		</if>
+		<if test="status != null and status != ''">,</if>
+		<if test="status != null and status != ''">
+		status=#{status}
+		</if>
+		<if test="companyFax !=null and companyFax != ''">,</if>
+		<if test="companyFax !=null and companyFax != ''">
+		companyFax=#{companyFax}
+		</if>
+		<if test="companyWebsite !=null and companyWebsite != ''">,</if>
+		<if test="companyWebsite !=null and companyWebsite != ''">
+		companyWebsite=#{companyWebsite}
+		</if>
+		where id=#{id}
+	</update>
+	
+	<!--门户获取判断登录时状态  -->
+	<select id="findLoginStatus" parameterType="Integer"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,companyFax,
+		companyWebsite,status,
+		companyContact, companyType,distributionCar,diningRoomNumber
+		from Companys where
+		id=#{companyId}
+	</select>
+	
+	<!--获取所有公司（去重）  -->
+	<select id="findAllCompanys"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,companyFax,
+		companyWebsite,status,
+		companyContact, companyType,distributionCar,diningRoomNumber
+		from Companys where companyName  IS NOT NULL and companyName!='' group by companyName
+	</select>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -91,11 +91,7 @@
 			</dependency>
 
 			<!-- Servlet -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet</artifactId>
-				<version>3.1.0</version>
-			</dependency>
+
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -122,7 +118,17 @@
 				<artifactId>fastjson</artifactId>
 				<version>1.2.6</version>
 			</dependency>
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>2.4</version>
+			</dependency>
 			<!-- Utilities -->
+			<dependency>
+				<groupId>net.sourceforge.jexcelapi</groupId>
+				<artifactId>jxl</artifactId>
+				<version>2.6.12</version>
+			</dependency>
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
@@ -132,6 +138,11 @@
 				<groupId>commons-pool</groupId>
 				<artifactId>commons-pool</artifactId>
 				<version>1.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lucee</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.10.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codeanywhere.framework</groupId>
@@ -157,6 +168,21 @@
 				<artifactId>junit</artifactId>
 				<version>4.11</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>3.13</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -25,6 +25,11 @@
 			<artifactId>javaee-api</artifactId>
 			<version>5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>GraduationDesign-web</finalName>

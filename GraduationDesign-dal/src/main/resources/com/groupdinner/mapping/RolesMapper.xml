@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.RolesDao">
+	<!--角色信息列表 -->
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.Roles">
+		SELECT
+		ID, RoleName, RoleCode,RightID, Status, CreateTime, CreateBy,CompanyID
+		FROM Roles
+		limit #{begin},#{pageNum}
+	</select>
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Roles
+	</select>
+	<select id="findByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.Roles">
+		SELECT
+		r.ID, r.RoleName, r.RoleCode,r.RightID, r.Status, r.CreateTime, r.CreateBy,r.CompanyID,u.UserName as CreateByName,c.CompanyName
+		FROM Roles r LEFT JOIN Users u on r.CreateBy=u.ID
+		LEFT JOIN Companys c on r.CompanyID=c.ID
+		where  r.CompanyID=#{companyId}  and r.Status!=2
+	</select>
+
+	<!-- 删除角色 -->
+	<delete id="deleteRole" parameterType="Integer">
+		delete from Roles where
+		ID=#{id}
+	</delete>
+	<!-- 添加角色 -->
+	<insert id="addRole" parameterType="com.wit.model.Roles">
+		insert into Roles (RoleName,
+		RoleCode, Status, CreateTime, CreateBy,CompanyID
+		) values(
+		#{roleName},
+		#{roleCode},
+		#{status},
+		NOW(),
+		#{createBy},
+		#{companyID}
+		)
+	</insert>
+	<!--根据Id查询角色信息 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.Roles">
+		select ID, RoleName, RoleCode, Status, CreateTime,
+		CreateBy,RightID
+		from Roles where id=#{id}
+	</select>
+	<!--更新角色 -->
+	<update id="updateRole" parameterType="com.wit.model.Roles">
+		update Roles set
+		roleName=#{roleName},roleCode=#{roleCode},
+		status=#{status},
+		createBy=#{createBy} where
+		id=#{id}
+	</update>  
+	<update id="updateRoleStatus" parameterType="com.wit.model.Roles">
+		update Roles set
+		status=#{status} where
+		id=#{id}
+	</update>
+	<update id="updateRoleMenuRights">
+		update Roles set
+		RightID=#{menuIDs} where id=#{roleID}
+	</update>
+	
+	<!--所有状态为可用的用户角色 -->
+	<select id="findRoleUsed" resultType="com.wit.model.Roles">
+		SELECT
+		ID, RoleName, RoleCode,RightID, Status, CreateTime, CreateBy,CompanyID
+		FROM Roles
+		where status =1
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

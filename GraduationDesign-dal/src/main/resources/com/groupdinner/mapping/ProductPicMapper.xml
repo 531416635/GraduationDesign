@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ProductPicDao">
+	<!--添加 -->
+	<insert id="insertPic" parameterType="com.wit.model.ProductPic">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		ProductPic(productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault)
+		values(#{productId},#{status},CURDATE(),#{uploadBy},#{fileClass},#{filePath},#{isDefault})
+	</insert>
+	<!--根据Id查询 -->
+	<select id="findbyId" parameterType="Integer"
+		resultType="com.wit.model.ProductPic">
+		select
+		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+		from ProductPic
+		where id=#{id}
+	</select>
+	<select id="getProductPicByProductId" parameterType="Integer"
+		resultType="com.wit.model.ProductPic">
+		select
+		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+		from ProductPic
+		where productId=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.ProductPic">
+		update ProductPic set
+		status=#{status},filePath=#{filePath},isDefault=#{isDefault}
+		where
+		id=#{id}
+	</update>
+	<!--根据Id删除 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ProductPic
+		where
+		id=#{id}
+	</delete>
+	<!-- 根据ID更新首图 -->
+	<update id="updateIsDefault" parameterType="hashMap">
+	update ProductPic set isDefault=#{isDefault}
+	where id=#{id}
+
+	</update>
+	
+	<!-- 根据ProductId查询首图 -->
+	<select id="selectByProductId" parameterType="integer" resultType="String">
+	select filePath from ProductPic
+	where productId=#{productId} limit 1
+
+	</select>
+	
+	
+</mapper>

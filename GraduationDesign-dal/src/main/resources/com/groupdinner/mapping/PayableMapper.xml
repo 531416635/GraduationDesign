@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.PayableDao">
+	<select id="findAll" parameterType="com.wit.model.Page" resultType="com.wit.model.Settlement">
+	   SELECT
+	   s.id,settlementId,currency,settleAmount,settleFee,settleBy,
+	   settleTime,s.status,bankAccountId,settleType,isInvoice,c.bankAccount
+	   FROM Settlement s left join CompanyBankAccount c on s.bankAccountId = c.ID
+	   where settleType=1 order by settleTime asc,s.ID limit #{begin},#{pageNum}
+	</select>
+	<select id="findRows" resultType="int">
+	    SELECT
+		COUNT(id) 
+		FROM Settlement 
+		where settleType=1
+	</select>
+	<select id="findBankAccount" resultType="Integer">
+	  select ID from CompanyBankAccount
+	</select>
+	<delete id="deleteById" parameterType="Integer" >
+	   delete from Settlement where id=#{id}
+	</delete>
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Settlement">
+	   SELECT 
+	   id,settlementId,currency,settleAmount,settleFee,settleBy,settleTime,status,bankAccountId,settleType,isInvoice 
+	   FROM Settlement
+	   WHERE id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.wit.model.Settlement">
+	    insert into Settlement(settlementId,currency,settleAmount,settleFee,settleBy,settleTime,status,bankAccountId,settleType,isInvoice 
+	    )values(
+	         #{settlementId},
+	         #{currency},
+	         #{settleAmount},
+	         #{settleFee},
+	         #{settleBy},
+	         #{settleTime},
+	         #{status},
+	         #{bankAccountId},
+	         #{settleType},
+	         #{isInvoice}
+	         )
+	</insert>
+	<update id="update"  parameterType="com.wit.model.Settlement">
+	    UPDATE Settlement 
+		SET
+		settlementId= #{settlementId}, 
+		currency= #{currency}, 
+		settleAmount=#{settleAmount}, 
+		settleFee=#{settleFee}, 
+		settleBy=#{settleBy}, 
+		settleTime=#{settleTime},
+		status=#{status},
+		bankAccountId=#{bankAccountId},
+		settleType=#{settleType},
+		isInvoice=#{isInvoice}
+		where 
+		id=#{id}
+	</update>
+	
+	<select id="countAll">
+	    SELECT
+		COUNT(*) 
+		FROM Settlement
+	</select>
+</mapper>

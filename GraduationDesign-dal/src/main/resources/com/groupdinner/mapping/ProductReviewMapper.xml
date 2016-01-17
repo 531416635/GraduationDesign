@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ProductReviewDao">
+	<select id="findAll" resultType="com.wit.model.ProductReview">
+		SELECT
+		id,CompanyProductId,reviews,reviewBy,reviewTime,starLevel,status
+		FROM ProductReview
+	</select>
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.ProductReview">
+		SELECT
+		id,CompanyProductId,reviews,reviewBy,reviewTime,starLevel,status
+		FROM ProductReview
+		WHERE id=#{id}
+	</select>
+	<select id="getReviewByProductId" parameterType="Integer"
+		resultType="com.wit.model.ProductReview">
+		SELECT
+		pr.id,pr.CompanyProductId,pr.reviews,pr.reviewBy,pr.reviewTime,pr.starLevel,pr.status,u.UserName
+		as reviewByName
+		from ProductReview pr LEFT JOIN Users u on pr.ReviewBy=u.id
+		LEFT JOIN CompanyProducts cp on cp.ID =pr.CompanyProductID where
+		cp.ProductID=#{id}
+		and pr.status=1 order by reviewTime DESC limit 20
+	</select>
+	<delete id="deleteById" parameterType="Integer">
+		delete from ProductReview where id=#{id}
+	</delete>
+	<insert id="insert" parameterType="com.wit.model.ProductReview">
+		insert into ProductReview(
+		CompanyProductId,reviews,reviewBy,reviewTime,starLevel,status
+		)values(
+		#{CompanyProductId},
+		#{reviews},
+		#{reviewBy},
+		#{reviewTime},
+		#{starLevel},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.wit.model.ProductReview">
+		UPDATE ProductReview
+		SET
+		CompanyProductId=#{CompanyProductId},
+		reviews= #{reviews},
+		reviewBy=#{reviewBy},
+		reviewTime=#{reviewTime},
+		starLevel=#{starLevel},
+		status= #{status}
+		where
+		id=#{id}
+	</update>
+
+	<select id="countAll">
+		SELECT
+		COUNT(*)
+		FROM ProductReview
+	</select>
+</mapper>

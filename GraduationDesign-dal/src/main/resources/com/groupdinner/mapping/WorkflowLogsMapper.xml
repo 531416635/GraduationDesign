@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.WorkflowLogsDao">
+	<!-- 查询所有 -->
+	<select id="getAll" parameterType="com.wit.model.Page" 
+	 resultType="com.wit.model.WorkflowLogs">
+	select id,workflowId,nodeId,userId,processResult,processContent
+	from WorkflowLogs order by ID limit #{begin},#{pageNum};
+	</select>
+	
+	
+
+	<!--根据Id查询 -->
+	<select id="findbyRefId" resultType="hashMap" parameterType="hashMap">
+		SELECT w.ID,w.UserID,getUserName(w.UserID) as UserName,w.ProcessResult,w.ProcessContent,w.ProcessDate,w.RefID,n.NodeName
+		FROM WorkflowLogs w left join WorkflowNodes n on w.NodeID = n.ID 
+		WHERE  w.RefID=#{refId}
+		order by w.ID limit #{page.begin},#{page.pageNum};
+	</select>
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.WorkflowLogs">
+		update WorkflowLogs set
+		workflowId=#{workflowId},nodeId=#{nodeId},
+		userId=#{userId},processResult=#{processResult},processContent=#{processContent}
+	</update>
+	<!-- 添加 -->
+	<insert id="insert" parameterType="hashMap">
+			insert into WorkflowLogs(workflowID,NodeID,UserId,ProcessDate,ProcessResult,ProcessContent,RefId)
+			values(#{workflowId},#{nodeId},#{userId},now(),#{processResult},#{processContent},#{refId})
+	</insert>
+	
+	<!-- 分页 -->
+	<select id="findRows" parameterType="String" resultType="int">
+		select 
+		count(UserId)
+		from WorkflowLogs
+		where UserId=#{id}
+	</select>
+	
+	<!-- 按照dispatchBillId在workflowLogs中查到该日志信息 -->
+	<select id="findByDispatchBillId" parameterType="String" resultType="com.wit.model.WorkflowLogs">
+		select *
+		from WorkflowLogs
+		where RefId=#{dispatchBillId}
+	</select>
+	
+	<!-- 通过NodeId执行查询得到NodeName -->
+	<select id="findByNodeId" parameterType="int" resultType="com.wit.model.WorkflowNodes">
+		select *
+		from WorkflowNodes
+		where ID=#{nodeId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

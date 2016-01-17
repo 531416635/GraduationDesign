@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.OrdersDao">
+	<!-- 查询所有 -->
+	<select id="getAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.Orders">
+		select ID, OrderTime, Status, OrderID, UserID,
+		CompanyProductID,
+		Quantity, ProductUnit, UnitPrice, TotolAmount,
+		EarnestAmount, DeliveryDate, ValidUntil
+		from Orders
+		order by ID limit
+		#{begin},#{pageNum};
+	</select>
+	<!-- 打印查询所有 -->
+	<select id="getAlljExcel" parameterType="Integer"
+		resultType="com.wit.model.Orders">
+		select p.productName,d.ID,
+		d.OrderTime, d.Status,
+		d.OrderID,
+		d.UserID,d.CompanyProductID,
+		d.Quantity, d.ProductUnit,
+		d.UnitPrice,
+		d.TotolAmount,d.EarnestAmount,
+		d.DeliveryDate,
+		d.ValidUntil,d.OrderTime
+		from Orders d
+		LEFT JOIN CompanyProducts cp
+		ON d.CompanyProductID = cp.ID
+		LEFT JOIN
+		Products p
+		ON p.ID = cp.ProductID
+		where userId =#{userId}
+		AND
+		d.OrderTime &gt;= DATE_SUB(
+		CURRENT_DATE() , INTERVAL 3 MONTH )
+		order by
+		d.OrderTime DESC
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from Orders
+		where
+		id=#{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.Orders">
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		insert into Orders
+		(OrderTime,
+		Status, OrderID, UserID,
+		CompanyProductID,
+		Quantity, ProductUnit,
+		UnitPrice, TotolAmount,
+		EarnestAmount, DeliveryDate, ValidUntil
+		<if test="orderType!=null and orderType!=''">
+			,OrderType
+		</if>
+		)
+		values
+		(
+		NOW(),0,#{orderId},#{userId}, #{companyProductId},
+		#{quantity},
+		#{productUnit}, #{unitPrice}, #{totolAmount},
+		#{earnestAmount},
+		#{deliveryDate}, #{validUntil}
+		<if test="orderType!=null and orderType!=''">,#{orderType}</if>
+		)
+	</insert>
+	<select id="getOrderByID" parameterType="int"
+		resultType="com.wit.model.Orders">
+		select now() as OrderTime,0 as Status,PriceSheetID as
+		OrderID,UserID,CompanyProductID,Quantity,ProductUnit,
+		UnitPrice,(Quantity*UnitPrice)as
+		TotolAmount,(Quantity*UnitPrice*ccs.Earnest) as
+		EarnestAmount,DeliveryDate,
+		ValidUntil from PriceSheet ps
+		LEFT JOIN
+		Users u on ps.UserID=u.ID
+		LEFT JOIN CompanyContracts ccs on
+		u.CompanyID=ccs.CompanyID and
+		ccs.Status=1
+		where ps.id=#{id} limit 1
+	</select>
+
+	<!--根据Id查询 -->
+	<select id="findbyId" resultType="com.wit.model.Orders"
+		parameterType="Integer">
+		select ID, OrderTime, Status, OrderID, UserID,
+		CompanyProductID,
+		Quantity, ProductUnit, UnitPrice, TotolAmount,
+		EarnestAmount, DeliveryDate, ValidUntil,
+		getCompanyProductName(CompanyProductID) as ProductName
+		from Orders
+		where id=#{id}
+	</select>
+	<select id="findbyOrderId" resultType="Integer" parameterType="Integer">
+		select IFNULL(o.ID,0) from PriceSheet AS ps
+		INNER JOIN Orders AS o ON
+		ps.PriceSheetID=o.OrderID
+		where ps.ID=#{ids};
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.Orders">
+		update Orders set
+		status=#{status},orderId=#{orderId},userId=#{userId},
+		companyProductID=#{companyProductId},
+		quantity=#{quantity},
+		productUnit= #{productUnit},
+		unitPrice= #{unitPrice},
+		totolAmount=
+		#{totolAmount},
+		earnestAmount=#{earnestAmount},
+		deliveryDate=#{deliveryDate},
+		validUntil=#{validUntil}
+		where id=#{id}
+	</update>
+
+	<!-- 分页 -->
+	<select id="findRows" resultType="int">
+		select
+		count(id)
+		from Orders
+	</select>
+
+	<!--根据用户ID显示三个月前订单信息 -->
+	<select id="findAll" parameterType="hashMap"
+		resultType="com.wit.model.Orders">
+		select p.productName,d.ID, d.OrderTime, d.Status,
+		d.OrderID,
+		d.UserID,d.CompanyProductID,
+		d.Quantity, d.ProductUnit,
+		d.UnitPrice,
+		d.TotolAmount,d.EarnestAmount, d.DeliveryDate,
+		d.ValidUntil,d.OrderTime
+		from Orders
+		d
+		LEFT JOIN CompanyProducts cp
+		ON
+		d.CompanyProductID = cp.ID
+		LEFT JOIN
+		Products p
+		ON p.ID = cp.ProductID
+		where userId =#{userId}
+		AND
+		d.OrderTime &lt;= DATE_SUB( CURRENT_DATE() ,
+		INTERVAL 3 MONTH )
+		<if test="oldOrderId !=null and oldOrderId!=''">
+			AND d.OrderID=#{oldOrderId}
+		</if>
+		<if test="oldProductName !=null and oldProductName !='' ">
+			AND p.productName like concat('%',#{oldProductName},'%')
+		</if>
+		<if test="oldOrderTimeStart!=null and oldOrderTimeStart!=''">
+			AND d.OrderTime&gt;=#{oldOrderTimeStart}
+		</if>
+		<if test="oldOrderTimeStop!=null and oldOrderTimeStop!=''">
+			AND d.OrderTime&lt;=#{oldOrderTimeStop}
+		</if>
+		<if test="orderType!=null and orderType!=''">
+		AND d.OrderType=#{orderType}
+		</if>
+		order by d.OrderTime DESC ,d.OrderID DESC
+		limit #{page.begin},#{page.pageNum};
+	</select>
+ <select id="findOldOrderRows" parameterType="hashMap" resultType="int">
+ select count(d.ID)
+		from Orders
+		d
+		LEFT JOIN CompanyProducts cp
+		ON
+		d.CompanyProductID = cp.ID
+		LEFT JOIN
+		Products p
+		ON p.ID = cp.ProductID
+		where userId =#{userId}
+		AND
+		d.OrderTime &lt;= DATE_SUB( CURRENT_DATE() ,
+		INTERVAL 3 MONTH )
+		<if test="oldOrderId !=null and oldOrderId!=''">
+			AND d.OrderID=#{oldOrderId}
+		</if>
+		<if test="oldProductName !=null and oldProductName !='' ">
+			AND p.productName like concat('%',#{oldProductName},'%')
+		</if>
+		<if test="oldOrderTimeStart!=null and oldOrderTimeStart!=''">
+			AND d.OrderTime&gt;=#{oldOrderTimeStart}
+		</if>
+		<if test="oldOrderTimeStop!=null and oldOrderTimeStop!=''">
+			AND d.OrderTime&lt;=#{oldOrderTimeStop}
+		</if>
+		<if test="orderType!=null and orderType!=''">
+		    AND d.OrderType=#{orderType}
+		</if>
+ </select>
+	<!--根据用户ID显示近三个月订单信息 -->
+	<select id="findOrderInfo" parameterType="hashMap" resultMap="ordersMap">
+		select p.productName,d.ID, d.OrderTime, d.Status,
+		d.OrderID,
+		d.UserID,d.CompanyProductID,
+		d.Quantity, d.ProductUnit,
+		d.UnitPrice,
+		d.TotolAmount,d.EarnestAmount, d.DeliveryDate,
+		d.ValidUntil,d.OrderTime,d.OrderType
+		from Orders d
+		LEFT JOIN CompanyProducts cp
+		ON
+		d.CompanyProductID = cp.ID
+		LEFT JOIN
+		Products p
+		ON p.ID = cp.ProductID
+		where userId =#{userId}
+		  AND d.OrderTime &gt;= DATE_SUB( CURRENT_DATE() ,
+	    INTERVAL 3 MONTH )
+		
+		<if test="orderId !=null and orderId!=''">
+			AND d.OrderID=#{orderId}
+		</if>
+		<if test="productName !=null and productName !='' ">
+			AND p.productName like concat('%',#{productName},'%')
+		</if>
+		<if test="orderTimeStart!=null and orderTimeStart!=''">
+			AND d.OrderTime&gt;=#{orderTimeStart}
+		</if>
+		<if test="orderTimeStop!=null and orderTimeStop!=''">
+			AND d.OrderTime&lt;=#{orderTimeStop}
+		</if>
+		<if test="orderStatus!=null and orderStatus!=''">
+			AND
+			d.Status=#{orderStatus}
+		</if>
+		<if test="orderType!=null and orderType!=''">
+		    AND d.OrderType=#{orderType}
+		</if>
+		order by d.OrderTime DESC ,d.OrderID DESC
+		limit
+		#{page.begin},#{page.pageNum};
+	</select>
+
+	<!-- ordersMap -->
+	<resultMap type="com.wit.model.Orders" id="ordersMap">
+		<id property="id" column="id" />
+		<collection property="orderStatus" column="id"
+			javaType="java.util.ArrayList" ofType="Integer" select="findOrderStatus">
+		</collection>
+	</resultMap>
+	<!-- 根据orderId统计拆分的订单的状态 -->
+	<select id="findOrderStatus" parameterType="Integer" resultType="Integer">
+		select STATUS
+		FROM dispatchbill WHERE OrderID=#{id}
+	</select>
+
+	<!-- 门户根据用户ID显示近三个月订单信息条数 -->
+	<select id="findOrderInfoRows" parameterType="hashMap"
+		resultType="int">
+		select count(d.ID)
+		from Orders
+		d
+		LEFT JOIN CompanyProducts cp
+		ON
+		d.CompanyProductID = cp.ID
+		LEFT JOIN
+		Products p
+		ON p.ID = cp.ProductID
+		where userId =#{userId}
+		<choose>
+			<when test="status==0">
+				AND d.OrderTime &lt;= DATE_SUB( CURRENT_DATE() ,
+				INTERVAL 3 MONTH )
+			</when>
+			<when test="status==1">
+				AND d.OrderTime &gt;= DATE_SUB( CURRENT_DATE() ,
+				INTERVAL 3 MONTH )
+			</when>
+		</choose>
+		<if test="orderId !=null and orderId!=''">
+			AND d.OrderID=#{orderId}
+		</if>
+		<if test="productName !=null and productName !='' ">
+			AND p.productName like concat('%',#{productName},'%')
+		</if>
+		<if test="orderTimeStart!=null and orderTimeStart!=''">
+			AND d.OrderTime&gt;=#{orderTimeStart}
+		</if>
+		<if test="orderTimeStop!=null and orderTimeStop!=''">
+			AND d.OrderTime&lt;=#{orderTimeStop}
+		</if>
+		<if test="orderStatus!=null and orderStatus!=''">
+			AND d.Status=#{orderStatus}
+		</if>
+        <if test="orderType!=null and orderType!=''">
+		    AND d.OrderType=#{orderType}
+		</if>
+	</select>
+
+	<!-- 根据用户ID分行 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		select
+		count(id) from Orders
+		where userId = #{userId}
+	</select>
+
+	<!-- 订单等待分配地址条数 -->
+	<select id="OrderAddressNum" parameterType="Integer" resultType="int">
+		SELECT COUNT(ID) from Orders
+		where status = 0 and userId = #{userId}
+	</select>
+
+	<!-- 订单等待发货配送条数 -->
+	<select id="OrderSendNum" parameterType="Integer" resultType="int">
+		SELECT
+		COUNT(d.dispatchBillId)
+		FROM DispatchBill d
+		LEFT JOIN Orders f ON
+		f.id = d.orderId
+		where f.status = 2 and f.userId = #{userId}
+	</select>
+
+	<!-- 微信订单查询 -->
+	<select id="findOrders" parameterType="hashMap" resultType="hashMap">
+		select
+		p.productName,d.UnitPrice,d.Quantity,d.TotolAmount,d.OrderTime,d.Status,u.UserName
+		from Orders d
+		LEFT JOIN CompanyProducts cp ON d.CompanyProductID =
+		cp.ID
+		LEFT JOIN Products p ON p.ID = cp.ProductID
+		LEFT JOIN Users u ON
+		d.UserId =u.ID
+		where userId =#{userId}
+		<if test="page.productName !=null and page.productName !='' ">
+			AND p.productName like concat('%',#{page.productName},'%')
+		</if>
+		<if test="page.userName !=null and page.userName !='' ">
+			AND u.userName like concat('%',#{page.userName},'%')
+		</if>
+		<if test="page.orderId !=null and page.orderId !='' ">
+			AND d.orderId =#{page.orderId}
+		</if>
+		<if test="page.startOrderTime !=null and page.startOrderTime !='' ">
+			AND d.OrderTime &gt;=#{page.startOrderTime}
+		</if>
+		<if test="page.endOrderTime !=null and page.endOrderTime !='' ">
+			AND d.OrderTime &lt;=#{page.endOrderTime}
+		</if>
+		order by d.OrderTime DESC
+		limit
+		#{page.begin},#{page.pageNum};
+	</select>
+	<!-- 微信分页 -->
+	<select id="findRowsOrder" parameterType="hashMap" resultType="int">
+		select
+		count(d.ID)
+		from Orders d
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID =
+		cp.ID
+		LEFT JOIN Products p ON p.ID = cp.ProductID
+		LEFT JOIN Users u ON
+		d.UserId =u.ID
+		where userId =#{userId}
+		<if test="page.productName !=null and page.productName !='' ">
+			AND p.productName like concat('%',#{page.productName},'%')
+		</if>
+		<if test="page.userName !=null and page.userName !='' ">
+			AND u.userName like concat('%',#{page.userName},'%')
+		</if>
+		<if test="page.orderId !=null and page.orderId !='' ">
+			AND d.orderId =#{page.orderId}
+		</if>
+		<if test="page.startOrderTime !=null and page.startOrderTime !='' ">
+			AND d.OrderTime &gt;=#{page.startOrderTime}
+		</if>
+		<if test="page.endOrderTime !=null and page.endOrderTime !='' ">
+			AND d.OrderTime &lt;=#{page.endOrderTime}
+		</if>
+	</select>
+
+	<!-- 微信订单查询条件改变(查询字段名称) -->
+	<select id="findOrderInquiry" parameterType="hashMap"
+		resultType="hashMap">
+		select
+		d.OrderID,p.productName,d.OrderTime,d.Quantity,u.UserName,d.UnitPrice,d.ValidUntil,d.TotolAmount,d.Status,c.CompanyName
+		from Orders d
+		LEFT JOIN CompanyProducts cp ON d.CompanyProductID =
+		cp.ID
+		LEFT JOIN Products p ON p.ID = cp.ProductID
+		LEFT JOIN Companys c
+		ON c.ID = cp.CompanyID
+		LEFT JOIN Users u ON
+		d.UserId =u.ID
+		where d.UserId
+		=#{userId}
+		<if test="page.productName !=null and page.productName !='' ">
+			AND p.productName like concat('%',#{page.productName},'%')
+		</if>
+		<if test="page.status !=null and page.status !='' ">
+			AND d.Status =#{page.status}
+		</if>
+		<if test="page.companyName !=null and page.companyName !='' ">
+			AND c.companyName like concat('%',#{page.companyName},'%')
+		</if>
+		<if test="page.orderId !=null and page.orderId !='' ">
+			AND d.orderId =#{page.orderId}
+		</if>
+		<if test="page.startOrderTime !=null and page.startOrderTime !='' ">
+			AND d.OrderTime &gt;=#{page.startOrderTime}
+		</if>
+		<if test="page.endOrderTime !=null and page.endOrderTime !='' ">
+			AND d.OrderTime &lt;=#{page.endOrderTime}
+		</if>
+		order by d.OrderTime DESC
+		limit
+		#{page.begin},#{page.pageNum};
+	</select>
+
+	<!-- 微信订单查询条件改变分页(查询字段名称) -->
+	<select id="findRowsOrderInquiry" parameterType="hashMap"
+		resultType="int">
+		select
+		count(d.ID)
+		from Orders d
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID =
+		cp.ID
+		LEFT JOIN Products p ON p.ID = cp.ProductID
+		LEFT JOIN Companys c ON c.ID = cp.CompanyID
+		LEFT JOIN Users u ON
+		d.UserId =u.ID
+		where userId =#{userId}
+		<if test="page.productName !=null and page.productName !='' ">
+			AND p.productName like concat('%',#{page.productName},'%')
+		</if>
+		<if test="page.status !=null and page.status !='' ">
+			AND d.Status =#{page.status}
+		</if>
+		<if test="page.companyName !=null and page.companyName !='' ">
+			AND c.companyName like concat('%',#{page.companyName},'%')
+		</if>
+		<if test="page.orderId !=null and page.orderId !='' ">
+			AND d.orderId =#{page.orderId}
+		</if>
+		<if test="page.startOrderTime !=null and page.startOrderTime !='' ">
+			AND d.OrderTime &gt;=#{page.startOrderTime}
+		</if>
+		<if test="page.endOrderTime !=null and page.endOrderTime !='' ">
+			AND d.OrderTime &lt;=#{page.endOrderTime}
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.ProductBrandDao">
+	<!-- 门户首页查询推查询列表-->
+	<select id="getIndexAll" resultType="com.wit.model.ProductBrand">
+	   select id,brandName,logoPath,isHomeShow
+	    from ProductBrand where isHomeShow=1 order by ID  LIMIT 5
+	</select>
+	<!-- 系统后台添加查询列表-->
+	<select id="getAll" resultType="com.wit.model.ProductBrand">
+	   select id,brandName,logoPath,isHomeShow
+	    from ProductBrand where isHomeShow=1 order by ID
+	</select>
+	
+	<!-- 现货二级页面品牌显示-->
+	<select id="findByCateGoryId" resultType="com.wit.model.ProductBrand" parameterType="Integer">
+	   SELECT pb.id,pb.brandName FROM productbrand pb LEFT JOIN products p ON pb.id = p.productBrandId LEFT JOIN 
+	productcategory pg ON  pg.id IN (p.productCategory)
+	WHERE pg.id =#{cateGoryId}
+	</select>
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.ProductBrand">
+		 select id,brandName,logoPath,isHomeShow
+		FROM ProductBrand order by ID desc limit #{begin},#{pageNum};
+	</select>
+	<select id="findAllRows" parameterType="com.wit.model.Page"
+		resultType="Integer">
+		 select COUNT(id)
+		FROM ProductBrand;
+	</select>
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.ProductBrand">
+	 select id,brandName,logoPath,isHomeShow
+		FROM ProductBrand where id=#{id}
+	 </select>
+	<update id="update"  parameterType="com.wit.model.ProductBrand">
+		UPDATE ProductBrand
+		SET brandName=#{brandName},logoPath=#{logoPath},isHomeShow=#{isHomeShow}
+		where
+		id=#{id}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		delete from ProductBrand where
+		id=#{id}
+	</delete>
+	<insert id="insert" parameterType="com.wit.model.ProductBrand">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ProductBrand(
+		brandName,logoPath,isHomeShow)values(
+		#{brandName},
+		#{logoPath},
+		#{isHomeShow}
+		)
+	</insert>	
+</mapper>

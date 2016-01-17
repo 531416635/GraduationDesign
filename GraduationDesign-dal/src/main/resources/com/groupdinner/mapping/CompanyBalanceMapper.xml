@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.CompanyBalanceDao">
+	<!--删除资金账户 -->
+	<update id="deleteCompanyBalance" parameterType="Integer">
+		update
+		CompanyBalance
+		set status=3
+		where balance = 0 and companyId=#{companyId}
+	</update>
+
+	<!-- 使用嵌套查询，在查询供应商资金账户信息时，关联查询出对应的公司名称 -->
+	<select id="findSupplier" resultMap="SupplierBalanceMap">
+		SELECT
+		cb.ID, cb.CompanyID,
+		cb.Currency,
+		cb.Balance, cb.Status
+		FROM CompanyBalance cb LEFT JOIN
+		Companys c
+		on cb.CompanyID = c.ID
+		where c.CompanyType = 1 and cb.status
+		!=3
+		order by id limit #{begin},#{pageNum}
+	</select>
+	<select id="findSupplierName" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, CompanyZipCode, companyInfo, salesMan,
+		companyWebsite,
+		companyContact, companyType
+		from Companys where id=#{id}
+	</select>
+	<resultMap type="com.wit.model.CompanyBalance" id="SupplierBalanceMap">
+		<association property="companys" column="companyId"
+			javaType="com.wit.model.Companys" select="findSupplierName">
+		</association>
+	</resultMap>
+
+	<!-- 使用嵌套查询，在查询采购商资金账户信息时，关联查询出对应的公司名称 -->
+	<select id="findBuyer" resultMap="BuyerBalanceMap">
+		SELECT
+		cb.ID, cb.CompanyID,
+		cb.Currency,
+		cb.Balance, cb.Status
+		FROM CompanyBalance cb
+		LEFT JOIN
+		Companys c
+		on cb.CompanyID = c.ID
+		where cb.status!=3
+		order by id
+		limit #{begin},#{pageNum}
+	</select>
+	<select id="findBuyerName" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Companys">
+		select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,
+		companyContact, companyType
+		from Companys where id=#{id}
+	</select>
+	<resultMap type="com.wit.model.CompanyBalance" id="BuyerBalanceMap">
+		<association property="companys" column="companyId"
+			javaType="com.wit.model.Companys" select="findBuyerName">
+		</association>
+	</resultMap>
+
+
+	<!--根据ID查询资金账户 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.CompanyBalance">
+		SELECT
+		ID, CompanyID, Currency, Balance, Status
+		FROM
+		CompanyBalance
+		WHERE
+		Id=#{id}
+	</select>
+	<select id="findByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.CompanyBalance">
+		SELECT
+		ID, CompanyID, Currency, IFNULL(Balance,0) as
+		Balance, Status
+		FROM
+		CompanyBalance
+		WHERE
+		companyId=#{companyId} and
+		status = 1
+	</select>
+	<!--修改 -->
+	<update id="update" parameterType="com.wit.model.CompanyBalance">
+		UPDATE CompanyBalance
+		SET
+		Currency=#{currency},
+		Balance=#{balance},
+		status=#{status}
+		WHERE
+		Id=#{id}
+	</update>
+
+	<!--增加 -->
+	<insert id="insert" parameterType="com.wit.model.CompanyBalance">
+		INSERT INTO CompanyBalance
+		(CompanyID, Currency, Balance, Status
+		) VALUES (#{companyId},
+		'CNY',
+		#{balance}, 0
+		)
+	</insert>
+
+	<!--查询采购商资金账户行数 -->
+	<select id="findBuyerRows" resultType="int">
+		select count(cb.id) from
+		CompanyBalance cb
+		left join Companys c on cb.companyId=c.id
+		where
+		cb.status !=3
+	</select>
+
+	<!--查询供应商资金账户行数 -->
+	<select id="findSupplierRows" resultType="int">
+		select count(cb.id)
+		from CompanyBalance cb
+		left join Companys c on cb.companyId=c.id
+		where
+		c.companyType=1 and cb.status !=3
+	</select>
+
+	<!--冻结资金账户 -->
+	<update id="updateBalance" parameterType="Integer">
+		update CompanyBalance
+		set status = 2
+		where ID=#{id}
+	</update>
+
+	<!-- 根据ID字符数组删除数据 -->
+	<update id="deleteByIds" parameterType="string">
+		update CompanyBalance set
+		status=3
+		where FIND_IN_SET(id,#{ids})
+	</update>
+
+	<!--对账更新账户金额 -->
+	<update id="renewalBalance" parameterType="String">
+		update CompanyBalance
+		SET Balance = Balance + (SELECT sum(Amount) from
+		CompanyBalanceStatement
+		where FIND_IN_SET(id,#{ids})>0)
+	</update>
+
+	<!--改变对账状态，添加账户金额，记录账户流水 -->
+	<insert id="editCompanyBalance">
+	<![CDATA[
+		CALL editCompanyBalance(#{tmpCompanyId, mode=IN, jdbcType=INTEGER},#{tmpCurrency,mode=IN,jdbcType=VARCHAR},#{tmpAmount,mode=IN,jdbcType=DECIMAL});
+		]]>
+	</insert>
+	<!-- 根据公司ID查询账户资金 -->
+	<select id="findBalanceByCompanyId" parameterType="Integer"
+		resultType="BigDecimal">
+		SELECT IFNULL(Balance,0) FROM CompanyBalance WHERE CompanyID=#{companyId} and Currency=#{currency}
+	</select>
+</mapper>

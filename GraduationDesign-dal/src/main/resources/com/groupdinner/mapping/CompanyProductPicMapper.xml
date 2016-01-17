@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.CompanyProductPicDao">
+	<!--添加 -->
+	<insert id="insertPic" parameterType="com.wit.model.CompanyProductPic">
+	<selectKey keyProperty="id" resultType="Integer" 
+			order="AFTER">
+				SELECT LAST_INSERT_ID()
+	</selectKey>
+		insert into CompanyProductsPic(companyProductsId,status,uploadTime,uploadBy,fileClass,filePath,isDefault)
+		values(#{companyProductsId},#{status},CURDATE(),#{uploadBy},#{fileClass},#{filePath},#{isDefault})
+	</insert>
+	<!--根据Id查询 -->
+	<select id="findbyId" parameterType="Integer" 
+	resultType="com.wit.model.CompanyProductPic">
+	select id,companyProductsId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+	from CompanyProductsPic 
+	where id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.CompanyProductPic">
+	update CompanyProductsPic
+	<set>  
+        <if test="status != null">  
+            status = #{status},  
+        </if>  
+        <if test="filePath != null">  
+            filePath = #{filePath},  
+        </if>  
+        <if test="isDefault != null">  
+            isDefault = #{isDefault}  
+        </if>  
+    </set>  
+	where id=#{id}
+	</update>
+	<!-- <select id="getProductPicByProductId" parameterType="Integer" 
+	resultType="com.wit.model.ProductPic">
+	select id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+	from ProductPic 
+	where productId=#{id}
+	</select> -->
+	<!--根据商品ID查询 -->
+	<select id="findCompanyProductPicByProductId" parameterType="Integer" 
+	resultType="com.wit.model.CompanyProductPic">
+	select id,companyProductsId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+	from CompanyProductsPic 
+	where companyProductsId = ( SELECT Id from CompanyProducts WHERE productID = #{id} and CompanyID=#{companyID} )
+	</select>
+	
+	<!--根据companyProductsId查询-->
+	<select id="findCompanyProductPicByCompanyId" parameterType="Integer" 
+	resultType="com.wit.model.CompanyProductPic">
+	select id,companyProductsId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+	from CompanyProductsPic 
+	where companyProductsId = #{id} 
+	</select>
+
+</mapper>

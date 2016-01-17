@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.SettlementDao">
+	<!--采购商结算订单信息列表 -->
+	<select id="findBuyerSettlement" parameterType="com.wit.model.Page"
+	 resultType="hashMap">
+		SELECT
+		u.CompanyID,d.ID,
+		s.SettlementID,c.CompanyName, 
+		d.OrderTime,d.Status,
+		d.OrderID,d.UserID
+		FROM Orders d 
+		LEFT JOIN Users u 
+		on d.UserID = u.ID
+		LEFT JOIN Companys c
+		on u.CompanyID = c.ID 
+		LEFT JOIN CompanyBankAccount cb
+		on c.ID = cb.CompanyID 
+		LEFT JOIN Settlement s
+		on cb.ID = s.BankAccountID
+		WHERE s.SettleType=2
+		order by s.SettleTime desc
+		limit #{begin},#{pageNum}
+	</select>
+	
+	<!--供应商结算订单信息列表 -->
+	<select id="findSupplierSettlement" parameterType="com.wit.model.Page"
+	 resultType="hashMap">
+		SELECT
+		u.CompanyID,d.ID,
+		s.SettlementID,c.CompanyName, 
+		d.OrderTime,d.Status,
+		d.OrderID,d.UserID
+		FROM Orders d 
+		LEFT JOIN Users u 
+		on d.UserID = u.ID
+		LEFT JOIN Companys c
+		on u.CompanyID = c.ID 
+		LEFT JOIN CompanyBankAccount cb
+		on c.ID = cb.CompanyID 
+		LEFT JOIN Settlement s
+		on cb.ID = s.BankAccountID
+		WHERE s.SettleType=1
+		order by s.SettleTime desc
+		limit #{begin},#{pageNum}
+	</select>
+	
+	
+	<!-- 删除结算信息-->
+	<delete id="deleteSettlement" parameterType="Integer">
+		delete from
+		Settlement where ID=#{id}
+	</delete>
+	
+	<!-- 添加结算信息 -->
+	<insert id="addSettlement" parameterType="com.wit.model.Settlement">
+		<selectKey order="BEFORE" keyProperty="settlementId" resultType="String">
+	 	select CONCAT('JS',DATE_FORMAT(CURDATE(),'%Y%m%d'),RIGHT(CONCAT('00000',(select count(id) from Settlement
+    	where 0=DATEDIFF(SettleTime,NOW()))+1),6))
+		</selectKey>
+		insert into Settlement
+		(settlementId, Currency, SettleAmount, SettleFee, SettleBy,
+		SettleTime, Status, bankAccount, SettleType, IsInvoice,companyId
+		) values(
+		#{settlementId},
+		#{currency},
+		#{settleAmount},
+		#{settleFee},
+		#{settleBy},
+		NOW(),
+		0,
+		#{bankAccount},
+		#{settleType},
+		#{isInvoice},
+		#{companyId}
+		)
+	</insert>
+	
+	<!--根据Id查询结算信息 -->
+	<select id="findbyId" parameterType="Integer"
+		resultType="com.wit.model.Settlement">
+		select ID, SettlementID, Currency, SettleAmount, SettleFee,
+		SettleBy, SettleTime, Status, BankAccountID, SettleType, IsInvoice
+		from Settlement where id=#{id}
+	</select>
+	
+	<!--更新结算信息-->
+	<update id="updateSettlement" parameterType="com.wit.model.Settlement">
+		update Settlement
+		set
+		settlementId=#{settlementId},currency=#{currency},
+		settleAmount=#{settleAmount},settleFee=#{settleFee},
+		settleBy=#{settleBy},settleTime=#{settleTime},status=#{status},
+		bankAccountId=#{bankAccountId},settleType=#{settleType},isInvoice=#{isInvoice}
+		where id=#{id}
+	</update>
+	
+	<!--查询供应商结算行数 -->
+	<select id="supplierRows" resultType="int">
+			SELECT
+		count(d.id)
+		from (Settlement s
+		LEFT JOIN  CompanyBankAccount cb
+		on cb.ID = s.BankAccountID
+		LEFT JOIN  Companys c
+		on c.ID = cb.CompanyID 
+		LEFT JOIN Users u 
+		on u.CompanyID = c.ID 
+		LEFT JOIN Orders d 
+		on d.UserID = u.ID)
+		WHERE s.SettleType=1
+	</select>
+	
+	<!--查询采购商结算行数 -->
+	<select id="buyerRows" resultType="int">
+			SELECT
+		count(d.id)
+		from (Settlement s
+		LEFT JOIN  CompanyBankAccount cb
+		on cb.ID = s.BankAccountID
+		LEFT JOIN  Companys c
+		on c.ID = cb.CompanyID 
+		LEFT JOIN Users u 
+		on u.CompanyID = c.ID 
+		LEFT JOIN Orders d 
+		on d.UserID = u.ID)
+		WHERE s.SettleType=2
+	</select>
+	
+	<!--修改状态为发起结算  -->
+	<update id="updateStatus" parameterType="String">
+		update Settlement set status = 1 
+		where settlementId=#{settlementId}
+	</update>
+	
+	<!--往期账单信息展示  -->
+	<select id="pastAccountInfo" parameterType="Integer" resultType="hashMap">
+		SELECT s.SettleTime,s.SettleAmount,s.SettleBy,n.InvoiceID,cb.BankAccount
+		from Settlement s 
+		LEFT JOIN Invoice n ON n.SettlementID = s.SettlementID
+		RIGHT JOIN CompanyBankAccount cb ON cb.ID = s.BankAccountID
+		WHERE n.CompanyID = #{companyId} and s.status = 2
+	
+	</select>
+	<select id="pastAccountInfo2" resultType="hashMap">
+		SELECT s.SettleTime,s.SettleAmount,s.SettleBy,n.InvoiceID,cb.BankAccount
+		from Settlement s 
+		LEFT JOIN Invoice n ON n.SettlementID = s.SettlementID
+		RIGHT JOIN CompanyBankAccount cb ON cb.ID = s.BankAccountID
+        WHERE n.CompanyID = #{companyId} and s.status = 2 and s.SettleTime&gt;#{sqlDateStart} and s.SettleTime&lt;#{sqlDateEnd} 
+	
+	</select>
+	
+	<!--结算单信息  -->
+	<select id="findSettlementInfo" resultType="hashMap" parameterType="hashMap">
+		SELECT s.id,s.settlementId,s.currency,s.settleAmount,s.settleFee,u.userName,
+		s.settleTime,s.`status`,s.companyId,s.settleType,s.bankAccount 
+		from Settlement s
+		LEFT JOIN Users u ON u.id = s.settleBy 
+		where s.companyId = #{companyId}
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+		AND s.SettleTime BETWEEN #{startTime} AND #{endTime}
+		</if>
+		ORDER BY s.id DESC
+		limit #{page.begin},#{page.pageNum}
+	</select>
+	
+	<!--结算信息行数  -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		SELECT COUNT(asd.id) from (SELECT s.id,s.SettlementID,s.Currency,s.SettleAmount,s.SettleFee,u.UserName,
+		s.SettleTime,s.`Status`,s.CompanyId,s.SettleType,s.BankAccount 
+		from Settlement s
+		LEFT JOIN Users u ON u.ID = s.SettleBy
+		where s.companyId =#{companyId})asd
+	</select>
+	
+	<!--往期结算单信息行数  -->
+	<select id="pastRows" parameterType="hashMap" resultType="int">
+		SELECT COUNT(asd.id) from (SELECT s.id,s.SettlementID,s.Currency,s.SettleAmount,s.SettleFee,u.UserName,
+		s.SettleTime,s.`Status`,s.CompanyId,s.SettleType,s.BankAccount 
+		from Settlement s
+		LEFT JOIN Users u ON u.ID = s.SettleBy
+		where s.companyId =#{companyId}
+		AND s.SettleTime BETWEEN #{startTime} AND #{endTime}
+		)asd
+	</select>
+	
+	<!--微信端结算单信息  -->
+	<select id="findWeChatSettlementInfo" parameterType="hashMap" resultType="hashMap">
+		SELECT s.id,s.settlementId,s.settleAmount,u.userName,
+		s.settleTime,s.status,s.companyId
+		from Settlement s
+		LEFT JOIN Users u ON u.id = s.settleBy 
+		where s.companyId = #{companyId}
+		<if test="page.settlementId != null and page.settlementId !=''">
+		and s.settlementId=#{page.settlementId}
+		</if>
+		<if test="page.settleTimeStart != null and page.settleTimeStart != ''">
+		and s.settleTime &gt;= #{page.settleTimeStart}
+		</if>
+		<if test="page.settleTimeStop != null and page.settleTimeStop != ''">
+		and s.settleTime &lt;= #{page.settleTimeStop}
+		</if>
+		order by s.id DESC limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="findWeChatSettlementInfoRow" parameterType="hashMap"
+		resultType="Integer">
+		SELECT count(s.id) 
+		from Settlement s
+		LEFT JOIN Users u ON u.id = s.settleBy 
+		where s.companyId = #{companyId}
+		<if test="page.settlementId != null and page.settlementId !=''">
+		and s.settlementId=#{page.settlementId}
+		</if>
+		<if test="page.settleTimeStart != null and page.settleTimeStart != ''">
+		and s.settleTime &gt;= #{page.settleTimeStart}
+		</if>
+		<if test="page.settleTimeStop != null and page.settleTimeStop != ''">
+		and s.settleTime &lt;= #{page.settleTimeStop}
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

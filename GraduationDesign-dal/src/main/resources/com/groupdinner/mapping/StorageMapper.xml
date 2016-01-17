@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.StorageDao">
+	<!--添加 -->
+	<insert id="insert" parameterType="com.wit.model.Storage">
+	<selectKey keyProperty="id" resultType="Integer" 
+			order="AFTER">
+				SELECT LAST_INSERT_ID()
+	</selectKey>
+		insert into Storage(storageCode,storageName,supplierId,goodsId,goodsNum,goodsUnit,goodsPrice)
+		values(#{storageCode},#{storageName},#{supplierId},#{goodsId},#{goodsNum},#{goodsUnit},#{goodsPrice})
+	</insert>
+</mapper>

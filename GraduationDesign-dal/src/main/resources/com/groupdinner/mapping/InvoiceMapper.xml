@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.InvoiceDao">
+	<select id="findAll" resultType="hashMap">
+		SELECT d.ID,d.InvoiceID,d.InvoiceType,d.InvoiceTitle,d.Amount,d.CreateTime,d.CompanyID,d.StatementID,d.`Status` ,c.CompanyType
+	   	from Invoice d
+		LEFT JOIN Companys c ON d.CompanyID = c.ID
+		ORDER BY d.CompanyID,d.CreateTime desc 
+	   limit #{begin},#{pageNum}
+	</select>
+	<select id="findById" parameterType="int" resultType="com.wit.model.Invoice">
+	   SELECT 
+	   id,invoiceId,invoiceType,invoiceTitle,amount,createTime,companyId,statementId,status
+	   FROM Invoice
+	   WHERE statementId=#{statementId} and status in(0,1,2)
+	</select>
+	<delete id="deleteById" parameterType="int" >
+	   delete from Invoice where id=#{id}
+	</delete>
+	<insert id="insert" parameterType="com.wit.model.Invoice">
+	   <selectKey order="BEFORE" keyProperty="invoiceId" resultType="String">
+	 	select CONCAT('FP',DATE_FORMAT(CURDATE(),'%Y%m%d'),RIGHT(CONCAT('00000',(select count(id) from Invoice
+    	where 0=DATEDIFF(createTime,NOW()))+1),6))
+		</selectKey>
+	    insert into Invoice( invoiceId,invoiceType,invoiceTitle,amount,createTime,companyId,statementId,status
+	    )values(
+	         #{invoiceId},
+	         #{invoiceType},
+	         #{invoiceTitle},
+	         #{amount},
+	         NOW(),
+	         #{companyId},#{statementId},0
+	         )
+	</insert>
+	 <select id="findRows" resultType="int">
+	    SELECT
+		COUNT(id) 
+		FROM DispatchBill
+	</select>
+	<update id="update"  parameterType="com.wit.model.Invoice">
+	    UPDATE Invoice 
+		SET
+		invoiceId = #{invoiceId},
+		invoiceType= #{invoiceType}, 
+		invoiceTitle=#{invoiceTitle}, 
+		amount=#{amount}, 
+		createTime=#{createTime}, 
+		companyId=#{companyId}
+		where 
+		id=#{id}
+	</update>
+	
+	<select id="countAll">
+	    SELECT
+		COUNT(*) 
+		FROM Invoice
+	</select>
+	
+	<!--根据用户ID显示其发票信息  -->
+	<select id="getAll" parameterType="hashMap" resultType="com.wit.model.Invoice">
+		SELECT d.Amount,d.CompanyID,d.CreateTime,d.ID,d.InvoiceID,d.InvoiceTitle,d.InvoiceType
+ 		FROM Invoice d 
+		LEFT JOIN Users u 
+		ON d.CompanyID = u.CompanyID
+		where u.ID = #{userId}
+		order by createTime desc limit #{page.begin},#{page.pageNum}
+	</select>
+	
+	<!--根据用户ID分行  -->
+	<select id="rows" resultType="int">
+		SELECT COUNT(asd.id) from 
+		(SELECT ID,InvoiceID,InvoiceType,InvoiceTitle,Amount,CreateTime,CompanyID,StatementID,`Status` 
+		from Invoice)asd
+	</select>
+	
+	<!--根据公司ID查找发票信息  -->
+	<select id="findByCompanyId" parameterType="Integer" resultType="com.wit.model.Invoice">
+	   SELECT 
+	   id,invoiceId,invoiceType,invoiceTitle,amount,createTime,companyId,statementId
+	   FROM Invoice
+	   WHERE companyId=#{companyId}
+	   GROUP BY CompanyID,InvoiceTitle
+	</select>
+	
+	<!--采购商发票申请  -->
+	<insert id="buyerInvoiceApply" parameterType="hashMap">
+		<![CDATA[
+		CALL addInvoice(
+		#{tmpInvoiceType,mode=IN,jdbcType=INTEGER},#{tmpInvoiceTitle,mode=IN,jdbcType=VARCHAR}
+		,#{tmpAmount,mode=IN,jdbcType=DECIMAL},#{tmpCompanyId,mode=IN,jdbcType=INTEGER},
+		#{tmpStatementId,mode=IN,jdbcType=INTEGER}
+		);
+		]]>
+	</insert>
+	
+	<!--平台向供应商发票申请  -->
+	<insert id="addSupplierInvoice" parameterType="hashMap">
+		<![CDATA[
+		CALL addSupplierInvoice(
+		#{tmpInvoiceType,mode=IN,jdbcType=INTEGER},#{tmpInvoiceTitle,mode=IN,jdbcType=VARCHAR}
+		,#{tmpAmount,mode=IN,jdbcType=DECIMAL},#{tmpCompanyName,mode=IN,jdbcType=VARCHAR},
+		#{tmpStatementId,mode=IN,jdbcType=INTEGER}
+		);
+		]]>
+	</insert>
+	
+	<!--发票寄出  -->
+	<insert id="updateInvoiceStatus">
+		<![CDATA[
+		CALL updateInvoice(
+		#{tmpStatementId,mode=IN,jdbcType=INTEGER}
+		);
+		]]>
+	</insert>
+	
+	<!--发票签收  -->
+	<insert id="signInvoice">
+		<![CDATA[
+		CALL signInvoice(
+		#{tmpStatementId,mode=IN,jdbcType=INTEGER}
+		);
+		]]>
+	</insert>
+	
+	<!--添加公司发票抬头  -->
+	<insert id="addTitle" parameterType="hashMap">
+		insert  into invoice(invoiceTitle,companyId) VALUE (#{invoiceTitle},#{companyId})
+	</insert>
+</mapper>

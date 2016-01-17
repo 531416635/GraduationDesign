@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.CompanyProductsDao" >
+	<!--供应审批信息列表  -->
+	<select id="findsupplyCheckList"  parameterType="com.wit.model.Page" resultType="com.wit.model.CompanyProducts">
+		SELECT
+		ID, CompanyID, ProductID, Status,CompanyProductCode,RequestTime,UnitPrice,getCompanyName(CompanyID) as CompanyName,getProductName(ProductID) as ProductName
+		FROM CompanyProducts where status IN (0,1,3,4) order by ID limit #{begin},#{pageNum}
+	</select>
+	<!--供应审批信息列表 总条数 -->
+	<select id="findsupplyCheckListRows" resultType="int">
+		select count(ID)
+		from CompanyProducts
+		where status IN (0,1,3,4)
+	</select>
+	<!--更改审核状态 -->
+	<update id="changeCheck">
+		update CompanyProducts set status = #{status}
+		where id = #{id} 
+	</update>
+	<!--根据商品ID更改审核状态 -->
+	<update id="changeCheckProduct">
+		update CompanyProducts set status = #{status}
+		where ProductID = #{id} 
+	</update>
+	<!--商品信息列表  -->
+	<select id="findCompanyProducts"  parameterType="com.wit.model.Page" resultMap="companyProductsMap">
+		SELECT
+		ID, CompanyID, ProductID, Status
+		FROM CompanyProducts order by ID limit #{begin},#{pageNum};
+	</select>
+	<!--门户中商品管理中商品上架商品列表-->
+	<select id="findProductsbyCompanyId"  parameterType="hashMap" resultType="hashMap">
+		select ID,CompanyID,ProductID,Status,CompanyProductCode,RequestTime,ProductRemark,ProductDate,
+		getProductPic(ProductID) as FilePath,getProductName(ProductID) as ProductName,
+		getCateGoryName(ProductID,3) as CateGoryName
+		from CompanyProducts
+		where CompanyID=#{companyId} 
+			and Status=#{status}
+		order by RequestTime desc
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 门户中商品管理中商品上架商品列表总条数 -->
+	<select id="findProductsbyCompanyIdRows"  parameterType="hashMap" resultType="int">
+		select count(ID)
+		from CompanyProducts
+		where CompanyID=#{companyId} 
+			and Status=#{status};
+	</select>
+	<!-- 根据查看供应商是否出售该商品 -->
+	<select id="findCompanyProductsbyCompanyIdProdcuts"  parameterType="hashMap" resultType="com.wit.model.CompanyProducts">
+		SELECT
+		ID, CompanyID, ProductID, Status
+		FROM CompanyProducts where CompanyID = #{companyId} and ProductID = #{productId}
+	</select>
+	<!--根据公司Id及分页查询所有供应商商品信息  -->
+	<select id="findCompanyProductsbyCompanyId"  parameterType="hashMap" resultMap="companyProductMap">
+		SELECT
+		ID, CompanyID, ProductID, Status
+		FROM CompanyProducts where CompanyID = #{companyId} order by ID limit #{page.begin},#{page.pageNum};
+	</select>	
+	<resultMap type="com.wit.model.CompanyProducts" id="companyProductMap">
+        <association property="product" column="productId"
+            javaType="com.wit.model.Products" select="findProducts">
+        </association>
+    </resultMap>
+    
+	<resultMap type="com.wit.model.CompanyProducts" id="companyProductsMap">
+        <association property="company" column="companyId"
+            javaType="com.wit.model.Companys" select="findCompanys">
+        </association>
+        <association property="product" column="productId"
+            javaType="com.wit.model.Products" select="findProducts">
+        </association>
+    </resultMap>
+    <select id="findCompanys" parameterType="Integer" resultType="com.wit.model.Companys">
+    select
+		id, companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo, salesMan,
+		companyWebsite,
+		companyContact, companyType
+		from Companys where id=#{companyId}
+    
+    </select>
+    
+    <select id="findProducts" parameterType="Integer" resultMap="ProductsMap">
+     SELECT 
+	   id,productName,productType,ProductBrandId,unitPrice,productInfo,productCategory
+	   FROM Products
+	   WHERE id=#{productId}
+    </select>
+    
+     <resultMap type="com.wit.model.Products" id="ProductsMap">
+     	<id property="id" column="id" />
+        <collection property="productCategorys" column="productCategory"
+			javaType="java.util.ArrayList" ofType="com.wit.model.ProductCategory" select="findProductCategory">
+		</collection>
+		<collection property="productTypes" column="productType"
+			javaType="java.util.ArrayList" select="findProductTypes"
+			ofType="com.wit.model.ProductType">
+		</collection>
+    </resultMap> 
+    
+    <!-- findProductCategory -->
+	<select id="findProductCategory" parameterType="string"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where FIND_IN_SET(id,#{productCategory})
+	</select>
+	
+    <select id="findProductTypes" parameterType="string"
+		resultType="com.wit.model.ProductType">
+		select id,typeName,parentType,typeCode from ProductType
+		where
+		FIND_IN_SET(id,#{productType})
+	</select>
+	
+	<!-- 删除新闻公告 -->
+	<delete id="deleteCompanyProduct" parameterType="Integer">
+		delete from CompanyProducts where ID=#{id}
+	</delete>
+	<!-- 门户删除或上下架商品信息 -->
+	<update id="changeCompanyProductStatus">
+		update CompanyProducts set status = #{status}
+		<if test="status==1">
+		,RequestTime=Now()
+		</if>
+		 where FIND_IN_SET(ID,#{ids}) and CompanyId =#{companyId} 
+	</update>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteCompanyProductByIds" parameterType="string">
+		delete from CompanyProducts where FIND_IN_SET(id,#{ids})
+	</delete>
+	<!-- 添加新闻-->
+	<insert id="addCompanyProduct" parameterType="com.wit.model.CompanyProducts">
+	<selectKey keyProperty="id" resultType="Integer" 
+			order="AFTER">
+				SELECT LAST_INSERT_ID()
+	</selectKey>
+		insert into CompanyProducts (CompanyID, ProductID, Status,UnitPrice,IsSample,requestTime
+		) values(
+		#{companyId},
+		#{productId},
+		#{status},
+		#{unitPrice},
+		#{isSample},
+		NOW()
+		)
+	</insert>
+	
+	<!--根据Id查询新闻公告信息  -->
+	<select id="findbyId" parameterType="Integer" resultMap="companyProductsMap">
+		select ID, CompanyID, ProductID, Status from CompanyProducts where id=#{id}
+	</select>
+	<!--根据Id查询新闻公告信息  -->
+	<select id="findbyIds" parameterType="Integer" resultMap="companyProductMap">
+		select ID, CompanyID, ProductID, Status from CompanyProducts where id=#{id}
+	</select>
+	
+	<!--更新新闻公告  -->
+	<update id="updateCompanyProducts" parameterType="com.wit.model.CompanyProducts">
+		update CompanyProducts set 
+		companyId=#{companyId},ProductID=#{productId},
+		status=#{status} 
+		where id=#{id}
+	</update> 
+	
+	<!-- findRows -->
+	<select id="findRows" resultType="int">
+	    SELECT
+		COUNT(id) 
+		FROM CompanyProducts
+	</select>
+	
+	<!-- findRows -->
+	<select id="findRowsbyCompanyId" resultType="int" parameterType="Integer">
+	    SELECT
+		COUNT(id) 
+		FROM CompanyProducts where companyId = #{companyId}
+	</select>
+	<!-- 根据id查询商品上货中的“日期编码备注”字段 -->
+	<select id="findProductInfoById" parameterType="Integer"  resultType="com.wit.model.CompanyProducts">
+	SELECT ProductDate,CompanyProductCode,ProductRemark,id
+	FROM CompanyProducts
+	where ID=#{id}  
+	</select>
+	<!-- 商品编辑页面中修改“日期编码备注”字段信息 -->
+	<update id="updateProductInfo"  parameterType="com.wit.model.CompanyProducts">
+	update CompanyProducts set
+	CompanyProductCode=#{companyProductCode},
+	ProductDate=#{productDate},ProductRemark=#{productRemark}
+	where ID=#{id}
+	</update>
+	<!--根据公司ID和商品ID查询IsSample -->
+	<select id="findProductSample"  parameterType="Integer" resultType="int">
+	select IsSample from CompanyProducts 
+	where ProductId=#{ProductId}
+	</select>
+	<select id="findbyProductId"  parameterType="Integer" resultType="int">
+	select id from CompanyProducts 
+	where ProductId=#{productId} limit 1
+	</select>
+	<!-- 供应商新品申请及供应图片资质展现 -->
+	<select id="webfindProductPicbyCompanyId"  parameterType="hashMap" resultMap="webfindProductPics">
+	select c2.id,c1.companyName, p.productName,p.id as productId,c2.requestTime, c2.status, p.status as productStatus,c3.FileClass as picClass,count(distinct c2.id)
+	from Companys as c1
+	left join CompanyProducts as c2 on c1.ID=c2.CompanyID
+	left join Products as p on p.id=c2.ProductID
+	left join CompanyProductsPic as c3 on c2.id=c3.CompanyProductsID
+	where 
+	<if test="companyId != null and companyId != '' ">
+		c1.id=#{companyId} and	
+	</if>
+	<if test="productName!=null and productName!=''">
+			 p.productName like CONCAT('%',#{productName},'%') and
+		</if>
+	 FIND_IN_SET(c3.FileClass,#{fileClass})
+	group by c2.id
+	order by c2.id desc limit #{page.begin},#{page.pageNum}
+	</select>
+	<!-- 新品申请与供应关联类型图片 -->
+	<resultMap type="com.wit.model.CompanyProducts" id="webfindProductPics">
+		<id property="id" column="id" />
+		<collection property="companyProductPics" column="{companyProductsId=id,picClass=picClass}"
+			javaType="java.util.ArrayList" ofType="com.wit.model.CompanyProductPic"
+			select="findProductPicsbyClass">
+		</collection>
+	</resultMap>
+	<!-- 根据类型找图片 -->
+	<select id="findProductPicsbyClass" parameterType="java.util.HashMap" resultType="com.wit.model.CompanyProductPic">
+	select id,companyProductsId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+	from CompanyProductsPic 
+	where companyProductsId=#{companyProductsId} and FIND_IN_SET(fileClass,'2,3,4,5,6,7')
+	</select>
+	<select id="webfindProductPicbyCompanyIdRows" parameterType="hashMap" resultType="int">
+	select count(distinct c2.id)
+	from Companys as c1
+	left join CompanyProducts as c2 on c1.ID=c2.CompanyID
+	left join Products as p on p.id=c2.ProductID
+	left join CompanyProductsPic as c3 on c2.id=c3.CompanyProductsID
+	where 
+	<if test="companyId != null and companyId != '' ">
+		c1.id=#{companyId} and
+	</if>
+	<if test="productName!=null and productName!=''">
+			 p.productName like CONCAT('%',#{productName},'%') and
+		</if>
+	FIND_IN_SET(c3.FileClass,#{fileClass})
+	</select>
+	
+	<!--工作台我的商品供应-->
+	<select id="productSupply"  parameterType="hashMap" resultType="hashMap">
+		<!-- select ID,CompanyID,ProductID,Status,CompanyProductCode,RequestTime,ProductRemark,ProductDate,
+		getProductPic(ProductID) as FilePath,getProductName(ProductID) as ProductName,
+		getCateGoryName(ProductID,3) as CateGoryName
+		from CompanyProducts
+		where CompanyID=#{companyId} 
+			and Status in (0,1)
+		order by RequestTime desc -->
+		select cp.ID,cp.CompanyID,cp.ProductID,cp.Status,cp.CompanyProductCode,cp.RequestTime,cp.ProductRemark,cp.ProductDate,
+		getProductPic(ProductID) as FilePath,getProductName(ProductID) as ProductName,
+		getCateGoryName(ProductID,3) as CateGoryName,p.ProductTitle
+		from CompanyProducts cp LEFT JOIN products p ON p.ID = cp.ProductID
+		where cp.CompanyID=#{companyId} 
+			and cp.Status in (0,1)
+		order by cp.RequestTime desc
+		limit #{page.begin},#{page.pageNum};
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

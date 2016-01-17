@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.AuthenticationManagerDao">
+	<!--查询所有 -->
+	<select id="findAll" resultType="com.wit.model.AuthenticationManager">
+		select
+		id, authenticationName,
+		filePath, companyId, companyType, status,
+		uploadTime, uploadBy,
+		fileClass
+		from AuthenticationManager
+		where status !=3
+	</select>
+
+	<!--根据公司ID查找 -->
+	<select id="findByCompanyId" parameterType="hashMap"
+		resultType="com.wit.model.AuthenticationManager">
+		SELECT
+		ID, AuthenticationName, FilePath, CompanyID,
+		CompanyType, Status, UploadTime, UploadBy, FileClass
+		FROM
+		AuthenticationManager
+		WHERE
+		CompanyID=#{companyId}
+		and status !=3
+		order by id limit #{page.begin},#{page.pageNum}
+	</select>
+	
+	<!--根据ID查找 -->
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.AuthenticationManager">
+		SELECT
+		ID, AuthenticationName, FilePath, CompanyID,
+		CompanyType, Status, UploadTime, UploadBy, FileClass
+		FROM
+		AuthenticationManager
+		WHERE
+		id=#{id}
+		and status !=3
+	</select>
+
+	<!--修改 -->
+	<update id="update" parameterType="com.wit.model.AuthenticationManager">
+		UPDATE AuthenticationManager
+		SET
+		ID=#{id}, AuthenticationName=#{authenticationName},
+		FilePath=#{filePath}, CompanyID=#{companyId},status=#{status},
+		UploadTime=#{uploadTime}, UploadBy=#{uploadBy}, FileClass=#{fileClass}
+		WHERE
+		id=#{id}
+	</update>
+
+	<!--删除 -->
+	<update id="delete" parameterType="Integer">
+		update AuthenticationManager set status=3
+		where
+		id=#{id}
+	</update>
+
+	<!--增加 -->
+	<insert id="insert" parameterType="com.wit.model.AuthenticationManager">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO
+		AuthenticationManager (
+		AuthenticationName, FilePath,CompanyType, Status,CompanyID,
+		UploadTime, UploadBy, FileClass
+		) VALUES (
+		 #{authenticationName}, #{filePath},#{companyType},
+		#{status},#{companyId}, NOW(), #{uploadBy}, 0
+		)
+	</insert>
+	
+	<!-- 认证信息分行 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		select count(id) from AuthenticationManager 
+		where companyId=#{companyId} and status !=3
+	</select>
+	
+	<!-- 根据ID字符数组删除数据 -->
+	<update id="deleteByIds" parameterType="string">
+		update AuthenticationManager  set
+		status=3
+		where FIND_IN_SET(id,#{ids})
+	</update>
+	
+	<!--商户认证  -->
+	<update id="merchantAuthentication" parameterType="int">
+	<![CDATA[
+		CALL addAuthentication(#{tmpCompanyId, mode=IN, jdbcType=INTEGER});
+		]]>
+	</update>
+</mapper>

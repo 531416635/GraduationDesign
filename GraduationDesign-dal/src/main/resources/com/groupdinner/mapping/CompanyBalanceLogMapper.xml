@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.CompanyBalanceLogDao">
+	<!--查询所有 -->
+	<select id="findAll" parameterType="com.wit.model.Page"
+	resultType="com.wit.model.CompanyBalanceLog">
+		<!-- select cb.id,cb.companyId,
+		cb.currency,cb.balance,cb.balanceChange,cb.changeDate 
+		from CompanyBalanceLog cb
+		LEFT JOIN CompanyBalance c on cb.CompanyID=c.CompanyID
+		order by cb.id limit #{begin},#{pageNum} -->
+	</select>
+
+	<!--增加 -->
+	<insert id="insert" parameterType="com.wit.model.CompanyBalanceLog">
+		INSERT INTO CompanyBalanceLog
+		(
+		ID, CompanyID, Currency, Balance, BalanceChange, ChangeDate
+		) VALUES (
+		#{id}, #{companyId}, #{currency}, #{balance}, #{balanceChange},
+		#{changeDate}
+		)
+	</insert>
+
+	<!--修改 -->
+	<update id="update" parameterType="com.wit.model.CompanyBalanceLog">
+		UPDATE CompanyBalanceLog
+		SET
+		ID=#{id}, CompanyID=#{companyId}, Currency=#{currency},
+		Balance=#{balance}, BalanceChange=#{balanceChange},
+		ChangeDate=#{changeDate}
+		WHERE
+		ID=#{id}
+	</update>
+
+	<!--删除 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE CompanyBalanceLog
+		WHERE
+		ID=#{id}
+	</delete>
+
+	<!--根据ID查找 -->
+	<select id="findById" parameterType="hashMap"
+		resultType="com.wit.model.CompanyBalanceLog">
+		SELECT
+		ID, CompanyID, Currency, Balance, BalanceChange,
+		ChangeDate
+		FROM CompanyBalanceLog
+		WHERE
+		companyId=#{companyId}
+		ORDER BY ChangeDate DESC limit #{Page.begin},#{Page.pageNum} 
+	</select>
+	
+	<!--查询历史流水行数  -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		select count(cb.id) from CompanyBalanceLog cb
+		LEFT JOIN Companys c ON cb.CompanyID = c.ID
+		where cb.companyId = #{c.id}
+	</select>
+	
+	
+</mapper>

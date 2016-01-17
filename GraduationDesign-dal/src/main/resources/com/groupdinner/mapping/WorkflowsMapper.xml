@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wit.dao.WorkflowsDao" >
+	<!-- 查询所有 -->
+	<select id="getAll" parameterType="com.wit.model.Page" 
+	 resultType="com.wit.model.Workflows">
+	select id,workflowTypeId,nodeId,userId,status
+	from Workflows order by ID limit #{begin},#{pageNum};
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+	delete from Workflows
+	where id=#{id}
+	</delete>
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.wit.model.Workflows">
+	insert into Workflows(workflowTypeId,nodeId,userId,status)
+	values(#{workflowTypeId},#{nodeId},#{userId},#{status})
+	</insert>
+	<!--根据Id查询 -->
+	<select id="findbyId" parameterType="Integer" 
+	resultType="com.wit.model.Workflows">
+	select id,workflowTypeId,nodeId,userId,status
+	from Workflows
+	where id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="update" parameterType="com.wit.model.Workflows">
+	update Workflows set
+	workflowTypeId=#{workflowTypeId},nodeId=#{nodeId},
+	userId=#{userId},status=#{status}
+	where id=#{id}
+	</update>
+	
+	<!-- 分页 -->
+	<select id="findRows" resultType="int">
+		select 
+		count(id)
+		from Workflows
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

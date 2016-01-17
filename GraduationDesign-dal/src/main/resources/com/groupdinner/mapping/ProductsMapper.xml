@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ProductsDao">
+
+	<!-- 后端列出商品 -->
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrand,unitPrice,productInfo,productCategory
+		FROM Products order by ID limit #{begin},#{pageNum};
+	</select>
+	<!-- 后端根据相应的搜索条件列出商品 -->
+	<select id="findAllByName" parameterType="hashMap"
+		resultMap="productMap">
+		SELECT
+		id,productName,productType,productBrand,unitPrice,productInfo,productCategory
+		FROM Products 
+		<if test="productName!=null and productName!=''">
+			where productName like CONCAT('%',#{productName},'%')
+		</if>
+		order by ID limit #{page.begin},#{page.pageNum};
+	</select>
+
+	<!-- 商户筛选商品出售 -->
+	<select id="webfindProducts" parameterType="com.wit.model.FiltratePage"
+		resultType="com.wit.model.Products">
+		SELECT
+		id,productName,productTitle,productBrandID,unitPrice,productInfo,productCategory,status,getProductPic(id)
+		as filePath
+		FROM Products
+		where 1=1
+		<if test="productCategory!=null  and productCategory!=''">
+			and productCategory like CONCAT(#{productCategory},'%')
+		</if>
+		<if test="productName!=null and productName!=''">
+			and productName like CONCAT('%',#{productName},'%')
+		</if>
+		and status = 1
+		order by ID limit #{begin},#{pageNum};
+	</select>
+	<!-- webfindRows -->
+	<select id="webfindRows" parameterType="com.wit.model.FiltratePage"
+		resultType="Integer">
+		SELECT
+		COUNT(id)
+		FROM Products
+		where 1=1
+		<if test="productCategory!=null  and productCategory!=''">
+			and productCategory like CONCAT(#{productCategory},'%')
+		</if>
+		<if test="productName!=null and productName!=''">
+			and productName like CONCAT('%',#{productName},'%')
+		</if>
+		and status=1
+	</select>
+
+
+	<!-- 门户首页根据类别Id查询类别展示商品 -->
+	<select id="findProducts" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Products">
+		SELECT
+		p1.id,p1.productName,p1.productType,p1.productBrandID,p1.unitPrice,p1.productInfo,p1.productCategory,p1.isHomeShow,p1.isSubPageShow,p1.isHotShow,p2.filePath,p1.productTitle
+		FROM Products p1 left join ProductPic p2 on p1.id=p2.productId where
+		p1.IsHomeShow=1 and p2.IsDefault=1 and p1.status=1 and
+		FIND_IN_SET(#{productCategoryId},p1.productCategory) order by p1.id desc limit 10
+	</select>
+	<!-- 现货特供首页根据类别Id查询类别展示商品 -->
+	<!-- <select id="findProductspot" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Products">
+		SELECT
+		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
+		as spotUnitPrice,p.filePath
+		FROM Products u left join CompanyProducts r
+		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId
+		where u.ID = r.productID and p.IsDefault=1 and
+		FIND_IN_SET(#{id},productCategory) limit 8
+	</select> -->
+	<!-- productMap -->
+	<!-- 门户商品关联图 <resultMap type="com.wit.model.Products" id="productMaps"> 
+		<id property="id" column="id" /> <association property="productPic" column="id" 
+		javaType="com.wit.model.ProductPic" select="findProductPic"> </association> 
+		</resultMap> -->
+	<!-- 门户三级商品详情关联图片 查询 -->
+	<select id="findProductPic" resultType="com.wit.model.ProductPic">
+		SELECT
+		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+		FROM ProductPic where isDefault=1 and productId=#{id}
+	</select>
+
+	<!-- findProductCategory -->
+	<select id="findProductCategory" parameterType="string"
+		resultType="com.wit.model.ProductCategory">
+		select id,cateGoryName,parentCateGory,cateGoryCode
+		from
+		ProductCategory where FIND_IN_SET(id,#{productCategory})
+	</select>
+
+	<select id="findProductTypes" parameterType="java.lang.Integer"
+		resultType="com.wit.model.ProductType">
+		select id,typeName,parentType,typeCode from ProductType
+		where
+		FIND_IN_SET(id,(select ProductType from Products where id=#{id}))
+	</select>
+
+	<!-- findProductType -->
+	<select id="findProductType" parameterType="java.lang.Integer"
+		resultType="com.wit.model.ProductType">
+		select id,typeName,parentType,typeCode
+		from ProductType
+		where id=#{id}
+	</select>
+	<!-- productMap -->
+	<resultMap type="com.wit.model.Products" id="productMap">
+		<id property="id" column="id" />
+		<collection property="productCategorys" column="productCategory"
+			javaType="java.util.ArrayList" ofType="com.wit.model.ProductCategory"
+			select="findProductCategory">
+		</collection>
+		<collection property="productTypes" column="id"
+			javaType="java.util.ArrayList" select="findProductTypes"
+			ofType="com.wit.model.ProductType">
+		</collection>
+		<collection property="companys" column="id"
+			javaType="java.util.ArrayList" select="findCompanys"
+			ofType="com.wit.model.Companys">
+		</collection>
+		<!-- <collection property="originArea" column="originPlace"
+			javaType="java.util.ArrayList" select="findDictionarys"
+			ofType="com.wit.model.Dictionarys">
+		</collection> -->
+	</resultMap>
+	<!-- <select id="findDictionarys" parameterType="string" resultType="com.wit.model.Dictionarys">
+	SELECT
+		id,dicName,dicCode,dicValue,dicParent,dicType
+		FROM
+		Dictionarys
+		WHERE FIND_IN_SET(id,#{originPlace})
+	</select> -->
+	<!-- 门户三级商品详情信息 -->
+	<select id="findWebById" parameterType="Integer" resultMap="webProductMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory,productModel,productUnit
+		FROM Products
+		WHERE id=#{id}
+	</select>
+	<!-- 门户商品上架下架管理商品列表 -->
+	<select id="findWebProductsByCompanyId" parameterType="Integer"
+		resultMap="webProductMap">
+		SELECT
+		id,productName,productType,productBrandID,unitPrice,productInfo,productCategory
+		FROM Products
+		WHERE id=#{id}
+	</select>
+	<select id="findProductsbyCompanyId" parameterType="Integer"
+		resultType="hashMap">
+		select
+		p2.ID,p2.productName,p1.Status,p1.CompanyProductCode,p1.RequestTime,p3.FilePath,
+		getStandard(p2.ProductCategory) as Standard
+		from CompanyProducts p1
+		LEFT JOIN Products p2 on p1.ProductID = p2.ID
+		left join
+		CompanyProductPic p3 on p1.id = p3.CompanyProductsID
+		left join
+		ProductCategory p4 on p2.ProductCategory
+		where
+		p1.CompanyID=#{companyID}
+	</select>
+
+	<!-- 门户三级商品详情关联图片及属性 -->
+	<resultMap type="com.wit.model.Products" id="webProductMap">
+		<id property="id" column="id" />
+		<collection property="productPics" column="id"
+			ofType="com.wit.model.ProductPic" javaType="java.util.ArrayList"
+			select="findProductPics">
+		</collection>
+		<collection property="productCategorys" column="productCategory"
+			javaType="java.util.ArrayList" select="findProductCategory"
+			ofType="com.wit.model.ProductCategory">
+		</collection>
+	</resultMap>
+	<!-- 门户三级商品详情关联图片 查询 -->
+	<select id="findProductPics" resultType="com.wit.model.ProductPic">
+		SELECT
+		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
+		FROM ProductPic where productId=#{id} and isDefault=0
+	</select>
+	<select id="findProductsByCategory" resultType="com.wit.model.Products">
+		SELECT
+		p1.id,p1.productName,p1.productTitle,p1.productType,p1.productBrandID,p1.unitPrice,p1.productInfo,p1.productCategory,p1.isHomeShow,p1.isSubPageShow,p1.isHotShow,p2.filePath
+		FROM Products p1 left join ProductPic p2 on p1.id=p2.productId where
+		1=1 and p2.isDefault = 1 and p1.status=1
+		<if test="isHome!=null and isHome!=''">
+			and p1.IsHomeShow=#{isHome}
+		</if>
+		<if test="isHot!=null and isHot!=''">
+			and p1.IsHotShow=#{isHot}
+		</if>
+		<if test="isSub!=null and isSub!=''">
+			and p1.IsSubpageShow=#{isSub}
+		</if>
+		<if test="category!=null and category!=''">
+			and FIND_IN_SET(#{category},productCategory)>0
+		</if>
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 二级界面筛选商品 -->
+	<select id="findProductsByCategorys" parameterType="com.wit.model.SecondPage"
+		resultType="com.wit.model.Products">
+		SELECT
+		p1.id,p1.productName,p1.productModel,p1.productTitle,p1.productType,p1.productBrandID,p1.unitPrice,p1.productInfo,p1.productCategory,p1.isHomeShow,p1.isSubPageShow,p1.isHotShow,p2.filePath
+		FROM Products p1 left join ProductPic p2 
+		on p1.id=p2.productId
+		where 1=1 and p2.isDefault = 1
+		<if test="superclass!=null and superclass!=''">
+			and FIND_IN_SET(#{superclass},productCategory)>0
+		</if>
+		<if test="subclass!=null and subclass!=''">
+			and FIND_IN_SET(#{subclass},productCategory)>0
+		</if>
+		<if test="condition0!=null and condition0!=''">
+			and FIND_IN_SET(#{condition0},productCategory)>0
+		</if>
+		<if test="condition1!=null and condition1!=''">
+			and FIND_IN_SET(#{condition1},productCategory)>0
+		</if>
+		<if test="condition2!=null and condition2!=''">
+			and p1.productModel=#{condition2}
+		</if>
+		and p1.status=1
+		limit #{begin},#{pageNum};
+	</select>
+	<!-- 二级界面筛选商品总条数 -->
+	<select id="findRowsByCategorys" parameterType="com.wit.model.SecondPage"
+		resultType="int">
+		SELECT COUNT(p1.id)
+		FROM Products p1 left join ProductPic p2 
+		on p1.id=p2.productId 
+		where 1=1 and p2.isDefault = 1
+		<if test="superclass!=null and superclass!=''">
+			and FIND_IN_SET(#{superclass},productCategory)>0
+		</if>
+		<if test="subclass!=null and subclass!=''">
+			and FIND_IN_SET(#{subclass},productCategory)>0
+		</if>
+		<if test="condition0!=null and condition0!=''">
+			and FIND_IN_SET(#{condition0},productCategory)>0
+		</if>
+		<if test="condition1!=null and condition1!=''">
+			and FIND_IN_SET(#{condition1},productCategory)>0
+		</if>
+		<if test="condition2!=null and condition2!=''">
+			and p1.productModel=#{condition2}
+		</if>
+		and p1.status=1
+	</select>
+
+	<!-- 门户三级商品详情关联查询商品所有属性信息 <select id="findProductCategorys" parameterType="string" 
+		resultMap="webProductTypeMap"> select id,typeName,parentType,typeCode from 
+		ProductType where FIND_IN_SET(id,#{productCategory}) </select> -->
+	<!-- 门户三级商品详情关联查询父类别 <resultMap type="com.wit.model.ProductType" 
+		id="webProdusctTypeMap"> <id property="id" column="parentType" /> <association 
+		property="parentTypee" column="parentType" javaType="com.wit.model.ProductType" 
+		select="findPrarentProductType"> </association> </resultMap> 门户三级商品详情关联查询父类别信息 
+		<select id="findPrarentProductType" parameterType="Integer" resultType="com.wit.model.ProductType"> 
+		select id,typeName,parentType,typeCode from ProductType where id = #{parentType} 
+		</select> -->
+
+
+	<!-- findById -->
+	<select id="findById" parameterType="int" resultMap="productMap">
+		SELECT id,productName,productType,productBrandID,productModel,productUnit,productCode,unitPrice,productInfo,productCategory,isHomeShow,isSubpageShow,isHotShow,status,productBrand,productTitle,productDescription,originPlace,detailAddress 
+		FROM Products
+		WHERE id=#{id}
+	</select>
+
+	<select id="findCompanys" parameterType="java.lang.Integer"
+		resultType="com.wit.model.Companys">
+		select id,companyName, companyAddress, companyScale,
+		registeredCapital,
+		companyTel, companyZipCode, companyInfo,salesMan,
+		companyWebsite,
+		companyContact,companyType from Companys
+		where id in (
+		select CompanyID from CompanyProducts
+		where ProductID = #{id}
+		)
+	</select>
+	<!-- checkList -->
+	<select id="checkList" parameterType="hashMap" resultType="com.wit.model.Products">
+		SELECT
+		id,productName,productType,productBrandID,productInfo,productCategory,Status
+		FROM Products
+		where  Status IN (0,1,2,3)
+		<if test="productName!=null and productName!=''">
+			and productName like CONCAT('%',#{productName},'%')
+		</if>
+		order
+		by ID desc limit #{page.begin},#{page.pageNum}
+	</select>
+
+	<update id="changeCheck">
+		UPDATE Products
+		SET
+		Status=#{status} where
+		id=#{id}
+	</update>
+
+	<!-- deleteById -->
+	<delete id="deleteById" parameterType="int">
+		delete from Products where
+		id=#{id}
+	</delete>
+	<!-- 根据ID字符数组删除数据 -->
+	<delete id="deleteByIds" parameterType="string">
+		delete from Products
+		where FIND_IN_SET(id,#{ids})
+	</delete>
+
+	<!-- 添加商品 -->
+	<insert id="insert" parameterType="com.wit.model.Products">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into Products(
+		productName,productBrandID,productModel,productUnit,unitPrice,productCode,productInfo,productCategory,isHomeShow,isSubPageShow,isHotShow,status,productBrand
+		,productTitle,productDescription,originPlace,detailAddress)values(
+		#{productName},
+		#{productBrandId},
+		#{productModel},
+		#{productUnit},
+		#{unitPrice},
+		#{productCode},
+		#{productInfo},
+		#{productCategory},
+		#{isHomeShow},
+		#{isSubPageShow},
+		#{isHotShow},
+		0,
+		#{productBrand},
+		#{productTitle},
+		#{productDescription},
+		#{originPlace},
+		#{detailAddress}
+		)
+	</insert>
+
+
+	<!-- update -->
+	<update id="update" parameterType="com.wit.model.Products">
+		UPDATE Products
+		SET
+		productName=#{productName},
+		<!-- productType= #{productType}, productBrandID=#{productBrandID}, -->
+		productModel=#{productModel},
+		productCode=#{productCode},
+		productUnit=#{productUnit},
+		unitPrice=#{unitPrice},
+		productInfo=#{productInfo},
+		productCategory= #{productCategory},
+		isHomeShow=#{isHomeShow},
+		isSubPageShow=#{isSubPageShow},
+		isHotShow=#{isHotShow},
+		status=#{status},
+		productBrandId=#{productBrandId},
+		productTitle=#{productTitle},
+		productDescription=#{productDescription},
+		originPlace=#{originPlace},
+		detailAddress=#{detailAddress}
+		where
+		id=#{id}
+	</update>
+
+	<!-- findRows -->
+	<select id="findRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Products
+	</select>
+	<!-- findRows -->
+	<select id="findRowsByName" parameterType="hashMap" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM Products
+		<if test="productName!=null and productName!=''">
+			where productName like CONCAT('%',#{productName},'%')
+		</if>
+	</select>
+	
+
+	<select id="findcheckListRows" resultType="int">
+		SELECT
+		COUNT(id)
+		FROM
+		Products where  Status IN (0,1,2,3)
+		<if test="productName!=null and productName!=''">
+			and productName like CONCAT('%',#{productName},'%')
+		</if>
+	</select>
+
+	<select id="checkListRows" resultType="int" parameterType="String">
+		SELECT COUNT(id)
+		FROM Products WHERE Status=0
+		and productName like
+		CONCAT('%',#{productName},'%')
+
+
+	</select>
+
+	<!--spotProduct 现货特供添加 -->
+	<update id="spotProduct" parameterType="int">
+		UPDATE Products
+		SET
+		<if test="productType == 1">
+		productType= null
+		</if>
+		<if test="productType != 1">
+		productType= 1
+		</if>
+		where
+		id=#{id}
+	</update>
+
+	<!--新增商品小样 ProductSample -->
+	<insert id="insertProductSample" parameterType="com.wit.model.ProductSample">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		ProductSample(supplierId,companyProductId,requestTime,status,requestNum,requestUnit)values(#{supplierId},#{companyProductId},now(),0,#{requestNum},#{requestUnit})
+	</insert>
+
+	<!--查询商品小样 selectProductSample -->
+	<select id="selectProductSample" parameterType="Integer"
+		resultType="hashMap">
+		select
+		ps.id,ps.supplierId,p.productName,ps.companyProductId,ps.status,ps.requestTime,ps.requestNum,ps.requestUnit,s.UserName
+		as supplierName,sc.CompanyName as companyName
+
+		from ProductSample ps
+		LEFT JOIN Users s ON ps.supplierId = s.ID
+		LEFT JOIN
+		CompanyProducts c ON ps.companyProductId = c.ID
+		LEFT JOIN Companys sc
+		ON c.companyId = sc.ID
+		LEFT JOIN Products p ON c.productId = p.ID
+		where
+		ps.supplierId=#{supplierId} and p.ID =#{productId} limit #{page.begin},#{page.pageNum}
+	</select>
+	<!--商品小样分页 findRowsSamples -->
+	<select id="findRowsSamples" parameterType="hashMap" resultType="int">
+		select
+		count(ps.id)
+		from ProductSample ps
+		LEFT JOIN Users s ON ps.supplierId = s.ID
+		LEFT JOIN
+		CompanyProducts c ON ps.companyProductId = c.ID
+		LEFT JOIN Companys sc
+		ON c.companyId = sc.ID
+		LEFT JOIN Products p ON c.productId = p.ID
+		where
+		ps.supplierId=#{supplierId} and p.ID =#{productId} 
+	</select>
+	
+	<!--查询指定商品小样的申请时间 -->
+	<select id="checkProductSample" parameterType="Integer"
+		resultType="Date">
+		select RequestTime from ProductSample
+		where supplierId=#{supplierId}
+		and companyProductId=#{CompanyProductID}   ORDER BY RequestTime DESC limit 1
+
+	</select>
+
+	<!-- 现货特供首页根据类别Id查询类别展示商品 -->
+	<select id="findSpotProducts" parameterType="java.lang.Integer"
+		resultType="hashMap">
+		SELECT * FROM (
+		SELECT
+		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
+		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		FROM Products u left join CompanyProducts r
+		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
+		FIND_IN_SET(#{id},productCategory) limit 4)asd
+		GROUP BY asd.id
+	</select>
+	
+	<!-- 现货二级页面信息 -->
+	<select id="findSecondSpotProducts" parameterType="java.lang.Integer"
+		resultType="hashMap">
+		SELECT * FROM (
+		SELECT
+		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
+		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		FROM Products u left join CompanyProducts r
+		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
+		FIND_IN_SET(#{id},productCategory) limit 20)asd
+		GROUP BY asd.id
+	</select>
+	
+	<!-- 现货二级页面热门推荐 -->
+	<select id="findHotSpotProducts" parameterType="java.lang.Integer"
+		resultType="hashMap">
+		SELECT * FROM (
+		SELECT
+		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
+		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		FROM Products u left join CompanyProducts r
+		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and u.isHotShow = 1 and
+		FIND_IN_SET(#{id},productCategory) limit 20)asd
+		GROUP BY asd.id
+	</select>
+	
+	<select id="findProductByModel" resultType="Integer">
+	select id from Products where productName like CONCAT('%',#{productName},'%')
+	and productModel = #{productModel} limit 1
+	</select>
+	
+
+
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache">
+		<property name="timeToIdleSeconds" value="3600" /><!--1 hour -->
+		<property name="timeToLiveSeconds" value="3600" /><!--1 hour -->
+		<property name="maxEntriesLocalHeap" value="1000" />
+		<property name="maxEntriesLocalDisk" value="10000000" />
+		<property name="memoryStoreEvictionPolicy" value="LRU" />
+	</cache>
+
+</mapper>

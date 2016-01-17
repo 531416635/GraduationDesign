@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.wit.dao.ShoppingCartDao">
+	<select id="findAll" resultType="com.wit.model.ShoppingCart">
+		SELECT
+		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status
+		FROM ShoppingCart
+	</select>
+	<select id="findById" parameterType="Integer"
+		resultType="com.wit.model.ShoppingCart">
+		SELECT
+		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status,address
+		FROM ShoppingCart
+		WHERE id=#{shoppingCartId}
+	</select>
+	<delete id="deleteById" parameterType="Integer">
+		delete from ShoppingCart
+		where id=#{id}
+	</delete>
+	<insert id="insert" parameterType="com.wit.model.ShoppingCart">
+		insert into
+		ShoppingCart(userId,address,productId,productQuantity,productUnit,refPrice,expectPrice,status,shopType
+		)values(
+		#{userId},
+		#{address},
+		#{productId},
+		#{productQuantity},
+		#{productUnit},
+		#{refPrice},
+		#{expectPrice},
+		#{status},
+		#{shopType}
+		)
+	</insert>
+	<update id="update" parameterType="com.wit.model.ShoppingCart">
+		UPDATE ShoppingCart
+		SET
+		userId=#{userId},
+		productId= #{productId},
+		productQuantity=#{productQuantity},
+		productUnit=#{productUnit},
+		refPrice=#{refPrice},
+		expectPrice= #{expectPrice},
+		status= #{status}
+		where
+		id=#{id}
+	</update>
+
+	<select id="countAll">
+		SELECT
+		COUNT(*)
+		FROM ShoppingCart
+	</select>
+
+	<!--根据用户Id查询 -->
+	<select id="findByUserId" parameterType="Integer"
+		resultType="com.wit.model.ShoppingCart">
+		SELECT
+		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status,
+		getProductName(productId) as ProductName,getCateGoryName(productId,3)
+		as ProductCategoryName
+		FROM ShoppingCart
+		WHERE userId=#{userId}
+	</select>
+<!-- 	findByUserIdLimit -->
+	<select id="findByUserIdLimit" parameterType="Integer"
+		resultType="com.wit.model.ShoppingCart">
+		SELECT
+		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status,
+		getProductName(productId) as ProductName,getCateGoryName(productId,3)
+		as ProductCategoryName
+		FROM ShoppingCart
+		WHERE userId=#{userId}
+		ORDER BY ID DESC
+		limit #{limit}
+	</select>
+	<!--根据用户ID查询商品数量 -->
+	<select id="findProductNum" parameterType="Integer" resultType="int">
+	</select>
+
+	<!--根据公司Id查询进货单信息 -->
+	<select id="findByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.ShoppingCart">
+		SELECT
+		s.id,s.userId,s.productId,s.productQuantity,s.productUnit,s.refPrice,s.expectPrice,s.deliveryDate,s.status
+		FROM ShoppingCart s
+		LEFT JOIN Users u ON s.UserID = u.ID
+		WHERE
+		u.CompanyID = #{companyId}
+	</select>
+
+	<select id="findShopCartCompany" resultType="hashMap">
+		select
+		csc.CompanyID,getCompanyName( csc.CompanyID) as CompanyName,
+		csc.DepartmentID,getDepartmentName(csc.DepartmentID) as
+		DepartmentName,
+		csc.ProductID,csc.sumNum,p.ProductName,pb.BrandName,csc.address,
+		getProductPic(csc.ProductID) as FilePath,getAddressName(address) as
+		AddressName
+		from (
+		select
+		CompanyID,DepartmentID,ProductID,address,sum(ProductQuantity) as
+		sumNum from vShoppingCart
+		where Status=0
+		GROUP BY CompanyID,DepartmentID,ProductID,Address) as csc
+		LEFT JOIN Products
+		p ON p.ID=csc.ProductID
+		LEFT JOIN ProductBrand pb ON
+		p.ProductBrandID=pb.ID
+		where csc.CompanyID is not NULL and
+		csc.DepartmentID is not NULL and csc.ProductID is not NULL
+		and
+		csc.CompanyID = #{companyId} and csc.DepartmentID=#{departId}
+		limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="findShopCartCompanyRows" resultType="int">
+		select
+		IFNULL((select count(csc.CompanyID)
+		from (select
+		CompanyID,DepartmentID,ProductID,sum(ProductQuantity) as sumNum from
+		vShoppingCart
+		where Status=0
+		GROUP BY CompanyID,DepartmentID,ProductID) as csc
+		LEFT JOIN Products p ON
+		p.ID=csc.ProductID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID=pb.ID
+		where csc.CompanyID is not NULL and csc.DepartmentID is not NULL and
+		csc.ProductID is not NULL
+		and csc.CompanyID = #{companyId} and
+		csc.DepartmentID=#{departId}),0);
+	</select>
+	<select id="findShopCartCompanyItem" resultType="hashMap">
+		select sc.ID as ShoppingCartId,sc.CompanyID,getCompanyName(
+		sc.CompanyID) as CompanyName,
+		sc.DepartmentID,getDepartmentName(sc.DepartmentID) as DepartmentName,
+		sc.ProductID,sc.ProductQuantity,p.ProductName,pb.BrandName,getProductPic(sc.ProductID)
+		as FilePath,
+		getAddressName(address) as AddressName
+		from vShoppingCart
+		sc
+		LEFT JOIN Products p ON p.ID=sc.ProductID
+		LEFT JOIN ProductBrand pb
+		ON p.ProductBrandID=pb.ID
+		where sc.Status=0 and sc.CompanyID is not
+		NULL and sc.DepartmentID is not NULL and sc.ProductID is not NULL
+		and
+		sc.CompanyID = #{companyId} and sc.DepartmentID=#{departId} and
+		sc.ProductID=#{productId} and
+		sc.Address=#{addressId}
+		<if test="page!=null and page.begin!=null and page.pageNum!=null">
+			limit #{page.begin},#{page.pageNum}
+		</if>
+		;
+	</select>
+	<select id="findShopCartCompanyItemRows" resultType="int">
+		select
+		IFNULL((select count(sc.ID) from vShoppingCart sc
+		LEFT JOIN Products p
+		ON p.ID=sc.ProductID
+		LEFT JOIN ProductBrand pb ON
+		p.ProductBrandID=pb.ID
+		where sc.Status=0 and sc.CompanyID is not NULL
+		and sc.DepartmentID is not NULL and sc.ProductID is not NULL
+		and
+		sc.CompanyID = #{companyId} and sc.DepartmentID=#{departId} and
+		sc.ProductID=#{productId}
+		and sc.Address=#{addressId}),0) ;
+	</select>
+	<!--展示询价购物车信息 -->
+	<select id="findShopCartInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
+		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address) as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as ShoppingCartAddressName
+		from ShoppingCart s
+		LEFT JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON s.UserID = u.ID
+		WHERE  s.status = 0 and s.ShopType =1 
+		<if test="departId!=null">
+		 and s.userID = #{userId}
+		</if>
+		<if test="departId==null">
+		 and u.companyID = #{companyId}
+		</if>
+		
+		order by s.ID limit #{page.begin},#{page.pageNum};
+	</select>
+	<!-- 现货购物车查询详细信息 -->
+	<select id="findSpotShopCartInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
+		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address) as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as ShoppingCartAddressName
+		from ShoppingCart s
+		LEFT JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON s.UserID = u.ID
+		WHERE  s.status = 0 and s.ShopType =2 
+		<if test="departId!=null">
+		 and s.userID = #{userId}
+		</if>
+		<if test="departId==null">
+		 and u.companyID = #{companyId}
+		</if>
+		order by s.ID limit #{page.begin},#{page.pageNum};
+	</select>
+	<select id="findShopCartInfoRowss" parameterType="hashMap"
+		resultType="int">
+		SELECT IFNULL((select COUNT(s.ID)
+		from ShoppingCart s
+		LEFT JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductPic pp ON p.ID = pp.ProductID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		WHERE s.userID = #{userId} and s.status = 0
+		order by p.ID),0);
+	</select>
+	<select id="findShopCartInfoRows" parameterType="hashMap"
+		resultType="int">
+		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
+		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
+		from ShoppingCart s
+		LEFT JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON s.UserID = u.ID
+		WHERE s.status = 0 and s.ShopType =1
+		<if test="departId!=null">
+		 and s.userID = #{userId}
+		</if>
+		<if test="departId==null">
+		 and u.companyID = #{companyId}
+		</if>) asd
+	</select>
+	<!-- 现货购物车查询行数 -->
+	<select id="findSpotShopCartInfoRows" parameterType="hashMap"
+		resultType="int">
+		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
+		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
+		from ShoppingCart s
+		LEFT JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON s.UserID = u.ID
+		WHERE  s.status = 0 and s.ShopType =2
+		<if test="departId!=null">
+		 and s.userID = #{userId}
+		</if>
+		<if test="departId==null">
+		 and u.companyID = #{companyId}
+		</if>) asd
+	</select>
+	<!--询价购物车行数 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		SELECT IFNULL((SELECT COUNT(p.ID)
+		from ShoppingCart s
+		WHERE s.userID = #{userId}
+		) ,0)
+	</select>
+
+	<!--修改询价购物车状态（逻辑删除） -->
+	<update id="updateShoppingCartStatus" parameterType="Integer">
+		update
+		ShoppingCart set status = 1,productQuantity = #{productQuantity} where
+		id=#{shoppingCartId}
+	</update>
+
+	<!--修改询价购物车状态（逻辑删除） -->
+	<update id="editShoppingCartStatus" parameterType="Integer">
+		update
+		ShoppingCart set status = #{status} where FIND_IN_SET(id,#{ids})>0
+	</update>
+</mapper>
