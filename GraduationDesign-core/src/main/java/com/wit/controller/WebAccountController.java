@@ -233,7 +233,7 @@ public class WebAccountController {
 				}
 
 				// 获取公司地址
-				String companyAddress = companys.getcompanyAddress();
+				String companyAddress = companys.getCompanyAddress();
 				if (companyAddress != null
 						&& companyAddress.trim().length() != 0) {
 					String[] ss = companyAddress.split(",");
@@ -602,13 +602,13 @@ public class WebAccountController {
 				// 点击完成的时将状态改为3(后台认证审核中)
 				if(companyStatus == 0){
 					companys.setStatus(3);
-					companys.setcompanyAddress(companyAddress);
+					companys.setCompanyAddress(companyAddress);
 					companyService.completeCompanyInfo(companys);
 					session.setAttribute("user", users);
 					return "redirect:authenticationInfoList.do";
 				}else{
 					//之前填写过，修改信息
-					companys.setcompanyAddress(companyAddress);
+					companys.setCompanyAddress(companyAddress);
 					companyService.completeCompanyInfo(companys);
 					session.setAttribute("user", users);
 					return "redirect:toPurchaserList.do";

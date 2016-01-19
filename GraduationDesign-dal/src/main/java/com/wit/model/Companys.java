@@ -55,12 +55,12 @@ public class Companys {
 	public String getCompanyFax() {
 		return companyFax;
 	}
-	public void setCompanyFax(String companyFax) {
+	/*public void setCompanyFax(String companyFax) {
 		this.companyFax = companyFax;
 	}
 	public String getCompanyTypeName() {
 		return companyTypeName;
-	}
+	}*/
 	public Integer getMaxAccount() {
 		return maxAccount;
 	}
@@ -157,13 +157,13 @@ public class Companys {
 		this.companyName = companyName;
 	}
 
-	public String getcompanyAddress() {
+	/*public String getcompanyAddress() {
 		return companyAddress;
 	}
 
 	public void setcompanyAddress(String companyAddress) {
 		this.companyAddress = companyAddress;
-	}
+	}*/
 
 	public Integer getDiningRoomNumber() {
 		return diningRoomNumber;

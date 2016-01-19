@@ -27,11 +27,11 @@ http://www.springframework.org/schema/mvc
 		</property>
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:jbpm.execution.hbm.xml</value>
-				<value>classpath:jbpm.history.hbm.xml</value>
-				<value>classpath:jbpm.identity.hbm.xml</value>
-				<value>classpath:jbpm.repository.hbm.xml</value>
-				<value>classpath:jbpm.task.hbm.xml</value>
+				<value>classpath:jdbc.execution.hbm.xml</value>
+				<value>classpath:jdbc.history.hbm.xml</value>
+				<value>classpath:jdbc.identity.hbm.xml</value>
+				<value>classpath:jdbc.repository.hbm.xml</value>
+				<value>classpath:jdbc.task.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

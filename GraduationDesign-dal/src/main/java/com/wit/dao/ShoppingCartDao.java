@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.junit.runners.Parameterized.Parameters;
 
 import com.wit.model.ShoppingCart;
+
 /**
  * @author ljj
  * time: 2015/3/26

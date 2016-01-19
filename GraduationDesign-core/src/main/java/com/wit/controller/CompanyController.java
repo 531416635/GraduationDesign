@@ -219,7 +219,7 @@ public class CompanyController {
 		try {
 			Companys companys = companysService.findById(id);
 			// 获取公司地址
-			String companyAddress = companys.getcompanyAddress();
+			String companyAddress = companys.getCompanyAddress();
 			if (companyAddress != null
 					&& companyAddress.trim().length() != 0) {
 				String[] ss = companyAddress.split(",");
