@@ -1,0 +1,19 @@
+<decorators defaultdir="/pages/">   
+       <decorator name="header" page="website/header.jsp">   
+           <pattern>/web/*</pattern>  
+       </decorator>
+        <decorator name="merchantHeader" page="merchant/merchantHeader.jsp">   
+           <pattern>/merchant/*</pattern>   
+       </decorator>
+       <decorator name="merchantHeader" page="website/merchantHeader.jsp">   
+           <pattern>/web/toGrouponPay.do</pattern>   
+       </decorator>
+         <excludes>  
+        <pattern>/web/toProductsList.do*</pattern> 
+        <pattern>/web/toSaveArguments.do*</pattern>
+    	</excludes>
+       <!-- <decorator name="footer" page="footer.jsp">   
+           <pattern>*</pattern>   
+       </decorator> -->   
+</decorators> 
+

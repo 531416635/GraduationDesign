@@ -1,0 +1,104 @@
+.warp {
+	width: 1127px;
+	overflow: hidden;
+	margin: 0 auto;
+	height: auto;
+}
+
+.location {
+	height: 30px;
+	line-height: 30px;
+	border-bottom: #d1d1d1 solid 1px;
+}
+
+.lo1 {
+	color: #000;
+}
+
+.lo2 {
+	color: #686868;
+}
+
+.common-bag {
+	width: 1060px;
+	height: auto;
+	border: 1px solid #d1d1d1;
+	margin: 10px auto;
+}
+
+.common-tit {
+	width: 85%;
+	border-bottom: 1px solid #d1d1d1;
+	height: 40px;
+	margin: 30px auto;
+}
+
+h1 {
+	font-size: 16px;
+	color: #000;
+	font-family: "Î¢ÈíÑÅºÚ";
+	line-height: 40px;
+}
+
+.formdiv {
+	 margin: 0 auto;
+	padding-left: 200px;
+	margin-bottom: 50px;
+
+}
+p {
+	line-height: 25px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	color: #000;
+	margin: 30px;
+}
+
+.search-input {
+	width: 400px;
+	border: #e6cccc solid 1px;
+	height: 40px;
+}
+
+.search-input1 {
+	width: 280px;
+	border: #e6cccc solid 1px;
+	height: 40px;
+}
+
+.sub1 {
+	width: 350px;
+	height: 40px;
+	margin-top: 50px;
+	margin-left: 50px;
+	background-color: #ff7573;
+	color: #FFF;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	border: none;
+	border-radius: 5px;
+}
+
+.sub2 {
+	width: 350px;
+	height: 40px;
+	margin-top: 50px;
+	margin-left: 70px;
+	background-color: #ff7573;
+	color: #FFF;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	border: none;
+	border-radius: 5px;
+}
+
+.sub3 {
+	background-color: #ff7573;
+	color: #FFF;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	height: 40px;
+	width: 100px;
+	border: none;
+	margin-left: 15px;
+}

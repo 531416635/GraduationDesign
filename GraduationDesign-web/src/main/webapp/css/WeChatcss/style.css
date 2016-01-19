@@ -1,0 +1,130 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* start editing from here */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+	margin:0;
+	padding:0;
+	border:0;
+	font:inherit;
+	vertical-align:baseline;
+	font-family: "w微软雅黑";
+}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+/*--login start here--*/
+body{
+   background-color:#E5E5E5;
+   padding:10px 0px 50px 0px;
+   font-size:70%;
+  
+}
+.login-top{
+	width:80%;
+	margin:0 auto;
+	border-radius:5px;
+	background-color:#fff;
+	padding:20px;
+}
+.div_input{
+    width:100%;
+	height:30px;
+	margin:25px 0;
+	border:1px solid #00BFFF;
+	border-radius:3px;
+	overflow:hidden;
+}
+.order_input{
+    width:100%;
+	height:34;
+	margin:9px 0;
+	border:1px solid #999;
+	border-radius:3px;
+	overflow:hidden;
+	
+}
+.login-top span{
+	background-color:#e5e5e5;
+	height:100%;
+	float:left;
+	line-height:40px;
+	font-family: Roboto, sans-serif;
+	padding-left:5px;
+}
+
+.login-top input[type="text"]{
+	width:76%;
+	height:100%;
+	float:right;
+	border:none;
+}
+.login-top input[type="password"]{
+	width:76%;
+	height:100%;
+	float:right;
+	border:none;
+}
+.login-top input[type="submit"] {
+	background: #00BFFF;
+	color: #fff;
+	font-weight: 400;
+	border-radius:3px;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	margin-bottom:10px;
+}
+.login-top input[type="submit"]:hover {
+	background:#818181;
+}
+input[type="button"] {
+	width:75px;
+	background: #00BFFF;
+	color: #fff;
+	border-radius:3px;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	margin:10px 3px;
+	text-align:center;
+}
+input[type="button"]:hover {
+	background:#818181;
+}
+.forgot{
+	width:100%;
+}
+.forgot p{
+	color:#999;
+}
+a{
+	color:red;
+}
+#pw{
+	color:#999;
+}

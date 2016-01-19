@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.pagination a {
+	text-decoration: none;
+	border: 1px solid #AAE;
+	color: #15B;
+}
+
+.pagination a,.pagination span {
+	display: inline-block;
+	padding: 0.1em 0.4em;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.pagination .current {
+	background: #26B;
+	color: #fff;
+	border: 1px solid #AAE;
+}
+
+.pagination .current.prev,.pagination .current.next {
+	color: #999;
+	border-color: #999;
+	background: #fff;
+}
+
+div.meneame {
+	 padding:20px;margin:5px; text-align:center; font-family:Verdana; font-size:12px;
+}
+
+div.meneame a {
+	border-right: #d0d0d0 1px solid; padding-right: 6px; background-position: 50% bottom; border-top: #d0d0d0 1px solid; padding-left: 6px; padding-bottom: 2px; border-left: #d0d0d0 1px solid; color: #666; margin-right: 3px; padding-top: 2px; border-bottom: #d0d0d0 1px solid; text-decoration: none
+}
+
+div.meneame a:hover {
+	 border-right: #666 1px solid; border-top: #666 1px solid; background-image: none; border-left: #666 1px solid; color: #fff; border-bottom: #666 1px solid; background-color: #999
+}
+
+div.meneame a:active {
+	 border-right: #666 1px solid; border-top: #666 1px solid; background-image: none; border-left: #666 1px solid; color: #fff; border-bottom: #666 1px solid; background-color: #999
+}
+
+div.meneame span.current {
+	 padding-right: 6px; padding-left: 6px; font-weight: bold; padding-bottom: 2px; color: #000; margin-right: 3px; padding-top: 2px
+}
+
+div.meneame span.disabled {
+	 padding-right: 6px; padding-left: 6px; padding-bottom: 2px; color: #adaaad; margin-right: 3px; padding-top: 2px
+}
