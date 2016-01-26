@@ -8,9 +8,7 @@
 		<artifactId>GraduationDesign</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.wit</groupId>
 	<artifactId>GraduationDesign-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>GraduationDesign-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
