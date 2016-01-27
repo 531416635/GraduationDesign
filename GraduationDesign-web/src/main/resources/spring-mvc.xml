@@ -9,7 +9,7 @@
 
 
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
-	<context:component-scan base-package="com.wit.controller" />
+	<context:component-scan base-package="com.wit.*" />
 	<mvc:resources location="/upload/" mapping="/upload/**" />
 	<mvc:annotation-driven />
 	<bean id="multipartResolver"
