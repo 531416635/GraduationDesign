@@ -440,59 +440,62 @@ td {
 
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">询价管理 ></span><span class="lo2">我的报价单</span>
-			<br/><br/>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">询价管理 ></span><span
+				class="lo2">我的报价单</span> <br /> <br />
 		</div>
 		<input type="hidden" id="priceSheetId" value="${priceSheetId}">
-			<input type="hidden" id="productName" value="${productName}">
-			<input type="hidden" id="companyName" value="${companyName}">
-			<input type="hidden" id="createDateStart" value="${createDateStart}">
-			<input type="hidden" id="createDateStop" value="${createDateStop}">
-			<input type="hidden" id="status" value="${status}">
-			<div
-				style="border: 1px solid #D6D6D6;margin:10px 0;padding:10px 5px;">
-				<form action="myPriceSheet.do" method="post">
-					<b style="font-size:16px;">报价单查询 </b> &nbsp;&nbsp;&nbsp; 订单号：<input
-						type="text" style="height:20px;" name="priceSheetId"
-						value="${priceSheetId}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						询价日期：<input
-						type="text" id="time1" name="createDateStart"
-						onchange="changeExpectTime(1)" style="height:20px;"
-						value="${createDateStart}" readonly="readonly"
-						onclick="WdatePicker()" />-<input type="text"
-						name="createDateStop" style="height:20px;"
-						onchange="changeExpectTime(2)" value="${createDateStop}"
-						id="time2" readonly="readonly" onclick="WdatePicker()" />
-						
-						<br> <span
-						style="margin-left:118px;">供应商：</span><input type="text"
-						name="companyName" style="height:20px;" value="${companyName}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						
-						商&nbsp;&nbsp;&nbsp;&nbsp;品：<input
-						type="text" name="productName" style="height:20px;"
-						value="${productName}">
-						&nbsp;&nbsp;状态：<select
-						name="status" type="text" id="status" style="height:20px;width:80px;">
-						<option value="10" <c:if test="${status==10 }">selected="selected"</c:if>>全部</option>
-						<option value="0" <c:if test="${status==0 }">selected="selected"</c:if> >报价开始</option>
-						<option value="1" <c:if test="${status==1 }">selected="selected"</c:if> >报价结束</option>
-						<option value="2" <c:if test="${status==2 }">selected="selected"</c:if> >议价中</option>
-						<option value="3" <c:if test="${status==3 }">selected="selected"</c:if> >议价通过</option>
-						<option value="4" <c:if test="${status==4 }">selected="selected"</c:if> >议价不通过</option>
-						<option value="5" <c:if test="${status==5 }">selected="selected"</c:if> >报价失效</option>
-						</select>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-						type="submit" class="orange" value="查询">
-				</form>
-				<c:if test="${empty priceSheet}">
-			<script type="text/javascript">
+		<input type="hidden" id="productName" value="${productName}">
+		<input type="hidden" id="companyName" value="${companyName}">
+		<input type="hidden" id="createDateStart" value="${createDateStart}">
+		<input type="hidden" id="createDateStop" value="${createDateStop}">
+		<input type="hidden" id="status" value="${status}">
+		<div
+			style="border: 1px solid #D6D6D6; margin: 10px 0; padding: 10px 5px;">
+			<form action="myPriceSheet.do" method="post">
+				<b style="font-size: 16px;">报价单查询 </b> &nbsp;&nbsp;&nbsp; 订单号：<input
+					type="text" style="height: 20px;" name="priceSheetId"
+					value="${priceSheetId}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				询价日期：<input type="text" id="time1" name="createDateStart"
+					onchange="changeExpectTime(1)" style="height: 20px;"
+					value="${createDateStart}" readonly="readonly"
+					onclick="WdatePicker()" />-<input type="text"
+					name="createDateStop" style="height: 20px;"
+					onchange="changeExpectTime(2)" value="${createDateStop}" id="time2"
+					readonly="readonly" onclick="WdatePicker()" /> <br> <span
+					style="margin-left: 118px;">供应商：</span><input type="text"
+					name="companyName" style="height: 20px;" value="${companyName}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				商&nbsp;&nbsp;&nbsp;&nbsp;品：<input type="text" name="productName"
+					style="height: 20px;" value="${productName}">
+				&nbsp;&nbsp;状态：<select name="status" type="text" id="status"
+					style="height: 20px; width: 80px;">
+					<option value="10"
+						<c:if test="${status==10 }">selected="selected"</c:if>>全部</option>
+					<option value="0"
+						<c:if test="${status==0 }">selected="selected"</c:if>>报价开始</option>
+					<option value="1"
+						<c:if test="${status==1 }">selected="selected"</c:if>>报价结束</option>
+					<option value="2"
+						<c:if test="${status==2 }">selected="selected"</c:if>>议价中</option>
+					<option value="3"
+						<c:if test="${status==3 }">selected="selected"</c:if>>议价通过</option>
+					<option value="4"
+						<c:if test="${status==4 }">selected="selected"</c:if>>议价不通过</option>
+					<option value="5"
+						<c:if test="${status==5 }">selected="selected"</c:if>>报价失效</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="orange"
+					value="查询">
+			</form>
+			<c:if test="${empty priceSheet}">
+				<script type="text/javascript">
 			alert("查询结果为空,请重新输入！");
 			</script>
 			</c:if>
-			</div>
+		</div>
 		<c:if test="${!empty priceSheet}">
-			
+
 
 
 			<div>
@@ -500,33 +503,32 @@ td {
 
 					<c:forEach items="${priceSheet}" var="c" varStatus="status">
 						<tbody>
-							<tr style="background-color:#FAFAFA;">
+							<tr style="background-color: #FAFAFA;">
 
-								<td colspan="7" style="height:35px; line-height:35px;"><p
-										style="margin:0; font-size:14px; color:#2a2a2a;">
-										<span style="float:left;">报价单编号：${c.PriceSheetID}</span>
+								<td colspan="7" style="height: 35px; line-height: 35px;"><p
+										style="margin: 0; font-size: 14px; color: #2a2a2a;">
+										<span style="float: left;">报价单编号：${c.PriceSheetID}</span>
 										<c:choose>
 											<c:when test="${c.Status==0}">
-												<span class="span_zt zt_dcl" style="padding:2px 5px;">报价开始</span>
+												<span class="span_zt zt_dcl" style="padding: 2px 5px;">报价开始</span>
 											</c:when>
 											<c:when test="${c.Status==1}">
-												<span class="span_zt zt_ywc" style="padding:2px 5px;">报价结束</span>
+												<span class="span_zt zt_ywc" style="padding: 2px 5px;">报价结束</span>
 											</c:when>
 											<c:when test="${c.Status==2}">
-												<span class="span_zt zt_dcl" style="padding:2px 5px;">议价中</span>
+												<span class="span_zt zt_dcl" style="padding: 2px 5px;">议价中</span>
 											</c:when>
 											<c:when test="${c.Status==3}">
-												<span class="span_zt zt_ywc" style="padding:2px 5px;">议价通过</span>
+												<span class="span_zt zt_ywc" style="padding: 2px 5px;">议价通过</span>
 											</c:when>
 											<c:when test="${c.Status==4}">
-												<span class="span_zt zt_wwc" style="padding:2px 5px;">议价不通过</span>
+												<span class="span_zt zt_wwc" style="padding: 2px 5px;">议价不通过</span>
 											</c:when>
 											<c:when test="${c.Status==5}">
-												<span class="span_zt zt_wwc" style="padding:2px 5px;">报价失效</span>
+												<span class="span_zt zt_wwc" style="padding: 2px 5px;">报价失效</span>
 											</c:when>
 										</c:choose>
-									</p>
-								</td>
+									</p></td>
 
 
 							</tr>
@@ -537,40 +539,35 @@ td {
 								<td rowspan="3"><c:if test="${ c.Status==0 || c.Status==3}">
 										<input type="radio" id="priceSheetID" name="priceSheetID"
 											value="${c.ID}|${c.Status}|${c.CompanyProductID}" />
-									</c:if>
-								</td>
-								<td rowspan="3" style="width:90px;"><c:if
+									</c:if></td>
+								<td rowspan="3" style="width: 90px;"><c:if
 										test="${c.productPic!=null && c.productPic!=''}">
 										<div
-											style="width:79px; height:64px; padding:1px; border:1px solid #d9d9d9;">
-											<img style="width:79px; height:64px;"
+											style="width: 79px; height: 64px; padding: 1px; border: 1px solid #d9d9d9;">
+											<img style="width: 79px; height: 64px;"
 												src="<%=path%>${c.productPic}">
 										</div>
-									</c:if>
-								</td>
+									</c:if></td>
 
 
-								<td style="width:241px;"><span class="span_name">报价产品：</span>
-									<span class="span_value">${c.ProductName}</span>
-								</td>
-								<td style="width:101px;"><span class="span_name">规格：</span><span
-									class="span_value">${c.ProductModel}</span>
-								</td>
-								<td style="width:101px;"><span class="span_name">单价：</span><span
+								<td style="width: 241px;"><span class="span_name">报价产品：</span>
+									<span class="span_value">${c.ProductName}</span></td>
+								<td style="width: 101px;"><span class="span_name">规格：</span><span
+									class="span_value">${c.ProductModel}</span></td>
+								<td style="width: 101px;"><span class="span_name">单价：</span><span
 									class="span_red">${c.UnitPrice}</span><span class="span_value">元</span>
 								</td>
-								<td style="width:156px;"><span class="span_name">数量：</span><span
-									class="span_value">${c.Quantity}</span>
-								</td>
+								<td style="width: 156px;"><span class="span_name">数量：</span><span
+									class="span_value">${c.Quantity}</span></td>
 
 								<td><span class="span_name">总额：</span><span
 									class="span_red">${c.UnitPrice*c.Quantity}</span><span
 									class="span_value">元</span></td>
 							</tr>
 							<tr>
-								<td style="width:241px;"><span class="span_name">供应商：</span><span
+								<td style="width: 241px;"><span class="span_name">供应商：</span><span
 									class="span_value">${c.CompanyName}</span>
-								<td colspan="2" style="width:230px;"><span
+								<td colspan="2" style="width: 230px;"><span
 									class="span_name">供应商电话：</span><span class="span_value">${c.CompanyTel}</span>
 								</td>
 
@@ -580,17 +577,16 @@ td {
 								</td>
 							</tr>
 							<tr>
-								<td style="width:241px;"><span class="span_name">报价日期：</span><span
+								<td style="width: 241px;"><span class="span_name">报价日期：</span><span
 									class="span_value"> <fmt:formatDate
 											value="${c.CreateDate}" type="both" pattern="yyyy-MM-dd" />
 								</span></td>
 
-								<td colspan="2" style="width:230px;"><span
+								<td colspan="2" style="width: 230px;"><span
 									class="span_name">有效期至：</span><span class="span_value">
 										<fmt:formatDate value="${c.ValidUntil}" type="both"
 											pattern="yyyy-MM-dd" var="time" /> <c:out value="${time }" />
-								</span>
-								</td>
+								</span></td>
 								<td><span class="span_name">期望交期：</span><span
 									class="span_value"> <jsp:useBean id="date"
 											class="java.util.Date" /> <fmt:formatDate
@@ -608,11 +604,11 @@ td {
 												type="hidden" name="requestNum" value="1" /> <input
 												class="orange" type="button" value="申请小样"
 												id="button1${status.index }"
-												style="margin-right:20%; width: 65px; height: 20px;"
+												style="margin-right: 20%; width: 65px; height: 20px;"
 												onclick="addProductSample('${c.CompanyName }','${c.ProductName}','${supplierId }','${c.CompanyProductID }','${status.index }')" />
 											<input type="button" class="orange" value="已申请"
 												id="button2${status.index }"
-												style="display:none;float:right;margin-right:20%; width: 65px; height: 20px;" />
+												style="display: none; float: right; margin-right: 20%; width: 65px; height: 20px;" />
 											<!-- <script type="text/javascript">
 											$(document).ready(
 															function() {
@@ -640,7 +636,7 @@ td {
 					共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage"
 						class="blue"></i>页
 				</div> -->
-				<div id="Pagination" class="meneame" style="clear:left"></div>
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 
 			</div>
 			<%-- <div class="pagin">
@@ -692,7 +688,7 @@ td {
 			</div> --%>
 			<!-- <hr style="color: red;border: 1px solid;margin-top: 50px;" /> -->
 			<br>
-			<div class="demo" style="width:100%; text-align: center;">
+			<div class="demo" style="width: 100%; text-align: center;">
 				<input type="button" value="确认提交" id="confirm"
 					class="action qrtj orange" onclick="AddOrder()" /> <input
 					type="button" id="bargin" value="发起议价" class="action qrtj orange"
@@ -710,7 +706,7 @@ td {
 		</div>
 	</div>
 
-	<div style="height:1200px;"></div>
+	<div style="height: 1200px;"></div>
 
 
 

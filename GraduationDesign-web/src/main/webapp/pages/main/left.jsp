@@ -122,7 +122,7 @@ function showmenu(menuid) {
 
 </head>
 
-<body style="background:#f0f9fd;">
+<body style="background: #f0f9fd;">
 	<div class="lefttop">
 		<span></span>系统后台
 	</div>
@@ -142,13 +142,13 @@ function showmenu(menuid) {
 								<c:if test="${menuItem.parentMenu==menu.id}">
 									<li class="" id="tabSearch${menuItem.id}"
 										onclick="showmenu(${menuItem.id})"><cite></cite> <a
-										href="${menuItem.menuUrl}" target="rightFrame">${menuItem.menuName}</a> <i></i></li>
-									<ul id="cnd${menuItem.id}" style="display:none;">
+										href="${menuItem.menuUrl}" target="rightFrame">${menuItem.menuName}</a>
+										<i></i></li>
+									<ul id="cnd${menuItem.id}" style="display: none;">
 										<c:forEach items="${menusList}" var="menuSun">
 											<c:if test="${menuSun.parentMenu==menuItem.id}">
 												<li><nextss></nextss><a href="${menuSun.menuUrl}"
-													target="rightFrame">${menuSun.menuName} </a><i></i>
-												</li>
+													target="rightFrame">${menuSun.menuName} </a><i></i></li>
 											</c:if>
 										</c:forEach>
 									</ul>

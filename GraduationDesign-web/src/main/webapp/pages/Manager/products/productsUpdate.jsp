@@ -397,18 +397,18 @@ body {
 </style>
 </head>
 <body>
-	<div id="div1" style="margin:0 auto;">
+	<div id="div1" style="margin: 0 auto;">
 		<form id="form" action="updateProduct.do"
 			enctype="multipart/form-data" method="post">
 			<input type="hidden" id="productCategory" name="productCategory"
 				value="" /> <input type="hidden" id="productBrandId"
-				name="productBrandId" value="" /> <input type="hidden" id="isDefault"
-				name="isDefault" value="" /> <input type="hidden" id="isDefault2"
-				name="isDefault2" value="" /> <input type="hidden"
+				name="productBrandId" value="" /> <input type="hidden"
+				id="isDefault" name="isDefault" value="" /> <input type="hidden"
+				id="isDefault2" name="isDefault2" value="" /> <input type="hidden"
 				id="productModel" name="productModel" value="" /> <input
 				type="hidden" name="id" id="Id" value="${product.id}" /> <input
 				type="hidden" name="status" id="status" value="${product.status}" />
-				<!-- <input type="hidden" id="originPlace" name="originPlace" value=""> -->
+			<!-- <input type="hidden" id="originPlace" name="originPlace" value=""> -->
 
 			<table border="0" cellpadding="0" cellspacing="0">
 
@@ -418,8 +418,7 @@ body {
 						id="productName" value="${product.productName}" /></td>
 					<th>商品单价:</th>
 					<td><input type="text" name="unitPrice" id="unitPrice"
-						value="${product.unitPrice}" />
-					</td>
+						value="${product.unitPrice}" /></td>
 
 				</tr>
 				<tr class="info">
@@ -430,8 +429,7 @@ body {
 						</c:if> <c:if test="${product.isHomeShow!=1}">是：<input
 								type="radio" name="isHomeShow" value="1" /> 否：<input
 								type="radio" checked="checked" name="isHomeShow" value="0" />
-						</c:if>
-					</td>
+						</c:if></td>
 					<th>二级推荐：</th>
 					<td><c:if test="${product.isSubPageShow==1}">是：<input
 								type="radio" name="isSubPageShow" checked="checked" value="1" />
@@ -458,8 +456,7 @@ body {
 				<tr class="info">
 					<th>是否加入团购：</th>
 					<td><input type="checkbox" name="GrouponStatus" value="2"
-						<c:if test="${grouponStatus==2 }"> checked="checked"</c:if> />
-					</td>
+						<c:if test="${grouponStatus==2 }"> checked="checked"</c:if> /></td>
 					<th>计量单位：</th>
 					<td><select id="ProductUnit" name="ProductUnit">
 
@@ -471,13 +468,12 @@ body {
 									<option value="${Model.dicName}">${Model.dicName}</option>
 								</c:if>
 							</c:forEach>
-					</select>
-					</td>
+					</select></td>
 				</tr>
 				<tr>
-				<th>生产地址：</th>
-				<td colspan="3" style="text-align: left;">
-				<%-- <c:if test="${product.originArea!=null and product.originArea!=''}" var="tr">
+					<th>生产地址：</th>
+					<td colspan="3" style="text-align: left;">
+						<%-- <c:if test="${product.originArea!=null and product.originArea!=''}" var="tr">
 				
 				
 					<select id="province0" name="province" onchange="checkProvince(this.value,0)">
@@ -540,14 +536,14 @@ body {
 					<select id="district0" name="district" style="display: none;">
 								<option value="">请选择地区</option>
 					</select>
-					 </c:if> --%>
-					 <input type="text" name="originPlace" 
-				onfocus="if(this.value=='请输入生产地址') {this.value='';}"
-							onblur="if(this.value=='') {this.value='请输入生产地址';}"
-				value="${product.originPlace}">
-					<span id="message" style="color:red; display: none;">*请填写省份地址及详细地址*</span><br>
-					<textarea name="detailAddress" id="detailAddress" style="height: 60px;  width: 500px; resize: none; color:#F08080;">${product.detailAddress}</textarea>
-				</td>
+					 </c:if> --%> <input type="text" name="originPlace"
+						onfocus="if(this.value=='请输入生产地址') {this.value='';}"
+						onblur="if(this.value=='') {this.value='请输入生产地址';}"
+						value="${product.originPlace}"> <span id="message"
+						style="color: red; display: none;">*请填写省份地址及详细地址*</span><br>
+						<textarea name="detailAddress" id="detailAddress"
+							style="height: 60px; width: 500px; resize: none; color: #F08080;">${product.detailAddress}</textarea>
+					</td>
 				</tr>
 				</tr>
 				<tr class="info">
@@ -605,22 +601,24 @@ body {
 					</script> <c:forEach items="${productCategory}" var="p1" varStatus="t">
 							<c:forEach items="${product.productCategorys}" var="p2"
 								varStatus="i">
-								<c:if test="${p1.id==p2.parentCateGory and (p1.cateGoryName=='子类' or p1.cateGoryName=='品牌')}">
-										<input id="cateGoryName${t.index }" type="hidden" value="${p1.id }" />	${p1.cateGoryName}:						
+								<c:if
+									test="${p1.id==p2.parentCateGory and (p1.cateGoryName=='子类' or p1.cateGoryName=='品牌')}">
+									<input id="cateGoryName${t.index }" type="hidden"
+										value="${p1.id }" />	${p1.cateGoryName}:						
 											<c:forEach items="${productCategory}" var="p5">
 										<c:if test="${p1.id==p5.parentCateGory}">
-										 <c:if test="${p5.id==p2.id}">
+											<c:if test="${p5.id==p2.id}">
 												<input type='radio' class="${p1.cateGoryName}"
-													title="<c:if test="${p1.cateGoryName=='品牌'}" >${p5.cateGoryCode}</c:if><c:if test="${p1.cateGoryName!='品牌'}">${p5.cateGoryName}</c:if>" name="name${i.index }"
-													value="${p5.id }" checked="checked" />
+													title="<c:if test="${p1.cateGoryName=='品牌'}" >${p5.cateGoryCode}</c:if><c:if test="${p1.cateGoryName!='品牌'}">${p5.cateGoryName}</c:if>"
+													name="name${i.index }" value="${p5.id }" checked="checked" />
 												<span>${p5.cateGoryName}</span>
 											</c:if>
 											<c:if test="${p5.id!=p2.id}">
 												<input type='radio' class="${p1.cateGoryName}"
-													title="<c:if test="${p1.cateGoryName=='品牌'}" >${p5.cateGoryCode}</c:if><c:if test="${p1.cateGoryName!='品牌'}">${p5.cateGoryName}</c:if>" name="name${i.index }"
-													value="${p5.id }" />
+													title="<c:if test="${p1.cateGoryName=='品牌'}" >${p5.cateGoryCode}</c:if><c:if test="${p1.cateGoryName!='品牌'}">${p5.cateGoryName}</c:if>"
+													name="name${i.index }" value="${p5.id }" />
 												<span>${p5.cateGoryName}</span>
-											</c:if>			
+											</c:if>
 										</c:if>
 									</c:forEach>
 									<br>
@@ -631,8 +629,7 @@ body {
 							</c:forEach>
 						</c:forEach> <script>
 							$("[name='productCategory']").val(productCategory);
-						</script>
-					</td>
+						</script></td>
 				</tr>
 				<%-- <tr>
 					<th>商品品牌:</th>
@@ -681,8 +678,8 @@ body {
 
 				<tr>
 					<th>图片上传:</th>
-					<td id="upload" colspan="3" style="text-align:left;">
-						<div style="text-align:left;">
+					<td id="upload" colspan="3" style="text-align: left;">
+						<div style="text-align: left;">
 							<c:forEach items="${productPic}" var="p3" varStatus="status">
 								<a href='#' class='cloud-zoom-gallery${status.index}'
 									title='Red'
@@ -690,9 +687,11 @@ body {
 									<img id="img" src="<%=path%>${p3.filePath}" alt="Thumbnail 1"
 									width="92" height="88" class="zoom-tiny-image" /><input
 									id="del${status.index}" type="button" value="删除"
-									onclick="del_3('${status.index}','${p3.id}','${p3.filePath}')"> 
-									<input type="radio" title="${p3.id}" <c:if test='${p3.isDefault==1 }' ><c:if test='${p3.isDefault==1 }' var='p5'>checked="checked" </c:if></c:if> name="fefe" value="0" />
-							</a>
+									onclick="del_3('${status.index}','${p3.id}','${p3.filePath}')">
+									<input type="radio" title="${p3.id}"
+									<c:if test='${p3.isDefault==1 }' ><c:if test='${p3.isDefault==1 }' var='p5'>checked="checked" </c:if>
+								</c:if> name="fefe" value="0" />
+								</a>
 							</c:forEach>
 						</div>
 						<div id="newUpload2">
@@ -705,14 +704,17 @@ body {
 				<tr class="info">
 					<th>商品简介:</th>
 					<td colspan="3"><textarea cols="100" id="content"
-							style="width:90%; height:auto;min-height:300px;"
-							name="productInfo">${product.productInfo}</textarea>
-					</td>
+							style="width: 90%; height: auto; min-height: 300px;"
+							name="productInfo">${product.productInfo}</textarea></td>
 				</tr>
-				<tr><th>商品标题：</th>
-				<td><textarea name="productTitle" id="productTitle" style="height: 115px;  width: 248px; resize: none;">${product.productTitle}</textarea></td>
-				<th>商品简述：</th>
-				<td><textarea name="productDescription" id="productDescription"  style="height: 115px;  width: 248px; resize: none;">${product.productDescription}</textarea></td>
+				<tr>
+					<th>商品标题：</th>
+					<td><textarea name="productTitle" id="productTitle"
+							style="height: 115px; width: 248px; resize: none;">${product.productTitle}</textarea></td>
+					<th>商品简述：</th>
+					<td><textarea name="productDescription"
+							id="productDescription"
+							style="height: 115px; width: 248px; resize: none;">${product.productDescription}</textarea></td>
 				</tr>
 			</table>
 

@@ -94,8 +94,7 @@
 	<resultMap type="com.wit.model.ProductCategory" id="categoryMaps">
 		<id property="id" column="id" />
 		<collection property="productCategorys" column="id"
-			javaType="java.util.ArrayList" select="findProductCategorys"
-			ofType="com.wit.model.ProductCategory">
+			javaType="java.util.ArrayList" select="findProductCategorys" ofType="com.wit.model.ProductCategory">
 		</collection>
 	</resultMap>
 	<!-- 前台二级页面关联子品类查询 -->
@@ -169,12 +168,10 @@
 	<resultMap type="com.wit.model.ProductCategory" id="productTypeMaps">
 		<id property="id" column="id" />
 		<collection property="commodityBrands" column="id"
-			javaType="java.util.ArrayList" select="findproductBrandIDs"
-			ofType="com.wit.model.ProductBrand">
+			javaType="java.util.ArrayList" select="findproductBrandIDs" ofType="com.wit.model.ProductBrand">
 		</collection>
 		<collection property="productTypes" column="id"
-			javaType="java.util.ArrayList" select="webFindProductTypes"
-			ofType="com.wit.model.ProductType">
+			javaType="java.util.ArrayList" select="webFindProductTypes" ofType="com.wit.model.ProductType">
 		</collection>
 
 	</resultMap>
@@ -245,8 +242,7 @@
 	<resultMap type="com.wit.model.ProductCategory" id="categoryMap">
 		<id property="id" column="id" />
 		<collection property="productCategorys" column="id"
-			javaType="java.util.ArrayList" select="findProductCategorys"
-			ofType="com.wit.model.ProductCategory">
+			javaType="java.util.ArrayList" select="findProductCategorys" ofType="com.wit.model.ProductCategory">
 		</collection>
 	</resultMap>
 	<!-- 门户首页根据类别Id查询类别展示商品 -->
@@ -330,7 +326,7 @@
 		from
 		ProductCategory where parentCateGory is Null
 	</select>
-	
+
 	<!-- 查询现货子类 -->
 	<select id="findByCateGoryId" parameterType="Integer"
 		resultType="com.wit.model.ProductCategory">

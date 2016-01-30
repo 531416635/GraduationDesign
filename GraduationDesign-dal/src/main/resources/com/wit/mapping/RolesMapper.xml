@@ -5,7 +5,8 @@
 	<select id="findAll" parameterType="com.wit.model.Page"
 		resultType="com.wit.model.Roles">
 		SELECT
-		ID, RoleName, RoleCode,RightID, Status, CreateTime, CreateBy,CompanyID
+		ID, RoleName, RoleCode,RightID, Status, CreateTime,
+		CreateBy,CompanyID
 		FROM Roles
 		limit #{begin},#{pageNum}
 	</select>
@@ -14,13 +15,15 @@
 		COUNT(id)
 		FROM Roles
 	</select>
-	<select id="findByCompanyId" parameterType="Integer"
-		resultType="com.wit.model.Roles">
+	<select id="findByCompanyId" parameterType="Integer" resultType="com.wit.model.Roles">
 		SELECT
-		r.ID, r.RoleName, r.RoleCode,r.RightID, r.Status, r.CreateTime, r.CreateBy,r.CompanyID,u.UserName as CreateByName,c.CompanyName
-		FROM Roles r LEFT JOIN Users u on r.CreateBy=u.ID
-		LEFT JOIN Companys c on r.CompanyID=c.ID
-		where  r.CompanyID=#{companyId}  and r.Status!=2
+		r.ID, r.RoleName, r.RoleCode,r.RightID, r.Status, r.CreateTime,
+		r.CreateBy,r.CompanyID,u.UserName as CreateByName,c.CompanyName
+		FROM
+		Roles r LEFT JOIN Users u on r.CreateBy=u.ID
+		LEFT JOIN Companys c on
+		r.CompanyID=c.ID
+		where r.CompanyID=#{companyId} and r.Status!=2
 	</select>
 
 	<!-- 删除角色 -->
@@ -42,11 +45,12 @@
 		)
 	</insert>
 	<!--根据Id查询角色信息 -->
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.Roles">
-		select ID, RoleName, RoleCode, Status, CreateTime,
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Roles">
+		select
+		ID, RoleName, RoleCode, Status, CreateTime,
 		CreateBy,RightID
-		from Roles where id=#{id}
+		from Roles
+		where id=#{id}
 	</select>
 	<!--更新角色 -->
 	<update id="updateRole" parameterType="com.wit.model.Roles">
@@ -55,7 +59,7 @@
 		status=#{status},
 		createBy=#{createBy} where
 		id=#{id}
-	</update>  
+	</update>
 	<update id="updateRoleStatus" parameterType="com.wit.model.Roles">
 		update Roles set
 		status=#{status} where
@@ -65,11 +69,12 @@
 		update Roles set
 		RightID=#{menuIDs} where id=#{roleID}
 	</update>
-	
+
 	<!--所有状态为可用的用户角色 -->
 	<select id="findRoleUsed" resultType="com.wit.model.Roles">
 		SELECT
-		ID, RoleName, RoleCode,RightID, Status, CreateTime, CreateBy,CompanyID
+		ID, RoleName,
+		RoleCode,RightID, Status, CreateTime, CreateBy,CompanyID
 		FROM Roles
 		where status =1
 	</select>

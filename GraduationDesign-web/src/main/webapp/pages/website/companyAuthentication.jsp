@@ -46,9 +46,8 @@
 		<p id="pp">企业未进行认证请进入企业认证页面进行认证和相关资料填写</p>
 
 		<div class="formdiv">
-				<input type="button" name="czmm" id="cg" value="进行企业认证"
-					onclick="check();" /><br />
-				<br />
+			<input type="button" name="czmm" id="cg" value="进行企业认证"
+				onclick="check();" /><br /> <br />
 		</div>
 
 	</div>

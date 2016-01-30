@@ -3,50 +3,53 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.wit.dao.MaterialOutboundOrderDao">
 	<select id="findAll" resultType="com.wit.model.MaterialOutboundOrder">
-	   SELECT 
-	   id,productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
-	   FROM MaterialOutboundOrder
+		SELECT
+		id,productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
+		FROM MaterialOutboundOrder
 	</select>
-	<select id="findById" parameterType="int" resultType="com.wit.model.MaterialOutboundOrder">
-	   SELECT 
-	  id,productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
-	   FROM MaterialOutboundOrder
-	   WHERE id=#{id}
+	<select id="findById" parameterType="int"
+		resultType="com.wit.model.MaterialOutboundOrder">
+		SELECT
+		id,productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
+		FROM MaterialOutboundOrder
+		WHERE id=#{id}
 	</select>
-	<delete id="deleteById" parameterType="int" >
-	   delete from MaterialOutboundOrder where id=#{id}
+	<delete id="deleteById" parameterType="int">
+		delete from
+		MaterialOutboundOrder where id=#{id}
 	</delete>
 	<insert id="insert" parameterType="com.wit.model.MaterialOutboundOrder">
-	    insert into MaterialOutboundOrder(productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
-	    )values(
-	         #{productId},
-	         #{productType},
-	         #{productModel},
-	         #{quantity},
-	         #{unit},
-	         #{unitPrice},
-	         #{amount},
-	         #{storageId}
-	         )
+		insert into
+		MaterialOutboundOrder(productId,productType,productModel,quantity,unit,unitPrice,amount,storageId
+		)values(
+		#{productId},
+		#{productType},
+		#{productModel},
+		#{quantity},
+		#{unit},
+		#{unitPrice},
+		#{amount},
+		#{storageId}
+		)
 	</insert>
-	<update id="update"  parameterType="com.wit.model.MaterialOutboundOrder">
-	    UPDATE MaterialOutboundOrder 
+	<update id="update" parameterType="com.wit.model.MaterialOutboundOrder">
+		UPDATE MaterialOutboundOrder
 		SET
-		productId= #{productId}, 
-		productType= #{productType}, 
-		productModel=#{productModel}, 
-		quantity=#{quantity}, 
-		unit=#{unit}, 
+		productId= #{productId},
+		productType= #{productType},
+		productModel=#{productModel},
+		quantity=#{quantity},
+		unit=#{unit},
 		unitPrice=#{unitPrice},
 		amount=#{amount},
 		storageId=#{storageId}
-		where 
+		where
 		id=#{id}
 	</update>
-	
+
 	<select id="countAll">
-	    SELECT
-		COUNT(*) 
+		SELECT
+		COUNT(*)
 		FROM MaterialOutboundOrder
 	</select>
 </mapper>

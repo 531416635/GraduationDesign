@@ -37,14 +37,15 @@ img {
 </head>
 <body>
 	<div>
-		商品图片详情： <br /> <span id="span" style="color:red;"></span>
+		商品图片详情： <br /> <span id="span" style="color: red;"></span>
 		<div id="picContent">
 			<c:forEach items="${companyProductPic}" var="c1">
 				<c:if test="${c1.fileClass==1 }">
 
 					<img id="img" src="<%=path%>${c1.filePath }" alt="Thumbnail 1"
 						class="zoom-tiny-image" />
-					<a href="/ssm/companyProducts/downloadFile.do?filePath=${c1.filePath }&id=${companyProductId}">下载</a>
+					<a
+						href="/ssm/companyProducts/downloadFile.do?filePath=${c1.filePath }&id=${companyProductId}">下载</a>
 				</c:if>
 
 			</c:forEach>

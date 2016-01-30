@@ -4,8 +4,10 @@
 <mapper namespace="com.wit.dao.SystemLogsDao">
 	<select id="getAll" parameterType="com.wit.model.Page"
 		resultType="com.wit.model.SystemLogs">
-		select id,logType,LogTime,logContent,logBy,getUserName(logBy) logByName 		
-		from SystemLogs order by ID limit #{begin},#{pageNum};
+		select
+		id,logType,LogTime,logContent,logBy,getUserName(logBy) logByName
+		from
+		SystemLogs order by ID limit #{begin},#{pageNum};
 	</select>
 
 	<!-- 分页 -->
@@ -14,10 +16,12 @@
 		count(id)
 		from SystemLogs
 	</select>
-	
+
 	<insert id="add" parameterType="com.wit.model.SystemLogs">
-		INSERT INTO SystemLogs( LogType, LogTime, LogContent, LogBy) 
-		VALUES (#{logType}, #{logTime}, #{logContent}, #{logBy})
+		INSERT INTO SystemLogs( LogType,
+		LogTime, LogContent, LogBy)
+		VALUES (#{logType}, #{logTime},
+		#{logContent}, #{logBy})
 	</insert>
 
 </mapper>

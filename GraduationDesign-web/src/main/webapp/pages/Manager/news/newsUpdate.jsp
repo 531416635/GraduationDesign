@@ -9,7 +9,8 @@
 <title>一起采</title>
 <link type="text/css" rel="stylesheet" href="../css/main.css" />
 <script type="text/javascript" src="../js/datePicker/WdatePicker.js"></script>
-<script language="javascript" type="text/javascript" src="../js/jquery.js"></script>
+<script language="javascript" type="text/javascript"
+	src="../js/jquery.js"></script>
 <style type="text/css">
 body {
 	width: 100%;
@@ -125,73 +126,76 @@ body {
   
 });
 </script>
-	
+
 </head>
 <body>
-			
 
-<div id="div1">
 
-	<form action="<c:choose>
+	<div id="div1">
+
+		<form
+			action="<c:choose>
     <c:when test="${news.newType==1}">updateNew.do</c:when>
     <c:when test="${news.newType==2}">updateNotice.do</c:when>
-	</c:choose>" name="userForm" id="form" method="post">
-		<input type="hidden" name="id" id="tt" value="${news.id}"/>
-		
-	<table border="0" cellpadding="0" cellspacing="0">
-		<tr class="info">
-			<th>标题:</th>
-			<td><input type="text" id="title" name="title" value="${news.title}"/></td>
-			
-		</tr>
-		<script type="text/javascript">
+	</c:choose>"
+			name="userForm" id="form" method="post">
+			<input type="hidden" name="id" id="tt" value="${news.id}" />
+
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr class="info">
+					<th>标题:</th>
+					<td><input type="text" id="title" name="title"
+						value="${news.title}" /></td>
+
+				</tr>
+				<script type="text/javascript">
 var p=document.getElementById("title").val();
 alert(p);
 </script>
-		<tr class="info">
-			<th>内容:</th>
-			<td><textarea  cols="35" style="width: 300px; height: 100px;" id="content" name="content">${news.content}</textarea></td>
-		</tr>
-		
-		<tr class="info" >
-			<th>发布时间:</th>
-			<td><input id="shij" type="text" name="releaseTime" value="<fmt:formatDate value="${news.releaseTime}" pattern="yyyy-MM-dd"/>"  onclick="WdatePicker()" readonly="readonly" style="width:70px;"/></td>
-		</tr>
-		<tr class="info">
-			<th>发布时效:</th>
-			<td><input id="shixiao" type="text" name="releaseAging" value="<fmt:formatDate value="${news.releaseAging}" pattern="yyyy-MM-dd"/>"  onclick="WdatePicker()" readonly="readonly" style="width:70px;"/></td>
-		</tr>
-		
-		<tr class="info">
-			<th>发布人:</th>
-			<td><input id="fabu" type="text" name="publishers" value="${news.publishers}" /></td>
-		</tr>
-		<tr class="info">
-			<th>状态:</th>
-			<%-- <td><input type="text" name="status" value="${news.status}" /></td> --%>
-			<td>
-			<select name="status" id="st">
-			<option value="0"
-			<c:if test="${news.status==0}"> selected</c:if>
-			>未发布</option>
-			<option value="1"
-			<c:if test="${news.status==1}"> selected</c:if>
-			>已发布</option>
-			<option value="2"
-			<c:if test="${news.status==2}"> selected</c:if>
-			>删除</option>
-			</select>
-			</td>
-		</tr>
-		<tr class="info" style="display: none">
-			<th>新闻序号:</th>
-			<td><input type="text" name="newsIndex" value="${news.newsIndex}" /></td>
-		</tr>	
-	</table>
-	<input type="hidden" name="newType" value="${news.newType}"/>
-	 <input type="button" value="提交"  onclick="$('#content').val($('.nicEdit-main').html());updates('${news.newType}');" /> 
-	<input type="reset" value="取消" onclick="history.back()">
-	</form>
+				<tr class="info">
+					<th>内容:</th>
+					<td><textarea cols="35" style="width: 300px; height: 100px;"
+							id="content" name="content">${news.content}</textarea></td>
+				</tr>
+
+				<tr class="info">
+					<th>发布时间:</th>
+					<td><input id="shij" type="text" name="releaseTime"
+						value="<fmt:formatDate value="${news.releaseTime}" pattern="yyyy-MM-dd"/>"
+						onclick="WdatePicker()" readonly="readonly" style="width: 70px;" /></td>
+				</tr>
+				<tr class="info">
+					<th>发布时效:</th>
+					<td><input id="shixiao" type="text" name="releaseAging"
+						value="<fmt:formatDate value="${news.releaseAging}" pattern="yyyy-MM-dd"/>"
+						onclick="WdatePicker()" readonly="readonly" style="width: 70px;" /></td>
+				</tr>
+
+				<tr class="info">
+					<th>发布人:</th>
+					<td><input id="fabu" type="text" name="publishers"
+						value="${news.publishers}" /></td>
+				</tr>
+				<tr class="info">
+					<th>状态:</th>
+					<%-- <td><input type="text" name="status" value="${news.status}" /></td> --%>
+					<td><select name="status" id="st">
+							<option value="0" <c:if test="${news.status==0}"> selected</c:if>>未发布</option>
+							<option value="1" <c:if test="${news.status==1}"> selected</c:if>>已发布</option>
+							<option value="2" <c:if test="${news.status==2}"> selected</c:if>>删除</option>
+					</select></td>
+				</tr>
+				<tr class="info" style="display: none">
+					<th>新闻序号:</th>
+					<td><input type="text" name="newsIndex"
+						value="${news.newsIndex}" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="newType" value="${news.newType}" /> <input
+				type="button" value="提交"
+				onclick="$('#content').val($('.nicEdit-main').html());updates('${news.newType}');" />
+			<input type="reset" value="取消" onclick="history.back()">
+		</form>
 	</div>
 
 </body>

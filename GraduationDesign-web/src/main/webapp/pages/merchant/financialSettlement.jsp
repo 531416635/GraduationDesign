@@ -12,16 +12,19 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/wjmm.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/wjmm.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
 <script language="javascript" type="text/javascript"
 	src="../js/jquery.js"></script>
 <script type="text/javascript">
 	
 </script>
 <style type="text/css">
-#btn11{
+#btn11 {
 	background-color: red;
 	height: 30px;
 	width: 140px;
@@ -29,19 +32,21 @@
 	font-size: 14px;
 	color: white;
 }
-#btn12{
+
+#btn12 {
 	background-color: orange;
 	height: 30px;
 	width: 140px;
 	font-size: 14px;
 	color: white;
 }
-#cx,#cx2{
-	background-color:#0090C0;
-	height:30px;
-	width:60px;
+
+#cx, #cx2 {
+	background-color: #0090C0;
+	height: 30px;
+	width: 60px;
 	font-size: 14px;
-	color:white;
+	color: white;
 }
 </style>
 </head>
@@ -49,44 +54,48 @@
 <body>
 
 	<div class="inner_div">
-	<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页 </span>> <span class="lo2">结算管理 ></span>
-			<span class="lo2"> 对账单 ></span><span class="lo2"> 对账详情</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页 </span>> <span class="lo2">结算管理 ></span> <span
+				class="lo2"> 对账单 ></span><span class="lo2"> 对账详情</span>
 		</div>
-		<p>订单支付时间&nbsp;<input type="text"/>&nbsp;&nbsp;<input id="cx" type="button" value="查询"/>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		订单号&nbsp;<input type="text"/>&nbsp;&nbsp;<input id="cx2" type="button" value="查询"/></p>
-		
+		<p>
+			订单支付时间&nbsp;<input type="text" />&nbsp;&nbsp;<input id="cx"
+				type="button" value="查询" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 订单号&nbsp;<input
+				type="text" />&nbsp;&nbsp;<input id="cx2" type="button" value="查询" />
+		</p>
+
 		<div>
 			<table width="100%" border="1" cellspacing="0" align="center">
-			<thead>
-				<tr>
-					<th style="display: none">ID</th>
-					<th style="display: none">用户ID</th>
-					<th>订单号/支付时间</th>
-					<th>对方账户</th>
-					<th>流水号</th>
-					<th>款项到账时间</th>
-					<th>财务类型</th>
-					<th>收支金额</th>
-					<th>我要结算</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><input type="checkbox"/></td>
-			</tr>
-			</tbody>
-		</table>
+				<thead>
+					<tr>
+						<th style="display: none">ID</th>
+						<th style="display: none">用户ID</th>
+						<th>订单号/支付时间</th>
+						<th>对方账户</th>
+						<th>流水号</th>
+						<th>款项到账时间</th>
+						<th>财务类型</th>
+						<th>收支金额</th>
+						<th>我要结算</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><input type="checkbox" /></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
-		
+
+
 		<div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
@@ -127,11 +136,11 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
-		</div><br/><br/>
-		<input type="button" value="确认提交" id="btn11"/>&nbsp;&nbsp;
-		<input type="button" value="取消返回" id="btn12" onclick="history.back();"/>
+		</div>
+		<br /> <br /> <input type="button" value="确认提交" id="btn11" />&nbsp;&nbsp;
+		<input type="button" value="取消返回" id="btn12" onclick="history.back();" />
 	</div>
-		
+
 
 
 </body>

@@ -63,8 +63,7 @@ body {
 
 			<tr class="info">
 				<th>供应商名称:</th>
-				<td><input type="text" name="companyId" />
-				</td>
+				<td><input type="text" name="companyId" /></td>
 			</tr>
 
 			<tr class="info">
@@ -84,8 +83,7 @@ body {
 
 			<tr class="info">
 				<th>数量单位:</th>
-				<td><input type="text" name="productUnit" />
-				</td>
+				<td><input type="text" name="productUnit" /></td>
 			</tr>
 			<tr class="info">
 				<th>单价:</th>
@@ -95,14 +93,14 @@ body {
 			<tr class="info">
 				<th>交货期:</th>
 				<td><input type="text" name="deliveryDate"
-					onclick="WdatePicker()" readonly="readonly" style="width:70px;" />
+					onclick="WdatePicker()" readonly="readonly" style="width: 70px;" />
 				</td>
 			</tr>
 
 			<tr class="info">
 				<th>有效期至:</th>
 				<td><input type="text" name="validUntil"
-					onclick="WdatePicker()" readonly="readonly" style="width:70px;" />
+					onclick="WdatePicker()" readonly="readonly" style="width: 70px;" />
 				</td>
 			</tr>
 		</table>

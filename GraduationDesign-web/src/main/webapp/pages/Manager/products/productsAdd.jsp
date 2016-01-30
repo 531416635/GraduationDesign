@@ -311,8 +311,8 @@ body {
 				value="" /> <input type="hidden" id="productModel"
 				name="productModel" value="" /> <input type="hidden"
 				id="productBrandId" name="productBrandId" value="" />
-				<!-- <input type="hidden" id="originPlace" name="originPlace" value=""> -->
-			<table style="border: 1px solid #d7d7d7;width: 90%;">
+			<!-- <input type="hidden" id="originPlace" name="originPlace" value=""> -->
+			<table style="border: 1px solid #d7d7d7; width: 90%;">
 				<tr>
 					<th>商品名称：</th>
 					<td><input type="text" name="productName" required="required"
@@ -333,16 +333,15 @@ body {
 				</tr>
 				<tr>
 					<th>热销推荐：</th>
-					<td>是：<input type="radio" name="isHotShow"
-						value="1" /> 否：<input type="radio" checked="checked"
-						name="isHotShow" value="0" /></td>
-						<th>商品编码：</th>
-					<td><input type="text" name="productCode"/>
+					<td>是：<input type="radio" name="isHotShow" value="1" /> 否：<input
+						type="radio" checked="checked" name="isHotShow" value="0" /></td>
+					<th>商品编码：</th>
+					<td><input type="text" name="productCode" />
 				</tr>
 				<tr>
-				<th>生产地址：</th>
-				<td colspan="3">
-				<%-- <select id="province0" name="province" onchange="checkProvince(this.value,0)">
+					<th>生产地址：</th>
+					<td colspan="3">
+						<%-- <select id="province0" name="province" onchange="checkProvince(this.value,0)">
 								<option value="">请选择省份</option>
 								<c:forEach items="${provinces}" var="d">
 									<option value="${d.id}">${d.dicName}</option>
@@ -354,31 +353,29 @@ body {
 				</select>
 				<select id="district0" name="district" style="display: none;">
 								<option value="">请选择地区</option>
-				</select> --%>
-				<input type="text" name="originPlace" 
-				onfocus="if(this.value=='请输入生产地址') {this.value='';}"
-							onblur="if(this.value=='') {this.value='请输入生产地址';}"
-				value="请输入生产地址">
-				<span id="message" style="color:red; display: none;">*请填写省份地址及详细地址*</span><br>
-				<!-- <textarea name="detailAddress" id="detailAddress" 
+				</select> --%> <input type="text" name="originPlace"
+						onfocus="if(this.value=='请输入生产地址') {this.value='';}"
+						onblur="if(this.value=='') {this.value='请输入生产地址';}"
+						value="请输入生产地址"> <span id="message"
+						style="color: red; display: none;">*请填写省份地址及详细地址*</span><br>
+						<!-- <textarea name="detailAddress" id="detailAddress" 
 				onfocus="if(this.value=='建议您如实填写详细产地地址，例如街道名称，门牌号码等信息') {this.value='';}"
 							onblur="if(this.value=='') {this.value='建议您如实填写详细产地地址，例如街道名称，门牌号码等信息';}"
 				style="height: 60px;  width: 500px; resize: none; color:#F08080;">建议您如实填写详细产地地址，例如街道名称，门牌号码等信息</textarea> -->
-				<textarea name="detailAddress" id="detailAddress" style="height: 60px;  width: 500px; resize: none; color:#F08080;"></textarea>
-				
-				</td>
+						<textarea name="detailAddress" id="detailAddress"
+							style="height: 60px; width: 500px; resize: none; color: #F08080;"></textarea>
+
+					</td>
 				</tr>
 				<tr>
 					<th>商品品类：</th>
-					<td id="selects">
-					<select name="select1"
+					<td id="selects"><select name="select1"
 						onchange=checkSs(this.value)>
 							<option>请选择父品类</option>
 							<c:forEach items="${productCategorys}" var="pcs">
 								<option value="${pcs.id}">${pcs.cateGoryName}</option>
 							</c:forEach>
-					</select> 
-					<select id="select2" name="select2"
+					</select> <select id="select2" name="select2"
 						onchange="if(this.value!=1){checkss(this.value);}">
 							<option value="1">请先选择父品类</option>
 					</select></td>
@@ -387,14 +384,13 @@ body {
 							<c:forEach items="${dictionarys}" var="Model">
 								<option value="${Model.dicName}">${Model.dicName}</option>
 							</c:forEach>
-					</select>
-					</td>
+					</select></td>
 				</tr>
 				<tr>
 					<th>商品类别：</th>
 					<td id="tdId" colspan="3"></td>
 				</tr>
-				
+
 				<%-- <tr>
 					<th>商品品牌:</th>
 					<td>
@@ -409,20 +405,24 @@ body {
 				<tr>
 					<th>商品简介：</th>
 					<td colspan="3"><textarea id="content" cols="100"
-							style="width:90%; height: 300px;" name="productInfo"></textarea>
+							style="width: 90%; height: 300px;" name="productInfo"></textarea>
 					</td>
 				</tr>
-				<tr><th>商品标题：</th>
-				<td><textarea name="productTitle" id="productTitle" style="height: 115px;  width: 248px; resize: none;"></textarea></td>
-				<th>商品简述：</th>
-				<td><textarea name="productDescription" id="productDescription"  style="height: 115px;  width: 248px; resize: none;"></textarea></td>
+				<tr>
+					<th>商品标题：</th>
+					<td><textarea name="productTitle" id="productTitle"
+							style="height: 115px; width: 248px; resize: none;"></textarea></td>
+					<th>商品简述：</th>
+					<td><textarea name="productDescription"
+							id="productDescription"
+							style="height: 115px; width: 248px; resize: none;"></textarea></td>
 				</tr>
 				<tr>
 					<th>图片上传：</th>
 					<td id="upload" colspan="3">
 						<div id="newUpload2">
 							<input type="file" id="file0" name="file0">默认首图：<input
-								type="radio" checked="checked" name="fefe" value="0"/>
+								type="radio" checked="checked" name="fefe" value="0" />
 						</div> <input type="button" id="btn_add" value="新增一行">
 					</td>
 				</tr>

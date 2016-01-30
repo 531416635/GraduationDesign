@@ -12,14 +12,20 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link rel="stylesheet" type="text/css"	href="<%=path%>/css/frontcss/public.css" />
-<link rel="stylesheet" href="<%=path%>/css/frontcss/shouye.css"	type="text/css" />
-<link rel="stylesheet" href="<%=path%>/css/header/global.css" type="text/css" />
-<link rel="stylesheet" type="text/css"	href="<%=path%>/css/frontcss/houtai.css" />
-<link rel="stylesheet" type="text/css"	href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" href="<%=path%>/css/frontcss/shouye.css"
+	type="text/css" />
+<link rel="stylesheet" href="<%=path%>/css/header/global.css"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
 <script language="javascript" type="text/javascript"
 	src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>	
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
 <script type="text/javascript">
 function getId() {
 			var fileIds = "";
@@ -95,43 +101,52 @@ function checkBox(){
 	color: #D0D0D0;
 	font-size: 20px;
 }
-#qrtj{
-	margin-top:40px;
+
+#qrtj {
+	margin-top: 40px;
 	margin-left: 45%;
 	font-size: 12px;
 	color: white;
 }
-#p1{
+
+#p1 {
 	margin-top: 2%;
 	margin-left: 38%;
 }
-#cx{
+
+#cx {
 	font-size: 12px;
 	color: white;
 }
-.input_text{
+
+.input_text {
 	width: 150px;
 	height: 20px;
 }
-.input_but1{
+
+.input_but1 {
 	width: 70px;
 	height: 20px;
 }
-.input_but2{
+
+.input_but2 {
 	width: 40px;
 	height: 20px;
 }
-th{
+
+th {
 	background-color: #F0F0F0;
 	border: 0.5px solid #999;
 }
-td{
+
+td {
 	border: 0.5px solid #999;
 	height: 32px;
 	text-align: center;
 }
-p{
-   margin: 8px;
+
+p {
+	margin: 8px;
 }
 </style>
 </head>
@@ -139,52 +154,61 @@ p{
 <body>
 
 	<div class="inner_div">
-	<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span class="lo2">验收管理</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span
+				class="lo2">验收管理</span>
 		</div>
-	
+
 		<p>
-		验收管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量如有出入请拨打客服电话：88888888
+			验收管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量如有出入请拨打客服电话：88888888
 		</p>
-		<p>日期&nbsp;<input class="input_text" onclick="WdatePicker()" readonly="readonly"/>&nbsp;
-		至&nbsp;<input class="input_text" onclick="WdatePicker()" readonly="readonly"/>
-		&nbsp;&nbsp;&nbsp;&nbsp;<input class="input_but2 orange" id="cx" type="button" value="查询"/></p>
-		
-		<p>订单号&nbsp;<input class="input_text" type="text"/>&nbsp;&nbsp;配送地址&nbsp;<select class="input_text"><option>&nbsp;&nbsp;&nbsp;&nbsp;</option></select></p>
-		
+		<p>
+			日期&nbsp;<input class="input_text" onclick="WdatePicker()"
+				readonly="readonly" />&nbsp; 至&nbsp;<input class="input_text"
+				onclick="WdatePicker()" readonly="readonly" />
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="input_but2 orange" id="cx"
+				type="button" value="查询" />
+		</p>
+
+		<p>
+			订单号&nbsp;<input class="input_text" type="text" />&nbsp;&nbsp;配送地址&nbsp;<select
+				class="input_text"><option>&nbsp;&nbsp;&nbsp;&nbsp;</option></select>
+		</p>
+
 		<div>
 			<table width="100%" border="1" cellspacing="0" align="center">
-			<thead>
-				<tr>
-					<th style="display: none">ID</th>
-					<th style="display: none">用户ID</th>
-					<th>订单编号</th>
-					<th>商品名称</th>
-					<th>验收日期</th>
-					<th>单位</th>
-					<th>实收量</th>
-					<th>验收人</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach items="${dispatchBill}" var="c">
+				<thead>
 					<tr>
-						<td><input type="checkbox" name="box" onclick="checkBox()"/></td>
-						<td>${c.OrderID}</td>
-						<td>${c.ProductName}</td>
-						<td>${c.AcceptTime}</td>
-						<td>${c.ProductUnit}</td>
-						<td>${c.PackagesNumber}</td>
-						<td>${c.Accepter}</td>
+						<th style="display: none">ID</th>
+						<th style="display: none">用户ID</th>
+						<th>订单编号</th>
+						<th>商品名称</th>
+						<th>验收日期</th>
+						<th>单位</th>
+						<th>实收量</th>
+						<th>验收人</th>
+						<th>操作</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+
+					<c:forEach items="${dispatchBill}" var="c">
+						<tr>
+							<td><input type="checkbox" name="box" onclick="checkBox()" /></td>
+							<td>${c.OrderID}</td>
+							<td>${c.ProductName}</td>
+							<td>${c.AcceptTime}</td>
+							<td>${c.ProductUnit}</td>
+							<td>${c.PackagesNumber}</td>
+							<td>${c.Accepter}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
-		
-		
+
+
 		<div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
@@ -226,9 +250,9 @@ p{
 				</c:choose>
 			</ul>
 		</div>
-		<input class="input_but1 orange" type="button" value="确认提交" id="qrtj"/>
+		<input class="input_but1 orange" type="button" value="确认提交" id="qrtj" />
 	</div>
-		
+
 
 
 </body>

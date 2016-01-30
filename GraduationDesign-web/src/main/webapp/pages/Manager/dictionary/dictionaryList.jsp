@@ -164,13 +164,9 @@ div.meneame span {
 				<ul class="toolbar">
 					<li><a class="tablelink"
 						href="/ssm/dictionary/toDictionaryAdd.do"><span><img
-								src="../images/t01.png" />
-						</span>添加</a>
-					</li>
+								src="../images/t01.png" /> </span>添加</a></li>
 					<li><a class="tablelink" href="javascript:checkDeletes();"><span><img
-								src="../images/t03.png" />
-						</span>删除</a>
-					</li>
+								src="../images/t03.png" /> </span>删除</a></li>
 					<li>&nbsp;&nbsp;&nbsp;&nbsp;字典类型：<input type="text"
 						name="typeName" value="${dictionaryPage.typeName}" />
 					</li>
@@ -203,8 +199,7 @@ div.meneame span {
 					<c:forEach items="${dictionary}" var="f">
 						<tr>
 							<td><input type="checkbox" name="box" onclick="checkBox();"
-								value="${f.id}" />
-							</td>
+								value="${f.id}" /></td>
 							<td>${f.id}</td>
 							<td>${f.dicName}</td>
 							<td>${f.dicCode}</td>
@@ -220,13 +215,14 @@ div.meneame span {
 				</tbody>
 			</table>
 			<!-- 分页 -->
-			 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
-		</div>
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
+			<div class="message">
+				共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+					style="color: blue;">${page.currentPage}&nbsp;</i>页
 			</div>
-		<%-- 	<div class="pagin">
+			<div class="pagin">
+				<div id="Pagination" class="meneame" style="clear: left"></div>
+			</div>
+			<%-- 	<div class="pagin">
 				<div class="message">
 					共<i class="blue">${dictionaryPage.rows}</i>条记录，当前显示第&nbsp;<i
 						class="blue">${dictionaryPage.currentPage}&nbsp;</i>页
@@ -286,8 +282,7 @@ div.meneame span {
 				</div>
 
 				<div class="tipinfo">
-					<span><img src="../images/ticon.png" />
-					</span>
+					<span><img src="../images/ticon.png" /> </span>
 					<div class="tipright">
 						<p>是否确认对信息的修改 ？</p>
 						<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

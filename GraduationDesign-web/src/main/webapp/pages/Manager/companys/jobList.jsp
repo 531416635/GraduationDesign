@@ -42,13 +42,16 @@ body {
 <body>
 	<form action="users/findJobName.do" method="post">
 		<table border="0" cellpadding="0" cellspacing="0">
-			<tr><td>岗位名称</td></tr>
-			<c:forEach items="${jobs}" var="j">
 			<tr>
-				<td><input name="jobName" readonly="readonly" value="${j.jobName}" /></td>
+				<td>岗位名称</td>
 			</tr>
+			<c:forEach items="${jobs}" var="j">
+				<tr>
+					<td><input name="jobName" readonly="readonly"
+						value="${j.jobName}" /></td>
+				</tr>
 			</c:forEach>
-			
+
 		</table>
 	</form>
 </body>

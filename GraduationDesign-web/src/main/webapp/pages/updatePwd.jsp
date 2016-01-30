@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>一起采</title>
-<script language="javascript" type="text/javascript" src="../js/jquery.js"></script>
+<script language="javascript" type="text/javascript"
+	src="../js/jquery.js"></script>
 <link href="CSS/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	function checkLogin(){
@@ -49,8 +50,7 @@ div {
 	<div>
 		<table border="1" align="center">
 			<tr>
-				<td><h1 align="center">修改密码</h1>
-				</td>
+				<td><h1 align="center">修改密码</h1></td>
 			</tr>
 			<tr>
 				<td><form action="updatePwd.do" method="post" id="pwd_change">
@@ -61,12 +61,10 @@ div {
 							</tr>
 							<tr>
 								<td><input type="hidden" name="userPwd"
-									value="${userInfo.userPsw}" />
-								</td>
+									value="${userInfo.userPsw}" /></td>
 							</tr>
 							<tr>
-								<td>请输入原密码：<input type="password" id="opwd" name="oldPwd"
-									/>
+								<td>请输入原密码：<input type="password" id="opwd" name="oldPwd" />
 								</td>
 
 							</tr>
@@ -79,14 +77,12 @@ div {
 								</td>
 							</tr>
 							<tr>
-								<td align="center">
-								<input type="button" value="确认修改" onclick="checkLogin()" /> 
-								<input type="reset" value="重置" name="reset" />
-								</td>
+								<td align="center"><input type="button" value="确认修改"
+									onclick="checkLogin()" /> <input type="reset" value="重置"
+									name="reset" /></td>
 							</tr>
 						</table>
-					</form>
-				</td>
+					</form></td>
 			</tr>
 		</table>
 	</div>

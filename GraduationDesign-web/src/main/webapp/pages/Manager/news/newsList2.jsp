@@ -161,13 +161,9 @@ div.meneame span {
 			<ul class="toolbar">
 				<li><a class="tablelink"
 					href="/ssm/news/toAddNotice.do?newType=2"><span><img
-							src="../images/t01.png" />
-					</span>添加</a>
-				</li>
+							src="../images/t01.png" /> </span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="../images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="../images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 
@@ -192,17 +188,14 @@ div.meneame span {
 				<c:forEach items="${news}" var="c">
 					<tr>
 						<td width="60"><input type="checkbox" name="box"
-							onclick="checkBox();" value="${c.id}" />
-						</td>
+							onclick="checkBox();" value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td>${c.title}</td>
 						<td>${c.content}</td>
 						<td><fmt:formatDate value="${c.releaseTime}"
-								pattern="yyyy-MM-dd" />
-						</td>
+								pattern="yyyy-MM-dd" /></td>
 						<td><fmt:formatDate value="${c.releaseAging}"
-								pattern="yyyy-MM-dd" />
-						</td>
+								pattern="yyyy-MM-dd" /></td>
 						<td>${c.publishers}</td>
 						<c:choose>
 							<c:when test="${c.status==0 }">
@@ -223,10 +216,10 @@ div.meneame span {
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 
 		<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
@@ -267,8 +260,7 @@ div.meneame span {
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认对信息的修改 ？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

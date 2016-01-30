@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,9 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>一起采</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
-<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
+<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript"
 	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
@@ -290,69 +294,88 @@ div.meneame span {
 
 <body>
 
-    <div class="rightinfo">
-    
-    <div class="tools">
-    
-    	<ul class="toolbar">
-        <li><a class="tablelink" href="/ssm/supplyCompanyProducts/toAddCompanyProducts.do"><span><img src="../images/t01.png" /></span>添加</a></li>
-        <li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img src="../images/t03.png" /></span>删除</a></li>
-        <li><form action="supplyCheckList.do" method="post">
-				<input type="hidden" id="productName1" value="${productName }" />
-				<input type="text" name="productName" placeholder="请输入商品名称" id="productName" value="${productName }" />
-				<input type="submit" value="点击搜索"  name="submitButton"/>
-				</form>
-				</li>
-        </ul>
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th width="60"><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th>
-        <th>ID</th>
-        <th>商品名称</th>
-        <th>公司名称</th>
-        <th>状态</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        
-        <c:forEach items="${companyProductList}" var="c">
-        <tr>
-        <td><input type="checkbox" name="box" onclick="checkBox();" value="${c.id}"/></td>
-        <td>${c.id}</td>
-        <td><a href="javascript:showProductSafetyPic(${c.id},${c.productId});">${c.productName}</a></td>
-        <td>${c.companyName}</td>
-        <c:choose>
-        	<c:when test="${c.status==0 }"><td>下架</td></c:when>
-        	<c:when test="${c.status==1 }"><td>上架</td></c:when>
-        	<c:when test="${c.status==3 }"><td>初始</td></c:when>
-        	<c:when test="${c.status==4 }"><td>否决</td></c:when>
-        	<c:otherwise><td></td></c:otherwise>
-        </c:choose>
-        
-        <td>
-        <a class="tablelink" href="javascript:productCheck(${c.id},${c.productId},1);">上架</a>
-        <a class="tablelink" href="javascript:productCheck(${c.id},${c.productId},0);">下架</a>
-        <a class="tablelink" href="javascript:productCheck(${c.id},${c.productId},4);">否决</a>
-        <a class="tablelink" href="javascript:productCheck(${c.id},${c.productId},2);">删除</a>
-        </td>
-        </tr> 
-        </c:forEach>
-        </tbody>
-    </table>
-    		<!-- 分页 -->
-			<div class="pagin">
-		<!-- 	<div class="message">
+	<div class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li><a class="tablelink"
+					href="/ssm/supplyCompanyProducts/toAddCompanyProducts.do"><span><img
+							src="../images/t01.png" /></span>添加</a></li>
+				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
+							src="../images/t03.png" /></span>删除</a></li>
+				<li><form action="supplyCheckList.do" method="post">
+						<input type="hidden" id="productName1" value="${productName }" />
+						<input type="text" name="productName" placeholder="请输入商品名称"
+							id="productName" value="${productName }" /> <input type="submit"
+							value="点击搜索" name="submitButton" />
+					</form></li>
+			</ul>
+		</div>
+
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th width="60"><input name="" id="checkAll" type="checkbox"
+						onclick="checkAll();" />全选</th>
+					<th>ID</th>
+					<th>商品名称</th>
+					<th>公司名称</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach items="${companyProductList}" var="c">
+					<tr>
+						<td><input type="checkbox" name="box" onclick="checkBox();"
+							value="${c.id}" /></td>
+						<td>${c.id}</td>
+						<td><a
+							href="javascript:showProductSafetyPic(${c.id},${c.productId});">${c.productName}</a></td>
+						<td>${c.companyName}</td>
+						<c:choose>
+							<c:when test="${c.status==0 }">
+								<td>下架</td>
+							</c:when>
+							<c:when test="${c.status==1 }">
+								<td>上架</td>
+							</c:when>
+							<c:when test="${c.status==3 }">
+								<td>初始</td>
+							</c:when>
+							<c:when test="${c.status==4 }">
+								<td>否决</td>
+							</c:when>
+							<c:otherwise>
+								<td></td>
+							</c:otherwise>
+						</c:choose>
+
+						<td><a class="tablelink"
+							href="javascript:productCheck(${c.id},${c.productId},1);">上架</a>
+							<a class="tablelink"
+							href="javascript:productCheck(${c.id},${c.productId},0);">下架</a>
+							<a class="tablelink"
+							href="javascript:productCheck(${c.id},${c.productId},4);">否决</a>
+							<a class="tablelink"
+							href="javascript:productCheck(${c.id},${c.productId},2);">删除</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="pagin">
+			<!-- 	<div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-   
-   <%--  <div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+
+		<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -384,31 +407,33 @@ div.meneame span {
         </ul>
     </div>
      --%>
-    
-    <div class="tip">
-    	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
-      <div class="tipinfo">
-        <span><img src="../images/ticon.png" /></span>
-        <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
-        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-        </div>
-        </div>
-        
-        <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" />&nbsp;
-        <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    
-    </div>
-    
-    
-    
-    
-    </div>
-    
-    <!-- <script type="text/javascript">
+
+		<div class="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+
+			<div class="tipinfo">
+				<span><img src="../images/ticon.png" /></span>
+				<div class="tipright">
+					<p>是否确认对信息的修改 ？</p>
+					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				</div>
+			</div>
+
+			<div class="tipbtn">
+				<input name="" type="button" class="sure" value="确定" />&nbsp; <input
+					name="" type="button" class="cancel" value="取消" />
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
+	<!-- <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script> -->
 

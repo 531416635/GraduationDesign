@@ -13,10 +13,12 @@
 <head>
 <title>一起采</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/detail.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/detail.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/script.js"></script>
 <script>
@@ -165,11 +167,11 @@
 								<div class="close">x</div>
 								<div class="subitem">
 									<c:forEach items="${productCategorys}" var="pcs">
-										<c:if
-											test="${pcs.parentCateGory == proca.id}">
+										<c:if test="${pcs.parentCateGory == proca.id}">
 											<dl class="fore1">
 												<dt>
-													<a href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cateGoryLevel=3">${pcs.cateGoryName}</a>
+													<a
+														href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cateGoryLevel=3">${pcs.cateGoryName}</a>
 												</dt>
 												<dd>
 													<c:forEach items="${productCategorys}" var="pcItem">
@@ -313,7 +315,7 @@
 						</div>
 					</div>
 				</c:forEach>
-			
+
 			</div>
 
 			<!-- 条件筛选框 -->
@@ -332,7 +334,7 @@
 					<li class="select-list"><c:forEach items="${productCategorys}"
 							var="proca">
 							<c:if test="${proca.parentCateGory == cateGoryId }">
-								<div class="item bo">							
+								<div class="item bo">
 									<div class="item-list clearfix">
 										<div class="subitem">
 											<c:forEach items="${productCategorys}" var="pcs">
@@ -345,7 +347,7 @@
 														<dd>
 															<c:forEach items="${productCategorys}" var="pcItem">
 																<c:if test="${pcItem.parentCateGory == pcs.id }">
-																	<em><a  href="javascript:change(${pcItem.id});">${pcItem.cateGoryName}</a>
+																	<em><a href="javascript:change(${pcItem.id});">${pcItem.cateGoryName}</a>
 																	</em>
 																</c:if>
 															</c:forEach>
@@ -362,13 +364,13 @@
 						<dl class="selectss">
 							<dt>排序：</dt>
 							<dd onclick="checksrank();">
-								<span style=display:none>0</span><a href="#">默认</a>
+								<span style="display: none">0</span><a href="#">默认</a>
 							</dd>
 							<dd onclick="checksrank();">
-								<span style=display:none>1</span><a href="#">畅销</a>
+								<span style="display: none">1</span><a href="#">畅销</a>
 							</dd>
 							<dd onclick="checksrank();">
-								<span style=display:none>2</span><a
+								<span style="display: none">2</span><a
 									href="toSaveArguments.do?rank=2" target="iframe1">最新</a>
 							</dd>
 						</dl>
@@ -378,12 +380,12 @@
 			</div>
 			<!-- 产品列表框 -->
 			<div>
-			<
-			
-			
-			
-			
-			
+				<
+
+
+
+
+
 				<iframe src="toProductsList.do" name="iframe1" width="100%"
 					height="828px"> </iframe>
 			</div>

@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wit.dao.GrossMarginDao" >
-	<!--新闻公告商信息列表  -->
+<mapper namespace="com.wit.dao.GrossMarginDao">
+	<!--新闻公告商信息列表 -->
 	<select id="findGrossMargin" resultType="com.wit.model.GrossMargin">
 		SELECT
-		ID, GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status, CreateBy
-		FROM GrossMargin
+		ID, GrossMargin,
+		ProductID, SupplierID, StartTime, EndTime, Status, CreateBy
+		FROM
+		GrossMargin
 	</select>
 	<!-- 删除新闻公告 -->
 	<delete id="deleteGrossMargin" parameterType="Integer">
-		delete from GrossMargin where ID=#{id}
+		delete from
+		GrossMargin where ID=#{id}
 	</delete>
-	<!-- 根据ID字符数组删除数据  -->
+	<!-- 根据ID字符数组删除数据 -->
 	<delete id="deleteByIds" parameterType="string">
-		delete from GrossMargin where FIND_IN_SET(id,#{ids})
+		delete from GrossMargin
+		where FIND_IN_SET(id,#{ids})
 	</delete>
-	<!-- 添加新闻-->
+	<!-- 添加新闻 -->
 	<insert id="addGrossMarginr" parameterType="com.wit.model.GrossMargin">
-	<selectKey keyProperty="id" resultType="Integer" 
-			order="AFTER">
-				SELECT LAST_INSERT_ID()
-	</selectKey>
-		insert into GrossMargin (GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status, CreateBy
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into GrossMargin (GrossMargin, ProductID, SupplierID,
+		StartTime, EndTime, Status, CreateBy
 		) values(
 		#{grossMargin},
 		#{productId},
@@ -32,18 +36,21 @@
 		#{createBy}
 		)
 	</insert>
-	<!--根据Id查询新闻公告信息  -->
+	<!--根据Id查询新闻公告信息 -->
 	<select id="findbyId" parameterType="Integer" resultType="com.wit.model.GrossMargin">
-		select ID, GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status, CreateBy from GrossMargin where id=#{id}
+		select
+		ID, GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status,
+		CreateBy from GrossMargin where id=#{id}
 	</select>
-	<!--更新新闻公告  -->
+	<!--更新新闻公告 -->
 	<update id="updateGrossMargin" parameterType="com.wit.model.GrossMargin">
-		update GrossMargin set 
+		update GrossMargin
+		set
 		grossMargin=#{grossMargin},productId=#{productId},
 		supplierId=#{supplierId},startTime=#{startTime},
 		endTime=#{endTime},status=#{status},createBy=#{createBy}
 		where id=#{id}
-	</update> 
+	</update>
 </mapper>
 
 

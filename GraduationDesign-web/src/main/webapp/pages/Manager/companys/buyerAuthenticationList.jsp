@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,68 +58,66 @@ div.meneame span {
 
 <body>
 
-    <div class="rightinfo">
-    
-    <div class="tools">
-    	<form action="searchBuyerAuthenticationInfo.do" method="post">
-				<table style="border:1px solid #999;padding:3px;">
+	<div class="rightinfo">
+
+		<div class="tools">
+			<form action="searchBuyerAuthenticationInfo.do" method="post">
+				<table style="border: 1px solid #999; padding: 3px;">
 					<tr>
-						<td><input type="text" name="companyName" value="${companyName}" /><input
-							type="submit" value="搜索" />
-						</td>
+						<td><input type="text" name="companyName"
+							value="${companyName}" /><input type="submit" value="搜索" /></td>
 					</tr>
 				</table>
 			</form>
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th>ID</th>
-        <th>公司名称</th>
-        <th>公司规模</th>
-        <th>注册资本</th>
-        <th>公司电话</th>
-        <th>公司网址</th>
-        <th>状态</th>
-        <th>公司联系人</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        
-        <c:forEach items="${companys}" var="c">
-        <tr>
-        <td>${c.id}</td> 
-        <td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
-        <td>${c.companyScale}</td>
-        <td>${c.registeredCapital}</td>
-        <td>${c.companyTel}</td>
-        <td>${c.companyWebsite}</td>
-        <td align="center">
-        <c:choose>
-        	<c:when test="${c.status==0}">未认证</c:when>
-        	<c:when test="${c.status==1}">已认证</c:when>
-        	<c:when test="${c.status==3}">等待系统认证</c:when>
-        </c:choose>
-        </td>
-        <td>${c.companyContact}</td>
-        <td>
-        <a class="tablelink" href="/ssm/buyerAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
-        &nbsp;&nbsp;&nbsp;<a class="tablelink" href="/ssm/merchantAuthentication.do?tmpCompanyId=${c.id}">认证</a>
-        </td>
-        </tr> 
-        </c:forEach>
-        </tbody>
-    </table>
-  		 <!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-	
-   
-   <%--  <div class="pagin">
+		</div>
+
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>公司名称</th>
+					<th>公司规模</th>
+					<th>注册资本</th>
+					<th>公司电话</th>
+					<th>公司网址</th>
+					<th>状态</th>
+					<th>公司联系人</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach items="${companys}" var="c">
+					<tr>
+						<td>${c.id}</td>
+						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
+						<td>${c.companyScale}</td>
+						<td>${c.registeredCapital}</td>
+						<td>${c.companyTel}</td>
+						<td>${c.companyWebsite}</td>
+						<td align="center"><c:choose>
+								<c:when test="${c.status==0}">未认证</c:when>
+								<c:when test="${c.status==1}">已认证</c:when>
+								<c:when test="${c.status==3}">等待系统认证</c:when>
+							</c:choose></td>
+						<td>${c.companyContact}</td>
+						<td><a class="tablelink"
+							href="/ssm/buyerAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
+							&nbsp;&nbsp;&nbsp;<a class="tablelink"
+							href="/ssm/merchantAuthentication.do?tmpCompanyId=${c.id}">认证</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+
+
+		<%--  <div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
 			</div>
@@ -169,30 +168,32 @@ div.meneame span {
 			</ul>
 		</div>
      --%>
-    
-    <div class="tip">
-    	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
-      <div class="tipinfo">
-        <span><img src="../images/ticon.png" /></span>
-        <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
-        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-        </div>
-        </div>
-        
-        <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" />&nbsp;
-        <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    
-    </div>
-    
-    
-    
-    
-    </div>
-    
+
+		<div class="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+
+			<div class="tipinfo">
+				<span><img src="../images/ticon.png" /></span>
+				<div class="tipright">
+					<p>是否确认对信息的修改 ？</p>
+					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				</div>
+			</div>
+
+			<div class="tipbtn">
+				<input name="" type="button" class="sure" value="确定" />&nbsp; <input
+					name="" type="button" class="cancel" value="取消" />
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
 	<script type="text/javascript">
 		$('.tablelist tbody tr:odd').addClass('odd');
 	</script>

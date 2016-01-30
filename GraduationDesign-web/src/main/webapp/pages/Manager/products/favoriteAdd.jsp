@@ -8,7 +8,8 @@
 <title>一起采</title>
 <link type="text/css" rel="stylesheet" href="../css/main.css" />
 <script type="text/javascript" src="js/datePicker/WdatePicker.js"></script>
-<script language="javascript" type="text/javascript" src="../js/jquery.js"></script>
+<script language="javascript" type="text/javascript"
+	src="../js/jquery.js"></script>
 <script type="text/javascript">
 function save() {
 	 var content1 = $("#productId").val(); 
@@ -41,26 +42,26 @@ div {
 	<div>
 		<form action="favoriteAdd.do" method="post">
 			<table border="0" cellpadding="0" cellspacing="0">
-		<tr >
-			<th>商品名称:</th>
-			<td><input type="text" id="productId" name="productId"  required="required"  /></td>
-		</tr>
-		<tr >
-			<th>收藏名称:</th>
-			<td><input type="text"  required="required"   id="favoriteName" name="favoriteName"/></td>
-		</tr>
-		<tr >
-			<th>收藏类别:</th>
-			<td>
-			<select name="favoriteType">
-			<option value="1">商品</option>
-			<option value="2">模板</option>
-			</select>
-			</td>
-		</tr>
+				<tr>
+					<th>商品名称:</th>
+					<td><input type="text" id="productId" name="productId"
+						required="required" /></td>
+				</tr>
+				<tr>
+					<th>收藏名称:</th>
+					<td><input type="text" required="required" id="favoriteName"
+						name="favoriteName" /></td>
+				</tr>
+				<tr>
+					<th>收藏类别:</th>
+					<td><select name="favoriteType">
+							<option value="1">商品</option>
+							<option value="2">模板</option>
+					</select></td>
+				</tr>
 			</table>
-			<input type="button" value="增加" onclick="save();"/>
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="button" value="增加" onclick="save();" /> <input
+				type="reset" value="取消" onclick="history.back()">
 		</form>
 	</div>
 </body>

@@ -189,8 +189,7 @@ div.meneame span {
 								<%-- <c:otherwise>
                         			删除
                         		</c:otherwise> --%>
-							</c:choose>
-						</td>
+							</c:choose></td>
 						<td><a class="tablelink"
 							href="/ssm/toUpdateBuyerBalance.do?id=${c.id}">修改</a> <%-- <a
 							class="tablelink" href="#"
@@ -204,10 +203,10 @@ div.meneame span {
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 
 		<%-- <div class="pagin">
 			<div class="message">

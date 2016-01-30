@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -106,23 +107,24 @@ function checkDeletes(companyProductId){
 }
 </script>
 <style type="text/css">
- body {
+body {
 	width: 100%;
 	height: 100%;
 	background-color: #FFFFFF;
 	text-align: center;
 }
 
- .addPrice {
- 	display :none;
+.addPrice {
+	display: none;
 	position: absolute;
 	top: 40%;
 	margin-top: -50px;
 	left: 40%;
 	margin-left: -50px;
-} 
-#tablelist2,#li2 {
-display :none;
+}
+
+#tablelist2, #li2 {
+	display: none;
 }
 </style>
 </head>
@@ -130,82 +132,91 @@ display :none;
 
 <body>
 
-    <div id="rightinfo" class="rightinfo">
-    
-    <div class="tools">
-    
-    	<ul class="toolbar">
-    	<li id="li3"><a class="tablelink" href="historicalPriceList.do">&nbsp;&nbsp;返回上页</a></li>
-        </ul>
-        
-    </div>
-     <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th>ID</th>
-        <th>最小数量</th>
-        <th>最大数量</th>
-        <th>价格</th>
-        <th>毛利价格</th>
-        <th>价格时间</th>
-        <th>商品价格编码</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${companyProductPriceLogs}" var="c">
-        <tr>
-        <td>${c.id}</td>
-        <td>${c.minNum}</td>
-        <td>${c.maxNum}</td>
-        <td>${c.price}</td>
-        <td>${c.grossMargins.grossMargin}</td> 
-        <td>${c.priceDate}</td>
-        <td>${c.companyProductCode}</td>
-        </tr> 
-        </c:forEach>
-        </tbody>
-    </table>
-    
-   
-    <div class="pagin">
-    	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
-        <ul class="paginList">
-        		<c:choose>
-                		<c:when test="${page.currentPage==1}">
-                		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
-                		</c:when>
-                		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
-                		</c:otherwise>
-                </c:choose>
-        		<c:forEach begin="1" end="${page.totalPage}" var="s3">
-					 	<c:choose>
-                    		<c:when test="${s3==page.currentPage}">
-                    		 <li class="paginItem current"><a href="#">${s3}</a></li>
-                    		</c:when>
-                    		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${s3}">${s3}</a></li>
-                    		</c:otherwise>
-                    	</c:choose>
+	<div id="rightinfo" class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li id="li3"><a class="tablelink" href="historicalPriceList.do">&nbsp;&nbsp;返回上页</a></li>
+			</ul>
+
+		</div>
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>最小数量</th>
+					<th>最大数量</th>
+					<th>价格</th>
+					<th>毛利价格</th>
+					<th>价格时间</th>
+					<th>商品价格编码</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${companyProductPriceLogs}" var="c">
+					<tr>
+						<td>${c.id}</td>
+						<td>${c.minNum}</td>
+						<td>${c.maxNum}</td>
+						<td>${c.price}</td>
+						<td>${c.grossMargins.grossMargin}</td>
+						<td>${c.priceDate}</td>
+						<td>${c.companyProductCode}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+
+		<div class="pagin">
+			<div class="message">
+				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<c:choose>
+					<c:when test="${page.currentPage==1}">
+						<li class="paginItem current"><a href="#"><span
+								class="pagepre"></span></a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="paginItem"><a
+							href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage-1}"><span
+								class="pagepre"></span></a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach begin="1" end="${page.totalPage}" var="s3">
+					<c:choose>
+						<c:when test="${s3==page.currentPage}">
+							<li class="paginItem current"><a href="#">${s3}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="paginItem"><a
+								href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${s3}">${s3}</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 				<c:choose>
-                		<c:when test="${page.currentPage==page.totalPage or s3<=10}">
-                		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
-                		</c:when>
-                		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
-                		</c:otherwise>
-                </c:choose>    
-        </ul>
-    </div>
-    
-    
-    
-    
-    
-    </div>
-    
-    <script type="text/javascript">
+					<c:when test="${page.currentPage==page.totalPage or s3<=10}">
+						<li class="paginItem current"><a href="#"><span
+								class="pagenxt"></span></a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="paginItem"><a
+							href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage+1}"><span
+								class="pagenxt"></span></a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd')
 	</script>
 

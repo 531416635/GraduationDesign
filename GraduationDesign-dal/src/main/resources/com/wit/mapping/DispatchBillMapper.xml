@@ -47,12 +47,14 @@
 	<select id="findStorageId" resultType="Integer">
 		select ID from Storage
 	</select>
-	<select id="findById" parameterType="int"
-		resultType="com.wit.model.DispatchBill">
-		SELECT ID, DispatchBillID, OrderID, CompanyProductID,
-		ProductUnit, UnitPrice, Amount, StorageID,
+	<select id="findById" parameterType="int" resultType="com.wit.model.DispatchBill">
+		SELECT ID,
+		DispatchBillID, OrderID, CompanyProductID,
+		ProductUnit, UnitPrice,
+		Amount, StorageID,
 		ShoppingAddressID,
-		DeliveryUser, DeliveryTime, Accepter,
+		DeliveryUser, DeliveryTime,
+		Accepter,
 		AcceptTime, CheckUser, CheckTime,
 		STATUS, PurchaseQuantity,
 		PackagesNumber FROM DispatchBill WHERE
@@ -180,13 +182,13 @@
 		</if> <if test="page.status!='' and page.status!=null"> AND d.STATUS=#{page.status} 
 		</if> order by d.ID limit #{page.begin},#{page.pageNum} </select> -->
 	<!--根据用户ID显示其所有发货单 -->
-	<select id="getAll" parameterType="hashMap"
-		resultType="com.wit.model.DispatchBill">
+	<select id="getAll" parameterType="hashMap" resultType="com.wit.model.DispatchBill">
 		SELECT
 		d.ID, d.DispatchBillID, d.OrderID,o.OrderID as OrderCode,
 		d.CompanyProductID, d.ProductUnit, d.UnitPrice, d.Amount, d.StorageID,
 		d.ShoppingAddressID, d.DeliveryUser, d.DeliveryTime,d.Accepter,
-		d.AcceptTime, d.CheckUser, d.CheckTime, d.STATUS, d.PurchaseQuantity,p.ProductModel,
+		d.AcceptTime, d.CheckUser, d.CheckTime, d.STATUS,
+		d.PurchaseQuantity,p.ProductModel,
 		d.PackagesNumber,getAddress(d.ShoppingAddressID) as
 		ShoppingAddressName,
 		getUserName(d.DeliveryUser) as DeliveryUserName,
@@ -352,10 +354,12 @@
 				and o.OrderID like CONCAT('%',#{orderCode},'%')
 			</if>
 			<if test="productName!=null and productName!=''">
-				and getProductName(cp.ProductID) like CONCAT('%',#{productName},'%')
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
 			</if>
 			<if test="supplierName!=null and supplierName!=''">
-				and getCompanyName(cp.CompanyID) like CONCAT('%',#{supplierName},'%')
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
 			</if>
 			<if test="status!=null and status !=10">
 				AND d.STATUS=#{status}
@@ -371,10 +375,12 @@
 				and o.OrderID like CONCAT('%',#{orderCode},'%')
 			</if>
 			<if test="productName!=null and productName!=''">
-				and getProductName(cp.ProductID) like CONCAT('%',#{productName},'%')
+				and getProductName(cp.ProductID) like
+				CONCAT('%',#{productName},'%')
 			</if>
 			<if test="supplierName!=null and supplierName!=''">
-				and getCompanyName(cp.CompanyID) like CONCAT('%',#{supplierName},'%')
+				and getCompanyName(cp.CompanyID) like
+				CONCAT('%',#{supplierName},'%')
 			</if>
 			<if test="status!=null and status !=10">
 				AND d.STATUS=#{status}

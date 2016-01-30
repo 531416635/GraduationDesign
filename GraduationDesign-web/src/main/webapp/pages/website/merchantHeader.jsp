@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="<%=path%>/css/header/global.css"
 	type="text/css" />
 <link type="text/css" rel="stylesheet"
-	href="<%=path%>/css/redcss/selector6.css" />	
+	href="<%=path%>/css/redcss/selector6.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/houtai.css" />
 <link rel="stylesheet" type="text/css"
@@ -408,7 +408,7 @@ ul {
 </style>
 </head>
 <body>
-<input type="hidden" id="provinceName"
+	<input type="hidden" id="provinceName"
 		value="${sessionScope.provinceName }" />
 	<input type="hidden" id="provinceId"
 		value="${sessionScope.provinceId }" />
@@ -418,24 +418,24 @@ ul {
 	<input type="hidden" id="areaId" value="${sessionScope.areaId }" />
 	<div class="top">
 		<div id="wel_div_tou" class="wel">
-		<ul id="list3" style="width: 620px; margin: 0px auto 0 -30px;">
-					<li id="summary-stock3">
-						<div class="dt">配送至：</div>
-						<div class="dd">
-							<div id="store-selector3">
-								<div class="text3">
-									<div></div>
-									<b></b> <input type="hidden" id="addressjoin3" value="" />
-								</div>
-								<div onclick="$('#store-selector3').removeClass('hover')"
-									class="close"></div>
+			<ul id="list3" style="width: 620px; margin: 0px auto 0 -30px;">
+				<li id="summary-stock3">
+					<div class="dt">配送至：</div>
+					<div class="dd">
+						<div id="store-selector3">
+							<div class="text3">
+								<div></div>
+								<b></b> <input type="hidden" id="addressjoin3" value="" />
 							</div>
-							<div id="store-prompt3">
-								<strong></strong>
-							</div>
+							<div onclick="$('#store-selector3').removeClass('hover')"
+								class="close"></div>
 						</div>
-					</li>
-				</ul>
+						<div id="store-prompt3">
+							<strong></strong>
+						</div>
+					</div>
+				</li>
+			</ul>
 			&nbsp; <span class="wel1">你好！欢迎来到一起采网！</span> <span class="wel2">
 				<c:if test="${user ==null }">
 					<a href="/ssm/web/toLogin.do">登录</a>
@@ -443,7 +443,8 @@ ul {
 					<a href="/ssm/web/toLogin.do">${user.userName }</a>
 						 |
 					<a href="/ssm/web/cancel.do">退出</a>
-				</c:if> | <a rel="sidebar" href="#" style="cursor: pointer; 
+				</c:if> | <a rel="sidebar" href="#"
+				style="cursor: pointer; 
 				background: transparent url('<%=path%>/images/redimg/ico_01.png') no-repeat scroll left center;
 				padding-left: 20px;"
 				onclick="favorites();">加入收藏 </a>| <a href="#">联系客服</a>
@@ -541,9 +542,11 @@ ul {
 				<h2>新闻公告 &nbsp;</h2>
 				<div id="divNews" class="listdiv">
 					<ul>
-					<c:forEach items="${newList}" var="nl">
-					<li><a href="<%=path%>/web/newOrNoiceInfo.do?newOrNoticeId=${nl.id}&&type=${nl.newType}">${nl.title}</a> </li>
-					</c:forEach>
+						<c:forEach items="${newList}" var="nl">
+							<li><a
+								href="<%=path%>/web/newOrNoiceInfo.do?newOrNoticeId=${nl.id}&&type=${nl.newType}">${nl.title}</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

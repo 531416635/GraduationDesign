@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wit.dao.WorkFlowNodesDao" >
+<mapper namespace="com.wit.dao.WorkFlowNodesDao">
 	<!-- 查询所有 -->
 	<select id="getAll" parameterType="com.wit.model.Page"
-	 resultType="com.wit.model.WorkflowNodes">
-	select id,nodeName,nodeCode,nodeRole,nodeType,
-	processResult,processContent,prevNode,nextNode,workflowTypeId
-	from WorkflowNodes order by ID limit #{begin},#{pageNum};
+		resultType="com.wit.model.WorkflowNodes">
+		select id,nodeName,nodeCode,nodeRole,nodeType,
+		processResult,processContent,prevNode,nextNode,workflowTypeId
+		from
+		WorkflowNodes order by ID limit #{begin},#{pageNum};
 	</select>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Integer">
-	delete from WorkflowNodes
-	   where id=#{id}
+		delete from WorkflowNodes
+		where id=#{id}
 	</delete>
 	<!-- 添加 -->
 	<insert id="add" parameterType="com.wit.model.WorkflowNodes">
-	insert into WorkflowNodes (nodeName,nodeCode,nodeRole,nodeType,
-	processResult,processContent,prevNode,nextNode,workflowTypeId)
-	values (
+		insert into WorkflowNodes
+		(nodeName,nodeCode,nodeRole,nodeType,
+		processResult,processContent,prevNode,nextNode,workflowTypeId)
+		values (
 		#{nodeName},#{nodeCode},#{nodeRole},#{nodeType},#{processResult},
 		#{processContent},#{prevNode},#{nextNode},#{workflowTypeId}
-	)
+		)
 	</insert>
 	<!--根据Id查询 -->
 	<select id="findbyId" resultType="com.wit.model.WorkflowNodes"
 		parameterType="Integer">
-		select  id,nodeName,nodeCode,nodeRole,nodeType,
+		select id,nodeName,nodeCode,nodeRole,nodeType,
 		processResult,processContent,prevNode,nextNode,workflowTypeId
-		from WorkflowNodes
+		from
+		WorkflowNodes
 		where id=#{id}
 	</select>
 	<!-- 修改 -->
@@ -38,12 +41,13 @@
 		prevNode=#{prevNode},nextNode=#{nextNode},workflowTypeId=#{workflowTypeId}
 		where id=#{id}
 	</update>
-	
+
 	<!-- 分页 -->
 	<select id="findRows" resultType="int">
-		select 
+		select
 		count(id)
-		from WorkflowNodes
+		from
+		WorkflowNodes
 	</select>
 
 </mapper>

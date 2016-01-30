@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -228,7 +228,6 @@ $.ajax({
 	color: white;
 }
 
-
 #qrtj {
 	height: 25px;
 	width: 100px;
@@ -239,48 +238,51 @@ $.ajax({
 .input_srk {
 	width: 40px;
 	height: 19px;
-	text-align:center;
-	
+	text-align: center;
 }
-#add, #jian{
-margin:0px 1px;
-padding:0px;
-float:none;
+
+#add, #jian {
+	margin: 0px 1px;
+	padding: 0px;
+	float: none;
 }
+
 td {
 	text-align: center;
 	height: 100px;
 }
 
-#th1{
-	width:150px;
+#th1 {
+	width: 150px;
 }
-#th2{
-	width:250px;
+
+#th2 {
+	width: 250px;
 }
+
 tr {
 	border-bottom: 1px solid #999;
-	height:15px;
+	height: 15px;
 }
 
 .button_sc {
 	width: 50px;
 	height: 20px;
 }
-.divHead{
-background-color:#F5F5F5;
-height:50px;
-border:2px solid #DFDFDF;
-}
-#tabs{
-   list-style: outside none none;
-    margin: 0px;
-    overflow: hidden;
-    padding: 0;
-    width: 100%;
-   
+
+.divHead {
+	background-color: #F5F5F5;
+	height: 50px;
+	border: 2px solid #DFDFDF;
 }
 
+#tabs {
+	list-style: outside none none;
+	margin: 0px;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
+}
 </style>
 </head>
 
@@ -296,16 +298,21 @@ border:2px solid #DFDFDF;
 			<div style="border:2px solid #F5F5F5;border-top:0px;height:25px;padding:10px;"><span style="font-size:18px;"><b>询价购物车</b></span><br />
 			</div>
 		</div> --%>
-<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">商品管理 ></span><span class="lo2">我的购物车</span>
-		</div><br/>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">商品管理 ></span><span
+				class="lo2">我的购物车</span>
+		</div>
+		<br />
 		<ul id="tabs">
 			<li><a title="tab1" href="<%=path%>/merchant/spotShoppingCar.do">现货购物车</a>
 			</li>
-			<li ><a title="tab4" href="<%=path %>/merchant/InquiryShoppingCar.do"  style="background:#9a1101 none repeat scroll 0 0;color:#fff;">我的购物车</a>
+			<li><a title="tab4"
+				href="<%=path %>/merchant/InquiryShoppingCar.do"
+				style="background: #9a1101 none repeat scroll 0 0; color: #fff;">我的购物车</a>
 			</li>
 		</ul>
-		
+
 		<div id="content">
 			<table width="100%" cellspacing="0" align="center">
 				<thead>
@@ -318,7 +325,7 @@ border:2px solid #DFDFDF;
 						<th>价格</th>
 						<th id="th1">数量</th>
 						<th>品牌</th>
-						<th  id="th2">送货地址</th>
+						<th id="th2">送货地址</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -333,32 +340,39 @@ border:2px solid #DFDFDF;
 								value="${c.ShoppingCartId}" /><input type="hidden"
 								name="productId" id="productId" value="${c.ID}" /></td>
 							<td><img src="<%=path%>${c.FilePath}"
-								style="height: 50px;width: 55px;"></td>
+								style="height: 50px; width: 55px;"></td>
 							<td>
 								<%-- <input type="hidden" name="ProductName" id="ProductName"
 								value="${c.ProductName}" /> --%>${c.ProductName}</td>
 							<td>${c.ProductModel}</td>
 							<td>${c.UnitPrice}</td>
 							<td><input type="button" id="jian" value="-"
-									onclick="subNum('${c.ShoppingCartId}')" /><input class="input_srk" type="text"
-								name="ProductQuantity" id="ProductQuantity${c.ShoppingCartId}"
+								onclick="subNum('${c.ShoppingCartId}')" /><input
+								class="input_srk" type="text" name="ProductQuantity"
+								id="ProductQuantity${c.ShoppingCartId}"
 								onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
-										onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
-								value="${c.ProductQuantity}" /><input type="button" id="add" value="+"
-									onclick="addNum('${c.ShoppingCartId}')" /></td>
+								onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
+								value="${c.ProductQuantity}" /><input type="button" id="add"
+								value="+" onclick="addNum('${c.ShoppingCartId}')" /></td>
 							<td>${c.ProductBrand}</td>
-							<td><span style="border:1px solid #ABADB3;background-color:#FFFFFF;padding:3px;" onclick = "shoppingAddressClick('${c.ShoppingCartId}')" id="shoppingCart1Id${c.ShoppingCartId}">${c.ShoppingAddressName}
-							<img src="<%=path %>/images/redimg/btn20121210.png"/></span>
-								<p style="display:none;" id="address${c.ShoppingCartId}"
+							<td><span
+								style="border: 1px solid #ABADB3; background-color: #FFFFFF; padding: 3px;"
+								onclick="shoppingAddressClick('${c.ShoppingCartId}')"
+								id="shoppingCart1Id${c.ShoppingCartId}">${c.ShoppingAddressName}
+									<img src="<%=path %>/images/redimg/btn20121210.png" />
+							</span>
+								<p style="display: none;" id="address${c.ShoppingCartId}"
 									name="address${c.ShoppingCartId}">${c.ShoppingCartAddressName}</p>
-									<input type="hidden" id="addressShopping${c.ShoppingCartId}" value="${c.Address}"
-									name="addressShopping${c.ShoppingCartId}"/>
-									
+								<input type="hidden" id="addressShopping${c.ShoppingCartId}"
+								value="${c.Address}" name="addressShopping${c.ShoppingCartId}" />
+
 							</td>
-							<td><input class="orange button_sc" type="button" style="margin-bottom:10px;"
-								name="collect" value="收藏" onclick="collect('${c.ID}','${c.ShoppingCartId}')">
-								<input class="orange button_sc" type="button" style="margin-top:10px;"
-								name="collect" value="删除" onclick="deleteShoppingCart('${c.ShoppingCartId}','${c.ProductQuantity}')"></td>
+							<td><input class="orange button_sc" type="button"
+								style="margin-bottom: 10px;" name="collect" value="收藏"
+								onclick="collect('${c.ID}','${c.ShoppingCartId}')"> <input
+								class="orange button_sc" type="button" style="margin-top: 10px;"
+								name="collect" value="删除"
+								onclick="deleteShoppingCart('${c.ShoppingCartId}','${c.ProductQuantity}')"></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -370,10 +384,11 @@ border:2px solid #DFDFDF;
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
 		</div>
 		<div style="text-align: center; margin: 10px 0px;">
-			<input class="action orange" type="button" value="询价" onclick="xunjia();" id="xun" />
+			<input class="action orange" type="button" value="询价"
+				onclick="xunjia();" id="xun" />
 		</div>
 	</div>
 
@@ -385,7 +400,7 @@ border:2px solid #DFDFDF;
 		</div>
 	</div>
 
-	<div style="height:1200px;"></div>
+	<div style="height: 1200px;"></div>
 
 
 

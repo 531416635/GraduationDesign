@@ -15,6 +15,7 @@ body {
 	background-color: #FFFFFF;
 	text-align: center;
 }
+
 div {
 	position: absolute;
 	top: 40%;
@@ -22,6 +23,7 @@ div {
 	left: 40%;
 	margin-left: -50px;
 }
+
 .input_txt {
 	width: 200px;
 	height: 20px;
@@ -47,81 +49,73 @@ div {
 </style>
 </head>
 <body>
-<div>
-	<form action="updateSupplierContract.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr style="display: none">
-				<th>合同ID</th>
-				<td><input  name="id" type="text" 
-					value="${c.id}" readonly="readonly"/>
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>公司ID</th>
-				<td><input  name=companyId type="text" 
-					value="${c.companyId}" readonly="readonly"/>
-				</td>
-			</tr>
-			
-			<tr>
-				<th>合同账期:</th>
-				<td><input name="contractTerms"  value="${c.contractTerms}" />
-				</td>
-			</tr>
-			<tr>
-				<th>合同年限:</th>
-				<td><input name="contractTime" 
-				onclick="WdatePicker()" 
-				readonly="readonly" value="${c.contractTime}" />
-				</td>
-			</tr>
-			<%-- <tr>
+	<div>
+		<form action="updateSupplierContract.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr style="display: none">
+					<th>合同ID</th>
+					<td><input name="id" type="text" value="${c.id}"
+						readonly="readonly" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>公司ID</th>
+					<td><input name=companyId type="text" value="${c.companyId}"
+						readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<th>合同账期:</th>
+					<td><input name="contractTerms" value="${c.contractTerms}" />
+					</td>
+				</tr>
+				<tr>
+					<th>合同年限:</th>
+					<td><input name="contractTime" onclick="WdatePicker()"
+						readonly="readonly" value="${c.contractTime}" /></td>
+				</tr>
+				<%-- <tr>
 				<th>供应品类:</th>
 				<td><input name="supplyCategory" 
 					value="${c.supplyCategory}" />
 				</td>
 			</tr> --%>
-			<tr> 
-				<th>合同类型:</th>
-				<td>
-						<input name="contractType" id="contractType" required="required"
-						value="2" readonly="readonly"/>
-				</td>
-			</tr>
-			<tr>
-				<th>状态:</th>
-				<td>
-				<c:choose>
-					<c:when test="${c.status==0}">
-						<input type="radio" name="status" value="0" checked="checked"/>
+				<tr>
+					<th>合同类型:</th>
+					<td><input name="contractType" id="contractType"
+						required="required" value="2" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<th>状态:</th>
+					<td><c:choose>
+							<c:when test="${c.status==0}">
+								<input type="radio" name="status" value="0" checked="checked" />
 						签订
 					</c:when>
-					<c:otherwise>
-						<input type="radio" name="status" value="0"/>
+							<c:otherwise>
+								<input type="radio" name="status" value="0" />
 						签订
 					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${c.status==1}">
-						<input type="radio" name="status" value="1" checked="checked"/>
+						</c:choose> <c:choose>
+							<c:when test="${c.status==1}">
+								<input type="radio" name="status" value="1" checked="checked" />
 						未签订
 					</c:when>
-					<c:otherwise>
-						<input type="radio" name="status" value="1"/>
+							<c:otherwise>
+								<input type="radio" name="status" value="1" />
 						未签订
 					</c:otherwise>
-				</c:choose>
-				</td>
-			</tr>
-			<tr>
-				<th>合同内容:</th>
-				<td><textarea rows="15" cols="30" id="contractContent" name="contractContent" value="${c.contractContent}"  required="required">${c.contractContent}</textarea>
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="修改"/>
-		<input type="reset" value="取消" onclick="history.back()">
-	</form>
+						</c:choose></td>
+				</tr>
+				<tr>
+					<th>合同内容:</th>
+					<td><textarea rows="15" cols="30" id="contractContent"
+							name="contractContent" value="${c.contractContent}"
+							required="required">${c.contractContent}</textarea></td>
+				</tr>
+			</table>
+			<input type="submit" value="修改" /> <input type="reset" value="取消"
+				onclick="history.back()">
+		</form>
 	</div>
 </body>
 </html>

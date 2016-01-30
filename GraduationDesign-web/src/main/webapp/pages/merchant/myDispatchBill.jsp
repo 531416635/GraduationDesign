@@ -599,7 +599,8 @@ td {
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<c:choose>
 				<c:when test="${userRole=='PurchaseUser'}">
 					<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span>
@@ -634,18 +635,18 @@ td {
 					<span class="lo2">订单实收处理</span>
 				</c:when>
 			</c:choose>
-<br/><br/>
+			<br /> <br />
 		</div>
 		<div>
-		<!-- 验收单查询 （开始）-->
+			<!-- 验收单查询 （开始）-->
 			<c:if
 				test="${userRole=='PurchaseUser'||userRole=='PurchaseCompany'||userRole=='PurchaseDepart'}">
 				<div
-					style="border:1px solid #D6D6D6;margin:5px 0;height:80px;line-height:40px;">
+					style="border: 1px solid #D6D6D6; margin: 5px 0; height: 80px; line-height: 40px;">
 					<input type="hidden" id="orderCode1" value="${orderCode }" /> <input
 						type="hidden" id="productName1" value="${productName }" /> <input
-						type="hidden" id="supplierName1" value="${supplierName }" />
-						<input type="hidden" id="status1" value="${status }" />
+						type="hidden" id="supplierName1" value="${supplierName }" /> <input
+						type="hidden" id="status1" value="${status }" />
 					<c:if test="${userRole=='PurchaseUser'}">
 						<form action="myDispatchBill.do" method="post">
 					</c:if>
@@ -656,39 +657,47 @@ td {
 					<c:if test="${userRole=='PurchaseDepart'}">
 						<form action="myDispatchBillToDepart.do" method="post">
 					</c:if>
-					<span style="margin-left:15px;font-size:18px;">验收单查询</span>&nbsp;&nbsp;&nbsp;&nbsp;
-					订单号：<input name="orderCode" style="height:20px;width:160px;" type="text"
-						id="orderCode" value="${orderCode }" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品：<input
-						name="productName" type="text" style="height:20px;width:160px;"
-						id="productName" value="${productName }" /><br/>
-						<span style="margin-left:133px;">供应商：</span><input
-						name="supplierName" type="text" id="supplierName"
-						value="${supplierName }" style="height:20px;width:160px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<select
-						name="status" type="text" id="status" style="height:20px;width:65px;">
-						<option value="10" <c:if test="${status==10 }">selected="selected"</c:if>>全部</option>
-						<option value="0" <c:if test="${status==0 }">selected="selected"</c:if> >未配送</option>
-						<option value="1" <c:if test="${status==1 }">selected="selected"</c:if> >已对账</option>
-						<option value="2" <c:if test="${status==2 }">selected="selected"</c:if> >已配送</option>
-						<option value="3" <c:if test="${status==3 }">selected="selected"</c:if> >未验收</option>
-						<option value="4" <c:if test="${status==4 }">selected="selected"</c:if> >已验收</option>
-						<option value="5" <c:if test="${status==5 }">selected="selected"</c:if> >未审核</option>
-						<option value="6" <c:if test="${status==6 }">selected="selected"</c:if> >已审核</option>
-						</select><span style="margin-left:100px;"><input
-						name="submitButton" class="orange" type="submit" id="submitButton"
-						value="查询" /></span>
+					<span style="margin-left: 15px; font-size: 18px;">验收单查询</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					订单号：<input name="orderCode" style="height: 20px; width: 160px;"
+						type="text" id="orderCode" value="${orderCode }" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品：<input
+						name="productName" type="text" style="height: 20px; width: 160px;"
+						id="productName" value="${productName }" /><br /> <span
+						style="margin-left: 133px;">供应商：</span><input name="supplierName"
+						type="text" id="supplierName" value="${supplierName }"
+						style="height: 20px; width: 160px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<select
+						name="status" type="text" id="status"
+						style="height: 20px; width: 65px;">
+						<option value="10"
+							<c:if test="${status==10 }">selected="selected"</c:if>>全部</option>
+						<option value="0"
+							<c:if test="${status==0 }">selected="selected"</c:if>>未配送</option>
+						<option value="1"
+							<c:if test="${status==1 }">selected="selected"</c:if>>已对账</option>
+						<option value="2"
+							<c:if test="${status==2 }">selected="selected"</c:if>>已配送</option>
+						<option value="3"
+							<c:if test="${status==3 }">selected="selected"</c:if>>未验收</option>
+						<option value="4"
+							<c:if test="${status==4 }">selected="selected"</c:if>>已验收</option>
+						<option value="5"
+							<c:if test="${status==5 }">selected="selected"</c:if>>未审核</option>
+						<option value="6"
+							<c:if test="${status==6 }">selected="selected"</c:if>>已审核</option>
+					</select><span style="margin-left: 100px;"><input name="submitButton"
+						class="orange" type="submit" id="submitButton" value="查询" /></span>
 					</form>
 				</div>
 
 			</c:if>
 			<!-- 验收单查询 （结束）-->
 			<c:if test="${empty dispatchBill}">
-			<script type="text/javascript">
+				<script type="text/javascript">
 			alert("查询结果为空,请重新输入！");
 			</script>
 			</c:if>
 		</div>
 		<c:if test="${!empty dispatchBill}">
-			
+
 
 			<table width="100%" cellspacing="1" align="center">
 				<tr>
@@ -696,8 +705,7 @@ td {
 							test="${userRole=='DeliveryUser' || userRole=='Checker'|| userRole=='Accepter'||
 							userRole=='Supplier'||userRole=='PurchaseFinancial'}">
 							<input type="checkbox" id="checkAll" onclick="checkAll();" />全选
-						</c:if>
-					</td>
+						</c:if></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -706,33 +714,33 @@ td {
 				</tr>
 				<tbody>
 					<c:forEach items="${dispatchBill}" var="c">
-						<tr style="background-color:#FAFAFA;">
-							<td colspan="5" style="height:35px; line-height:35px;"><p
-									style="margin:0; font-size:14px; color:#2a2a2a;">
-									<span style="float:left;">订单号:${c.orderCode} </span><span
-										style="float:left; margin-left:50px;">配送单号:${c.dispatchBillId}</span>
+						<tr style="background-color: #FAFAFA;">
+							<td colspan="5" style="height: 35px; line-height: 35px;"><p
+									style="margin: 0; font-size: 14px; color: #2a2a2a;">
+									<span style="float: left;">订单号:${c.orderCode} </span><span
+										style="float: left; margin-left: 50px;">配送单号:${c.dispatchBillId}</span>
 								</p></td>
-							<td style="text-align:center;"><c:choose>
+							<td style="text-align: center;"><c:choose>
 									<c:when test="${c.status==0}">
-										<span class="span_zt zt_dcl" style="padding:2px 5px;">未配送</span>
+										<span class="span_zt zt_dcl" style="padding: 2px 5px;">未配送</span>
 									</c:when>
 									<c:when test="${c.status==1}">
-										<span class="span_zt zt_ywc" style="padding:2px 5px;">已对账</span>
+										<span class="span_zt zt_ywc" style="padding: 2px 5px;">已对账</span>
 									</c:when>
 									<c:when test="${c.status==2}">
-										<span class="span_zt zt_ywc" style="padding:2px 5px;">已配送</span>
+										<span class="span_zt zt_ywc" style="padding: 2px 5px;">已配送</span>
 									</c:when>
 									<c:when test="${c.status==3}">
-										<span class="span_zt zt_wwc" style="padding:2px 5px;">未验收</span>
+										<span class="span_zt zt_wwc" style="padding: 2px 5px;">未验收</span>
 									</c:when>
 									<c:when test="${c.status==4}">
-										<span class="span_zt zt_ywc" style="padding:2px 5px;">已验收</span>
+										<span class="span_zt zt_ywc" style="padding: 2px 5px;">已验收</span>
 									</c:when>
 									<c:when test="${c.status==5}">
-										<span class="span_zt zt_wwc" style="padding:2px 5px;">未审核</span>
+										<span class="span_zt zt_wwc" style="padding: 2px 5px;">未审核</span>
 									</c:when>
 									<c:when test="${c.status==6}">
-										<span class="span_zt zt_ywc" style="padding:2px 5px;">已审核</span>
+										<span class="span_zt zt_ywc" style="padding: 2px 5px;">已审核</span>
 									</c:when>
 								</c:choose></td>
 						</tr>
@@ -740,7 +748,7 @@ td {
 							<td colspan="">&nbsp;</td>
 						</tr>
 						<tr>
-							<td rowspan="4" style="width:150px;">&nbsp;&nbsp;<c:if
+							<td rowspan="4" style="width: 150px;">&nbsp;&nbsp;<c:if
 									test="${userRole=='DeliveryUser' || userRole=='Checker'|| 
 								userRole=='Accepter'||userRole=='Supplier'||userRole=='PurchaseFinancial'}">
 									<input type="checkbox" name="dbID" id="dbID" value="${c.id }"
@@ -756,24 +764,23 @@ td {
 										&nbsp;&nbsp;
 								</c:if> <c:if test="${c.productPic!=null && c.productPic!=''}">
 									<div
-										style="display:inline-block;width:106px; height:95px; padding:1px; border:1px solid #d9d9d9;">
-										<img style="width:106px; height:95px;"
+										style="display: inline-block; width: 106px; height: 95px; padding: 1px; border: 1px solid #d9d9d9;">
+										<img style="width: 106px; height: 95px;"
 											src="<%=path%>${c.productPic}" />
 									</div>
 								</c:if></td>
 							<td colspan="2"><span class="span_name">商品名称：</span><span
 								class="span_value">${c.productName}</span></td>
 							<td colspan="2"><span class="span_name">供应商：</span><span
-								class="span_value">${c.supplierName}</span>
-							</td>
+								class="span_value">${c.supplierName}</span></td>
 						</tr>
 						<tr>
-							<td style="width:170px;"><span class="span_name">规格：</span><span
+							<td style="width: 170px;"><span class="span_name">规格：</span><span
 								class="span_value">${c.productModel }</span></td>
-							<td style="width:160px;"><span class="span_name">单价：</span><span
+							<td style="width: 160px;"><span class="span_name">单价：</span><span
 								class="span_red">${c.unitPrice}</span><span class="span_value">元</span>
 							</td>
-							<td style="width:180px;"><c:if
+							<td style="width: 180px;"><c:if
 									test="${userRole=='Supplier'||
 						userRole=='DeliveryUser'||
 						userRole=='PurchaseUser'|| 
@@ -781,8 +788,7 @@ td {
 						userRole=='PurchaseDepart'}">
 									<span class="span_name">配送人：</span>
 									<span class="span_value">${c.deliveryUserName}</span>
-								</c:if>
-							</td>
+								</c:if></td>
 							<td colspan="2"><c:if
 									test="${userRole=='Supplier'||
 						userRole=='DeliveryUser'||
@@ -808,11 +814,10 @@ td {
 										test="${userRole!='DeliveryUser'}">
 							${c.packagesNumber}${c.productUnit}
 						</c:if> <c:if test="${userRole=='DeliveryUser'}">
-										<input type="text" style="width:35%"
+										<input type="text" style="width: 35%"
 											id="txtPackagesNumber${c.id}" value="${c.packagesNumber}" />${c.productUnit}
 						</c:if>
-							</span>
-							</td>
+							</span></td>
 							<td><c:if
 									test="${userRole=='Checker'||
 										userRole=='PurchaseUser'|| 
@@ -837,12 +842,10 @@ td {
 						<tr>
 							<td><span class="span_name">总额：</span><input
 								id="textAmount${c.id}" value="${c.amount}" type="hidden" /><span
-								class="span_red">${c.amount}</span>
-							</td>
+								class="span_red">${c.amount}</span></td>
 							<td><a
 								href="<%=path%>/merchant/processContentInfo.do?dispatchBillId=${c.dispatchBillId}"
-								style="color:red;">查看审核信息</a>
-							</td>
+								style="color: red;">查看审核信息</a></td>
 							<td><c:if
 									test="${userRole=='Accepter'||
 							userRole=='PurchaseFinancial'||
@@ -865,15 +868,13 @@ td {
 											value="${c.acceptTime}" type="date" dateStyle="long"
 											pattern="yyyy-MM-dd" var="time" /> <c:out value="${time }" />
 									</span>
-								</c:if>
-							</td>
+								</c:if></td>
 
 
 						</tr>
 						<tr>
 							<td colspan="6"><span class="span_name">配送地址：</span><span
-								class="span_value">${c.shoppingAddressName}</span>
-							</td>
+								class="span_value">${c.shoppingAddressName}</span></td>
 						</tr>
 						<tr style="border-bottom: 3px solid #fafafa;">
 							<td colspan="6">&nbsp;</td>
@@ -881,13 +882,13 @@ td {
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="pagin" style="float:none;">
+			<div class="pagin" style="float: none;">
 				<!-- 分页 -->
 				<div class="pagin">
 					<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-					<div id="Pagination" class="meneame" style="clear:left"></div>
+					<div id="Pagination" class="meneame" style="clear: left"></div>
 				</div>
 				<%-- <div class="message">
 					共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
@@ -1014,7 +1015,7 @@ td {
 
 					<c:if test="${userRole=='Supplier'||userRole=='PurchaseFinancial'}">
 						<b style="float: left;">指派操作人：</b>&nbsp;&nbsp;
-						 <select id="sUser" style="width: 200px;height: 20px;">
+						 <select id="sUser" style="width: 200px; height: 20px;">
 							<c:forEach items="${users}" var="user">
 								<c:if test="${user.status=='1'}">
 									<option value="${user.id }">${user.userName}(${user.userCode})</option>
@@ -1033,12 +1034,12 @@ td {
 							style="float: left; width: 600px; height: 150px; line-height: 2; resize: none;"
 							id="processContent"></textarea>
 						<br />
-						<input style="width: 70px;height: 20px;margin: 10px 20px;"
+						<input style="width: 70px; height: 20px; margin: 10px 20px;"
 							type="button" class="action orange" id="btnSub"
 							onclick="submit()" value="提交" />
 						<c:if
 							test="${userRole=='Checker' ||userRole=='DeliveryUser'|| userRole=='Accepter'}">
-							<input style="width: 70px;height: 20px;" type="button"
+							<input style="width: 70px; height: 20px;" type="button"
 								class="orange" id="btnReturn" onclick="reject()" value="退回" />
 						</c:if>
 					</c:if>
@@ -1056,6 +1057,6 @@ td {
 		</div>
 	</div>
 
-	<div style="height:1200px;"></div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>

@@ -14,12 +14,17 @@
 			 String num = (String) request.getAttribute("currentPage"); 
 %>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>
-<link href="<%=path%>/css/WeChatcss/public.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
+<link href="<%=path%>/css/WeChatcss/public.css" rel="stylesheet"
+	type="text/css" media="all" />
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords"
+	content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="text/javascript">
 	var currentPage =parseInt(<%=num%>);
 	function viewMore(){
@@ -93,61 +98,70 @@
      }
 </script>
 <style type="text/css">
-p{
-	font-size:90%;
-	margin:9px 0;	}
-table{
-	border-bottom:1px dashed #999; 
-	margin:10px 0;
-	width:100%;
+p {
+	font-size: 90%;
+	margin: 9px 0;
+}
+
+table {
+	border-bottom: 1px dashed #999;
+	margin: 10px 0;
+	width: 100%;
 }
 </style>
 </head>
 <body>
 	<div class="top">
-         <form id="form" action="<%=path%>/weChat/findSettlement.do" method="post">
-            <P><span>结单号：</span><input type="text" name="settlementId"/></P>
-            <P><span>账期：</span>
-            <input style="width:35%" type="text" name="settleTimeStart" onclick="WdatePicker()" readonly="readonly"/>-<input style="width:35%" type="text" name="settleTimeStop" onclick="WdatePicker()" readonly="readonly"/></P>
-            <input style="width:70px; margin-left:70%;" type="button" onclick="$('#form').submit();" value="查询"/>
-         </form>
-         <hr color="#CCCCCC">
-          <c:forEach items="${settlements}" var="it" varStatus="status1">
-         <table>
-         	<tr>
-            	<td style="width:60px;">结算编号：</td>
-                <td>${it.settlementId}</td>
-            </tr>
-            <tr>
-            	<td>结算金额：</td>
-                <td>${it.settleAmount}</td>
-            </tr>
-            <tr>
-            	<td>结算时间：</td>
-                <td>${it.settleTime}</td>
-            </tr>
-            <tr>
-            	<td>结算人：</td>
-                <td>
-                ${it.userName}
-                </td>
-            </tr>
-            <tr>
-            	<td>结算状态：</td>
-                <td>
-                <c:choose>
-					<c:when test="${it.status == 0}">未支付</c:when>
-					<c:when test="${it.status == 1}">支付成功</c:when>
-					<c:when test="${it.status == 2}">支付失败</c:when>
-					<c:when test="${it.status == 3}">银行支付成功</c:when>
-					<c:when test="${it.status == 4}">银行支付失败</c:when>
-					<c:when test="${it.status == 5}">用户取消</c:when>
-				</c:choose>
-                </td>
-            </tr>
-         </table>
-         </c:forEach>
-         <p id="ps" style="text-align:center"><input style="outline:none; background-color:#fff; color:#666" type="button" value="点击查看更多↓" onclick="viewMore();"></p>
-	</div>	
+		<form id="form" action="<%=path%>/weChat/findSettlement.do"
+			method="post">
+			<P>
+				<span>结单号：</span><input type="text" name="settlementId" />
+			</P>
+			<P>
+				<span>账期：</span> <input style="width: 35%" type="text"
+					name="settleTimeStart" onclick="WdatePicker()" readonly="readonly" />-<input
+					style="width: 35%" type="text" name="settleTimeStop"
+					onclick="WdatePicker()" readonly="readonly" />
+			</P>
+			<input style="width: 70px; margin-left: 70%;" type="button"
+				onclick="$('#form').submit();" value="查询" />
+		</form>
+		<hr color="#CCCCCC">
+		<c:forEach items="${settlements}" var="it" varStatus="status1">
+			<table>
+				<tr>
+					<td style="width: 60px;">结算编号：</td>
+					<td>${it.settlementId}</td>
+				</tr>
+				<tr>
+					<td>结算金额：</td>
+					<td>${it.settleAmount}</td>
+				</tr>
+				<tr>
+					<td>结算时间：</td>
+					<td>${it.settleTime}</td>
+				</tr>
+				<tr>
+					<td>结算人：</td>
+					<td>${it.userName}</td>
+				</tr>
+				<tr>
+					<td>结算状态：</td>
+					<td><c:choose>
+							<c:when test="${it.status == 0}">未支付</c:when>
+							<c:when test="${it.status == 1}">支付成功</c:when>
+							<c:when test="${it.status == 2}">支付失败</c:when>
+							<c:when test="${it.status == 3}">银行支付成功</c:when>
+							<c:when test="${it.status == 4}">银行支付失败</c:when>
+							<c:when test="${it.status == 5}">用户取消</c:when>
+						</c:choose></td>
+				</tr>
+			</table>
+		</c:forEach>
+		<p id="ps" style="text-align: center">
+			<input style="outline: none; background-color: #fff; color: #666"
+				type="button" value="点击查看更多↓" onclick="viewMore();">
+		</p>
+	</div>
 </body>
 </html>

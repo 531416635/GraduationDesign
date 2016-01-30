@@ -12,12 +12,14 @@
 	</select>
 	<!-- 查询所有新闻公告的标题用于制作新闻列表 -->
 	<select id="findNewsTitle" parameterType="hashMap" resultType="com.wit.model.News">
-	select
-	id,title,releaseTime,newType
-	from News 
-	where NewType=#{newType} AND Status=1
-	order by News.releaseTime
-	limit #{page.begin},#{page.pageNum};
+		select
+		id,title,releaseTime,newType
+		from News
+		where NewType=#{newType}
+		AND Status=1
+		order by News.releaseTime
+		limit
+		#{page.begin},#{page.pageNum};
 	</select>
 	<!-- 查询新闻列表中标题数量 -->
 	<select id="findTitleRows" parameterType="Integer" resultType="Integer">
@@ -90,30 +92,37 @@
 		order by releaseTime desc
 		limit #{top}
 	</select>
-	<!-- 门户商户控制台-->
-  <select id="findAllNews"  resultType="com.wit.model.News">
-	select
-	id,title,releaseTime,newType
-	from News 
-	where FIND_IN_SET(NewType,'1,2') AND Status=1
-	order by News.releaseTime
-	limit 7
+	<!-- 门户商户控制台 -->
+	<select id="findAllNews" resultType="com.wit.model.News">
+		select
+		id,title,releaseTime,newType
+		from News
+		where FIND_IN_SET(NewType,'1,2')
+		AND Status=1
+		order by News.releaseTime
+		limit 7
 	</select>
-	
-	<!--新闻搜索-->
-	<select id="searchNewsInfo" resultType="com.wit.model.News" parameterType="hashMap">
-	SELECT ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
- 	FROM news WHERE NewType = #{newType} AND status = 1  AND Title LIKE CONCAT('%',IFNULL(#{title},'%'),'%')
- 	order by ReleaseTime
- 	limit #{page.begin},#{page.pageNum};
+
+	<!--新闻搜索 -->
+	<select id="searchNewsInfo" resultType="com.wit.model.News"
+		parameterType="hashMap">
+		SELECT
+		ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
+		FROM news WHERE NewType = #{newType} AND status = 1 AND Title LIKE
+		CONCAT('%',IFNULL(#{title},'%'),'%')
+		order by ReleaseTime
+		limit
+		#{page.begin},#{page.pageNum};
 	</select>
-	
-	<!--新闻搜索行数  -->
+
+	<!--新闻搜索行数 -->
 	<select id="searchNewsRows" resultType="int" parameterType="hashMap">
-	SELECT COUNT(asd.id) FROM 
-	(SELECT ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
- 	FROM news WHERE NewType = #{newType} AND status = 1  AND Title LIKE CONCAT('%',IFNULL(#{title},'%'),'%')
- 	order by ReleaseTime)asd
+		SELECT COUNT(asd.id) FROM
+		(SELECT
+		ID,Title,Content,ReleaseTime,ReleaseAging,Publishers,`Status`,NewType,NewsIndex
+		FROM news WHERE NewType = #{newType} AND status = 1 AND Title LIKE
+		CONCAT('%',IFNULL(#{title},'%'),'%')
+		order by ReleaseTime)asd
 	</select>
 </mapper>
 

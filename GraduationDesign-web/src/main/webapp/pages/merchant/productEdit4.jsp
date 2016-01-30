@@ -1,4 +1,6 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,16 +15,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>一起采</title>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/detail.css" />
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/ajaxfileupload.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
-<link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
-<script type="text/javascript" src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
-<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">
+	<title>一起采</title>
+	<link rel="stylesheet" type="text/css"
+		href="<%=path%>/css/frontcss/houtai.css" />
+	<link rel="stylesheet" type="text/css"
+		href="<%=path%>/css/frontcss/detail.css" />
+	<script type="text/javascript"
+		src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/ajaxfileupload.js"></script>
+	<script type="text/javascript"
+		src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+	<link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
+	<script type="text/javascript"
+		src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
+	<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet"
+		type="text/css" />
+	<script type="text/javascript">
 	   $(function(){
 	 	var flag = false; //标识生成分页时是否生成查询默认页商品;
 	  	var json = eval(<%=jsonPages%>);
@@ -143,7 +151,7 @@
 	} 
 	}
 </script>
-<style type="text/css">
+	<style type="text/css">
 #qr {
 	background-color: orange;
 	height: 25px;
@@ -153,32 +161,37 @@
 	font-size: 14px;
 	color: white;
 }
-td{
+
+td {
 	text-align: center;
 }
-th{
+
+th {
 	background-color: #e5e5e5;
 	border: 1px solid #999;
 }
-tr{
+
+tr {
 	border: 0.5px solid #999;
 }
-img{
+
+img {
 	margin-top: 3px;
 }
 </style>
 </head>
 <body>
 	<div class="inner_div">
-			<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span class="lo2"> 供应申请管理</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span
+				class="lo2"> 供应申请管理</span>
 		</div>
 		<div class="detail_list">
 			<ul id="tabs">
 				<!-- <li><a href="#" title="tab1">新品申请管理</a>
 				</li> -->
-				<li><a href="#" title="tab2">供应申请管理</a>
-				</li>
+				<li><a href="#" title="tab2">供应申请管理</a></li>
 
 			</ul>
 			<div id="content">
@@ -194,16 +207,18 @@ img{
 						<tbody>
 							<c:forEach items="${productList}" var="p">
 								<tr>
-								<td>${p.productName}</td>
-								<td align="center"><fmt:formatDate value="${p.requestTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td>
-								<c:choose>
-								<c:when test="${p.status==3}"><a  href="javascript:showProductSafetyPic(${p.id},${p.productId});">待审批</a></c:when>
-								<c:when test="${p.status==0 or p.status==1}">审批通过</c:when>
-								<%-- <c:when test="${p.status==2}"><a href="javascript:showProductSafetyPic(${p.id},${p.productId});">审批中</a></c:when> --%>
-								<c:when test="${p.status==4}">审批无效</c:when>
-								</c:choose>
-								</td>
+									<td>${p.productName}</td>
+									<td align="center"><fmt:formatDate
+											value="${p.requestTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+									<td><c:choose>
+											<c:when test="${p.status==3}">
+												<a
+													href="javascript:showProductSafetyPic(${p.id},${p.productId});">待审批</a>
+											</c:when>
+											<c:when test="${p.status==0 or p.status==1}">审批通过</c:when>
+											<%-- <c:when test="${p.status==2}"><a href="javascript:showProductSafetyPic(${p.id},${p.productId});">审批中</a></c:when> --%>
+											<c:when test="${p.status==4}">审批无效</c:when>
+										</c:choose></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -292,11 +307,11 @@ img{
 				</div> --%>
 
 			</div>
-			 <div id="page">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 
-			</div>				
+			<div id="page">
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

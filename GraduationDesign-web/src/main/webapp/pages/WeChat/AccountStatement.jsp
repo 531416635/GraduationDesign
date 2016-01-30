@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,9 +14,12 @@
 			 String num = (String) request.getAttribute("currentPage"); 
 %>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>
-<link href="<%=path%>/css/WeChatcss/public.css" rel="stylesheet" type="text/css" media="all"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />>
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
+<link href="<%=path%>/css/WeChatcss/public.css" rel="stylesheet"
+	type="text/css" media="all" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+>
 <script type="text/javascript">
     window.onload = function() { 
 		var newH=window.screen.height-60;
@@ -70,21 +73,23 @@ var currentPage =parseInt(<%=num%>);
      }
 </script>
 <style type="text/css">
-p{
-	font-size:90%;
-	margin:9px 0;	}
-table{
-	border-bottom:1px dashed #999; 
-	margin:10px 0;
-	width:100%;
+p {
+	font-size: 90%;
+	margin: 9px 0;
+}
+
+table {
+	border-bottom: 1px dashed #999;
+	margin: 10px 0;
+	width: 100%;
 }
 </style>
 </head>
 <body>
 
 	<div class="top">
-	 <P style="text-align:center; font-size:120%;">对账单</P>
-<!--          <form>
+		<P style="text-align: center; font-size: 120%;">对账单</P>
+		<!--          <form>
            
             <P><span>个人账单金额：</span><input style="width:70%" type="text"/></P>
              <P>
@@ -96,26 +101,30 @@ table{
                 <input style="width:70px; margin-left:10%;" type="button" value="查询"/>
             </P>
          </form> -->
-         <hr color="#CCCCCC">
-         <c:forEach items="${accountStatements}" var="c">
-         <table>
-         	<tr>
-            	<td style="width:100px;">账单月份：</td>
-                <td><%-- <fmt:formatDate value="${c.startTime}" type="date"
+		<hr color="#CCCCCC">
+		<c:forEach items="${accountStatements}" var="c">
+			<table>
+				<tr>
+					<td style="width: 100px;">账单月份：</td>
+					<td>
+						<%-- <fmt:formatDate value="${c.startTime}" type="date"
 										pattern="yyyy-MM-dd" var="time" /> <c:out
-										value="${time}" /> --%>
-										<fmt:formatDate value="${c.startTime}" type="both" pattern="yyyy-MM-dd"/>
-										</td>
-            </tr>
-            <tr>
-            	<td>本期账单金额：</td>
-                <td>${c.amount}</td>
-            </tr>
-         </table>
-</c:forEach>
-         
-		
-        <p id="ps" style="text-align:center"><input style="outline:none; background-color:#fff; color:#666" type="button" value="点击查看更多↓" onclick="viewMore();"></p>
-	</div>	
+										value="${time}" /> --%> <fmt:formatDate value="${c.startTime}"
+							type="both" pattern="yyyy-MM-dd" />
+					</td>
+				</tr>
+				<tr>
+					<td>本期账单金额：</td>
+					<td>${c.amount}</td>
+				</tr>
+			</table>
+		</c:forEach>
+
+
+		<p id="ps" style="text-align: center">
+			<input style="outline: none; background-color: #fff; color: #666"
+				type="button" value="点击查看更多↓" onclick="viewMore();">
+		</p>
+	</div>
 </body>
 </html>

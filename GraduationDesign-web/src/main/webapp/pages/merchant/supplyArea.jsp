@@ -22,7 +22,8 @@
 	href="<%=path%>/css/frontcss/public.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <script type="text/javascript"
 	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
@@ -287,14 +288,23 @@ var addressIdss = new Array(); //地址数组保存便于更改与拼接保存
 	});
 </script>
 <style type="text/css">
-.trs1{text-align:center}
-select{width: 150px; height: 25px;margin-right: 5px;}
-th{
-   background-color: #e5e5e5;
-   border: 0.5px solid #999;
+.trs1 {
+	text-align: center
 }
-td{
-   height: 50px;
+
+select {
+	width: 150px;
+	height: 25px;
+	margin-right: 5px;
+}
+
+th {
+	background-color: #e5e5e5;
+	border: 0.5px solid #999;
+}
+
+td {
+	height: 50px;
 }
 </style>
 </head>
@@ -303,8 +313,10 @@ td{
 
 
 	<div class="inner_div">
-<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2"> 地址管理 ></span><span class="lo2"> 供应地域</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2"> 地址管理 ></span><span
+				class="lo2"> 供应地域</span>
 		</div>
 		<div class="detail_list">
 			<ul id="tabs">
@@ -321,22 +333,18 @@ td{
 							供应区域选择&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">增加供应区域</a>&nbsp;<a
 								href="#">修改</a>
 						</p> -->
-						<span id="span0">
-						<select id="province0" name="province"
+						<span id="span0"> <select id="province0" name="province"
 							onchange="checkSs(this.value,0)">
 								<option value="">请选择省份</option>
 								<c:forEach items="${dictionarys}" var="d">
 									<option value="${d.id}">${d.dicName}</option>
 								</c:forEach>
-						</select>
-						 <select id="city0" name="city"
+						</select> <select id="city0" name="city"
 							onchange="if(this.value!=1){checkss(this.value,0);}">
 								<option value="">请选择城市</option>
-						</select> 
-						<!-- <select id="district0" name="district" >
+						</select> <!-- <select id="district0" name="district" >
 								<option value="">请选择地区</option>
-						</select> --> 
-					<!-- 	<input id="detail0" type="text" name="detail0" value="请输入详细地址"
+						</select> --> <!-- 	<input id="detail0" type="text" name="detail0" value="请输入详细地址"
 							onfocus="if(this.value=='请输入详细地址') {this.value='';}"
 							onblur="if(this.value=='') {this.value='请输入详细地址';}"
 							style="color:red;" /> 
@@ -345,42 +353,47 @@ td{
 							onfocus="if(this.value=='请输入地址简称 :如(关谷食堂)') {this.value='';}"
 							onblur="if(this.value=='') {this.value='请输入地址简称 :如(关谷食堂)';}"
 							style="color:red;" /> -->
-						<ul id="district0" style="display: none;"></ul><br><input style="width: 70px; height: 20px;margin-left:0px;display:none;" class="orange" type="button" id="allSelect0" onclick="allSelect(this);"
-							value="全选"><span id="SpanInfo0" style="color:red; display: none;">*至少填写一个区域*</span>
+							<ul id="district0" style="display: none;"></ul> <br> <input
+							style="width: 70px; height: 20px; margin-left: 0px; display: none;"
+							class="orange" type="button" id="allSelect0"
+							onclick="allSelect(this);" value="全选"><span
+							id="SpanInfo0" style="color: red; display: none;">*至少填写一个区域*</span>
 						</span>
-						</div>
-							<!-- <input style="width: 70px; height: 20px;margin-left:4px;" class="orange" type="button" id="sele_add"
-							value="新增地址"> --> <br><input style="width: 70px; height: 20px;" class="orange" type="button" onclick="finish();"
-							value="提交" />
 					</div>
-				
-				</form>
-				<table style="width:100%; margin-top: 5px;">
-				<tr>
-				<th>省</th>
-				<th>市</th>
-				<th>区</th>
-				<th style="width: 70px;">操作</th>
-				</tr>
-				<c:forEach  items="${shoppingAddress}" var="sd">
-				<tr class="trs1">
-				<td>${sd.provinceName}</td>
-				<td>${sd.cityName }</td>
-				<td>${sd.districtName }</td>
-				<td><button style="width: 40px; height: 20px;" class="orange" onclick="deleteAddress(${sd.id});">删除</button></td>
-				</tr>
-				</c:forEach>
-				</table>
+					<!-- <input style="width: 70px; height: 20px;margin-left:4px;" class="orange" type="button" id="sele_add"
+							value="新增地址"> -->
+					<br> <input style="width: 70px; height: 20px;" class="orange"
+						type="button" onclick="finish();" value="提交" />
 			</div>
+
+			</form>
+			<table style="width: 100%; margin-top: 5px;">
+				<tr>
+					<th>省</th>
+					<th>市</th>
+					<th>区</th>
+					<th style="width: 70px;">操作</th>
+				</tr>
+				<c:forEach items="${shoppingAddress}" var="sd">
+					<tr class="trs1">
+						<td>${sd.provinceName}</td>
+						<td>${sd.cityName }</td>
+						<td>${sd.districtName }</td>
+						<td><button style="width: 40px; height: 20px;" class="orange"
+								onclick="deleteAddress(${sd.id});">删除</button></td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 	</div>
-			<!-- 分页 -->
-			<div class="pagin" style="clear:left">
-			<!-- <div >
+	</div>
+	<!-- 分页 -->
+	<div class="pagin" style="clear: left">
+		<!-- <div >
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
 	<script>
 		/* $(document).ready(function() {
 			$("#content div").hide(); // Initially hide all content

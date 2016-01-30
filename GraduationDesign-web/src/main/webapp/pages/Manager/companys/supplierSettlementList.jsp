@@ -101,9 +101,7 @@
 				<li class=""><span><img src="images/t01.png" /> </span><a
 					href="/ssm/toAddBuyer.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
-							src="images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 
@@ -124,39 +122,35 @@
 			</thead>
 			<tbody>
 
-				 <c:forEach items="${settlement}" var="s">
+				<c:forEach items="${settlement}" var="s">
 					<tr>
-						<td><input type="checkbox" name="box" value="${s.ID}"/>
-						</td>
+						<td><input type="checkbox" name="box" value="${s.ID}" /></td>
 						<td style="display: none">${s.CompanyID}</td>
 						<td style="display: none">${s.ID}</td>
 						<td>${s.OrderID}</td>
 						<td><a href="/ssm/findBalanceById.do?id=${s.CompanyID}">${s.CompanyName}</a>
 						</td>
 						<td>${s.OrderTime}</td>
-						<td>
-						<c:choose>
-							<c:when test="${s.Status==0}">
+						<td><c:choose>
+								<c:when test="${s.Status==0}">
 								生成订单
 							</c:when>
-							<c:when test="${s.Status==1}">
+								<c:when test="${s.Status==1}">
 								处理中
 							</c:when>
-							<c:when test="${s.Status==2}">
+								<c:when test="${s.Status==2}">
 								交易完成
 							</c:when>
-						</c:choose>
-						</td>
-						<td><a
-							class="tablelink" href="/ssm/toUpdateBuyer.do?id=${s.ID}">修改</a>
-							<input type="button" value="删除"
-							onclick="location.href='deleteBuyer.do?id=${s.ID}';" />
-						</td> 
+							</c:choose></td>
+						<td><a class="tablelink"
+							href="/ssm/toUpdateBuyer.do?id=${s.ID}">修改</a> <input
+							type="button" value="删除"
+							onclick="location.href='deleteBuyer.do?id=${s.ID}';" /></td>
 					</tr>
-				</c:forEach>  
-				
-				
-				
+				</c:forEach>
+
+
+
 			</tbody>
 		</table>
 

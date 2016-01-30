@@ -39,12 +39,13 @@ function print()
 } */
 </script>
 <style type="text/css">
- #yangs{
+#yangs {
 	/* position: absolute; */
-    width:1128px;
+	width: 1128px;
 	margin: 10px auto;
-} 
-#title{
+}
+
+#title {
 	font-size: 24px;
 	font-style: inherit;
 }
@@ -52,20 +53,20 @@ function print()
 </head>
 <body>
 	<div id="yangs">
-	<%-- 	<textarea id="content" cols="140"  value="${faq.answer}"></textarea> --%>
-		<div id="content" cols="100" name="answer" style="width:100%;">
-			<input style="width:100%; text-align: center;" type="text"
+		<%-- 	<textarea id="content" cols="140"  value="${faq.answer}"></textarea> --%>
+		<div id="content" cols="100" name="answer" style="width: 100%;">
+			<input style="width: 100%; text-align: center;" type="text"
 				name="title" id="title" value="${faq.title}" readonly="readonly" /><br />
-			<div style="text-align:center;">${faq.answer}</div>
+			<div style="text-align: center;">${faq.answer}</div>
 			<c:if test="${faq.title=='采购商操作说明'}">
-				<div style="text-align:center;">
-					<a style="font-size:16px;color:blue;"
+				<div style="text-align: center;">
+					<a style="font-size: 16px; color: blue;"
 						href="<%=path%>/web/downloadPDF.do?filePath=/editor/采购商操作手册.pdf">点击下载链接进行操作说明下载</a>
 				</div>
 			</c:if>
 			<c:if test="${faq.title=='供应商操作说明'}">
-				<div style="text-align:center;">
-					<a  style="font-size:16px;color:blue;"
+				<div style="text-align: center;">
+					<a style="font-size: 16px; color: blue;"
 						href="<%=path%>/web/downloadPDF.do?filePath=/editor/供应商用户操作手册.pdf">点击下载链接进行操作说明下载</a>
 				</div>
 			</c:if>

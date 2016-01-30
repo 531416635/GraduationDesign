@@ -17,12 +17,12 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/redjs/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <style type="text/css">
-
- div.meneame span {
-	display:inline;
+div.meneame span {
+	display: inline;
 }
 </style>
 <script type="text/javascript">
@@ -186,19 +186,16 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 
 			<ul class="toolbar">
 				<li><a class="tablelink" href="/ssm/products/toAddProduct.do"><span><img
-							src="../images/t01.png" />
-					</span>添加</a>
-				</li>
+							src="../images/t01.png" /> </span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="../images/t03.png" />
-					</span>删除</a>
-				</li>
-				<li><form action="<%=path %>/products/productsListByName.do" method="post">
-				<input type="hidden" id="productName1" value="${productName }" />
-				<input type="text" name="productName" placeholder="请输入商品名称" id="productName" value="${productName }" />
-				<input type="submit" value="点击搜索"  name="submitButton"/>
-				</form>
-				</li>
+							src="../images/t03.png" /> </span>删除</a></li>
+				<li><form action="<%=path %>/products/productsListByName.do"
+						method="post">
+						<input type="hidden" id="productName1" value="${productName }" />
+						<input type="text" name="productName" placeholder="请输入商品名称"
+							id="productName" value="${productName }" /> <input type="submit"
+							value="点击搜索" name="submitButton" />
+					</form></li>
 			</ul>
 		</div>
 
@@ -219,16 +216,15 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 			</thead>
 			<tbody>
 
-				<c:forEach items="${products}" var="c" >
+				<c:forEach items="${products}" var="c">
 					<tr>
 						<td><input type="checkbox" name="box" onclick="checkBox();"
-							value="${c.id}" />
-						</td>
+							value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td>${c.productName}</td>
 						<td>${c.productBrand}</td>
-						<input type="hidden" id="pt${c.id}" value="${c.productType}"/>
-						<td align="right">${c.unitPrice} &nbsp;&nbsp;</td>
+						<input type="hidden" id="pt${c.id}" value="${c.productType}" />
+						<td align="right">${c.unitPrice}&nbsp;&nbsp;</td>
 						<td><c:forEach items="${c.productCategorys}" var="m"
 								varStatus="s">
 								<c:choose>
@@ -252,13 +248,13 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			<div class="pagin">
+		<!-- 分页 -->
+		<div class="pagin">
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 		<%-- <div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
@@ -318,7 +314,6 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 		<!-- <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>  -->
-
 </body>
 
 </html>

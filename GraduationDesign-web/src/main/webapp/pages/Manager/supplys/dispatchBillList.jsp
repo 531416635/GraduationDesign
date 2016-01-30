@@ -201,17 +201,18 @@ div.meneame span {
 				</c:forEach>
 			</tbody>
 		</table>
- 		 <!-- 分页 -->
- 		 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
+		<!-- 分页 -->
+		<div class="message">
+			共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+				style="color: blue;">${page.currentPage}&nbsp;</i>页
 		</div>
-			<div class="pagin">
-		<!-- 	<div class="message">
+		<div class="pagin">
+			<!-- 	<div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-	<%-- 	<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+		<%-- 	<div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
 			</div>

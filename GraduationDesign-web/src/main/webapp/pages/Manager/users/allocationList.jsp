@@ -50,7 +50,7 @@ function showmenu(menuid) {
 
 </head>
 
-<body style="background:#f0f9fd;">
+<body style="background: #f0f9fd;">
 
 	<form action="MenuRightEdit.do" name="MenuRightForm" method="post">
 		<input type="hidden" id="hidRoleID" name="hidRoleID"
@@ -80,10 +80,10 @@ function showmenu(menuid) {
 													value="${menuItem.id}">${menuItem.menuName} </input>
 											</c:if> <c:if test="${menuItem.isChecked==true}">
 												<input name="ckbMenuID" type="checkbox"
-													value="${menuItem.id}" checked="checked">${menuItem.menuName} </input>
-											</c:if> <i></i>
-										</li>
-										<ul id="cnd${menuItem.id}" style="display:none;">
+													value="${menuItem.id}" checked="checked">${menuItem.menuName}
+												</input>
+											</c:if> <i></i></li>
+										<ul id="cnd${menuItem.id}" style="display: none;">
 											<c:forEach items="${menuLists}" var="pageItem">
 												<c:if test="${pageItem.parentMenu==menuItem.id}">
 													<li onclick="showmenu(${pageItem.id})"><nextss></nextss>
@@ -92,10 +92,10 @@ function showmenu(menuid) {
 																value="${pageItem.id}">${pageItem.menuName}</input>
 														</c:if> <c:if test="${pageItem.isChecked==true}">
 															<input name="ckbMenuID" type="checkbox"
-																value="${pageItem.id}" checked="checked">${pageItem.menuName} </input>
-														</c:if> <i></i>
-													</li>
-													<ul id="cnd${pageItem.id}" style="display:none;">
+																value="${pageItem.id}" checked="checked">${pageItem.menuName}
+															</input>
+														</c:if> <i></i></li>
+													<ul id="cnd${pageItem.id}" style="display: none;">
 														<c:forEach items="${menuLists}" var="rightItem">
 															<c:if test="${rightItem.parentMenu==pageItem.id}">
 																<li><nextss1></nextss1> <c:if
@@ -106,21 +106,19 @@ function showmenu(menuid) {
 																		<input name="ckbMenuID" type="checkbox"
 																			value="${rightItem.id}" checked="checked">${rightItem.menuName}
 																		</input>
-																	</c:if> <i></i>
-																</li>
-																	<ul id="cnd${rightItem.id}" style="display:none;">
-																		<c:forEach items="${menuLists}" var="yewuItem">
-																			<c:if test="${yewuItem.parentMenu==rightItem.id}">
-																				<li><nextss2></nextss2> <c:if
-																						test="${yewuItem.isChecked==false}">
+																	</c:if> <i></i></li>
+																<ul id="cnd${rightItem.id}" style="display: none;">
+																	<c:forEach items="${menuLists}" var="yewuItem">
+																		<c:if test="${yewuItem.parentMenu==rightItem.id}">
+																			<li><nextss2></nextss2> <c:if
+																					test="${yewuItem.isChecked==false}">
 																					<input name="ckbMenuID" type="checkbox"
 																						value="${yewuItem.id}">${yewuItem.menuName}</input>
 																				</c:if> <c:if test="${yewuItem.isChecked==true}">
 																					<input name="ckbMenuID" type="checkbox"
 																						value="${yewuItem.id}" checked="checked">${yewuItem.menuName}
 																					</input>
-																				</c:if> <i></i>
-																			</li>
+																				</c:if> <i></i></li>
 																		</c:if>
 																	</c:forEach>
 																</ul>

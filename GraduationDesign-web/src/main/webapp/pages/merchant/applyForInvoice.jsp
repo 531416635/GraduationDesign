@@ -23,12 +23,11 @@
 <script type="text/javascript">
 </script>
 <style type="text/css">
-#chakan{
+#chakan {
 	margin-left: 10%;
 	margin-top: 5%;
 	font-size: 18px;
 	line-height: 25px;
-	
 }
 </style>
 </head>
@@ -37,23 +36,19 @@
 
 	<div class="inner_div">
 		<div id="chakan">
-		发票编号：${ic.invoiceId}<br/>
-		发票抬头：${ic.invoiceTitle}<br/>
-		发票类型：
-		<c:choose>
-		<c:when test="${ic.invoiceType == 1}">增值税发票</c:when>
-		<c:when test="${ic.invoiceType == 2}">普通发票</c:when>
-		<c:when test="${ic.invoiceType == 3}">专业发票</c:when>
-		</c:choose>
-		<br/>
-		发票状态：
-		<c:choose>
-		<c:when test="${ic.status==0}">发票已申请</c:when>
-		<c:when test="${ic.status==1}">发票已寄出</c:when>
-		<c:when test="${ic.status==2}">发票已签收</c:when>
-		</c:choose><br/>
-		发票金额：${ic.amount}<br/>
-		创建时间：${ic.createTime}<br/>
+			发票编号：${ic.invoiceId}<br /> 发票抬头：${ic.invoiceTitle}<br /> 发票类型：
+			<c:choose>
+				<c:when test="${ic.invoiceType == 1}">增值税发票</c:when>
+				<c:when test="${ic.invoiceType == 2}">普通发票</c:when>
+				<c:when test="${ic.invoiceType == 3}">专业发票</c:when>
+			</c:choose>
+			<br /> 发票状态：
+			<c:choose>
+				<c:when test="${ic.status==0}">发票已申请</c:when>
+				<c:when test="${ic.status==1}">发票已寄出</c:when>
+				<c:when test="${ic.status==2}">发票已签收</c:when>
+			</c:choose>
+			<br /> 发票金额：${ic.amount}<br /> 创建时间：${ic.createTime}<br />
 		</div>
 	</div>
 

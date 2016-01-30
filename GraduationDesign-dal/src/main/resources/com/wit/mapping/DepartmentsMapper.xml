@@ -7,9 +7,11 @@
 		SELECT
 		d.ID, d.CompanyID, c.CompanyName,
 		d.DepartmentName,d.Status, d.CreateBy, d.CreateAt,u.UserName
-		FROM Departments d left
+		FROM
+		Departments d left
 		join Companys c on d.CompanyID=c.ID
-		left join Users u on d.CreateBy =u.ID
+		left join Users u
+		on d.CreateBy =u.ID
 		order by d.ID
 		limit #{begin},#{pageNum}
 	</select>
@@ -19,42 +21,49 @@
 		FROM Departments
 	</select>
 	<select id="findCompanysId" resultType="hashMap">
-		select distinct c.CompanyName,d.CompanyID from Companys c
-		left join Departments d on c.ID=d.CompanyID where c.ID=d.CompanyID
+		select distinct
+		c.CompanyName,d.CompanyID from Companys c
+		left join Departments d on
+		c.ID=d.CompanyID where c.ID=d.CompanyID
 		group by c.CompanyName
 	</select>
 	<!--部门ID关联查询岗位 -->
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.Departments">
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Departments">
 		SELECT
 		d.departmentName
 		FROM Departments d left join Companys
-		c on d.companyId=c.id
+		c on
+		d.companyId=c.id
 		where d.companyId=#{c.id}
 	</select>
 
 
 	<!--根据ID查找 -->
-	<select id="findByIds" parameterType="Integer"
-		resultType="hashMap">
+	<select id="findByIds" parameterType="Integer" resultType="hashMap">
 		SELECT
-		d.ID, d.CompanyID, d.DepartmentName, d.Status, d.CreateBy,c.CompanyName,u.UserName,
+		d.ID, d.CompanyID, d.DepartmentName, d.Status,
+		d.CreateBy,c.CompanyName,u.UserName,
 		d.CreateAt
 		FROM Departments d
-		left join Companys c on d.CompanyID=c.ID
-		left join Users u on d.CreateBy =u.ID
+		left
+		join Companys c on d.CompanyID=c.ID
+		left join Users u on d.CreateBy
+		=u.ID
 		WHERE
 		d.ID=#{id}
 	</select>
 
 	<!--查询公司的所有部门 -->
-	<select id="findDepartmentByCompanyId" parameterType="Integer" resultType="com.wit.model.Departments">
+	<select id="findDepartmentByCompanyId" parameterType="Integer"
+		resultType="com.wit.model.Departments">
 		SELECT
-		d.ID, CompanyID, c.CompanyName, DepartmentName,d.Status
-		FROM Departments d left join Companys c on d.CompanyID=c.ID
+		d.ID, CompanyID, c.CompanyName,
+		DepartmentName,d.Status
+		FROM Departments d left join Companys c on
+		d.CompanyID=c.ID
 		where d.CompanyID=#{companyId}
 		order by d.ID
-		
+
 
 	</select>
 
@@ -62,9 +71,9 @@
 	<insert id="addDepartment" parameterType="com.wit.model.Departments">
 		INSERT INTO Departments
 		(
-		 CompanyID, DepartmentName, Status, CreateBy, CreateAt
+		CompanyID, DepartmentName, Status, CreateBy, CreateAt
 		) VALUES (
-		 #{companyId}, #{departmentName}, #{status}, #{createBy},
+		#{companyId}, #{departmentName}, #{status}, #{createBy},
 		now()
 		)
 	</insert>
@@ -79,7 +88,8 @@
 		ID=#{id}
 	</update>
 	<update id="updateDepartmentName" parameterType="com.wit.model.Departments">
-		UPDATE Departments
+		UPDATE
+		Departments
 		SET
 		DepartmentName=#{departmentName}
 		WHERE

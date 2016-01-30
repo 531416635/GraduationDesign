@@ -100,10 +100,11 @@
 		where f.UserID =#{userId}
 		and
 		f.FavoriteType=#{favoriteType}
-		
-			GROUP BY f.ProductID
-		
-		order by f.ID limit #{page.begin},#{page.pageNum};
+
+		GROUP BY f.ProductID
+
+		order by f.ID limit
+		#{page.begin},#{page.pageNum};
 	</select>
 
 	<select id="findFavoriteInfoRows" parameterType="hashMap"

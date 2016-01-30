@@ -50,7 +50,8 @@
 		on cb.CompanyID = c.ID
 		where cb.status!=3
 		order by id
-		limit #{begin},#{pageNum}
+		limit
+		#{begin},#{pageNum}
 	</select>
 	<select id="findBuyerName" parameterType="java.lang.Integer"
 		resultType="com.wit.model.Companys">
@@ -160,6 +161,7 @@
 	<!-- 根据公司ID查询账户资金 -->
 	<select id="findBalanceByCompanyId" parameterType="Integer"
 		resultType="BigDecimal">
-		SELECT IFNULL(Balance,0) FROM CompanyBalance WHERE CompanyID=#{companyId} and Currency=#{currency}
+		SELECT IFNULL(Balance,0) FROM CompanyBalance WHERE
+		CompanyID=#{companyId} and Currency=#{currency}
 	</select>
 </mapper>

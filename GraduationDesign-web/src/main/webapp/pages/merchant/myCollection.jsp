@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html PUBliC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,19 +25,24 @@
 	href="<%=path%>/css/frontcss/houtai.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <%-- <script type="text/javascript" src="<%=path%>/js/redjs/jquery.js"></script> --%>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
-<script type="text/javascript" src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
+<script type="text/javascript"
+	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
 <link type="text/css" rel="stylesheet"
 	href="<%=path%>/css/redcss/selector4.css" />
 <style type="text/css">
 #ss {
 	margin-left: 50%;
 }
-td{
-    text-align: center;
+
+td {
+	text-align: center;
 }
 </style>
 <script type="text/javascript">
@@ -351,47 +356,52 @@ function shoppingAddressClick(ShoppingCartId){
 }			
 </script>
 <style type="text/css">
-#th1{
-	width:50px;
+#th1 {
+	width: 50px;
 }
-#th2{
-	width:250px;
+
+#th2 {
+	width: 250px;
 }
-.divHead{
-background-color:#F5F5F5;
-height:50px;
-border:2px solid #DFDFDF;
-margin-bottom:10px;
+
+.divHead {
+	background-color: #F5F5F5;
+	height: 50px;
+	border: 2px solid #DFDFDF;
+	margin-bottom: 10px;
 }
-#tabs{
-   list-style: outside none none;
-    margin: 0px;
-    overflow: hidden;
-    padding: 0;
-    width: 100%;
-   
+
+#tabs {
+	list-style: outside none none;
+	margin: 0px;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
 }
-.location{
-margin-bottom:10px;
+
+.location {
+	margin-bottom: 10px;
 }
-tr{
-border-bottom:1px solid #999999;
+
+tr {
+	border-bottom: 1px solid #999999;
 }
+
 td {
 	text-align: center;
 	height: 100px;
 }
-.gray{
-	background-color:#f4f4f4;
-    border: medium none;
-    border-radius: 3px;
-    color: #b5b5b5;
-    font-size: 14px;
-    height: 30px;
-    width: 120px;
-    padding:1px 12px;
-    border:1px solid #e2e3e4;
 
+.gray {
+	background-color: #f4f4f4;
+	border: medium none;
+	border-radius: 3px;
+	color: #b5b5b5;
+	font-size: 14px;
+	height: 30px;
+	width: 120px;
+	padding: 1px 12px;
+	border: 1px solid #e2e3e4;
 }
 </style>
 </head>
@@ -415,22 +425,31 @@ td {
 				</span><br />
 			</div>
 		</div> --%>
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">商品管理 ></span><span class="lo2">商品收藏</span>
-		</div><br/>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">商品管理 ></span><span
+				class="lo2">商品收藏</span>
+		</div>
+		<br />
 		<div class="detail_list">
 			<ul id="tabs">
-				<li><a href="<%=path %>/merchant/myCollection.do?favoriteType=2" title="tab1">现货收藏</a></li>
-				<li><a href="<%=path %>/merchant/myCollection.do?favoriteType=1" title="tab2"  style="background:#9a1101 none repeat scroll 0 0;color:#fff;">商品收藏</a></li>
+				<li><a
+					href="<%=path %>/merchant/myCollection.do?favoriteType=2"
+					title="tab1">现货收藏</a></li>
+				<li><a
+					href="<%=path %>/merchant/myCollection.do?favoriteType=1"
+					title="tab2"
+					style="background: #9a1101 none repeat scroll 0 0; color: #fff;">商品收藏</a></li>
 			</ul>
 			<div id="content">
 				<div id="tab1">
-					<input style="width: 80px; height: 30px; margin-bottom: 3px;" type="button" class="orange" value="删除所选项" onclick="delFavorite()" />
-					<table width="100%"cellspacing="0">
-						<thead >
+					<input style="width: 80px; height: 30px; margin-bottom: 3px;"
+						type="button" class="orange" value="删除所选项" onclick="delFavorite()" />
+					<table width="100%" cellspacing="0">
+						<thead>
 							<tr>
-								<th style="width: 40px;"><input name="" id="checkAll1" type="checkbox"
-									onclick="checkAll(1);" />全选</th>
+								<th style="width: 40px;"><input name="" id="checkAll1"
+									type="checkbox" onclick="checkAll(1);" />全选</th>
 								<th>商品图片</th>
 								<th>商品名称</th>
 								<th id="th1">数量</th>
@@ -443,38 +462,38 @@ td {
 							<c:forEach items="${list}" var="c">
 								<tr>
 									<td><input type="checkbox" name="box1" value="${c.ID}"
-										onclick="checkBox(1);" />
-									</td>
+										onclick="checkBox(1);" /></td>
 									<td><img title="商品图片" src="<%=path%>${c.FilePath}"
-										style="height: 50px;width: 55px;margin-left: 20px;" />
-									</td>
+										style="height: 50px; width: 55px; margin-left: 20px;" /></td>
 									<td>${c.ProductName}</td>
-									<td><input id="buyNum${c.ProductID}" style="width:80px;height:20px;"
-										name="buyNum${c.ProductID}"
+									<td><input id="buyNum${c.ProductID}"
+										style="width: 80px; height: 20px;" name="buyNum${c.ProductID}"
 										onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
 										onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')" />
 									</td>
 									<td><span
-										style="border:1px solid #ABADB3;background-color:#FFFFFF;padding:3px;"
+										style="border: 1px solid #ABADB3; background-color: #FFFFFF; padding: 3px;"
 										onclick="shoppingAddressClick('${c.ID}')"
-										id="shoppingCart1Id${c.ID}">${c.FavoriteAddressName}<img src="<%=path %>/images/redimg/btn20121210.png"/></span>
-										<p style="display:none;" id="address${c.ID}"
+										id="shoppingCart1Id${c.ID}">${c.FavoriteAddressName}<img
+											src="<%=path %>/images/redimg/btn20121210.png" /></span>
+										<p style="display: none;" id="address${c.ID}"
 											name="address${c.ID}">${c.FavoriteAddressNameJson}</p> <input
 										type="hidden" id="addressShopping${c.ID}" value=""
 										name="addressShopping${c.ID}" /></td>
 									<td><c:if test="${c.CompanyStatus==1 }">
-											<span style="text-align:center;padding:5px 10px;"
+											<span style="text-align: center; padding: 5px 10px;"
 												class="orange"> <c:if test="${c.IsHotShow==1  }">热卖中</c:if>
-												<c:if test="${c.IsHotShow!=1  }">有&nbsp;&nbsp;货</c:if> </span>
-										 </c:if>
-										 <c:if test="${c.CompanyStatus!=1 }"><span style="text-align:center;padding:5px 10px;"
-												class="gray">无&nbsp;&nbsp;货</span></c:if>
-									</td>
-									<td>
-									<c:if test="${c.CompanyStatus!=1 }">我要询价</c:if>
-									<c:if test="${c.CompanyStatus==1 }"> <a href="javascript:AddInquirySheet('${c.ProductID}','${c.ID}');">我要询价</a>
-									</c:if>
-									</td>
+												<c:if test="${c.IsHotShow!=1  }">有&nbsp;&nbsp;货</c:if>
+											</span>
+										</c:if> <c:if test="${c.CompanyStatus!=1 }">
+											<span style="text-align: center; padding: 5px 10px;"
+												class="gray">无&nbsp;&nbsp;货</span>
+										</c:if></td>
+									<td><c:if test="${c.CompanyStatus!=1 }">我要询价</c:if> <c:if
+											test="${c.CompanyStatus==1 }">
+											<a
+												href="javascript:AddInquirySheet('${c.ProductID}','${c.ID}');">我要询价</a>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -522,21 +541,21 @@ td {
 
 			</div>
 			<div id="page">
-			<!-- 分页1 -->
-			<div id="pagin1" class="pagin">
-			<!-- <div class="message">
+				<!-- 分页1 -->
+				<div id="pagin1" class="pagin">
+					<!-- <div class="message">
 				共<i id="rows1" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage1" class="blue"></i>页
 			</div> -->
-			<div id="Pagination1" class="meneame" style="clear:left"></div> 	
-			</div>
-			 <!-- 分页2 -->
-			<!--<div id="pagin2" class="pagin">
+					<div id="Pagination1" class="meneame" style="clear: left"></div>
+				</div>
+				<!-- 分页2 -->
+				<!--<div id="pagin2" class="pagin">
 			<div class="message">
 				共<i id="rows2" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage2" class="blue"></i>页
 			</div>
 			<div id="Pagination2" class="meneame" style="clear:left"></div> 	
 			</div> -->
-			<!-- <div id="Pagination1" class="meneame" style="clear:left"></div> 
+				<!-- <div id="Pagination1" class="meneame" style="clear:left"></div> 
 			分页
 			<div id="Pagination2" class="meneame" style="clear:left"></div> -->
 				<%-- <div id="page1" class="pagin">

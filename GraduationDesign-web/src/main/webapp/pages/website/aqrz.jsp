@@ -139,7 +139,7 @@ function SetRemainTime2() {
         }        
 </script>
 <style type="text/css">
-input[type=text]{
+input[type=text] {
 	font-size: 16px;
 }
 </style>
@@ -162,29 +162,31 @@ input[type=text]{
 
 				<form action="aqrz.do" method="post" id="form">
 					<p>
-						邮&nbsp;&nbsp;&nbsp;箱 : <input placeholder="&nbsp;请输入您的邮箱" type="text" name="email" id="email"
-							class="search-input" />
+						邮&nbsp;&nbsp;&nbsp;箱 : <input placeholder="&nbsp;请输入您的邮箱"
+							type="text" name="email" id="email" class="search-input" />
 					</p>
 					<br />
 					<p>
 						验证码 : <input type="text" name="yzm" class="search-input1" /> <input
-							type="button" value="发送验证码" class="sub3"  onclick="check1();" id="yzm"/><span style="color: red;" id="msg1"></span>
+							type="button" value="发送验证码" class="sub3" onclick="check1();"
+							id="yzm" /><span style="color: red;" id="msg1"></span>
 					</p>
 
 					<br /> <br />
 					<h1>验证方式二:</h1>
 
 					<p>
-						手机号 : <input  placeholder="&nbsp;请输入您的手机号" type="text" name="tel" class="search-input" id="tel"/>
+						手机号 : <input placeholder="&nbsp;请输入您的手机号" type="text" name="tel"
+							class="search-input" id="tel" />
 					</p>
 					<br />
 					<p>
 						验证码 : <input type="text" name="yzm2" class="search-input1" /> <input
-							type="button" value="发送短信" class="sub3" onclick="sendMsg();" id="btn"/><span style="color: red;" id="msg2"></span>
+							type="button" value="发送短信" class="sub3" onclick="sendMsg();"
+							id="btn" /><span style="color: red;" id="msg2"></span>
 					</p>
-					<br />
-				<span style="color: red;" id="msg"></span>
-					<input type="button" value="下一步" class="sub1" onclick="check2();" />
+					<br /> <span style="color: red;" id="msg"></span> <input
+						type="button" value="下一步" class="sub1" onclick="check2();" />
 				</form>
 
 

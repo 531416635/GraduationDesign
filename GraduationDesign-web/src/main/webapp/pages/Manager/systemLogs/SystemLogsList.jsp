@@ -98,60 +98,59 @@ div.meneame span {
 <body>
 
 	<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-    <li><a href="#">系统后台</a></li>
-    <li><a href="#">管理系统</a></li>
-    <li><a href="#">日志管理</a></li>
-    </ul>
-    </div>
-    
-  
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" value="" onclick="checkAll();"/></th>
-        <th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th>日志类型</th>  
-        <th>日志时间</th>    
-        <th>日志内容</th>      
-        <th>记录人</th>      
-       
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${dispatch}" var="dis">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="" /></td>
-		        <td>${dis.id}</td>		        
-		        <td>
-		        <c:choose>
-		        <c:when test="${dis.logType==1}">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">系统后台</a></li>
+			<li><a href="#">管理系统</a></li>
+			<li><a href="#">日志管理</a></li>
+		</ul>
+	</div>
+
+
+
+
+	<table class="tablelist">
+		<thead>
+			<tr>
+				<th><input id="checkAll" type="checkbox" value=""
+					onclick="checkAll();" /></th>
+				<th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
+				<th>日志类型</th>
+				<th>日志时间</th>
+				<th>日志内容</th>
+				<th>记录人</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${dispatch}" var="dis">
+				<tr>
+					<td><input name="box" type="checkbox" value="" /></td>
+					<td>${dis.id}</td>
+					<td><c:choose>
+							<c:when test="${dis.logType==1}">
 		                     系统日志
 		        </c:when>
-		        <c:when test="${dis.logType==2}">
+							<c:when test="${dis.logType==2}">
 		                     商户日志
 		        </c:when>
-		        </c:choose>
-		        </td>
-		        <td>${dis.logTime}</td>     
-		        <td>${dis.logContent}</td>		        
-		        <td>${dis.logByName}</td>		        
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-    		<!-- 分页 -->
-			<div class="pagin">
-			<!-- <div class="message">
+						</c:choose></td>
+					<td>${dis.logTime}</td>
+					<td>${dis.logContent}</td>
+					<td>${dis.logByName}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-     <!-- 分页 -->
-    <%--  <div class="pagin">
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
+	<!-- 分页 -->
+	<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -183,9 +182,9 @@ div.meneame span {
         </ul>
     </div>
     --%>
-   
-    
-    <script type="text/javascript">
+
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

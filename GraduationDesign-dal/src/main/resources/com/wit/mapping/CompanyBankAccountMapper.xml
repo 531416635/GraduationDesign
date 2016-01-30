@@ -8,10 +8,11 @@
 		cb.companyId, cb.bankAccount, cb.bankAddress, cb.bankName, cb.status,
 		cb.createTime
 		FROM
-		CompanyBankAccount cb LEFT JOIN Companys c on cb.companyId = c.id
+		CompanyBankAccount cb LEFT JOIN Companys c on
+		cb.companyId = c.id
 		WHERE c.companyType=1 and cb.status !=3
 	</select>
-	
+
 	<!--查询采购商银行账户信息 -->
 	<select id="findBuyerBankAccount" resultType="com.wit.model.CompanyBankAccount">
 		SELECT
@@ -19,7 +20,8 @@
 		cb.companyId, cb.bankAccount, cb.bankAddress, cb.bankName, cb.status,
 		cb.createTime
 		FROM
-		CompanyBankAccount cb LEFT JOIN Companys c on cb.companyId = c.id
+		CompanyBankAccount cb LEFT JOIN Companys c on
+		cb.companyId = c.id
 		WHERE c.companyType=2 and cb.status !=3
 	</select>
 
@@ -70,21 +72,24 @@
 		WHERE
 		companyId=#{companyId}
 	</update>
-	
-	<!--查询采购商银行账户行数  -->
+
+	<!--查询采购商银行账户行数 -->
 	<select id="findBuyerRows" resultType="int">
-		select count(cba.id) from CompanyBankAccount cba
-		left join Companys  c on cba.companyId=c.id
-		where c.companyType=2 and cba.status !=3
+		select count(cba.id) from
+		CompanyBankAccount cba
+		left join Companys c on cba.companyId=c.id
+		where
+		c.companyType=2 and cba.status !=3
 	</select>
-	
-	<!--查询供应商银行账户行数  -->
+
+	<!--查询供应商银行账户行数 -->
 	<select id="findSupplierRows" resultType="int">
-		select count(cba.id) from CompanyBankAccount cba
-		left join Companys  c on cba.companyId=c.id
+		select count(cba.id)
+		from CompanyBankAccount cba
+		left join Companys c on cba.companyId=c.id
 		where companyType=1 and cba.status !=3
 	</select>
-	
+
 	<!--根据公司ID查找银行账号信息 -->
 	<select id="findByCompanyId" parameterType="Integer"
 		resultType="com.wit.model.CompanyBankAccount">

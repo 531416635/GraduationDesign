@@ -276,7 +276,7 @@ tr {
 	height: 32px;
 }
 
-input ,select{
+input, select {
 	height: 23px;
 	width: 150px;
 }
@@ -285,7 +285,8 @@ input ,select{
 	width: 13px;
 	height: 13px;
 }
-#jiek{
+
+#jiek {
 	display: none;
 }
 </style>
@@ -294,9 +295,10 @@ input ,select{
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">结算管理 ></span><span
-				class="lo2">我的结算单</span> 
+				class="lo2">我的结算单</span>
 		</div>
 
 		<div class="detail_list">
@@ -309,8 +311,7 @@ input ,select{
 					<table border="1" cellspacing="0" width="100%">
 						<tr>
 							<th>币种</th>
-							<td>
-							<select name="currency" id="currency">
+							<td><select name="currency" id="currency">
 									<option value="CNY" selected="selected">人民币</option>
 									<option value="USD">美元</option>
 							</select></td>
@@ -318,48 +319,47 @@ input ,select{
 						<tr>
 							<th>账户余额</th>
 							<td id="balance">
-							<%-- <c:if test="$('#balance).text()=='CNY'"> --%>
-							<input type="text" value="${companyBalance[0].balance}"
-								readonly="readonly" style="text-align: right;" />
-							<%-- </c:if>	
+								<%-- <c:if test="$('#balance).text()=='CNY'"> --%> <input
+								type="text" value="${companyBalance[0].balance}"
+								readonly="readonly" style="text-align: right;" /> <%-- </c:if>	
 							<c:if test="$('#balance).text()=='USD'">
 							<input type="text" value="${companyBalance[0].balance*0.1611}"
 								readonly="readonly" style="text-align: right;" />
-							</c:if>	 --%>
-							
-							<input type="button" class="action btnq orange" value="帐户流水" onclick="accountWater();"/>
+							</c:if>	 --%> <input type="button" class="action btnq orange"
+								value="帐户流水" onclick="accountWater();" />
 							</td>
 						</tr>
 						<tr>
 							<th>结款金额</th>
-							<td><input type="text" name="" id="pay" />
-							</td>
+							<td><input type="text" name="" id="pay" /></td>
 						</tr>
 						<tr>
 
 							<th>结算类型</th>
 							<td><input class="input_radio" name="settleType"
-								type="radio" value="0" 
-								onclick="showTrBankAccount(0)" /><span>付款</span> <input
-								class="input_radio" name="settleType" type="radio" value="1"
-								onclick="showTrBankAccount(1)" /><span>结款</span></td>
+								type="radio" value="0" onclick="showTrBankAccount(0)" /><span>付款</span>
+								<input class="input_radio" name="settleType" type="radio"
+								value="1" onclick="showTrBankAccount(1)" /><span>结款</span></td>
 						</tr>
-						<tr id="trBankAccount" style="display:none;">
+						<tr id="trBankAccount" style="display: none;">
 							<th>银行账号：</th>
 							<td>
 								<!-- <input type="text" name="bankAccount" id="bankAccount"/> -->
-								<select name="bankAccount" style="width:120px" id="bankAccount">
+								<select name="bankAccount" style="width: 120px" id="bankAccount">
 									<option selected="selected"></option>
 									<c:forEach items="${companyBankAccount}" var="c">
 										<option value="${c.bankAccount}">${c.bankAccount}</option>
 									</c:forEach>
-							</select>&nbsp;&nbsp;&nbsp;&nbsp; <a href="<%=path%>/merchant/toAddBankAccount.do?companyId=${companyId}">新增银行账号</a></td>
+							</select>&nbsp;&nbsp;&nbsp;&nbsp; <a
+								href="<%=path%>/merchant/toAddBankAccount.do?companyId=${companyId}">新增银行账号</a>
+							</td>
 						</tr>
 						<tr align="center">
-							<td colspan="2">
-							<input type="button" class="action btnq orange" id="fuk" value="确认结算" onclick="location.href='#'"/>
-							<input type="button" class="action btnq orange" id="jiek" 
-								value="确认结算" onclick='pay($("#currency option:selected").val(),$("#pay").val(),${companyId},$("input:radio:checked").val(),$("#bankAccount option:selected").val());' />
+							<td colspan="2"><input type="button"
+								class="action btnq orange" id="fuk" value="确认结算"
+								onclick="location.href='#'" /> <input type="button"
+								class="action btnq orange" id="jiek" value="确认结算"
+								onclick='pay($("#currency option:selected").val(),$("#pay").val(),${companyId},$("input:radio:checked").val(),$("#bankAccount option:selected").val());' />
 							</td>
 						</tr>
 					</table>
@@ -407,8 +407,8 @@ input ,select{
 						</tbody>
 					</table>
 					<!-- 分页 -->
-			
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
+
+					<div id="Pagination" class="meneame" style="clear: left"></div>
 
 					<input type="hidden" id="settlement" />
 
@@ -416,15 +416,16 @@ input ,select{
 
 				<div id="tab2">
 					<h4>往期账单</h4>
-							<form action="<%=path%>/merchant/statement.do?show=2" method="post" id="form1">
-						日期&nbsp;<input id="startTime" value="${st}" onclick="WdatePicker()"
-							readonly="readonly" name="startTime" />&nbsp; 至&nbsp;<input
-							id="endTime" value="${et}" onclick="WdatePicker()" readonly="readonly"
-							name="endTime" />&nbsp;&nbsp;&nbsp;&nbsp; <input id="checkBtn"
-							class="btnq orange" type="button" onclick="checkPastDetial()"
-							value="查看" /> <br /> <br />
-							</form>
-						<table border="1" cellspacing="0" width="100%">
+					<form action="<%=path%>/merchant/statement.do?show=2" method="post"
+						id="form1">
+						日期&nbsp;<input id="startTime" value="${st}"
+							onclick="WdatePicker()" readonly="readonly" name="startTime" />&nbsp;
+						至&nbsp;<input id="endTime" value="${et}" onclick="WdatePicker()"
+							readonly="readonly" name="endTime" />&nbsp;&nbsp;&nbsp;&nbsp; <input
+							id="checkBtn" class="btnq orange" type="button"
+							onclick="checkPastDetial()" value="查看" /> <br /> <br />
+					</form>
+					<table border="1" cellspacing="0" width="100%">
 						<thead>
 							<tr>
 								<th>结算编号</th>
@@ -464,8 +465,8 @@ input ,select{
 							</c:forEach>
 						</tbody>
 					</table>
-						<br />
-						<div id="Pagination2" class="meneame" style="clear:left"></div>
+					<br />
+					<div id="Pagination2" class="meneame" style="clear: left"></div>
 				</div>
 
 			</div>
@@ -520,15 +521,15 @@ input ,select{
 			});
 		});
 	</script>
-<div class="overlay"></div>
+	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候...
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 
 </body>
 </html>

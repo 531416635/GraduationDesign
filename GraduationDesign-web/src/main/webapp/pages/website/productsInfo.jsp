@@ -26,7 +26,8 @@
 	type="text/css" />
 
 <script type="text/javascript" src="<%=path%>/js/redjs/lanrenzhijia.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
@@ -461,17 +462,16 @@ div.meneame span {
 	display: inline;
 }
 
-.gray{
-	display:none;
-	background-color:#E3E3E3;
-    border: medium none;
-    border-radius: 3px;
-    color: #fff;
-    font-size: 14px;
-    height: 30px;
-    width: 120px;
-    padding:1px 12px;
-
+.gray {
+	display: none;
+	background-color: #E3E3E3;
+	border: medium none;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 14px;
+	height: 30px;
+	width: 120px;
+	padding: 1px 12px;
 }
 </style>
 </head>
@@ -529,7 +529,8 @@ div.meneame span {
 				</div>
 			</div>
 			<div class="hot">
-				<span class="scan">精品推荐</span><!--  <span class="more">>>更多</span> -->
+				<span class="scan">精品推荐</span>
+				<!--  <span class="more">>>更多</span> -->
 				<div class="goods_list">
 
 					<c:forEach items="${subpageShows}" var="pros">
@@ -559,13 +560,14 @@ div.meneame span {
 					<div class="zoom-desc">
 						<p>
 							<c:forEach items="${productPic}" var="pp" varStatus="status">
-							<c:if test="${pp.isDefault==0}">
-								<a href='#' class='cloud-zoom-gallery' title='Red'
-									rel="useZoom: 'zoom1', smallImage: '<%=path%>${pp.filePath}' ">
-									<img id="img${status.count}" src="<%=path%>${pp.filePath}"
-									alt="Thumbnail ${status.count}" width="46" height="44"
-									class="zoom-tiny-image" /> </a>
-							</c:if>
+								<c:if test="${pp.isDefault==0}">
+									<a href='#' class='cloud-zoom-gallery' title='Red'
+										rel="useZoom: 'zoom1', smallImage: '<%=path%>${pp.filePath}' ">
+										<img id="img${status.count}" src="<%=path%>${pp.filePath}"
+										alt="Thumbnail ${status.count}" width="46" height="44"
+										class="zoom-tiny-image" />
+									</a>
+								</c:if>
 							</c:forEach>
 						</p>
 					</div>
@@ -581,8 +583,9 @@ div.meneame span {
 										<c:if test="${p4.parentCateGory==p3.id}">
 											<c:forEach items="${product.productCategorys}" var="p1">
 												<c:forEach items="${product.productCategorys}" var="p2">
-													<c:if test="${p1.id==p2.parentCateGory&&p1.id!=p3.id&&p1.id!=p4.id and (p1.cateGoryCode==1 or p1.cateGoryCode==2)}">
-														<dd>${p1.cateGoryName} : ${p2.cateGoryName}</dd>
+													<c:if
+														test="${p1.id==p2.parentCateGory&&p1.id!=p3.id&&p1.id!=p4.id and (p1.cateGoryCode==1 or p1.cateGoryCode==2)}">
+														<dd>${p1.cateGoryName}:${p2.cateGoryName}</dd>
 													</c:if>
 												</c:forEach>
 											</c:forEach>
@@ -596,7 +599,7 @@ div.meneame span {
 
 					<div class="shop">
 						<div class="shop_box">
-							<span id="msg" style="color:red;display:none;">*请先填写数量与地址*</span><br />
+							<span id="msg" style="color: red; display: none;">*请先填写数量与地址*</span><br />
 							<div class="buy">
 
 								<span>我要买：</span> <input type="button" id="jian" value="-"
@@ -623,7 +626,7 @@ div.meneame span {
 							
 							</div> --%>
 							<div>
-								<ul id="list1" style="width:620px;margin:40px auto 0 auto;">
+								<ul id="list1" style="width: 620px; margin: 40px auto 0 auto;">
 									<li id="summary-stock">
 										<div class="dt">配送至：</div>
 										<div class="dd">
@@ -638,23 +641,27 @@ div.meneame span {
 											<div id="store-prompt">
 												<strong></strong>
 											</div>
-										</div></li>
+										</div>
+									</li>
 								</ul>
 							</div>
 
 							<div class="btn_box">
-								    <a href="javascript:AddInquirySheet();" class="button orange medium action" onclick="disable(this);" id="t1">我要询价</a> 
-									<span class="gray" id="t11">我要询价</span>
-									<a href="javascript:AddFavorite();" class="button orange medium action" onclick="disable(this);" id="t2">我要收藏</a>
-									<span class="gray"  id="t21">我要收藏</span>
-									<a href="javascript:AddShoppingCart();" class="button orange medium action" onclick="disable(this);" id="t3">放入进货单</a>
-									<span class="gray"  id="t31">放入进货单</span>
+								<a href="javascript:AddInquirySheet();"
+									class="button orange medium action" onclick="disable(this);"
+									id="t1">我要询价</a> <span class="gray" id="t11">我要询价</span> <a
+									href="javascript:AddFavorite();"
+									class="button orange medium action" onclick="disable(this);"
+									id="t2">我要收藏</a> <span class="gray" id="t21">我要收藏</span> <a
+									href="javascript:AddShoppingCart();"
+									class="button orange medium action" onclick="disable(this);"
+									id="t3">放入进货单</a> <span class="gray" id="t31">放入进货单</span>
 							</div>
 						</div>
 
 						<div class="prefer_box">
 							<dl>
-								<dt style="width:100px;">优惠提示：</dt>
+								<dt style="width: 100px;">优惠提示：</dt>
 								<dd>福临门一级大豆油团购进行中</dd>
 								<dd>国宝桥米团购88折全年最低价</dd>
 								<dd>一级有机黄金玉米现货特惠中</dd>
@@ -698,12 +705,10 @@ div.meneame span {
 			</div>
 			<div class="detail_list">
 				<ul id="tabs">
-					<li id="tabs_li1"><a href="#" title="tab1">商品描述</a>
-					</li>
+					<li id="tabs_li1"><a href="#" title="tab1">商品描述</a></li>
 					<!-- <li id="tabs_li2"><a href="#" title="tab2">有机认证</a></li>
 					<li id="tabs_li3"><a href="#" title="tab3">用户评价</a></li> -->
-					<li id="tabs_li4"><a href="#" title="tab4">商品样品</a>
-					</li>
+					<li id="tabs_li4"><a href="#" title="tab4">商品样品</a></li>
 				</ul>
 				<div id="content">
 					<div id="tab1">
@@ -727,14 +732,14 @@ div.meneame span {
 						<c:if test="${user !=null }">
 							<c:if test="${findProductSample==1 }">
 								<p
-									style="float:right;color:red;font-size:1.3em;margin-right:40px;">可申请</p>
+									style="float: right; color: red; font-size: 1.3em; margin-right: 40px;">可申请</p>
 							</c:if>
 							<c:if test="${findProductSample==null }">
 								<p
-									style="float:right;color:red;font-size:1.3em;margin-right:40px;">未提供</p>
+									style="float: right; color: red; font-size: 1.3em; margin-right: 40px;">未提供</p>
 							</c:if>
 							<br /> 往期申请
-								<table style="width:100%">
+								<table style="width: 100%">
 								<tr>
 									<th>样品名称</th>
 									<th>申请者</th>
@@ -766,13 +771,13 @@ div.meneame span {
 
 						</c:if>
 						<!-- 分页 -->
-						<div class="pagin" style="clear:left">
+						<div class="pagin" style="clear: left">
 							<!-- <p class="meneame" style="display:block;float: left;">
 								共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i
 									id="currentPage" class="blue"></i>页
 							</p> -->
-							<div id="Pagination" class="meneame" style="clear:left"></div> 	
-						</div> 	
+							<div id="Pagination" class="meneame" style="clear: left"></div>
+						</div>
 						<input type="hidden" value="${product.id }" id="productID"
 							name="productID" />
 					</div>
@@ -920,15 +925,15 @@ div.meneame span {
 
 		};	
 	</script>
-	
+
 	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候... 
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>

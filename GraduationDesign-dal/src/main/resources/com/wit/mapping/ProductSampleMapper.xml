@@ -4,8 +4,10 @@
 <mapper namespace="com.wit.dao.ProductSampleDao">
 	<!-- 查询所有 -->
 	<select id="getAll" resultType="com.wit.model.ProductSample">
-		select id,supplierId,productId,status,requestTime,requestNum,requestUnit
-		from ProductSample
+		select
+		id,supplierId,productId,status,requestTime,requestNum,requestUnit
+		from
+		ProductSample
 	</select>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Integer">
@@ -17,14 +19,16 @@
 		insert into ProductSample(
 		supplierId,productId,status,requestTime,requestNum,requestUnit)
 		values( #{supplierId},#{productId},#{status},#{requestTime}
-			#{requestNum},#{requestUnit}
+		#{requestNum},#{requestUnit}
 		)
 	</insert>
 	<!--根据Id查询 -->
-	<select id="findbyId" parameterType="Integer" 
-	resultType="com.wit.model.ProductSample">
-		select id,supplierId,productId,status,requestTime,requestNum,requestUnit
-		from ProductSample
+	<select id="findbyId" parameterType="Integer"
+		resultType="com.wit.model.ProductSample">
+		select
+		id,supplierId,productId,status,requestTime,requestNum,requestUnit
+		from
+		ProductSample
 		where id=#{id}
 	</select>
 	<!-- 修改 -->
@@ -36,5 +40,5 @@
 		where id=#{id}
 	</update>
 
-	
+
 </mapper>

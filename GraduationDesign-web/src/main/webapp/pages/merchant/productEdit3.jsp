@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -22,7 +23,8 @@
 	href="<%=path%>/css/frontcss/detail.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <script type="text/javascript"
 	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
@@ -172,22 +174,28 @@
 	font-size: 14px;
 	color: white;
 }
-table{
+
+table {
 	margin-bottom: 20px;
 }
-td{
+
+td {
 	text-align: center;
 }
-th{
+
+th {
 	background-color: #e5e5e5;
 	border: 1px solid #999;
 }
-tr{
+
+tr {
 	border: 0.5px solid #999;
 }
-img{
+
+img {
 	margin-top: 3px;
 }
+
 .pagin {
 	position: relative;
 	margin-top: 10px;
@@ -234,7 +242,7 @@ img{
 	border-top-right-radius: 5px;
 }
 
-.pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a
+.pagin .paginList .paginItem.current, .pagin .paginList .paginItem.current a
 	{
 	background: #f5f5f5;
 	cursor: default;
@@ -245,7 +253,7 @@ img{
 	background: #f5f5f5;
 }
 
-.pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover
+.pagin .paginList .paginItem.more, .pagin .paginList .paginItem.more a:hover
 	{
 	cursor: default;
 }
@@ -273,15 +281,15 @@ img{
 </head>
 <body>
 	<div class="inner_div">
-			<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span class="lo2"> 商品上货</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span
+				class="lo2"> 商品上货</span>
 		</div>
 		<div class="detail_list">
 			<ul id="tabs">
-				<li><a href="#" title="tab1">出售中商品</a>
-				</li>
-				<li><a href="#" title="tab2">已下架商品</a>
-				</li>
+				<li><a href="#" title="tab1">出售中商品</a></li>
+				<li><a href="#" title="tab2">已下架商品</a></li>
 
 			</ul>
 			<div id="content">
@@ -289,7 +297,7 @@ img{
 					<table style="width: 100%">
 						<thead>
 							<tr>
-								<th style="width:5%"><input name="" id="checkAll1"
+								<th style="width: 5%"><input name="" id="checkAll1"
 									type="checkbox" onclick="checkAll(1);" />全选</th>
 								<th width="120">宝贝名称</th>
 								<th width="200">商品编码</th>
@@ -297,30 +305,33 @@ img{
 								<th width="150">发布时间</th>
 								<th width="100">备注</th>
 								<th width="100">操作</th>
-						
+
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${productLists1}" var="temp">
 								<tr>
 									<td><input type="checkbox" name="box1"
-										onclick="checkBox(1);" value="${temp.ID}" />
-									</td>
-									<td><img src="<%=path%>/${temp.FilePath}" width="55" height="50" /><br/>品名：${temp.ProductName}<br /><%-- 商品编号:${temp.CompanyProductCode}
+										onclick="checkBox(1);" value="${temp.ID}" /></td>
+									<td><img src="<%=path%>/${temp.FilePath}" width="55"
+										height="50" /><br />品名：${temp.ProductName}<br /> <%-- 商品编号:${temp.CompanyProductCode}
 										&nbsp;&nbsp;&nbsp;&nbsp; 规格：${temp.CateGoryName} --%></td>
-										<td>${temp.CompanyProductCode}</td>
+									<td>${temp.CompanyProductCode}</td>
 									<td>${temp.ProductDate}</td>
 									<td align="center"><fmt:formatDate
 											value="${temp.RequestTime}" pattern="yyyy-MM-dd" /></td>
-											<td>${temp.ProductRemark} </td>
-											<td><a class="tablelink"  href="/ssm/merchant/toEditCompanyProducts.do?id=${temp.ID}">商品编辑</a> </td>
+									<td>${temp.ProductRemark}</td>
+									<td><a class="tablelink"
+										href="/ssm/merchant/toEditCompanyProducts.do?id=${temp.ID}">商品编辑</a>
+									</td>
 									<%-- <td><a href="#${temp.id}"
 										onclick="delCompanyProduct('${temp.ID}',1)">商品删除 </a></td>  --%>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<input type="button" class="orange" value="批量下架" id="qr" onclick="saveAll(1,0)" />
+					<input type="button" class="orange" value="批量下架" id="qr"
+						onclick="saveAll(1,0)" />
 					<!-- <input type="button" value="批量删除" id="qr" onclick="delAll(1)" /> -->
 				</div>
 
@@ -328,7 +339,7 @@ img{
 					<table style="width: 100%">
 						<thead>
 							<tr>
-								<th style="width:5%"><input name="" id="checkAll2"
+								<th style="width: 5%"><input name="" id="checkAll2"
 									type="checkbox" onclick="checkAll(2);" />全选</th>
 								<th width="160">宝贝名称</th>
 								<th width="200">商品编码</th>
@@ -342,41 +353,44 @@ img{
 							<c:forEach items="${productLists2}" var="temp">
 								<tr>
 									<td><input type="checkbox" name="box2"
-										onclick="checkBox(2);" value="${temp.ID}" />
-									</td>
-									<td><img src="<%=path%>/${temp.FilePath}" width="55" height="50" /><br/>品名：${temp.ProductName}<br /><%-- 商品编号:${temp.CompanyProductCode}
+										onclick="checkBox(2);" value="${temp.ID}" /></td>
+									<td><img src="<%=path%>/${temp.FilePath}" width="55"
+										height="50" /><br />品名：${temp.ProductName}<br /> <%-- 商品编号:${temp.CompanyProductCode}
 										&nbsp;&nbsp;&nbsp;&nbsp; 规格：${temp.CateGoryName}</td> --%>
-											<td>${temp.CompanyProductCode}</td>
+									<td>${temp.CompanyProductCode}</td>
 									<td>${temp.ProductDate}</td>
 									<td align="center"><fmt:formatDate
 											value="${temp.RequestTime}" pattern="yyyy-MM-dd" /></td>
-												<td>${temp.ProductRemark} </td>
-									 <td><a class="tablelink"  href="/ssm/merchant/toEditCompanyProducts.do?id=${temp.ID}">商品编辑</a> </td>
+									<td>${temp.ProductRemark}</td>
+									<td><a class="tablelink"
+										href="/ssm/merchant/toEditCompanyProducts.do?id=${temp.ID}">商品编辑</a>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<input type="button" class="orange" value="批量上架" id="qr" onclick="saveAll(2,1)" />
+					<input type="button" class="orange" value="批量上架" id="qr"
+						onclick="saveAll(2,1)" />
 					<!-- <input type="button" value="批量删除" id="qr" onclick="delAll(2)" /> -->
 				</div>
 
 			</div>
-			 <div id="page">
-			 <!-- 分页1 -->
-			<div id="pagin1" class="pagin">
-			<!-- <div class="message">
+			<div id="page">
+				<!-- 分页1 -->
+				<div id="pagin1" class="pagin">
+					<!-- <div class="message">
 				共<i id="rows1" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage1" class="blue"></i>页
 			</div> -->
-			<div id="Pagination1" class="meneame" style="clear:left"></div> 	
-			</div>
-			<!-- 分页2 -->
-			<div id="pagin2" class="pagin">
-			<!-- <div class="message">
+					<div id="Pagination1" class="meneame" style="clear: left"></div>
+				</div>
+				<!-- 分页2 -->
+				<div id="pagin2" class="pagin">
+					<!-- <div class="message">
 				共<i id="rows2" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage2" class="blue"></i>页
 			</div> -->
-			<div id="Pagination2" class="meneame" style="clear:left"></div> 	
-			</div>
-			<!-- <div id="Pagination1" class="meneame" style="clear:left"></div> 
+					<div id="Pagination2" class="meneame" style="clear: left"></div>
+				</div>
+				<!-- <div id="Pagination1" class="meneame" style="clear:left"></div> 
 			<div id="Pagination2" class="meneame" style="clear:left"></div> -->
 				<%-- <div id="page1" class="pagin">
 					<div class="message">
@@ -475,7 +489,7 @@ img{
 			</div>
 		</div>
 	</div>
-		
+
 	<!-- <script src="http://code.jquery.com/jquery-1.6.3.min.js"></script> -->
 	<script type="text/javascript">
 		$(document).ready(function() {

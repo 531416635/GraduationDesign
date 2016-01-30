@@ -1,116 +1,203 @@
 @charset "utf-8";
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
-	margin:0;
-	padding:0;
-	border:0;
-	font:inherit;
-	vertical-align:baseline;
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
 }
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
-ol,ul{list-style:none;margin:0;padding:0;}
-blockquote,q{quotes:none;}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
-table{border-collapse:collapse;border-spacing:0;}
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 /* start editing from here */
-a{text-decoration:none;}
-.txt-rt{text-align:right;}/* text align right */
-.txt-lt{text-align:left;}/* text align left */
-.txt-center{text-align:center;}/* text align center */
-.float-rt{float:right;}/* float right */
-.float-lt{float:left;}/* float left */
-.clear{clear:both;}/* clear float */
-.pos-relative{position:relative;}/* Position Relative */
-.pos-absolute{position:absolute;}/* Position Absolute */
-.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
-.vertical-top{	vertical-align:top;}/* vertical align top */
-.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
-nav.vertical ul li{	display:block;}/* vertical menu */
-nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
-body{
-	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";
+a {
+	text-decoration: none;
 }
-span{
-	display:block;	
+
+.txt-rt {
+	text-align: right;
+} /* text align right */
+.txt-lt {
+	text-align: left;
+} /* text align left */
+.txt-center {
+	text-align: center;
+} /* text align center */
+.float-rt {
+	float: right;
+} /* float right */
+.float-lt {
+	float: left;
+} /* float left */
+.clear {
+	clear: both;
+} /* clear float */
+.pos-relative {
+	position: relative;
+} /* Position Relative */
+.pos-absolute {
+	position: absolute;
+} /* Position Absolute */
+.vertical-base {
+	vertical-align: baseline;
+} /* vertical align baseline */
+.vertical-top {
+	vertical-align: top;
+} /* vertical align top */
+.underline {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+	margin: 0 0 20px 0;
+} /* Add 5px bottom padding and a underline */
+nav.vertical ul li {
+	display: block;
+} /* vertical menu */
+nav.horizontal ul li {
+	display: inline-block;
+} /* horizontal menu */
+body {
+	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "宋体";
 }
-.special_top{
-	width:100%;
+
+span {
+	display: block;
+}
+
+.special_top {
+	width: 100%;
 }
 /*------------楼层白底div------------------ */
-.special_div_White{
-	width:100%;
-	height:506px;
+.special_div_White {
+	width: 100%;
+	height: 506px;
 }
 /*------------楼层灰底div------------------ */
-.special_div_Grey{
-	width:100%;
-	height:465px;
-	background-color:#F4f4f4;
+.special_div_Grey {
+	width: 100%;
+	height: 465px;
+	background-color: #F4f4f4;
 }
 /*------------楼层内容div------------------ */
-.special_div_Content{
-	width:1128px;
-	margin:0 auto;
+.special_div_Content {
+	width: 1128px;
+	margin: 0 auto;
 }
 /*------------楼层商品div------------------ */
-.special_div_Commodity{
-	width:100%;
-	height:298px;
-	margin:11px 0 15px 0;
+.special_div_Commodity {
+	width: 100%;
+	height: 298px;
+	margin: 11px 0 15px 0;
 }
 /*------------商品简介div------------------ */
-.special_div_profile{
-	width:330px;
-	height:250px;
-	padding:25px;
-	border:1px solid #e2e2e2;
+.special_div_profile {
+	width: 330px;
+	height: 250px;
+	padding: 25px;
+	border: 1px solid #e2e2e2;
 }
 /*--------------百叶轮播---------------------------*/
-img {border: 0px none;}
-.lanren{width:730px;height:300px;margin:0px auto;margin-bottom:20px;position:relative;}
-.lanren ul li{width:91px;height:300px;border-left:5px solid #fff;position:relative;overflow:hidden;float:left;}
+img {
+	border: 0px none;
+}
 
-.lanren ul li.first{width:525px;}
-.lanren ul li.fast{position:absolute;right:0px;bottom:0px;}
+.lanren {
+	width: 730px;
+	height: 300px;
+	margin: 0px auto;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.lanren ul li {
+	width: 91px;
+	height: 300px;
+	border-left: 5px solid #fff;
+	position: relative;
+	overflow: hidden;
+	float: left;
+}
+
+.lanren ul li.first {
+	width: 525px;
+}
+
+.lanren ul li.fast {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
 
 /*------------商品详情div------------------ */
-.special_div_Details{
-	height:440px;
-	width:266px;
-	float:left;
-	margin-right:9px;
-	margin-left:10px;
+.special_div_Details {
+	height: 440px;
+	width: 266px;
+	float: left;
+	margin-right: 9px;
+	margin-left: 10px;
 }
 /*---------------按钮---------------------------*/
-.button_gd{
-	width:103px;
-	height:33px;
-	border:0;
-	float:left;
-	background-color:#fff;
-	background-image:url(../images/spots/btn_44.png);
+.button_gd {
+	width: 103px;
+	height: 33px;
+	border: 0;
+	float: left;
+	background-color: #fff;
+	background-image: url(../images/spots/btn_44.png);
 }
+
 .button_gd:hover {
-	background-image:url(../images/spots/btn_442.png);
+	background-image: url(../images/spots/btn_442.png);
 }
-.button_gwc{
-	width:123px;
-	height:29px;
-	border:0;
-	float:left;
-	background-image:url(../images/spots/btn.png);
+
+.button_gwc {
+	width: 123px;
+	height: 29px;
+	border: 0;
+	float: left;
+	background-image: url(../images/spots/btn.png);
 }
+
 .button_gwc:hover {
-	background-image:url(../images/spots/btn_1.png);
+	background-image: url(../images/spots/btn_1.png);
 }
-.button_scj{
-	width:123px;
-	height:29px;
-	border:0;
-	float:right;
-	background-image:url(../images/spots/btn2.png);
+
+.button_scj {
+	width: 123px;
+	height: 29px;
+	border: 0;
+	float: right;
+	background-image: url(../images/spots/btn2.png);
 }
+
 .button_scj:hover {
-	background-image:url(../images/spots/btn2_2.png);
+	background-image: url(../images/spots/btn2_2.png);
 }
-	
-	

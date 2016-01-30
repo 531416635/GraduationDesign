@@ -19,7 +19,8 @@
  %>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 
 <script type="text/javascript">
@@ -375,137 +376,180 @@
      }	
 </script>
 <style type="text/css">
-body {text-align:center;}
-h1 {font-size:200%;}
-h3{
+body {
+	text-align: center;
+}
+
+h1 {
+	font-size: 200%;
+}
+
+h3 {
 	margin-top: 20px;
 }
-a{
-   color: #666;
+
+a {
+	color: #666;
 }
-.newsList,.noticeList,.industryNewsList{
+
+.newsList, .noticeList, .industryNewsList {
 	width: 1128px;
 	margin: 0 auto;
 }
-#content {font-size:150%;}
-.list_p1{
-	width: 1116px; height: 38px; line-height:38px; margin: 30px 0 20px 0; border-top: 2px solid #c3c3c3; padding-left: 10px;
+
+#content {
+	font-size: 150%;
+}
+
+.list_p1 {
+	width: 1116px;
+	height: 38px;
+	line-height: 38px;
+	margin: 30px 0 20px 0;
+	border-top: 2px solid #c3c3c3;
+	padding-left: 10px;
 	background-color: #e3e3e3;
 }
-.list_p1 span{
-	font-size: 22px; font-weight:700; float: left; margin-right: 20px;display: block;
-}
-.list_p1 input[type="text"]{
-	float: left; height:25px; width:200px; margin:5px 20px 0 0;
-}
-.list_p1 input[type="button"]{
-	float: left; height:22px; width:50px; margin-top: 8px; border-radius:5px; background-color:#fff; border: 1px solid #a6a6a6;
-}
-.list_p2{
-	width: 1126px; height: 38px; border: 1px solid #a6a6a6; border-bottom: none;
-}
-.list_p2 span{
+
+.list_p1 span {
+	font-size: 22px;
+	font-weight: 700;
 	float: left;
-	text-align:left;
+	margin-right: 20px;
+	display: block;
+}
+
+.list_p1 input[type="text"] {
+	float: left;
+	height: 25px;
+	width: 200px;
+	margin: 5px 20px 0 0;
+}
+
+.list_p1 input[type="button"] {
+	float: left;
+	height: 22px;
+	width: 50px;
+	margin-top: 8px;
+	border-radius: 5px;
+	background-color: #fff;
+	border: 1px solid #a6a6a6;
+}
+
+.list_p2 {
+	width: 1126px;
+	height: 38px;
+	border: 1px solid #a6a6a6;
+	border-bottom: none;
+}
+
+.list_p2 span {
+	float: left;
+	text-align: left;
 	line-height: 38px;
 	padding-left: 30px;
 	font-size: 20px;
 	display: block;
 }
-.list_ul{
+
+.list_ul {
 	list-style: none;
 	border: 1px solid #a6a6a6;
-	overflow:hidden;
+	overflow: hidden;
 	padding: 30px;
 }
-.list_ul li{
+
+.list_ul li {
 	border-bottom: 1px dashed #a6a6a6;
-	width: 1000px; height: 38px; float: left; line-height: 38px;
+	width: 1000px;
+	height: 38px;
+	float: left;
+	line-height: 38px;
 	padding: 0 20px;
 }
 </style>
 </head>
-  
-  <body>
-    <div id="newsList" class="newsList">
-    	<p class="list_p1">
-	    	<span>商城新闻</span>
-	    	<input type="text" id="title1"/>
-	    	<input type="button" value="搜索" onclick="search($('#title1').val(),1)"/>
-    	</p>
-    	<P class="list_p2">
-    			<span style="width: 900px;">标题</span>
-    			<span style="width: 100px;">发布时间</span>
-    	</P>
+
+<body>
+	<div id="newsList" class="newsList">
+		<p class="list_p1">
+			<span>商城新闻</span> <input type="text" id="title1" /> <input
+				type="button" value="搜索" onclick="search($('#title1').val(),1)" />
+		</p>
+		<P class="list_p2">
+			<span style="width: 900px;">标题</span> <span style="width: 100px;">发布时间</span>
+		</P>
 		<ul class="list_ul" id="xinwen1">
 			<c:forEach items="${newsList}" var="list">
-				<li>
-				<span style="float: left;"><a href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=1">${list.title}</a></span>
-				<span style="float:right;"><fmt:formatDate value="${list.releaseTime}" pattern="yyyy-MM-dd"/></span>
-				</li>
+				<li><span style="float: left;"><a
+						href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=1">${list.title}</a></span>
+					<span style="float: right;"><fmt:formatDate
+							value="${list.releaseTime}" pattern="yyyy-MM-dd" /></span></li>
 			</c:forEach>
 		</ul>
 	</div>
-							 <!-- 分页1 -->
-			<div id="pagin1" class="pagin" style="width: 1128px; height:60px; margin: 0 auto;">
-			<!-- <div class="message">
+	<!-- 分页1 -->
+	<div id="pagin1" class="pagin"
+		style="width: 1128px; height: 60px; margin: 0 auto;">
+		<!-- <div class="message">
 				共<i id="rows1" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage1" class="blue"></i>页
 			</div> -->
-			<div id="Pagination1" class="meneame" style="clear:left; width: 500px; float: right;"></div> 	
-			</div>
-						
+		<div id="Pagination1" class="meneame"
+			style="clear: left; width: 500px; float: right;"></div>
+	</div>
 
-		<div  id="noticeList" class="noticeList" >
-			<p class="list_p1">
-		    	<span>最新活动</span>
-		    	<input type="text" id="title2"/>
-		    	<input type="button" value="搜索" onclick="search($('#title2').val(),2)"/>
-	    	</p>
-	    	<P class="list_p2">
-	    			<span style="width: 900px;">标题</span>
-	    			<span style="width: 100px;">发布时间</span>
-	    	</P>
-			<ul class="list_ul" id="xinwen2">
-				<c:forEach items="${noticeList}" var="list">
-					<li>
-					<span style="float: left;"><a href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=2">${list.title}</a></span>
-					<span style="float:right;"><fmt:formatDate value="${list.releaseTime}" pattern="yyyy-MM-dd"/></span>
-					</li>
-				</c:forEach>
-			</ul>							
-		</div>		
-			<!-- 分页2 -->
-			<div id="pagin2" class="pagin"  style="width: 1128px; height:60px; margin: 0 auto;">
-			<!-- <div class="message">
+
+	<div id="noticeList" class="noticeList">
+		<p class="list_p1">
+			<span>最新活动</span> <input type="text" id="title2" /> <input
+				type="button" value="搜索" onclick="search($('#title2').val(),2)" />
+		</p>
+		<P class="list_p2">
+			<span style="width: 900px;">标题</span> <span style="width: 100px;">发布时间</span>
+		</P>
+		<ul class="list_ul" id="xinwen2">
+			<c:forEach items="${noticeList}" var="list">
+				<li><span style="float: left;"><a
+						href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=2">${list.title}</a></span>
+					<span style="float: right;"><fmt:formatDate
+							value="${list.releaseTime}" pattern="yyyy-MM-dd" /></span></li>
+			</c:forEach>
+		</ul>
+	</div>
+	<!-- 分页2 -->
+	<div id="pagin2" class="pagin"
+		style="width: 1128px; height: 60px; margin: 0 auto;">
+		<!-- <div class="message">
 				共<i id="rows2" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage2" class="blue"></i>页
 			</div> -->
-			<div id="Pagination2" class="meneame" style="clear:left; width: 500px; float: right;"></div> 	
-			</div>
-			<div  id="industryNewsList" class="industryNewsList" >
-				<p class="list_p1">
-			    	<span>行业新闻</span>
-			    	<input type="text" id="title3"/>
-			    	<input type="button" value="搜索" onclick="search($('#title3').val(),3)"/>
-		    	</p>
-		    	<P class="list_p2">
-		    			<span style="width: 900px;">标题</span>
-		    			<span style="width: 100px;">发布时间</span>
-		    	</P>
-				<ul class="list_ul" id="xinwen3">
-					<c:forEach items="${industryNewsList}" var="list">
-						<li>
-						<span style="float: left;"><a href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=3">${list.title}</a></span>
-						<span style="float:right;"><fmt:formatDate value="${list.releaseTime}" pattern="yyyy-MM-dd"/></span>
-						</li>
-					</c:forEach>
-				</ul>							
-			</div>		
-							<!-- 分页3 -->
-			<div id="pagin3" class="pagin" style="width: 1128px; height:60px; margin: 0 auto;">
-			<!-- <div class="message">
+		<div id="Pagination2" class="meneame"
+			style="clear: left; width: 500px; float: right;"></div>
+	</div>
+	<div id="industryNewsList" class="industryNewsList">
+		<p class="list_p1">
+			<span>行业新闻</span> <input type="text" id="title3" /> <input
+				type="button" value="搜索" onclick="search($('#title3').val(),3)" />
+		</p>
+		<P class="list_p2">
+			<span style="width: 900px;">标题</span> <span style="width: 100px;">发布时间</span>
+		</P>
+		<ul class="list_ul" id="xinwen3">
+			<c:forEach items="${industryNewsList}" var="list">
+				<li><span style="float: left;"><a
+						href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=3">${list.title}</a></span>
+					<span style="float: right;"><fmt:formatDate
+							value="${list.releaseTime}" pattern="yyyy-MM-dd" /></span></li>
+			</c:forEach>
+		</ul>
+	</div>
+	<!-- 分页3 -->
+	<div id="pagin3" class="pagin"
+		style="width: 1128px; height: 60px; margin: 0 auto;">
+		<!-- <div class="message">
 				共<i id="rows3" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage3" class="blue"></i>页
 			</div> -->
-			<div id="Pagination3" class="meneame" style="clear:left; width: 500px; float: right;"></div> 	
-			</div>
-  </body>
+		<div id="Pagination3" class="meneame"
+			style="clear: left; width: 500px; float: right;"></div>
+	</div>
+</body>
 </html>

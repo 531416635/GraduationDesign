@@ -36,30 +36,34 @@
 		AND `Status`=1 
 		AND ContractTime<=NOW() 
 		AND ContractExpirationTime>=NOW()
-		]]> 
+		]]>
 	</select>
 	<!--根据公司id分页查询合同表 -->
 	<select id="findByCompanyIds" parameterType="hashMap"
 		resultType="com.wit.model.CompanyContracts">
 		SELECT
-		id, companyId, contractTime, contractTerms,contractExpirationTime,
+		id, companyId, contractTime,
+		contractTerms,contractExpirationTime,
 		supplyCategory,
 		contractContent,status
 		FROM CompanyContracts
 		WHERE
-		CompanyId=#{companyId} and status !=3 order by ID limit #{page.begin},#{page.pageNum}
+		CompanyId=#{companyId} and status !=3 order by ID limit
+		#{page.begin},#{page.pageNum}
 	</select>
 
 	<!--根据id查询 -->
 	<select id="findById" parameterType="Integer"
 		resultType="com.wit.model.CompanyContracts">
 		SELECT
-		id, companyId, contractTime, contractTerms,contractExpirationTime,
+		id, companyId, contractTime,
+		contractTerms,contractExpirationTime,
 		supplyCategory,contractType,
 		contractContent,status
 		FROM CompanyContracts
 		WHERE
-		id=#{id} and status !=3
+		id=#{id} and status
+		!=3
 	</select>
 
 	<!--删除合同 -->
@@ -85,10 +89,12 @@
 	<!--增加 -->
 	<insert id="insert" parameterType="com.wit.model.CompanyContracts">
 		INSERT INTO CompanyContracts (
-		companyId,ContractType,ContractTime,ContractExpirationTime, ContractTerms, SupplyCategory,status,
+		companyId,ContractType,ContractTime,ContractExpirationTime,
+		ContractTerms, SupplyCategory,status,
 		ContractContent
 		) VALUES (
-		#{companyId},#{contractType},#{contractTime},#{contractExpirationTime}, #{contractTerms},#{supplyCategory},0,
+		#{companyId},#{contractType},#{contractTime},#{contractExpirationTime},
+		#{contractTerms},#{supplyCategory},0,
 		#{contractContent}
 		)
 	</insert>
@@ -99,18 +105,20 @@
 		FROM CompanyContracts WHERE
 		companyId=#{id} and status !=3
 	</select>
-	
+
 	<!-- 根据ID字符数组删除数据 -->
 	<update id="deleteByIds" parameterType="string">
-		update CompanyContracts set
+		update CompanyContracts
+		set
 		status=3
 		where FIND_IN_SET(id,#{ids})
-	</update>	
-	
-	<!--修改合同状态  -->
+	</update>
+
+	<!--修改合同状态 -->
 	<update id="updateContractStatus" parameterType="Integer">
-		update companycontracts 
-		SET status = 1 
+		update
+		companycontracts
+		SET status = 1
 		WHERE id=#{id}
 	</update>
 </mapper>

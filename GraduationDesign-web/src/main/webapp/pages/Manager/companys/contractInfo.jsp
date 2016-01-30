@@ -22,7 +22,7 @@ bkLib.onDomLoaded(function() {
 	});
 </script>
 <style type="text/css">
-#yangs{
+#yangs {
 	position: absolute;
 	top: 10%;
 	margin-top: -50px;
@@ -34,7 +34,7 @@ bkLib.onDomLoaded(function() {
 
 <body>
 	<div id="yangs">
-		<div id="content" cols="100" >${companyContracts.contractContent}</div>
+		<div id="content" cols="100">${companyContracts.contractContent}</div>
 	</div>
 </body>
 </html>

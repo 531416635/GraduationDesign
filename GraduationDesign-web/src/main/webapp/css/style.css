@@ -36,17 +36,17 @@ img {
 	border: 0;
 }
 
-dl,dt,dd,span {
+dl, dt, dd, span {
 	margin: 0;
 	padding: 0;
 	display: block;
 }
 
-a,a:focus {
+a, a:focus {
 	text-decoration: none;
 	color: #000;
 	outline: none;
-	blr: expression(this.onFocus = this.blur () );
+	blr: expression(this.onFocus = this.blur ());
 }
 
 a:hover {
@@ -679,7 +679,7 @@ h2 {
 	border-top-right-radius: 5px;
 }
 
-.pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a
+.pagin .paginList .paginItem.current, .pagin .paginList .paginItem.current a
 	{
 	background: #f5f5f5;
 	cursor: default;
@@ -690,7 +690,7 @@ h2 {
 	background: #f5f5f5;
 }
 
-.pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover
+.pagin .paginList .paginItem.more, .pagin .paginList .paginItem.more a:hover
 	{
 	cursor: default;
 }
@@ -1119,7 +1119,7 @@ h2 {
 	margin-left: 125px;
 }
 
-.sure,.cancel {
+.sure, .cancel {
 	width: 96px;
 	height: 35px;
 	line-height: 35px;

@@ -126,8 +126,7 @@ function checkDeletes(){
 
 				<c:forEach items="${companyContracts}" var="c">
 					<tr>
-						<td><input name="box" type="checkbox" value="${c.id}" />
-						</td>
+						<td><input name="box" type="checkbox" value="${c.id}" /></td>
 						<td style="display: none">${c.id}</td>
 						<td style="display: none">${c.companyId}</td>
 						<td>${c.contractTime}</td>
@@ -139,8 +138,7 @@ function checkDeletes(){
 								<c:when test="${c.status==1}">未签订</c:when>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateSupplierContract.do?id=${c.id}">修改</a> 
-							<%-- <a class="tablelink" href="#" onclick="checkDelete(${c.id},${companyId});">删除</a> --%>
+							href="/ssm/toUpdateSupplierContract.do?id=${c.id}">修改</a> <%-- <a class="tablelink" href="#" onclick="checkDelete(${c.id},${companyId});">删除</a> --%>
 						</td>
 					</tr>
 				</c:forEach>
@@ -156,21 +154,18 @@ function checkDeletes(){
 				<c:choose>
 					<c:when test="${page.currentPage==1}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/supplierContractInfo.do?currentPage=${page.currentPage-1}&&companyId=${companyId}"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach begin="1" end="${page.totalPage}" var="s3">
 					<c:choose>
 						<c:when test="${s3==page.currentPage}">
-							<li class="paginItem current"><a href="#">${s3}</a>
-							</li>
+							<li class="paginItem current"><a href="#">${s3}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
@@ -182,14 +177,12 @@ function checkDeletes(){
 				<c:choose>
 					<c:when test="${page.currentPage==page.totalPage or s3<=10}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/supplierContractInfo.do?currentPage=${page.currentPage+1}&&companyId=${companyId}"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

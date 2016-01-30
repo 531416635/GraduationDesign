@@ -164,12 +164,10 @@ div.meneame span {
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img
-						src="<%=path%>/images/t01.png" />
-				</span>添加</li>
+						src="<%=path%>/images/t01.png" /> </span>添加</li>
 				<li class="click2"><span><img
-						src="<%=path%>/images/t03.png" />
-				</span> <a href="javascript:;" onclick="getText();">删除</a>
-				</li>
+						src="<%=path%>/images/t03.png" /> </span> <a href="javascript:;"
+					onclick="getText();">删除</a></li>
 			</ul>
 
 		</div>
@@ -179,8 +177,7 @@ div.meneame span {
 			<thead>
 				<tr>
 					<th><input id="checkAll" type="checkbox" value=""
-						onclick="checkAll();" />
-					</th>
+						onclick="checkAll();" /></th>
 					<th>ID<i class="sort"><img src="<%=path%>/images/px.gif" />
 					</i>
 					</th>
@@ -203,15 +200,14 @@ div.meneame span {
 					<th>公司ID</th>
 					<th>部门ID</th>
 					<th>岗位ID</th>
-					<th style="width:15%">操作</th>
+					<th style="width: 15%">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${userManagers}" var="userManager">
 					<tr>
 						<td><input name="box" type="checkbox"
-							value="${userManager.id}" />
-						</td>
+							value="${userManager.id}" /></td>
 						<td>${userManager.id}</td>
 						<td>${userManager.roleName}</td>
 						<td>${userManager.userCode}</td>
@@ -264,16 +260,17 @@ div.meneame span {
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
+		<!-- 分页 -->
+		<div class="message">
+			共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+				style="color: blue;">${page.currentPage}&nbsp;</i>页
 		</div>
-			<div class="pagin">
-		<!-- 	<div class="message">
+		<div class="pagin">
+			<!-- 	<div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 
 		<%-- <div class="pagin">
 			<div class="message">
@@ -334,8 +331,7 @@ div.meneame span {
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认添加用户？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

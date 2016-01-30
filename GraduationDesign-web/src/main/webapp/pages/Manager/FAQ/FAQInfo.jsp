@@ -53,13 +53,14 @@ body {
 		<form action="FAQUpdate.do" method="post"
 			enctype="multipart/form-data" id="form">
 			<input type="hidden" name="id" value="${FAQ.id}" />
-			<table style="border: 1px solid #d7d7d7;width: 90%;text-align:left;">
+			<table
+				style="border: 1px solid #d7d7d7; width: 90%; text-align: left;">
 				<tr>
 					<th>问题类型:</th>
 					<td><c:forEach items="${questionType }" var="q">
-							
-								<c:if test="${q.id ==FAQ.questionType }">${q.typeName }</c:if>
-					</c:forEach></td>
+
+							<c:if test="${q.id ==FAQ.questionType }">${q.typeName }</c:if>
+						</c:forEach></td>
 				</tr>
 				<tr>
 					<th>问题名称:</th>
@@ -71,12 +72,12 @@ body {
 				</tr>
 				<tr>
 					<th>问题回答:</th>
-					<td colspan="3"><textarea id="content" cols="100" readonly="readonly" disabled="disabled"
-							name="answer" value="${FAQ.answer}"></textarea>
-					</td>
+					<td colspan="3"><textarea id="content" cols="100"
+							readonly="readonly" disabled="disabled" name="answer"
+							value="${FAQ.answer}"></textarea></td>
 				</tr>
 			</table>
- <input type="button" value="返回" onclick="history.back()">
+			<input type="button" value="返回" onclick="history.back()">
 		</form>
 	</div>
 </body>

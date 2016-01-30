@@ -261,7 +261,7 @@
 			<c:if test="${pros1.parentCateGory==null}">
 				<div class="storey_box">
 					<div class="st_title" style="position: relative;">
-						<div style="float: left; ">
+						<div style="float: left;">
 							<b><span class="n${status1.count}"><img
 									src="<%=path%>/images/index/00_${status1.count}.png">
 									${status1.count}F/</span><span class="nn1">${pros1.cateGoryName}</span>
@@ -277,9 +277,9 @@
 									<c:if test="${ counter > 0}">|</c:if>
 									<!-- 调用ajax,实现商品替换	 -->
 									<a
-											href="toSecondIndex.do?cateGoryId=${pros1.id}&cateGorySunId=${pcs.id}&cateGoryLevel=2"
-											onmouseover="findProduct('${pcs.id}','${status1.count}')">${pcs.cateGoryName}</a>
-										<c:set scope="page" var="counter" value="${ counter + 1 }"></c:set>
+										href="toSecondIndex.do?cateGoryId=${pros1.id}&cateGorySunId=${pcs.id}&cateGoryLevel=2"
+										onmouseover="findProduct('${pcs.id}','${status1.count}')">${pcs.cateGoryName}</a>
+									<c:set scope="page" var="counter" value="${ counter + 1 }"></c:set>
 								</c:if>
 							</c:forEach>
 						</div>
@@ -330,20 +330,22 @@
 						</div>
 						<!-- 大图广告 -->
 						<div class="datu_${status1.count}">
-						<img src="<%=path%>/images/redimg/st_1_3.png"/>
+							<img src="<%=path%>/images/redimg/st_1_3.png" />
 						</div>
 						<!--中推荐商品展现-->
-						<div class="st_2_${status1.count}" style="width: 444px; float: right;">
-							<c:forEach items="${pros1.products}" begin="1" end="4" var="pros2"
-								varStatus="status2">
+						<div class="st_2_${status1.count}"
+							style="width: 444px; float: right;">
+							<c:forEach items="${pros1.products}" begin="1" end="4"
+								var="pros2" varStatus="status2">
 								<div class="grid_1">
 									<div class="banner_item">
 										<!--标题-->
 										<p class="banner_p banner_p1">${pros2.productName}</p>
-										<p class="banner_p banner_p2"><span style="float: left;"><!-- 现<br/>价</span><span style="margin-top: 13px; display:block; float: left;">：29.9</span> --></p>
+										<p class="banner_p banner_p2">
+											<span style="float: left;"> <!-- 现<br/>价</span><span style="margin-top: 13px; display:block; float: left;">：29.9</span> -->
+										</p>
 										<!--标题-->
-										<ul class="gr_j"
-											style="left: 0px;top: 0px;">
+										<ul class="gr_j" style="left: 0px; top: 0px;">
 											<li class="j_4"><a
 												href="toProductInfo1.do?ProductId=${pros2.id}"
 												style="height: 196px;"><img
@@ -356,7 +358,7 @@
 											href="toProductInfo.do?ProductId=${pros2.id}">询价</a>
 										</li>  --%>
 										</ul>
-									
+
 
 									</div>
 								</div>

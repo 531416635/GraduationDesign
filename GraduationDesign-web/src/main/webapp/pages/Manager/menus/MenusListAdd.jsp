@@ -57,58 +57,53 @@ body {
 
 			<tr class="info">
 				<th>菜单名称:</th>
-				<td><input type="text"  name="menuName"  required="required"  />
+				<td><input type="text" name="menuName" required="required" />
 				</td>
 			</tr>
 
 			<tr class="info">
 				<th>菜单简码:</th>
-				<td><input type="text"  name="menuCode"   required="required" />
+				<td><input type="text" name="menuCode" required="required" />
 				</td>
 			</tr>
 			<tr class="info">
 				<th>菜单路径:</th>
-				<td><input type="text" name="menuUrl"   required="required"   />
-				</td>
+				<td><input type="text" name="menuUrl" required="required" /></td>
 			</tr>
 
 
 			<tr class="info">
 				<th>父菜单:</th>
-				<td><select name="parentMenu"  >
+				<td><select name="parentMenu">
 						<option value=" ">&nbsp;</option>
 						<c:forEach items="${menusLists}" var="menu">
-							<option value="${menu.id}"> ${menu.patformName}： ${menu.menuName}</option>
+							<option value="${menu.id}">${menu.patformName}：
+								${menu.menuName}</option>
 						</c:forEach>
-				</select>
-				</td>
+				</select></td>
 			</tr>
 
 			<tr class="info" style="display: none">
 				<th>状态:</th>
-				<td><input type="text"  
-					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="status" />
-				</td>
+				<td><input type="text"
+					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="status" /></td>
 			</tr>
-			
+
 			<tr class="info">
 				<th>菜单类别:</th>
 				<td><input type="radio" name="menuType" value="1" /><span>菜单</span>
 					<input type="radio" name="menuType" value="2" /><span>页面</span> <input
-					type="radio" name="menuType" value="3" /><span>按钮</span>
-				</td>
+					type="radio" name="menuType" value="3" /><span>按钮</span></td>
 			</tr>
 
 			<tr class="info">
 				<th>所属平台:</th>
 				<td><input type="radio" name="patform" value="1" /><span>系统管理</span>
-				<input type="radio" name="patform" value="2"/><span>商户管理</span>
-				<%--
+					<input type="radio" name="patform" value="2" /><span>商户管理</span> <%--
 					<input type="radio" name="patform" value="3" /><span>供应管理</span> 
 					<input
 					type="radio" name="patform" value="2" /><span>采购管理</span>
-					 --%>
-				</td>
+					 --%></td>
 			</tr>
 			<tr>
 				<td colspan="2">${msg}</td>

@@ -137,53 +137,58 @@ div.meneame span {
 
 <body>
 
-	
-    
-    <div class="rightinfo">
-    
-    <div class="tools">
-    	<ul class="toolbar">
-        <li class="click"><span><img src="<%=path%>/images/t01.png" /></span>添加</li>
-        <li class="click2"><span><img src="<%=path%>/images/t03.png" /></span>
-                <a href="javascript:;" onclick="getText();">删除</a></li>
-        </ul>
-    
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" value="" onclick="checkAll();"/></th>
-        <th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th>权限名称</th>
-        <th>权限代码</th>
-        <th>菜单名称</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${rights}" var="right">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="${right.id}" /></td>
-		        <td>${right.id}</td>
-		        <td>${right.rightName}</td>
-		        <td>${right.rightCode}</td>
-		        <td>${right.menuName}</td>
-		        <td><a href="toRightUpdate.do?id=${right.id }" class="tablelink">修改</a>  <a href="rightDelete.do?id=${right.id }" class="tablelink"> 删除  </a></td>
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-    
-   			<!-- 分页 -->
-			<div class="pagin">
+
+
+	<div class="rightinfo">
+
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click"><span><img
+						src="<%=path%>/images/t01.png" /></span>添加</li>
+				<li class="click2"><span><img
+						src="<%=path%>/images/t03.png" /></span> <a href="javascript:;"
+					onclick="getText();">删除</a></li>
+			</ul>
+
+		</div>
+
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input id="checkAll" type="checkbox" value=""
+						onclick="checkAll();" /></th>
+					<th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
+					<th>权限名称</th>
+					<th>权限代码</th>
+					<th>菜单名称</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${rights}" var="right">
+					<tr>
+						<td><input name="box" type="checkbox" value="${right.id}" /></td>
+						<td>${right.id}</td>
+						<td>${right.rightName}</td>
+						<td>${right.rightCode}</td>
+						<td>${right.menuName}</td>
+						<td><a href="toRightUpdate.do?id=${right.id }"
+							class="tablelink">修改</a> <a href="rightDelete.do?id=${right.id }"
+							class="tablelink"> 删除 </a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<!-- 分页 -->
+		<div class="pagin">
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-   <%-- <div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+		<%-- <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -214,32 +219,35 @@ div.meneame span {
                 </c:choose>    
         </ul>
     </div> --%>
-    
-    
-   <div class="tip">
-    	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
-      <div class="tipinfo">
-        <span><img src="../images/ticon.png" /></span>
-        <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
-        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-        </div>
-        </div>
-        
-        <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" onclick="location='toRightAdd.do'"/>&nbsp;
-        <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    
-    </div>
-    
-    
-    
-    
-    </div>
-    
-    <script type="text/javascript">
+
+
+		<div class="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+
+			<div class="tipinfo">
+				<span><img src="../images/ticon.png" /></span>
+				<div class="tipright">
+					<p>是否确认对信息的修改 ？</p>
+					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				</div>
+			</div>
+
+			<div class="tipbtn">
+				<input name="" type="button" class="sure" value="确定"
+					onclick="location='toRightAdd.do'" />&nbsp; <input name=""
+					type="button" class="cancel" value="取消" />
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

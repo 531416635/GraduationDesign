@@ -13,7 +13,8 @@
 			+ path + "/";
 %>
 <!-- Custom Theme files -->
-<link href="<%=path %>/css/WeChatcss/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=path %>/css/WeChatcss/style.css" rel="stylesheet"
+	type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
@@ -62,8 +63,8 @@ span {
 <body>
 	<div class="login">
 		<div class="login-top">
-			<form style="width:85%; margin:0 auto;" action="/ssm/weChat/order.do"
-				method="post" id="form1">
+			<form style="width: 85%; margin: 0 auto;"
+				action="/ssm/weChat/order.do" method="post" id="form1">
 				<div class="order_input">
 					<span>日期：</span>
 					<!-- <input type="text"> -->
@@ -83,17 +84,18 @@ span {
 					<span>用户名字：</span> <input type="text" name="userName"
 						placeholder="&nbsp;请输入用户名字">
 				</div>
-				<div style="margin-bottom:28px;" class="order_input">
+				<div style="margin-bottom: 28px;" class="order_input">
 					<span>商品名称：</span><input id="productName" type="text"
 						name="productName" placeholder="&nbsp;请输入商品名称" />
 
 				</div>
-				<input style="width:45%; height:30px; float:left;" type="button"
+				<input style="width: 45%; height: 30px; float: left;" type="button"
 					onclick="checkTime()" value="立即查询"> <input
-					style="width:45%; height:30px; float:right;" type="submit"
+					style="width: 45%; height: 30px; float: right;" type="submit"
 					value="人工服务">
 			</form>
-			<div style="clear:both;margin:0px;padding:0px;line-height:0px;"></div>
+			<div
+				style="clear: both; margin: 0px; padding: 0px; line-height: 0px;"></div>
 		</div>
 	</div>
 </body>

@@ -202,27 +202,26 @@ div.meneame span {
 							<c:when test="${dis.status == 0}">申请</c:when>
 							<c:when test="${dis.status == 1}">处理</c:when>
 							<c:when test="${dis.status == 2}">完成 </c:when>
-						</c:choose>
-					</td>
+						</c:choose></td>
 
 					<td><a href="deleteOrders.do?id=${dis.id }" class="tablelink">
 							删除 </a> <a href="toOrdersListUpdate.do?id=${dis.id}"
-						class="tablelink">修改</a>
-					</td>
+						class="tablelink">修改</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-   		 <!-- 分页 -->
-   		 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
-		</div>
-			<div class="pagin">
-			<!-- <div class="message">
+	<!-- 分页 -->
+	<div class="message">
+		共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+			style="color: blue;">${page.currentPage}&nbsp;</i>页
+	</div>
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
 	<!-- 分页 -->
 	<%-- <div class="pagin">
 		<div class="message">

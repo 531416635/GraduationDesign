@@ -104,59 +104,61 @@ div.meneame span {
 
 <body>
 	<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-    <li><a href="#">系统后台</a></li>
-    <li><a href="#">管理系统</a></li>
-    <li><a href="#">流程管理</a></li>
-    <li><a href="#">流程日志</a></li>
-    </ul>
-    </div>
-	
-    
-    
-    
-   
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" name="" value="" onclick="checkAll();"/></th>
-        <th>ID<class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th>流程ID</th>  
-        <th>节点ID</th>    
-        <th>用户ID</th>      
-        <th>处理结果</th>
-        <th>处理意见</th>
-              
-     
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${dispatch}" var="dis">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="${dis.id}" /></td>
-		        <td>${dis.id}</td>
-		        <td>${dis.workflowId}</td>
-		        <td>${dis.nodeId}</td>     
-		        <td>${dis.userId}</td>		        
-		        <td>${dis.processResult}</td>
-		        <td>${dis.processContent}</td>
-		       
-		       
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-    	<!-- 分页 -->
-			<div class="pagin">
-			<!-- <div class="message">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">系统后台</a></li>
+			<li><a href="#">管理系统</a></li>
+			<li><a href="#">流程管理</a></li>
+			<li><a href="#">流程日志</a></li>
+		</ul>
+	</div>
+
+
+
+
+
+
+	<table class="tablelist">
+		<thead>
+			<tr>
+				<th><input id="checkAll" type="checkbox" name="" value=""
+					onclick="checkAll();" /></th>
+				<th>ID<class="sort"> <img src="<%=path%>/images/px.gif" />
+					</i></th>
+				<th>流程ID</th>
+				<th>节点ID</th>
+				<th>用户ID</th>
+				<th>处理结果</th>
+				<th>处理意见</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${dispatch}" var="dis">
+				<tr>
+					<td><input name="box" type="checkbox" value="${dis.id}" /></td>
+					<td>${dis.id}</td>
+					<td>${dis.workflowId}</td>
+					<td>${dis.nodeId}</td>
+					<td>${dis.userId}</td>
+					<td>${dis.processResult}</td>
+					<td>${dis.processContent}</td>
+
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-     <!-- 分页 -->
-    <%--  <div class="pagin">
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
+	<!-- 分页 -->
+	<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -188,9 +190,9 @@ div.meneame span {
         </ul>
     </div>
     --%>
-    
-    
-    <script type="text/javascript">
+
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

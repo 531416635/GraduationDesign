@@ -142,8 +142,7 @@ body {
 				<tr class="info">
 					<th>标题:</th>
 					<td><input type="text" id="title" name="title"
-						required="required" />
-					</td>
+						required="required" /></td>
 				</tr>
 				<tr class="info">
 					<th>内容:</th>
@@ -152,14 +151,13 @@ body {
 				</tr>
 				<tr class="info">
 					<th>发布时效:</th>
-					<td><input id="shixiao" type="text" required="required" name="releaseAging"
-						onclick="WdatePicker()" readonly="readonly" style="width:70px;" />
-					</td>
+					<td><input id="shixiao" type="text" required="required"
+						name="releaseAging" onclick="WdatePicker()" readonly="readonly"
+						style="width: 70px;" /></td>
 				</tr>
 				<tr class="info" style="display: none">
 					<th>新闻序号:</th>
-					<td><input type="text"  name="newsIndex" />
-					</td>
+					<td><input type="text" name="newsIndex" /></td>
 				</tr>
 			</table>
 			<input type="hidden" name="newType" value="${newType}" /> <input

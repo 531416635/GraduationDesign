@@ -1,145 +1,232 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
-	margin:0;
-	padding:0;
-	border:0;
-	font:inherit;
-	vertical-align:baseline;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
 	font-family: "w微软雅黑";
 }
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
-ol,ul{list-style:none;margin:0;padding:0;}
-blockquote,q{quotes:none;}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
-table{border-collapse:collapse;border-spacing:0;}
-/* start editing from here */
-a{text-decoration:none;}
-.txt-rt{text-align:right;}/* text align right */
-.txt-lt{text-align:left;}/* text align left */
-.txt-center{text-align:center;}/* text align center */
-.float-rt{float:right;}/* float right */
-.float-lt{float:left;}/* float left */
-.clear{clear:both;}/* clear float */
-.pos-relative{position:relative;}/* Position Relative */
-.pos-absolute{position:absolute;}/* Position Absolute */
-.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
-.vertical-top{	vertical-align:top;}/* vertical align top */
-.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
-nav.vertical ul li{	display:block;}/* vertical menu */
-nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
-img{max-width:100%;}
-span{
-	display:block;	
-}
-div{
-	/*border:1px solid #666;*/
-}
-.div_top{
-	width:100%;
-}
-.div_top1{
-	width:100%;
-	background-color:#FFD6DC;
-}
-.top{
-	margin:0 auto;
-	width:1128px;
-}
-.logo_top{
-	width:1400px; 
-	margin:0 auto;
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
 }
 
-.gp_head{
-	height:924px;
+ol, ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
-.gp_toplist{
-	height:1010px;
+
+blockquote, q {
+	quotes: none;
 }
-.gp_logo{
-	height:703px;
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
 }
-.gp_list{
-	height:1020px;
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-.div_head{
-	height:210px;
-	width:210px;
-	border-radius:100px;
-	float:left;
-	margin-left:-40px;
-	background-color:#FFF;
+/* start editing from here */
+a {
+	text-decoration: none;
 }
-.span_1{
-	font-size:30px;
-	color:#F00; 
-	margin:10px 0 0 80px ;
+
+.txt-rt {
+	text-align: right;
+} /* text align right */
+.txt-lt {
+	text-align: left;
+} /* text align left */
+.txt-center {
+	text-align: center;
+} /* text align center */
+.float-rt {
+	float: right;
+} /* float right */
+.float-lt {
+	float: left;
+} /* float left */
+.clear {
+	clear: both;
+} /* clear float */
+.pos-relative {
+	position: relative;
+} /* Position Relative */
+.pos-absolute {
+	position: absolute;
+} /* Position Absolute */
+.vertical-base {
+	vertical-align: baseline;
+} /* vertical align baseline */
+.vertical-top {
+	vertical-align: top;
+} /* vertical align top */
+.underline {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+	margin: 0 0 20px 0;
+} /* Add 5px bottom padding and a underline */
+nav.vertical ul li {
+	display: block;
+} /* vertical menu */
+nav.horizontal ul li {
+	display: inline-block;
+} /* horizontal menu */
+img {
+	max-width: 100%;
 }
-.span_2{
-	font-size:12px; 
-	margin:115px 0 0 80px;
+
+span {
+	display: block;
 }
-#id_toplist div{
-	width:364px;
-	height:495px;  
+
+div {
+	/*border:1px solid #666;*/
+	
 }
-#id_toplist img{
-	width:364px;
-	height:310px;  
+
+.div_top {
+	width: 100%;
 }
-#id_toplist table{
-	width:352px; 
-	margin:0 auto;
+
+.div_top1 {
+	width: 100%;
+	background-color: #FFD6DC;
 }
-.td_list1{
-	height:26px; 
-	font-size:18px; 
-	color:#3C3C3C;
+
+.top {
+	margin: 0 auto;
+	width: 1128px;
 }
-.td_list2{
-	height:26px;
-	font-size:16px; 
-	color:#B71F1B;
+
+.logo_top {
+	width: 1400px;
+	margin: 0 auto;
 }
-.td_list3{
-	height:20px;
-	font-size:16px; 
-	color:#494949;
+
+.gp_head {
+	height: 924px;
 }
-.td_list4{
-	width:131px; 
-	color:#AF0415
+
+.gp_toplist {
+	height: 1010px;
 }
-.td_list5{
-	width:131px; 
-	color:#DD5C78;
+
+.gp_logo {
+	height: 703px;
 }
-.td_list6{
-	height:31px;
-	font-size:22px; 
-	color:#D11640;
+
+.gp_list {
+	height: 1020px;
 }
-.td_list7{
-	height:50px; 
-	text-align:center; 
-	border:1px solid #F00;
+
+.div_head {
+	height: 210px;
+	width: 210px;
+	border-radius: 100px;
+	float: left;
+	margin-left: -40px;
+	background-color: #FFF;
 }
-.div_toplist{
-	float:left;
-	margin:0 5px 15px;
+
+.span_1 {
+	font-size: 30px;
+	color: #F00;
+	margin: 10px 0 0 80px;
 }
-.div_list{
-	float:left;
-	margin:40px 5px 10px;
+
+.span_2 {
+	font-size: 12px;
+	margin: 115px 0 0 80px;
 }
-#id_list img{
-	width:270px;
-	height:270px;  
+
+#id_toplist div {
+	width: 364px;
+	height: 495px;
 }
-#id_list table{
-	width:258px;
-	margin:0 auto; 
+
+#id_toplist img {
+	width: 364px;
+	height: 310px;
 }
-#id_list div{
-	width:270px;
-	height:457px;  
+
+#id_toplist table {
+	width: 352px;
+	margin: 0 auto;
+}
+
+.td_list1 {
+	height: 26px;
+	font-size: 18px;
+	color: #3C3C3C;
+}
+
+.td_list2 {
+	height: 26px;
+	font-size: 16px;
+	color: #B71F1B;
+}
+
+.td_list3 {
+	height: 20px;
+	font-size: 16px;
+	color: #494949;
+}
+
+.td_list4 {
+	width: 131px;
+	color: #AF0415
+}
+
+.td_list5 {
+	width: 131px;
+	color: #DD5C78;
+}
+
+.td_list6 {
+	height: 31px;
+	font-size: 22px;
+	color: #D11640;
+}
+
+.td_list7 {
+	height: 50px;
+	text-align: center;
+	border: 1px solid #F00;
+}
+
+.div_toplist {
+	float: left;
+	margin: 0 5px 15px;
+}
+
+.div_list {
+	float: left;
+	margin: 40px 5px 10px;
+}
+
+#id_list img {
+	width: 270px;
+	height: 270px;
+}
+
+#id_list table {
+	width: 258px;
+	margin: 0 auto;
+}
+
+#id_list div {
+	width: 270px;
+	height: 457px;
 }

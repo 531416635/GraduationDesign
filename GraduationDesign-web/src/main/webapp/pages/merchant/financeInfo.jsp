@@ -19,7 +19,8 @@
 	href="<%=path%>/css/frontcss/wjmm.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/houtai.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/redcss/jindutiao.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/redcss/jindutiao.css" />
 <script language="javascript" type="text/javascript"
 	src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript">
@@ -200,34 +201,40 @@ function addTitle(companyId,title){
 	location.href = "addTitle.do?companyId="+companyId+"&&title="+encodeURI(encodeURI(title));
 }
 </script>
-	
+
 <style type="text/css">
-tr{
-   height: 35px;
+tr {
+	height: 35px;
 }
-td{
-    /* text-align:center; */
-    border-left: 1px solid #D0D0D0;
+
+td {
+	/* text-align:center; */
+	border-left: 1px solid #D0D0D0;
 }
-th{
-   border-left: 1px solid #D0D0D0;
+
+th {
+	border-left: 1px solid #D0D0D0;
 }
-#shenqing{
+
+#shenqing {
 	display: none;
 	margin-left: 20%;
 	margin-top: 50px;
 }
-#chakan{
+
+#chakan {
 	display: none;
 }
-.ck{
+
+.ck {
 	font-size: 14px;
 	color: white;
 	height: 30px;
 	margin-left: 15%;
-	margin-top:10px;
+	margin-top: 10px;
 }
-#shenqing table tr td{
+
+#shenqing table tr td {
 	font-size: 16px;
 	border: 0;
 }
@@ -237,7 +244,8 @@ th{
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">结算管理 ></span><span
 				class="lo2">对账单</span>
 		</div>
@@ -249,7 +257,9 @@ th{
 			<input type="hidden" name="settlement" value="" id="settlement" />
 		</div>
 		<br />
-		<h1 align="center"><b>对&nbsp;&nbsp;账&nbsp;&nbsp;单</b></h1>
+		<h1 align="center">
+			<b>对&nbsp;&nbsp;账&nbsp;&nbsp;单</b>
+		</h1>
 		<div>
 			<table width="100%" cellspacing="0" align="center">
 				<thead style="border: 1px solid #D0D0D0">
@@ -272,23 +282,21 @@ th{
 						<tr>
 							<td style="display: none">${c.id}</td>
 							<td style="display: none">${c.companyId}</td>
-							<td align="center">
-								<c:if test="${c.status==5 ||c.status == 2}">
-								<input type="radio" name="box"
-								value="${c.id}" />
-								</c:if>
-							</td>
-							<td align="center"><fmt:formatDate value="${c.startTime}" pattern="yyyy-MM-dd" /></td>
-							<td align="center">
-							<input id="ct${c.id}" type="hidden" value="${c.currency}"/>
-							${c.currency}</td>
+							<td align="center"><c:if
+									test="${c.status==5 ||c.status == 2}">
+									<input type="radio" name="box" value="${c.id}" />
+								</c:if></td>
+							<td align="center"><fmt:formatDate value="${c.startTime}"
+									pattern="yyyy-MM-dd" /></td>
+							<td align="center"><input id="ct${c.id}" type="hidden"
+								value="${c.currency}" /> ${c.currency}</td>
 							<td align="right">${c.amount}</td>
 							<td align="right">${c.discount}</td>
-							<td align="right" ><input id="at${c.id}" type="hidden" value="${c.settledAmount}"/>${c.settledAmount}</td>
+							<td align="right"><input id="at${c.id}" type="hidden"
+								value="${c.settledAmount}" />${c.settledAmount}</td>
 							<td name="status" align="center"><input type="hidden"
-								id="st${c.id}" value="${c.status}" /> 
-								<input type="hidden" id="ss${c.id}" value="${c.stateType}"/>
-							<c:choose>
+								id="st${c.id}" value="${c.status}" /> <input type="hidden"
+								id="ss${c.id}" value="${c.stateType}" /> <c:choose>
 									<c:when test="${c.status==0}">未对账</c:when>
 									<c:when test="${c.status==1}">已对账</c:when>
 									<c:when test="${c.status==2}">系统对账</c:when>
@@ -297,25 +305,23 @@ th{
 									<c:when test="${c.status==5}">发票已签收</c:when>
 								</c:choose></td>
 
-							<td align="center"> 
-							<a  style="color: #666;" href="/ssm/merchant/financialSettlement.do?id=${c.id}">对账详情</a>
+							<td align="center"><a style="color: #666;"
+								href="/ssm/merchant/financialSettlement.do?id=${c.id}">对账详情</a>
 								<c:if test="${c.stateType==2}">
-								<%--<c:if test="${c.status==2}">
+									<%--<c:if test="${c.status==2}">
 									<a href="#" onclick="openwin(${c.id},${c.settledAmount})">申请发票</a>
 									</c:if> --%>
 									<c:if test="${c.status==4}">
-									<a href="#" onclick="sign(${c.id});">发票签收</a>
+										<a href="#" onclick="sign(${c.id});">发票签收</a>
 									</c:if>
-								</c:if>
-								<c:if test="${c.stateType==1}">
+								</c:if> <c:if test="${c.stateType==1}">
 									<c:if test="${c.status==3}">
-									<a href="#" onclick="send(${c.id})">发票寄出</a>
+										<a href="#" onclick="send(${c.id})">发票寄出</a>
 									</c:if>
-								</c:if>
-								<c:if test="${c.status == 1 || c.status==3 || c.status==4 || c.status==5}">
+								</c:if> <c:if
+									test="${c.status == 1 || c.status==3 || c.status==4 || c.status==5}">
 									<a href="#" onclick="show(${c.id},${c.status})">查看发票</a>
-								</c:if>
-							</td>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -323,68 +329,73 @@ th{
 		</div>
 		<br />
 
-		
-		<hr style="color: red;border: 1px solid;margin-top: 50px;" />
 
-		<input class="action orange" style="width: 120px; height: 30px; margin: 10px 40px;" id="conf" type="button" value="确认对账" onclick="querenduizhang();" />
+		<hr style="color: red; border: 1px solid; margin-top: 50px;" />
+
+		<input class="action orange"
+			style="width: 120px; height: 30px; margin: 10px 40px;" id="conf"
+			type="button" value="确认对账" onclick="querenduizhang();" />
 		<c:if test="${cbs[0].stateType != 1}">
-		<input class="action orange" style="width: 120px; height: 30px; margin: 10px 40px;" type="button" value="申请发票" onclick="apply();" id="apply"/>
+			<input class="action orange"
+				style="width: 120px; height: 30px; margin: 10px 40px;" type="button"
+				value="申请发票" onclick="apply();" id="apply" />
 		</c:if>
-		
+
 		<div id="shenqing">
 			<table>
 				<tr>
 					<td>发票类型：</td>
-					<td>
-						<input type="radio" name="invoiceType"  value="1" checked="checked"/><span>增值税发票</span>
-						<input type="radio" name="invoiceType"  value="2"/><span>普通发票</span>
-						<input type="radio" name="invoiceType"  value="3"/><span>专业发票</span>
-					</td>
+					<td><input type="radio" name="invoiceType" value="1"
+						checked="checked" /><span>增值税发票</span> <input type="radio"
+						name="invoiceType" value="2" /><span>普通发票</span> <input
+						type="radio" name="invoiceType" value="3" /><span>专业发票</span></td>
 				</tr>
 				<tr>
 					<td>发票抬头：</td>
-					<td>
-						<select name="InvoiceTitle" id="titleValue" style="height: 25px; width: 130px;">
-								<c:forEach items="${invoice}" var="t">
+					<td><select name="InvoiceTitle" id="titleValue"
+						style="height: 25px; width: 130px;">
+							<c:forEach items="${invoice}" var="t">
 								<c:if test="${t.invoiceTitle != null && t.invoiceTitle != ''}">
-								<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
-								</c:if> 
-								</c:forEach>
-						</select>
-					</td>
+									<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
+								</c:if>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td>增加发票抬头：</td>
-					<td><input style="height: 23px;" type="text" id="title"/>&nbsp;<input class="orange" type="button" value="增加" onclick='addTitle(${companyId},$("#title").val());'/></td>
+					<td><input style="height: 23px;" type="text" id="title" />&nbsp;<input
+						class="orange" type="button" value="增加"
+						onclick='addTitle(${companyId},$("#title").val());' /></td>
 				</tr>
 				<tr>
 					<td>发票金额：</td>
 					<td><span name="amount" id="amount"></span></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="确认"  class="action orange ck" onclick='queren($("input[name=invoiceType]:checked").val(),$("#titleValue option:selected").val(),$("#amount").text(),${companyId},$("#statementId").text());'/></td>
+					<td colspan="2"><input type="button" value="确认"
+						class="action orange ck"
+						onclick='queren($("input[name=invoiceType]:checked").val(),$("#titleValue option:selected").val(),$("#amount").text(),${companyId},$("#statementId").text());' /></td>
 				</tr>
 			</table>
 			<div style="display: none">
-				<span>公司ID：</span>
-				<span name="companyId">${companyId}</span>
+				<span>公司ID：</span> <span name="companyId">${companyId}</span>
 			</div>
 			<div style="display: none">
-				<span>对账单号：</span>
-				<span name="statementId" id="statementId"></span>
+				<span>对账单号：</span> <span name="statementId" id="statementId"></span>
 			</div>
-			
+
 		</div>
 
-<div class="overlay"></div>
+		<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox" style="opacity: 0; margin-top: 300px;">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+		<div id="AjaxLoading" class="showbox"
+			style="opacity: 0; margin-top: 300px;">
+			<div class="loadingWord">
+				<img src="<%=path%>/images/waiting.gif">加载中，请稍候...
+			</div>
+		</div>
 
-<div style="height:1200px;">
-	
-</div>
-</div>
+		<div style="height: 1200px;"></div>
+	</div>
 </body>
 </html>

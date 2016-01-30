@@ -28,27 +28,31 @@ div {
 <body>
 	<div>
 		<form action="shoppingAddressUpdate.do" method="post">
-		<input type="hidden" name="id" value="${shoppingAddress.id}">
+			<input type="hidden" name="id" value="${shoppingAddress.id}">
 			<table border="0" cellpadding="0" cellspacing="0">
-		<tr >
-			<th>配送地址:</th>
-			<td><input type="text" name="shoppingAddress" value="${shoppingAddress.shoppingAddress}" /></td>
-		</tr>
-		<tr >
-			<th>地址简称:</th>
-			<td><input type="text" name="adderssName" value="${shoppingAddress.adderssName}"/></td>
-		</tr>
-		<tr >
-			<th>公司名称:</th>
-			<td><input type="text" name="companyId" value="${shoppingAddress.companyId}"/></td>
-		</tr>
-		<tr >
-			<th>用户名称:</th>
-			<td><input type="text" name="userId" value="${shoppingAddress.userId}"/></td>
-		</tr>
+				<tr>
+					<th>配送地址:</th>
+					<td><input type="text" name="shoppingAddress"
+						value="${shoppingAddress.shoppingAddress}" /></td>
+				</tr>
+				<tr>
+					<th>地址简称:</th>
+					<td><input type="text" name="adderssName"
+						value="${shoppingAddress.adderssName}" /></td>
+				</tr>
+				<tr>
+					<th>公司名称:</th>
+					<td><input type="text" name="companyId"
+						value="${shoppingAddress.companyId}" /></td>
+				</tr>
+				<tr>
+					<th>用户名称:</th>
+					<td><input type="text" name="userId"
+						value="${shoppingAddress.userId}" /></td>
+				</tr>
 			</table>
-			<input type="submit" value="增加" />
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
 		</form>
 	</div>
 </body>

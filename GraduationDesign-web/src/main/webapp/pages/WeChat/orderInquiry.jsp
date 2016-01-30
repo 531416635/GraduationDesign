@@ -138,7 +138,7 @@ div.meneame span {
 </head>
 <body>
 	<div class="top">
-		<form style="width:85%; margin:0 auto;" action="orderInquiry.do"
+		<form style="width: 85%; margin: 0 auto;" action="orderInquiry.do"
 			id="form1" method="post">
 			<P>
 				<span>订单单号：</span><input type="text" name="orderId">
@@ -152,11 +152,11 @@ div.meneame span {
 					name="companyName" placeholder="&nbsp;请输入供应商名称" />
 			</P>
 			<P>
-				<span>订单日期：</span><input onclick="WdatePicker()"
-				id="startOrderTime"	name="startOrderTime" />-<input onclick="WdatePicker()"
-				id="endOrderTime"	name="endOrderTime" />
+				<span>订单日期：</span><input onclick="WdatePicker()" id="startOrderTime"
+					name="startOrderTime" />-<input onclick="WdatePicker()"
+					id="endOrderTime" name="endOrderTime" />
 			</P>
-			<input style="width:70px; margin-left:70%;" type="button"
+			<input style="width: 70px; margin-left: 70%;" type="button"
 				onclick="checkTime()" value="查询" />
 		</form>
 		<hr color="#CCCCCC">
@@ -164,7 +164,7 @@ div.meneame span {
 		<c:forEach items="${orders }" var="p">
 			<table>
 				<tr>
-					<td style="width:60px;">商品：</td>
+					<td style="width: 60px;">商品：</td>
 					<td>${p.productName }</td>
 				</tr>
 				<tr>
@@ -189,8 +189,8 @@ div.meneame span {
 				</tr>
 			</table>
 		</c:forEach>
-		<p id="ps" style="text-align:center">
-			<input style="outline:none; background-color:#fff; color:#666"
+		<p id="ps" style="text-align: center">
+			<input style="outline: none; background-color: #fff; color: #666"
 				type="button" value="点击查看更多↓" onclick="viewMore()">
 		</p>
 	</div>

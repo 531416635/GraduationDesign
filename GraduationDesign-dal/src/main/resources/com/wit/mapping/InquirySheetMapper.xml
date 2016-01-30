@@ -9,22 +9,24 @@
 		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status
 		from InquirySheet
 		where status != 3
-		order by ID limit #{begin},#{pageNum};
+		order by ID limit
+		#{begin},#{pageNum};
 	</select>
 	<select id="findUserName" parameterType="java.lang.Integer"
 		resultType="com.wit.model.Users">
 		select userName from Users where id=#{id}
 	</select>
 	<resultMap type="com.wit.model.InquirySheet" id="inquirySheetMap">
-		<association property="users" column="id"
-			javaType="com.wit.model.Users" select="findUserName">
+		<association property="users" column="id" javaType="com.wit.model.Users"
+			select="findUserName">
 		</association>
 	</resultMap>
 
 	<!-- 删除 -->
 	<delete id="delete" parameterType="java.lang.Integer">
 		update InquirySheet
-		set status = 3
+		set status
+		= 3
 		where id=#{id}
 	</delete>
 
@@ -83,14 +85,14 @@
 	</select>
 
 	<!--根据用户ID显示其询价单(系统后台) -->
-	<select id="findAll" parameterType="hashMap"
-		resultType="com.wit.model.InquirySheet">
+	<select id="findAll" parameterType="hashMap" resultType="com.wit.model.InquirySheet">
 		select
 		id,userId,inquiryId,currency,deliveryType,productModel,productId,
 		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status
 		from InquirySheet
 		where userId=#{userId} and status=0
-		order by ID DESC limit
+		order by ID DESC
+		limit
 		#{page.begin},#{page.pageNum};
 	</select>
 
@@ -98,12 +100,15 @@
 		select
 		id,userId,inquiryId,currency,deliveryType,productModel,productId,
 		productQuantity,productUnit,address,refPrice,expectPrice,expectTime,orderTime,status,
-		getAddressName(address) as inquiryAddressName,getAddressNameShoppingCart(address) as inquiryAddressNames,
+		getAddressName(address) as
+		inquiryAddressName,getAddressNameShoppingCart(address) as
+		inquiryAddressNames,
 		getProductName(ProductID) AS productName,
 		getProductPic(ProductID) AS
 		productPic
 		from InquirySheet
-		where userId=#{userId}
+		where
+		userId=#{userId}
 		and status=0
 		<if test="ids != null">
 			and FIND_IN_SET(inquiryId,#{ids})>0
@@ -112,7 +117,8 @@
 			and inquiryId like CONCAT('%',#{inquiryId},'%')
 		</if>
 		<if test="productName!=null and productName!=''">
-			and getProductName(ProductID) like CONCAT('%',#{productName},'%')
+			and getProductName(ProductID) like
+			CONCAT('%',#{productName},'%')
 		</if>
 		<if test="orderTime!= null and orderTime!=''">
 			AND orderTime like CONCAT('%',#{orderTime},'%')
@@ -134,7 +140,8 @@
 		productPic
 		from InquirySheet
 		where userId=#{userId}
-		and FIND_IN_SET(status,'0,1')
+		and
+		FIND_IN_SET(status,'0,1')
 		<if test="page.inquiryId != null and page.inquiryId != ''">
 			and inquiryId = #{page.inquiryId}
 		</if>
@@ -154,7 +161,8 @@
 	<select id="weChatFindAllRowsByIds" parameterType="hashMap"
 		resultType="Integer">
 		select count(ID) from InquirySheet where userId=#{userId}
-		and FIND_IN_SET(status,'0,1')
+		and
+		FIND_IN_SET(status,'0,1')
 		<if test="page.inquiryId != null and page.inquiryId != ''">
 			and inquiryId = #{page.inquiryId}
 		</if>
@@ -182,7 +190,8 @@
 			and inquiryId like CONCAT('%',#{inquiryId},'%')
 		</if>
 		<if test="productName!=null and productName!=''">
-			and getProductName(ProductID) like CONCAT('%',#{productName},'%')
+			and getProductName(ProductID) like
+			CONCAT('%',#{productName},'%')
 		</if>
 		<if test="orderTime!= null and orderTime!=''">
 			AND orderTime like CONCAT('%',#{orderTime},'%')
@@ -204,7 +213,8 @@
 	<update id="updateInquirySheetInfo" parameterType="com.wit.model.InquirySheet">
 		update
 		InquirySheet
-		set ProductQuantity=#{ProductQuantity},ExpectPrice=#{ExpectPrice}
+		set
+		ProductQuantity=#{ProductQuantity},ExpectPrice=#{ExpectPrice}
 		where
 		InquiryID=#{InquiryID}
 	</update>

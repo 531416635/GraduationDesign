@@ -94,7 +94,7 @@
 				<tr>
 					<th><input name="" id="checkAll" type="checkbox"
 						onclick="checkAll();" />全选</th>
-					<th style="display:none">公司ID</th>
+					<th style="display: none">公司ID</th>
 					<th>币种</th>
 					<th>账户变更</th>
 					<th>账户金额</th>
@@ -108,13 +108,12 @@
 					<tr>
 						<td><input name="box" type="checkbox" value="${c.companyId}" />
 						</td>
-						<td style="display:none">${c.companyId}</td>
+						<td style="display: none">${c.companyId}</td>
 						<td>${c.currency}</td>
 						<td>${c.balanceChange}</td>
 						<td>${c.balance}</td>
 						<td>${c.changeDate}</td>
-						<td><a class="tablelink" href="#">结算</a> 
-						</td>
+						<td><a class="tablelink" href="#">结算</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

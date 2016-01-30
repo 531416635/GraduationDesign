@@ -57,23 +57,22 @@ body {
 		<table border="0" cellpadding="0" cellspacing="0">
 			<tr class="info">
 				<th>流程类型ID:</th>
-				<td><input type="text" name="workflowTypeId"  required="required" 
-					onkeyup="value=value.replace(/[^(\d)]/g,'')" /></td>
+				<td><input type="text" name="workflowTypeId"
+					required="required" onkeyup="value=value.replace(/[^(\d)]/g,'')" /></td>
 			</tr>
 			<tr class="info">
 				<th>节点ID:</th>
-				<td><input type="text" name="nodeId" required="required"  
+				<td><input type="text" name="nodeId" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" /></td>
 			</tr>
 			<tr class="info">
 				<th>用户ID:</th>
-				<td><input type="text" name="userId"  required="required" 
-					onkeyup="value=value.replace(/[^(\d)]/g,'')" />
-					</td>
+				<td><input type="text" name="userId" required="required"
+					onkeyup="value=value.replace(/[^(\d)]/g,'')" /></td>
 			</tr>
 			<tr class="info">
 				<th>状态:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="status" /></td>
 			</tr>
 		</table>

@@ -5,13 +5,15 @@
 	<select id="findAll" resultType="com.wit.model.ProductReview">
 		SELECT
 		id,CompanyProductId,reviews,reviewBy,reviewTime,starLevel,status
-		FROM ProductReview
+		FROM
+		ProductReview
 	</select>
 	<select id="findById" parameterType="Integer"
 		resultType="com.wit.model.ProductReview">
 		SELECT
 		id,CompanyProductId,reviews,reviewBy,reviewTime,starLevel,status
-		FROM ProductReview
+		FROM
+		ProductReview
 		WHERE id=#{id}
 	</select>
 	<select id="getReviewByProductId" parameterType="Integer"
@@ -19,13 +21,17 @@
 		SELECT
 		pr.id,pr.CompanyProductId,pr.reviews,pr.reviewBy,pr.reviewTime,pr.starLevel,pr.status,u.UserName
 		as reviewByName
-		from ProductReview pr LEFT JOIN Users u on pr.ReviewBy=u.id
-		LEFT JOIN CompanyProducts cp on cp.ID =pr.CompanyProductID where
+		from ProductReview pr LEFT JOIN Users u on
+		pr.ReviewBy=u.id
+		LEFT JOIN CompanyProducts cp on cp.ID
+		=pr.CompanyProductID where
 		cp.ProductID=#{id}
-		and pr.status=1 order by reviewTime DESC limit 20
+		and pr.status=1 order by
+		reviewTime DESC limit 20
 	</select>
 	<delete id="deleteById" parameterType="Integer">
-		delete from ProductReview where id=#{id}
+		delete from ProductReview
+		where id=#{id}
 	</delete>
 	<insert id="insert" parameterType="com.wit.model.ProductReview">
 		insert into ProductReview(

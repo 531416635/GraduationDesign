@@ -132,22 +132,20 @@
 
 				<c:forEach items="${orders}" var="d">
 					<tr>
-							<td>${d.productName}</td>
-							<td>${d.unitPrice}</td>
-							<td>${d.quantity}</td>
-							<td align="right">${d.totolAmount}</td>
-							<td>
-							<c:choose>
-							<c:when test="${d.status==0}">待付款</c:when>
-							<c:when test="${d.status==1}">待发货</c:when>
-							<c:when test="${d.status==2}">待收货</c:when>
-							<c:when test="${d.status==3}">待评价</c:when>
-							<c:when test="${d.status==4}">交易成功</c:when>
-							</c:choose>
-							</td>
-							<td><a href="#">查看评价</a>&nbsp;<a href="#">验收情况</a>&nbsp;<!-- <a href="#">申请售后</a> -->
-							</td>
-							<td>${d.deliveryDate}</td>
+						<td>${d.productName}</td>
+						<td>${d.unitPrice}</td>
+						<td>${d.quantity}</td>
+						<td align="right">${d.totolAmount}</td>
+						<td><c:choose>
+								<c:when test="${d.status==0}">待付款</c:when>
+								<c:when test="${d.status==1}">待发货</c:when>
+								<c:when test="${d.status==2}">待收货</c:when>
+								<c:when test="${d.status==3}">待评价</c:when>
+								<c:when test="${d.status==4}">交易成功</c:when>
+							</c:choose></td>
+						<td><a href="#">查看评价</a>&nbsp;<a href="#">验收情况</a>&nbsp;<!-- <a href="#">申请售后</a> -->
+						</td>
+						<td>${d.deliveryDate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

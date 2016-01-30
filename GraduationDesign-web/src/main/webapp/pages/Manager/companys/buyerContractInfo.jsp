@@ -81,9 +81,9 @@
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
 					href="/ssm/toAddBuyerContract.do?companyId=${companyId}">添加</a></li>
-				<li><a class="tablelink" href="#" onclick="getText('${companyId}');"><span><img
-							src="images/t03.png" /> </span>删除</a>
-				</li>
+				<li><a class="tablelink" href="#"
+					onclick="getText('${companyId}');"><span><img
+							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 
@@ -117,12 +117,11 @@
 						<td><c:choose>
 								<c:when test="${c.status==0}">未签订</c:when>
 								<c:when test="${c.status==1}">签订</c:when>
-							</c:choose>
-						</td>
-						<td>
-						<a  class="tablelink" href="/ssm/contractInfo.do?id=${c.id}">合同详情</a>
-						<a class="tablelink"
-							href="/ssm/updateContractStatus.do?id=${c.id}&&companyId=${c.companyId}">审核</a> 
+							</c:choose></td>
+						<td><a class="tablelink"
+							href="/ssm/contractInfo.do?id=${c.id}">合同详情</a> <a
+							class="tablelink"
+							href="/ssm/updateContractStatus.do?id=${c.id}&&companyId=${c.companyId}">审核</a>
 						</td>
 					</tr>
 				</c:forEach>

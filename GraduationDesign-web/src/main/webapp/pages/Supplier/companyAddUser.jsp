@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>一起采</title>
 <link type="text/css" rel="stylesheet" href="../css/main.css" />
-<script language="javascript" type="text/javascript" src="../js/jquery.js"></script>
+<script language="javascript" type="text/javascript"
+	src="../js/jquery.js"></script>
 <script type="text/javascript">
 	 function add() {
           $.ajax({
@@ -45,36 +46,36 @@ body {
 </style>
 </head>
 <body>
-	<div id = div1>
+	<div id=div1>
 		<form id="form" action="companyAddUser.do" method="post">
-			<table  border="0" cellpadding="0" cellspacing="0">
-		<tr >
-			<th>用户姓名:</th>
-			<td><input  required="required"   type="text" name="userName"/></td>
-		</tr>
-		<tr >
-			<th>用户名:</th>
-			<td><input  required="required"   type="text" name="userCode"/></td>
-		</tr>
-		<tr >
-			<th>用户密码:</th>
-			<td><input  required="required"   type="text" name="userPsw"/></td>
-		</tr>
-		<tr>
-			<th>Email:</th>
-			<td><input required="required"   type="text" name="email"/></td>
-		</tr>
-		<tr>
-			<th>电话:</th>
-			<td><input  required="required"   type="text" name="tel"/></td>
-		</tr>
-		<tr>
-			<th>联系地址:</th>
-			<td><input type="text"  required="required"   name="address"/></td>
-		</tr>
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>用户姓名:</th>
+					<td><input required="required" type="text" name="userName" /></td>
+				</tr>
+				<tr>
+					<th>用户名:</th>
+					<td><input required="required" type="text" name="userCode" /></td>
+				</tr>
+				<tr>
+					<th>用户密码:</th>
+					<td><input required="required" type="text" name="userPsw" /></td>
+				</tr>
+				<tr>
+					<th>Email:</th>
+					<td><input required="required" type="text" name="email" /></td>
+				</tr>
+				<tr>
+					<th>电话:</th>
+					<td><input required="required" type="text" name="tel" /></td>
+				</tr>
+				<tr>
+					<th>联系地址:</th>
+					<td><input type="text" required="required" name="address" /></td>
+				</tr>
 			</table>
-			<input type="button" value="添加" onclick="add();"/>
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="button" value="添加" onclick="add();" /> <input
+				type="reset" value="取消" onclick="history.back()">
 		</form>
 	</div>
 </body>

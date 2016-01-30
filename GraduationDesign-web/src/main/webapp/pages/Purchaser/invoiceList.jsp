@@ -70,8 +70,7 @@ div.meneame span {
 
 		<div class="tools">
 			<ul class="toolbar">
-				<li class="">
-					<a href="/ssm/supplys/toInvoiceAdd.do">&nbsp;申请发票</a>
+				<li class=""><a href="/ssm/supplys/toInvoiceAdd.do">&nbsp;申请发票</a>
 				</li>
 			</ul>
 		</div>
@@ -97,51 +96,46 @@ div.meneame span {
 					<tr>
 						<td style="display: none">${c.ID}</td>
 						<td style="display: none">${c.InvoiceID}</td>
-						
+
 						<td>${c.InvoiceTitle}</td>
 						<td>${c.Amount}</td>
-						<td>
-						<c:choose>
-							<c:when test="${c.InvoiceType==1}">增值税发票</c:when>
-							<c:when test="${c.InvoiceType==2}">普通发票</c:when>
-							<c:when test="${c.InvoiceType==3}">专业发票</c:when>
-						</c:choose>
-						</td>
-						<td>
-						<c:choose>
-							<c:when test="${c.Status==0}">发票申请</c:when>
-							<c:when test="${c.Status==1}">发票已寄出</c:when>
-							<c:when test="${c.Status==2}">发票已签收</c:when>
-						</c:choose>
-						</td>
+						<td><c:choose>
+								<c:when test="${c.InvoiceType==1}">增值税发票</c:when>
+								<c:when test="${c.InvoiceType==2}">普通发票</c:when>
+								<c:when test="${c.InvoiceType==3}">专业发票</c:when>
+							</c:choose></td>
+						<td><c:choose>
+								<c:when test="${c.Status==0}">发票申请</c:when>
+								<c:when test="${c.Status==1}">发票已寄出</c:when>
+								<c:when test="${c.Status==2}">发票已签收</c:when>
+							</c:choose></td>
 						<td>${c.CreateTime}</td>
 						<td>${c.CompanyID}</td>
-						<input type="hidden" name="StatementID" value="${c.StatementID}"/>
-						<td>
-						<c:if test="${c.CompanyType==2}">
-						<c:if test="${c.Status == 0}">
-						<input type="button" value="寄出" onclick="fapiao(${c.ID},${c.StatementID})"/>
-						</c:if>
-						</c:if>
-						<c:if test="${c.CompanyType==3}">
-						<c:if test="${c.Status == 1}">
-						<input type="button" value="签收" onclick="qianshou(${c.StatementID})"/>
-						</c:if>
-						</c:if>
-						</td>
+						<input type="hidden" name="StatementID" value="${c.StatementID}" />
+						<td><c:if test="${c.CompanyType==2}">
+								<c:if test="${c.Status == 0}">
+									<input type="button" value="寄出"
+										onclick="fapiao(${c.ID},${c.StatementID})" />
+								</c:if>
+							</c:if> <c:if test="${c.CompanyType==3}">
+								<c:if test="${c.Status == 1}">
+									<input type="button" value="签收"
+										onclick="qianshou(${c.StatementID})" />
+								</c:if>
+							</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
-			<!-- 分页 -->
-			<div class="pagin">
+
+		<!-- 分页 -->
+		<div class="pagin">
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-		
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+
 		<%-- <div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页

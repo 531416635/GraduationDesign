@@ -26,50 +26,48 @@ div {
 </style>
 </head>
 <body>
-<div>
-	<form action="addSupplierBankAccount.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<th>公司ID:</th>
-				<td><input  name="companyId"   required="required"  />
-				</td>
-			</tr>
-			<tr>
-				<th>银行账号:</th>
-				<td><input type="text" name="bankAccount"  required="required" />
-				</td>
-			</tr>
-			<tr>
-				<th>开户行地址:</th>
-				<td><input type="text" name="bankAddress"   required="required" />
-				</td>
-			</tr>
-			<tr>
-				<th>银行名称:</th>
-				<td><input type="text" name="bankName"   required="required"  />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>状态:</th>
-				<td><select name="status" style="width:173px;">
+	<div>
+		<form action="addSupplierBankAccount.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>公司ID:</th>
+					<td><input name="companyId" required="required" /></td>
+				</tr>
+				<tr>
+					<th>银行账号:</th>
+					<td><input type="text" name="bankAccount" required="required" />
+					</td>
+				</tr>
+				<tr>
+					<th>开户行地址:</th>
+					<td><input type="text" name="bankAddress" required="required" />
+					</td>
+				</tr>
+				<tr>
+					<th>银行名称:</th>
+					<td><input type="text" name="bankName" required="required" />
+					</td>
+				</tr>
+				<tr style="display: none">
+					<th>状态:</th>
+					<td><select name="status" style="width: 173px;">
 							<option value="0">初始</option>
 							<option value="1">可用</option>
 							<option value="2">冻结</option>
 							<option value="3">删除</option>
 					</select></td>
-			</tr>
-			<tr style="display: none">
-				<th>创建时间:</th>
-				<td><input type="text"   required="required" 
-				onclick="WdatePicker()" readonly="readonly" 
-				name="createTime"  />
-				</td>
-			</tr>
-			
-		</table>
-		<input type="submit" value="增加"/>
-		<input type="reset" value="取消" onclick="history.back()">
-	</form>
+				</tr>
+				<tr style="display: none">
+					<th>创建时间:</th>
+					<td><input type="text" required="required"
+						onclick="WdatePicker()" readonly="readonly" name="createTime" />
+					</td>
+				</tr>
+
+			</table>
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
+		</form>
 	</div>
 </body>
 </html>

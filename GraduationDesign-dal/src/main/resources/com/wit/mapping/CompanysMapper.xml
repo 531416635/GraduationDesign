@@ -6,7 +6,8 @@
 		select
 		id, companyName,
 		companyAddress, companyScale, registeredCapital,
-		companyTel, companyZipCode,
+		companyTel,
+		companyZipCode,
 		companyInfo, salesMan, companyWebsite,
 		companyContact,
 		companyType,status,maxAccount,isDefault,
@@ -26,33 +27,33 @@
 		select
 		id, companyName,
 		companyAddress, companyScale, registeredCapital,
-		companyTel, companyZipCode,
+		companyTel,
+		companyZipCode,
 		companyInfo, salesMan, companyWebsite,
 		companyContact,
 		companyType,status,maxAccount,isDefault,
 		isLock,maxPic
 		from
 		Companys
-		where  status!=2
+		where status!=2
 		order by id limit
 		#{begin},#{pageNum}
 	</select>
 
 	<!--根据ID查找公司 -->
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.Companys">
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Companys">
 		select
 		id, companyName, companyAddress, companyScale,
 		registeredCapital,
 		companyTel, companyZipCode, companyInfo, salesMan,
 		companyWebsite,status,companyFax,
 		companyContact, companyType
-		from Companys where
+		from
+		Companys where
 		id=#{companyId} and status!=2
 	</select>
 	<!--根据ID查找公司 -->
-	<select id="webfindById" parameterType="Integer"
-		resultType="com.wit.model.Companys">
+	<select id="webfindById" parameterType="Integer" resultType="com.wit.model.Companys">
 		select
 		id, companyName, companyAddress, companyScale,
 		registeredCapital,
@@ -91,7 +92,8 @@
 		companyName like
 		concat('%',#{companyName},'%')
 		order
-		by id limit
+		by
+		id limit
 		#{page.begin},#{page.pageNum}
 	</select>
 
@@ -111,7 +113,8 @@
 		companyName like
 		concat('%',#{companyName},'%')
 		order
-		by id limit #{page.begin},#{page.pageNum}
+		by
+		id limit #{page.begin},#{page.pageNum}
 	</select>
 
 	<!-- 删除采购商/供应商 -->
@@ -125,7 +128,7 @@
 	<!--增加采购商/供应商 -->
 	<insert id="add" parameterType="com.wit.model.Companys">
 		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
-			SELECT LAST_INSERT_ID() 
+			SELECT LAST_INSERT_ID()
 		</selectKey>
 		INSERT INTO Companys (
 		companyName, companyAddress, companyScale,
@@ -149,7 +152,8 @@
 		companyTel=#{companyTel},companyZipCode=#{companyZipCode},companyInfo=#{companyInfo},
 		salesMan=#{salesMan},companyWebsite=#{companyWebsite},
 		companyContact=#{companyContact},companyType=#{companyType}
-		where id=#{id}
+		where
+		id=#{id}
 	</update>
 
 
@@ -189,87 +193,92 @@
 		status=2
 		where FIND_IN_SET(id,#{ids})
 	</update>
-	
-	<!--门户后台公司信息添加-->
+
+	<!--门户后台公司信息添加 -->
 	<update id="completeCompanyInfo" parameterType="com.wit.model.Companys">
 		update Companys set
 		<if test="companyName != null and companyName != '' ">
-		companyName=#{companyName}
+			companyName=#{companyName}
 		</if>
 		<if test="companyAddress != null and companyAddress != '' ">,</if>
 		<if test="companyAddress != null and companyAddress != '' ">
-		companyAddress=#{companyAddress}
+			companyAddress=#{companyAddress}
 		</if>
 		<if test="companyTel != null and companyTel !='' ">,</if>
 		<if test="companyTel != null and companyTel !='' ">
-		companyTel=#{companyTel}
+			companyTel=#{companyTel}
 		</if>
 		<if test="companyZipCode!= null  and companyZipCode != '' ">,</if>
 		<if test="companyZipCode!= null  and companyZipCode != '' ">
-		companyZipCode=#{companyZipCode}
+			companyZipCode=#{companyZipCode}
 		</if>
 		<if test="companyInfo != null and companyInfo != '' ">,</if>
 		<if test="companyInfo != null and companyInfo != '' ">
-		companyInfo=#{companyInfo}
+			companyInfo=#{companyInfo}
 		</if>
 		<if test="companyScale!= null and companyScale != '' ">,</if>
 		<if test="companyScale!= null and companyScale != '' ">
-		companyScale=#{companyScale}
+			companyScale=#{companyScale}
 		</if>
 		<if test="registeredCapital != null and registeredCapital != '' ">,</if>
 		<if test="registeredCapital != null and registeredCapital != '' ">
-		registeredCapital=#{registeredCapital}
+			registeredCapital=#{registeredCapital}
 		</if>
 		<if test="distributionCar != null and distributionCar != '' ">,</if>
 		<if test="distributionCar != null and distributionCar != '' ">
-		distributionCar=#{distributionCar}
+			distributionCar=#{distributionCar}
 		</if>
 		<if test="diningRoomNumber != null and diningRoomNumber != ''">,</if>
 		<if test="diningRoomNumber != null and diningRoomNumber != ''">
-		diningRoomNumber=#{diningRoomNumber}
+			diningRoomNumber=#{diningRoomNumber}
 		</if>
 		<if test="status != null and status != ''">,</if>
 		<if test="status != null and status != ''">
-		status=#{status}
+			status=#{status}
 		</if>
 		<if test="companyFax !=null and companyFax != ''">,</if>
 		<if test="companyFax !=null and companyFax != ''">
-		companyFax=#{companyFax}
+			companyFax=#{companyFax}
 		</if>
 		<if test="companyWebsite !=null and companyWebsite != ''">,</if>
 		<if test="companyWebsite !=null and companyWebsite != ''">
-		companyWebsite=#{companyWebsite}
+			companyWebsite=#{companyWebsite}
 		</if>
 		where id=#{id}
 	</update>
-	
-	<!--门户获取判断登录时状态  -->
+
+	<!--门户获取判断登录时状态 -->
 	<select id="findLoginStatus" parameterType="Integer"
 		resultType="com.wit.model.Companys">
 		select
 		id, companyName, companyAddress, companyScale,
 		registeredCapital,
-		companyTel, companyZipCode, companyInfo, salesMan,companyFax,
+		companyTel, companyZipCode, companyInfo,
+		salesMan,companyFax,
 		companyWebsite,status,
-		companyContact, companyType,distributionCar,diningRoomNumber
+		companyContact,
+		companyType,distributionCar,diningRoomNumber
 		from Companys where
 		id=#{companyId}
 	</select>
-	
-	<!--获取所有公司（去重）  -->
-	<select id="findAllCompanys"
-		resultType="com.wit.model.Companys">
+
+	<!--获取所有公司（去重） -->
+	<select id="findAllCompanys" resultType="com.wit.model.Companys">
 		select
-		id, companyName, companyAddress, companyScale,
+		id, companyName,
+		companyAddress, companyScale,
 		registeredCapital,
-		companyTel, companyZipCode, companyInfo, salesMan,companyFax,
+		companyTel,
+		companyZipCode, companyInfo, salesMan,companyFax,
 		companyWebsite,status,
-		companyContact, companyType,distributionCar,diningRoomNumber
-		from Companys where companyName  IS NOT NULL and companyName!='' group by companyName
+		companyContact,
+		companyType,distributionCar,diningRoomNumber
+		from Companys where
+		companyName IS NOT NULL and companyName!='' group by companyName
 	</select>
-	
-	
-	
+
+
+
 </mapper>
 
 

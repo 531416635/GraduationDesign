@@ -55,54 +55,54 @@ body {
 	<form action="addWorkFlowNodesList.do" name="userForm" method="post">
 		<input type="hidden" name="id" id="id" value="" />
 		<table border="0" cellpadding="0" cellspacing="0">
-		<tr class="info">
+			<tr class="info">
 				<th>节点名称:</th>
-				<td><input  required="required"   type="text" name="nodeName" />
+				<td><input required="required" type="text" name="nodeName" />
 				</td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>节点简称:</th>
-				<td><input required="required"   type="text" name="nodeCode" />
+				<td><input required="required" type="text" name="nodeCode" />
 				</td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>节点角色:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nodeRole" /></td>
-		</tr>
-		
-		<tr class="info">
+			</tr>
+
+			<tr class="info">
 				<th>节点类型:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nodeType" /></td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>批复:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="processResult" /></td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>批复内容:</th>
-				<td><input type="text"  required="required"  name="processContent" />
-				</td>
-		</tr>
-		
-		<tr class="info">
+				<td><input type="text" required="required"
+					name="processContent" /></td>
+			</tr>
+
+			<tr class="info">
 				<th>上一个节点:</th>
-				<td><input type="text"   required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="prevNode" /></td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>下一个节点:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nextNode" /></td>
-		</tr>
-		<tr class="info">
+			</tr>
+			<tr class="info">
 				<th>流程类型ID:</th>
-				<td><input type="text"  required="required"  
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="workflowTypeId" /></td>
-		</tr>
-			
+			</tr>
+
 		</table>
 		<input type="submit" value="提交" />
 	</form>

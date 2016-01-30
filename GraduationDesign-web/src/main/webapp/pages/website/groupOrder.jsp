@@ -285,7 +285,7 @@ p {
 	padding-left: 15px;
 }
 
-input[type="text"],select {
+input[type="text"], select {
 	width: 150px;
 	height: 22px;
 }
@@ -294,14 +294,15 @@ input[type="text"],select {
 
 <body>
 	<div class="inner_div">
-		<hr style="color: red;border: 1px solid;margin-top:20px;" />
+		<hr style="color: red; border: 1px solid; margin-top: 20px;" />
 		<p style="padding-left: 0px;">团购订单</p>
 		<div>
 			<table width="100%" style="color: gray" border="0px" cellspacing="0">
 
 				<tr>
-					<th rowspan="3"><img style="width: 88px;height:88px;"  src="<%=path %>${fliePath }" /></th>
-					<th colspan="6" style="float:left;">${order.productName }</th>
+					<th rowspan="3"><img style="width: 88px; height: 88px;"
+						src="<%=path %>${fliePath }" /></th>
+					<th colspan="6" style="float: left;">${order.productName }</th>
 
 				</tr>
 
@@ -312,7 +313,7 @@ input[type="text"],select {
 					<th>配送单号：</th>
 					<th></th>
 					<th>购买数量:</th>
-					<th><span  id="numAmount">${order.quantity }</span>${order.productUnit }</th>
+					<th><span id="numAmount">${order.quantity }</span>${order.productUnit }</th>
 				</tr>
 				<tr>
 					<th>单价:</th>
@@ -320,26 +321,27 @@ input[type="text"],select {
 					<th>总额:</th>
 					<th>${order.totolAmount }</th>
 					<th>配送地址:</th>
-					<th> ${Address} </th>
+					<th>${Address}</th>
 				</tr>
 
 			</table>
 		</div>
-		<hr style="color: red;border: 1px solid;margin-top:20px;" />
+		<hr style="color: red; border: 1px solid; margin-top: 20px;" />
 		<br />
 
 		<div id="t2">
 			<p style="margin: 0px; background-color: #e5e5e5; font-size: 14px">配送地点</p>
-			<span id="msg2" style="color:red;display:none;">*请填写日期*</span>
+			<span id="msg2" style="color: red; display: none;">*请填写日期*</span>
 			<p id="pSign">
 				<c:forEach items="${shopAdds}" var="sa">
-					<input type="radio" id="radio${sa.id }" name="chkAddId" value="${sa.id }" onchange="checkBoxBlur(${sa.id})" />  [${sa.adderssName}]  ${sa.address}<br />
+					<input type="radio" id="radio${sa.id }" name="chkAddId"
+						value="${sa.id }" onchange="checkBoxBlur(${sa.id})" />  [${sa.adderssName}]  ${sa.address}<br />
 					&nbsp;&nbsp;&nbsp;&nbsp;<input class="Num" type="hidden"
-						id="txtNum${sa.id}" value="${order.quantity }"/>&nbsp;&nbsp;配送时间：<input
+						id="txtNum${sa.id}" value="${order.quantity }" />&nbsp;&nbsp;配送时间：<input
 						type="text" id="deliveryTime${sa.id}"
 						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						onchange="changeExpectTime('${sa.id}')" readonly="readonly"
-						style="width:120px;" />&nbsp;&nbsp;验收人:
+						style="width: 120px;" />&nbsp;&nbsp;验收人:
 					<select id="usersNum${sa.id}" name="usersNum${sa.id}">
 						<c:forEach items="${users}" var="u">
 							<c:if test="${u.status=='1'}">
@@ -359,50 +361,59 @@ input[type="text"],select {
 			</p>
 		</div>
 
-		<div style="border:1px solid gray;background-color:#f1f1f1;">
+		<div style="border: 1px solid gray; background-color: #f1f1f1;">
 			收货信息：<br />
 			<textArea type="text" name=""
-				style="resize : none;width:500px;border:0px; border-bottom:1px solid gray;"></textArea>
-			<br /> <br /> 其他信息：<input type="checkbox" id="checkInvoice" onchange="checkInvoice()" name="checkInvoice" value="1">
-			发票 <br /><div id="invoiceDiv" style="display:none;">发票类型: <input type="radio"  name="invoiceType" checked="checked" value="1" /><span>增值税发票</span>
-			<input type="radio" name="invoiceType" value="2" /><span>普通发票</span>
-			<input type="radio" name="invoiceType" value="3" /><span>专业发票</span>
-			<br />发票抬头：<select name="InvoiceTitle" id="InvoiceTitle">
-				<c:forEach items="${invoice}" var="t">
-					<c:if test="${t.invoiceTitle != null && t.invoiceTitle != ''}">
-						<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
-					</c:if>
-				</c:forEach>
-			</select>
-			<br/>增加默认发票抬头<input type="text" id="addInvoiceTitle"> 
-			<input type="button" id="addInvoice" value="增加" onclick="addInvoiceTitle()"/></div>
+				style="resize: none; width: 500px; border: 0px; border-bottom: 1px solid gray;"></textArea>
+			<br /> <br /> 其他信息：<input type="checkbox" id="checkInvoice"
+				onchange="checkInvoice()" name="checkInvoice" value="1"> 发票
+			<br />
+			<div id="invoiceDiv" style="display: none;">
+				发票类型: <input type="radio" name="invoiceType" checked="checked"
+					value="1" /><span>增值税发票</span> <input type="radio"
+					name="invoiceType" value="2" /><span>普通发票</span> <input
+					type="radio" name="invoiceType" value="3" /><span>专业发票</span> <br />发票抬头：<select
+					name="InvoiceTitle" id="InvoiceTitle">
+					<c:forEach items="${invoice}" var="t">
+						<c:if test="${t.invoiceTitle != null && t.invoiceTitle != ''}">
+							<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
+						</c:if>
+					</c:forEach>
+				</select> <br />增加默认发票抬头<input type="text" id="addInvoiceTitle"> <input
+					type="button" id="addInvoice" value="增加"
+					onclick="addInvoiceTitle()" />
+			</div>
 		</div>
-		<div style="border:1px solid gray;background-color:#f1f1f1;">
+		<div style="border: 1px solid gray; background-color: #f1f1f1;">
 			商品金额：<input type="text" value="0.00" id="totalAmount"
-				style="border:0px;" readonly="readonly" name="totalAmount " /><br />
-			运费：<input type="text" id="dispatchAmount" value="0.00" onchange="checkBoxBlur(0)"
+				style="border: 0px;" readonly="readonly" name="totalAmount " /><br />
+			运费：<input type="text" id="dispatchAmount" value="0.00"
+				onchange="checkBoxBlur(0)"
 				onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 				onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" /><br />
 			待支付：<input type="text" value="0.00" id="allAmount"
-				style="border:0px;" readonly="readonly" name="totalAmount " /><br />
+				style="border: 0px;" readonly="readonly" name="totalAmount " /><br />
 		</div>
-		<input class="orange action" type="button" value="进行支付" id="input_buttn"
-			onclick="AddGrouponPay()" /><input  type="button" value="进行支付" id="input_buttn1" style="background-color:#404040;display:none;"  /> <input class="orange" type="button"
-			value="取消返回" id="input_buttn" onclick="history.back()" />
+		<input class="orange action" type="button" value="进行支付"
+			id="input_buttn" onclick="AddGrouponPay()" /><input type="button"
+			value="进行支付" id="input_buttn1"
+			style="background-color: #404040; display: none;" /> <input
+			class="orange" type="button" value="取消返回" id="input_buttn"
+			onclick="history.back()" />
 	</div>
 
 	<br />
 
-	
+
 	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif"/>加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif" />加载中，请稍候...
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 
 
 </body>

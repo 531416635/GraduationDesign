@@ -13,17 +13,24 @@
 	
 </script>
 <style type="text/css">
-body {text-align:center;}
-h1 {
-margin-top: 15px;
-font-size:200%;
+body {
+	text-align: center;
 }
-#content {font-size:150%;}
+
+h1 {
+	margin-top: 15px;
+	font-size: 200%;
+}
+
+#content {
+	font-size: 150%;
+}
 </style>
 </head>
 
 <body>
-	<h1>${news.title}</h1><br/>
+	<h1>${news.title}</h1>
+	<br />
 	<div id="content">${news.content}</div>
 </body>
 </html>

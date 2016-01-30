@@ -57,23 +57,23 @@ body {
 		<table border="0" cellpadding="0" cellspacing="0">
 			<tr class="info">
 				<th>流程类型名称:</th>
-				<td><input type="text"  required="required"  name="workflowTypeName" />
-				</td>
+				<td><input type="text" required="required"
+					name="workflowTypeName" /></td>
 			</tr>
 			<tr class="info">
 				<th>创建人:</th>
-				<td><input type="text" name="createBy"  required="required" 
+				<td><input type="text" name="createBy" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" /></td>
-			</tr>	
+			</tr>
 			<tr class="info">
 				<th>创建时间:</th>
-				<td><input type="text" name="createTime" onclick="WdatePicker()"  required="required" 
-					readonly="readonly" style="width:70px;" />
-				</td>
+				<td><input type="text" name="createTime"
+					onclick="WdatePicker()" required="required" readonly="readonly"
+					style="width: 70px;" /></td>
 			</tr>
 			<tr class="info">
 				<th>状态:</th>
-				<td><input type="text"  required="required" 
+				<td><input type="text" required="required"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="status" /></td>
 			</tr>
 		</table>

@@ -15,6 +15,7 @@ body {
 	background-color: #FFFFFF;
 	text-align: center;
 }
+
 div {
 	position: absolute;
 	top: 40%;
@@ -22,6 +23,7 @@ div {
 	left: 40%;
 	margin-left: -50px;
 }
+
 .input_txt {
 	width: 200px;
 	height: 20px;
@@ -47,30 +49,30 @@ div {
 </style>
 </head>
 <body>
-<div>
-	<form action="updateSupplierAuthentication.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr style="display: none">
-				<th>ID</th>
-				<td><input name="id" readonly="readonly" value="${supplier.id}" />
-				</td>
-			</tr>
-			<tr>
-				<th>认证名称:</th>
-				<td><input name="authenticationName" value="${supplier.authenticationName}" />
-				</td>
-			</tr>
-			<tr>
-				<th>认证文件:</th>
-				<td><input type="text" name="filePath" value="${supplier.filePath}" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>企业名称ID:</th>
-				<td><input type="text" readonly="readonly" name="companyId" value="${supplier.companyId}" />
-				</td>
-			</tr>
-			<tr>
+	<div>
+		<form action="updateSupplierAuthentication.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr style="display: none">
+					<th>ID</th>
+					<td><input name="id" readonly="readonly"
+						value="${supplier.id}" /></td>
+				</tr>
+				<tr>
+					<th>认证名称:</th>
+					<td><input name="authenticationName"
+						value="${supplier.authenticationName}" /></td>
+				</tr>
+				<tr>
+					<th>认证文件:</th>
+					<td><input type="text" name="filePath"
+						value="${supplier.filePath}" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>企业名称ID:</th>
+					<td><input type="text" readonly="readonly" name="companyId"
+						value="${supplier.companyId}" /></td>
+				</tr>
+				<tr>
 					<th>状态</th>
 					<td><c:choose>
 							<c:when test="${supplier.status==0}">
@@ -81,8 +83,7 @@ div {
 								<input type="radio" name="status" value="0">
 								<span>未认证</span>
 							</c:otherwise>
-						</c:choose>
-						<c:choose>
+						</c:choose> <c:choose>
 							<c:when test="${supplier.status==1}">
 								<input type="radio" name="status" value="1" checked="checked">
 								<span>已认证</span>
@@ -93,27 +94,25 @@ div {
 							</c:otherwise>
 						</c:choose></td>
 				</tr>
-			<tr>
-				<th>上传时间:</th>
-				<td><input type="text" name="uploadTime" 
-				onclick="WdatePicker()" readonly="readonly"
-				value="${supplier.uploadTime}" />
-				</td>
-			</tr>
-			<tr>
-				<th>上传人:</th>
-				<td><input type="text" name="uploadBy" value="${supplier.uploadBy}" />
-				</td>
-			</tr>
-			<tr>
-				<th>文件类别:</th>
-				<td><input name="fileClass" value="${supplier.fileClass}"/>
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="修改"/>
-		<input type="reset" value="取消" onclick="history.back()">
-	</form>
+				<tr>
+					<th>上传时间:</th>
+					<td><input type="text" name="uploadTime"
+						onclick="WdatePicker()" readonly="readonly"
+						value="${supplier.uploadTime}" /></td>
+				</tr>
+				<tr>
+					<th>上传人:</th>
+					<td><input type="text" name="uploadBy"
+						value="${supplier.uploadBy}" /></td>
+				</tr>
+				<tr>
+					<th>文件类别:</th>
+					<td><input name="fileClass" value="${supplier.fileClass}" /></td>
+				</tr>
+			</table>
+			<input type="submit" value="修改" /> <input type="reset" value="取消"
+				onclick="history.back()">
+		</form>
 	</div>
 </body>
 </html>

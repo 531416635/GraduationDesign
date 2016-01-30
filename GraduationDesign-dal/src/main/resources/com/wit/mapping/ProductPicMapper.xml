@@ -12,8 +12,7 @@
 		values(#{productId},#{status},CURDATE(),#{uploadBy},#{fileClass},#{filePath},#{isDefault})
 	</insert>
 	<!--根据Id查询 -->
-	<select id="findbyId" parameterType="Integer"
-		resultType="com.wit.model.ProductPic">
+	<select id="findbyId" parameterType="Integer" resultType="com.wit.model.ProductPic">
 		select
 		id,productId,status,uploadTime,uploadBy,fileClass,filePath,isDefault
 		from ProductPic
@@ -41,17 +40,20 @@
 	</delete>
 	<!-- 根据ID更新首图 -->
 	<update id="updateIsDefault" parameterType="hashMap">
-	update ProductPic set isDefault=#{isDefault}
-	where id=#{id}
+		update ProductPic set
+		isDefault=#{isDefault}
+		where id=#{id}
 
 	</update>
-	
+
 	<!-- 根据ProductId查询首图 -->
-	<select id="selectByProductId" parameterType="integer" resultType="String">
-	select filePath from ProductPic
-	where productId=#{productId} limit 1
+	<select id="selectByProductId" parameterType="integer"
+		resultType="String">
+		select filePath from ProductPic
+		where productId=#{productId}
+		limit 1
 
 	</select>
-	
-	
+
+
 </mapper>

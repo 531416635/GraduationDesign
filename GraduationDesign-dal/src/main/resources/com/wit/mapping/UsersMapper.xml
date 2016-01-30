@@ -4,7 +4,8 @@
 	<!--用户商信息列表 -->
 	<select id="findAllUsers" resultType="com.wit.model.Users">
 		SELECT
-		ID, UserCode, UserName,
+		ID, UserCode,
+		UserName,
 		UserPsw, UserType, RegTime, Email, Tel, Address, ZipCode,
 		FixedlineTel, Fax, Status, RoleID, IsEmailVerify, IsTelVerify,
 		CompanyID, DepartmentID, JobsID,ParentID
@@ -46,11 +47,13 @@
 		)
 	</insert>
 	<insert id="AddMerchantUser" parameterType="com.wit.model.Users">
-		insert into Users (UserCode,UserName, UserPsw, UserType, RegTime,
-		 Status, RoleID, CompanyID, DepartmentID, JobsID,ParentID
+		insert into Users
+		(UserCode,UserName, UserPsw, UserType, RegTime,
+		Status, RoleID,
+		CompanyID, DepartmentID, JobsID,ParentID
 		) values(
 		#{userCode},
-		#{userName},	
+		#{userName},
 		#{userPsw},
 		#{userType},
 		#{regTime},
@@ -63,10 +66,11 @@
 		)
 	</insert>
 	<!--根据Id查询用户信息 -->
-	<select id="findbyId" parameterType="Integer"
-		resultType="com.wit.model.Users">
-		select ID, UserCode, UserName, UserPsw, UserType, RegTime,
-		Email, Tel, Address, ZipCode, FixedlineTel, Fax, Status, RoleID,companyPlant,
+	<select id="findbyId" parameterType="Integer" resultType="com.wit.model.Users">
+		select
+		ID, UserCode, UserName, UserPsw, UserType, RegTime,
+		Email, Tel,
+		Address, ZipCode, FixedlineTel, Fax, Status, RoleID,companyPlant,
 		IsEmailVerify, IsTelVerify, CompanyID, DepartmentID, JobsID from Users
 		where id=#{userId}
 	</select>
@@ -105,8 +109,7 @@
 	</insert>
 
 	<!--查询用户 -->
-	<select id="findUsers" parameterType="String"
-		resultType="com.wit.model.Users">
+	<select id="findUsers" parameterType="String" resultType="com.wit.model.Users">
 		SELECT
 		ID, UserCode, UserName,
 		UserPsw, UserType, RegTime,
@@ -129,75 +132,85 @@
 		where CompanyID=#{companyId} and Status!=3
 		GROUP BY CompanyID
 	</select>
-	
-	<!--上传用户头像  -->
-	<update id="uploadAvatar" >
-		update Users set userPhoto = #{userPhoto}
-		where id = #{userId}
+
+	<!--上传用户头像 -->
+	<update id="uploadAvatar">
+		update Users set userPhoto =
+		#{userPhoto}
+		where id =
+		#{userId}
 	</update>
-	
-	<!--查询账户信息  -->
+
+	<!--查询账户信息 -->
 	<select id="findByCompanyId" parameterType="Integer" resultType="com.wit.model.Users">
-	SELECT
+		SELECT
 		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
 		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
-		FROM Users u  where u.companyId = #{companyId} and u.ParentID !=0
+		FROM Users u where u.companyId = #{companyId} and u.ParentID !=0
 	</select>
-	
-	<!--查询子账户条数状态为0-->
+
+	<!--查询子账户条数状态为0 -->
 	<select id="findSonAccount0" parameterType="Integer" resultType="int">
-		SELECT count(id) from Users 
-		WHERE CompanyID = #{companyId} and ParentID !=0 and status = 0
+		SELECT count(id) from Users
+		WHERE CompanyID = #{companyId} and ParentID
+		!=0 and status = 0
 	</select>
-	
-	<!--查询子账户条数状态为1-->
+
+	<!--查询子账户条数状态为1 -->
 	<select id="findSonAccount1" parameterType="Integer" resultType="int">
-		SELECT count(id) from Users 
-		WHERE CompanyID = #{companyId} and ParentID !=0 and status = 1
+		SELECT count(id) from Users
+		WHERE CompanyID = #{companyId} and ParentID
+		!=0 and status = 1
 	</select>
-	
-	<!--查询子账户条数状态为2-->
+
+	<!--查询子账户条数状态为2 -->
 	<select id="findSonAccount2" parameterType="Integer" resultType="int">
-		SELECT count(id) from Users 
-		WHERE CompanyID = #{companyId} and ParentID !=0 and status = 2
+		SELECT count(id) from Users
+		WHERE CompanyID = #{companyId} and ParentID
+		!=0 and status = 2
 	</select>
-	
-	<!--查询子账户条数状态为3-->
+
+	<!--查询子账户条数状态为3 -->
 	<select id="findSonAccount3" parameterType="Integer" resultType="int">
-		SELECT count(id) from Users 
-		WHERE CompanyID = #{companyId} and ParentID !=0 and status = 3
+		SELECT count(id) from Users
+		WHERE CompanyID = #{companyId} and ParentID
+		!=0 and status = 3
 	</select>
-	
-	<!--查询管理账户信息  -->
-	<select id="findManagerAccountInfo" parameterType="Integer" resultType="com.wit.model.Users">
-	SELECT
+
+	<!--查询管理账户信息 -->
+	<select id="findManagerAccountInfo" parameterType="Integer"
+		resultType="com.wit.model.Users">
+		SELECT
 		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
 		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
-		FROM Users u  where u.companyId = #{companyId} and u.ParentID is null
+		FROM Users u where u.companyId = #{companyId} and u.ParentID is null
 	</select>
-	
-	<!--初始化子账户密码  -->
-	<update id="initSonAccount" parameterType="String" >
-		update Users set userPsw=#{userPsw}
+
+	<!--初始化子账户密码 -->
+	<update id="initSonAccount" parameterType="String">
+		update Users
+		set
+		userPsw=#{userPsw}
 		where id = #{id}
 	</update>
 	<!-- 查询子账户数量 -->
-	<select id="findSonAccountRowsById" resultType="Integer" parameterType="Integer" >
-	SELECT COUNT(ID) FROM Users 
-	WHERE ParentID=#{Id} and Status=1
+	<select id="findSonAccountRowsById" resultType="Integer"
+		parameterType="Integer">
+		SELECT COUNT(ID) FROM Users
+		WHERE ParentID=#{Id} and
+		Status=1
 	</select>
 	<!--userCode校验用户的唯一性 -->
-	<select id="checkUser" parameterType="String"
-		resultType="com.wit.model.Users">
+	<select id="checkUser" parameterType="String" resultType="com.wit.model.Users">
 		SELECT
 		id,userCode,userName,userPsw,userType,userUnits,regTime,email,tel,address,zipCode,fixedLineTel,fax,
 		status,roleId,isEmailVerify,isTelVerify,companyId,departmentId,jobsId
 		FROM Users
 		WHERE
-		userCode=#{userCode} 
+		userCode=#{userCode}
 	</select>
-	
-	<!--根据公司类型修改用户角色  -->
+
+	<!--根据公司类型修改用户角色 -->
 	<insert id="updateUserRole">
 		<![CDATA[
 		CALL updateUserRole(#{tmpCompanyId, mode=IN, jdbcType=INTEGER});

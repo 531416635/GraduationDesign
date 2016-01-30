@@ -196,12 +196,10 @@ td {
 }
 
 /*******/
-
 table {
 	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "宋体";
 	border: 1px solid #f1f1f1;
 	width: 100%;
-	
 }
 
 tr {
@@ -260,7 +258,8 @@ td {
 
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<c:choose>
 				<c:when test="${ status == '0'}">
 					<span class="lo1">首页</span> > <span class="lo2">询价管理 ></span>
@@ -283,79 +282,75 @@ td {
 					style="margin-top: 20px;">
 					<c:forEach items="${list}" var="c">
 						<tbody class="tbody1">
-							<tr style="background-color:#FAFAFA;">
-								<td colspan="3" style="height:35px; line-height:35px;"><p
-										style="margin:0; font-size:14px; color:#2a2a2a;">
-										<span style="float:left;">报价单号： ${c.PriceSheetID}</span>
+							<tr style="background-color: #FAFAFA;">
+								<td colspan="3" style="height: 35px; line-height: 35px;"><p
+										style="margin: 0; font-size: 14px; color: #2a2a2a;">
+										<span style="float: left;">报价单号： ${c.PriceSheetID}</span>
 									</p></td>
-								<td style="height:35px; line-height:35px;"><jsp:useBean id="date"
-											class="java.util.Date" /> <p
-										style="margin:0; font-size:14px; color:#2a2a2a;">
-										<span style="float:left;">报价时间： 
-										<fmt:formatDate
-											value="${c.CreateDate}" type="date" dateStyle="long"
-											pattern="yyyy-MM-dd hh:mm:ss" var="time" /> <c:out value="${time }" />
+								<td style="height: 35px; line-height: 35px;"><jsp:useBean
+										id="date" class="java.util.Date" />
+									<p style="margin: 0; font-size: 14px; color: #2a2a2a;">
+										<span style="float: left;">报价时间： <fmt:formatDate
+												value="${c.CreateDate}" type="date" dateStyle="long"
+												pattern="yyyy-MM-dd hh:mm:ss" var="time" /> <c:out
+												value="${time }" />
 										</span>
-									</p>
-								</td>
+									</p></td>
 								<td><c:choose>
 										<c:when test="${c.Status==0}">
-											<span class="span_zt zt_dcl" style="padding:2px 5px;">报价</span>
+											<span class="span_zt zt_dcl" style="padding: 2px 5px;">报价</span>
 										</c:when>
 										<c:when test="${c.Status==1}">
-											<span class="span_zt zt_ywc" style="padding:2px 5px;">报价成功</span>
+											<span class="span_zt zt_ywc" style="padding: 2px 5px;">报价成功</span>
 										</c:when>
 										<c:when test="${c.Status==2}">
-											<span class="span_zt zt_dcl" style="padding:2px 5px;">议价</span>
+											<span class="span_zt zt_dcl" style="padding: 2px 5px;">议价</span>
 										</c:when>
 										<c:when test="${c.Status==3}">
-											<span class="span_zt zt_ywc" style="padding:2px 5px;">议价通过</span>
+											<span class="span_zt zt_ywc" style="padding: 2px 5px;">议价通过</span>
 										</c:when>
 										<c:when test="${c.Status==4}">
-											<span class="span_zt zt_wwc" style="padding:2px 5px;">议价不通过</span>
+											<span class="span_zt zt_wwc" style="padding: 2px 5px;">议价不通过</span>
 										</c:when>
 										<c:when test="${c.Status==5}">
-											<span class="span_zt zt_wwc" style="padding:2px 5px;">报价失效</span>
+											<span class="span_zt zt_wwc" style="padding: 2px 5px;">报价失效</span>
 										</c:when>
-									</c:choose>
-								</td>
+									</c:choose></td>
 							</tr>
 							<!-- 采购商议价单 -->
 							<tr>
-								<td rowspan="4" style="text-align:center;"><input
+								<td rowspan="4" style="text-align: center;"><input
 									type="hidden" name="ids" value="${ids}" /> <c:if
 										test="${status=='2' ||status=='0'}">
 										<input type="radio" id="chkPS" name="priceSheetId"
 											value="${c.ID}">
-									</c:if>
-								</td>
+									</c:if></td>
 								<td rowspan="4"
-									style="height:30px;width:90px;text-align:center;"><c:if
+									style="height: 30px; width: 90px; text-align: center;"><c:if
 										test="${c.productPic!=null && c.productPic!=''}">
 										<div
-											style="width:79px; height:64px; padding:1px; border:1px solid #d9d9d9;">
-											<img style="width:79px; height:64px;"
+											style="width: 79px; height: 64px; padding: 1px; border: 1px solid #d9d9d9;">
+											<img style="width: 79px; height: 64px;"
 												src="<%=path%>${c.productPic}">
 										</div>
-									</c:if>
-								</td>
+									</c:if></td>
 								<td colspan="2"><span class="span_name">商品名称：</span><span
 									class="span_value">${c.ProductName}</span></td>
 								<td><c:choose>
 										<c:when test="${status=='0'}">
-											<span class="span_name">供应商：</span><span
-									class="span_value">${c.CompanyName}</span>
-									</c:when>
+											<span class="span_name">供应商：</span>
+											<span class="span_value">${c.CompanyName}</span>
+										</c:when>
 										<c:when test="${status=='2' ||status=='3,4'}">
-											<span class="span_name">采购商：</span><span
-									class="span_value">${c.UserCompanyName}</span>
-									</c:when>
+											<span class="span_name">采购商：</span>
+											<span class="span_value">${c.UserCompanyName}</span>
+										</c:when>
 									</c:choose></td>
 							</tr>
 							<tr>
 
-								<td><input type="hidden" value="${c.UnitPrice}" id="jiage" /><span class="span_name">报价单价：</span><span
-									class="span_value">${c.UnitPrice}&nbsp;</span></td>
+								<td><input type="hidden" value="${c.UnitPrice}" id="jiage" /><span
+									class="span_name">报价单价：</span><span class="span_value">${c.UnitPrice}&nbsp;</span></td>
 								<td><span class="span_name">购买数量：</span><span
 									class="span_value">${c.Quantity}</span></td>
 								<td><span class="span_name">配送地域：</span><span
@@ -382,7 +377,8 @@ td {
 											value="${c.BargainPrice}" />
 									</c:if> <c:if test="${status=='0'}">
 										<span class="span_name">填写心理价格：</span>
-										<input style="height:20px;" type="text" id="txtBargainPrice${c.ID}"
+										<input style="height: 20px;" type="text"
+											id="txtBargainPrice${c.ID}"
 											onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 											onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 											onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
@@ -390,9 +386,9 @@ td {
 											value="${c.BargainPrice}" />
 									</c:if></td>
 								<td><c:if test="${c.Status==0}">
-										<span class="span_name">议价电话：</span><span
-									class="span_value">${c.CompanyTel}</span>
-											</c:if></td>
+										<span class="span_name">议价电话：</span>
+										<span class="span_value">${c.CompanyTel}</span>
+									</c:if></td>
 							</tr>
 							<tr>
 								<td colspan="10" style="height: 20px;"></td>
@@ -404,10 +400,10 @@ td {
 
 			<!-- 分页 -->
 			<div class="pagin">
-			<!-- <div class="message">
+				<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 			</div>
 			<%-- <div class="pagin">
 				<div class="message">
@@ -496,27 +492,27 @@ td {
 			<br />
 			<div calss="demo" style="text-align: center;">
 				<c:if test="${status=='0'}">
-					<input type="button" value="确认提交"  id="sub" class="action qrtj orange"
-						onclick="EidtPriceSheet(2)" />
+					<input type="button" value="确认提交" id="sub"
+						class="action qrtj orange" onclick="EidtPriceSheet(2)" />
 				</c:if>
 				<c:if test="${status=='2'}">
-					<input type="button" value="确认议价" id="confirm" class="action qrtj orange"
-						onclick="EidtPriceSheet(3)" />
-					<input type="button" value="拒绝议价" id="deny"class="action jjyj orange"
-						onclick="EidtPriceSheet(4)" />
+					<input type="button" value="确认议价" id="confirm"
+						class="action qrtj orange" onclick="EidtPriceSheet(3)" />
+					<input type="button" value="拒绝议价" id="deny"
+						class="action jjyj orange" onclick="EidtPriceSheet(4)" />
 				</c:if>
 			</div>
 		</c:if>
 	</div>
-	
+
 	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候...
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>

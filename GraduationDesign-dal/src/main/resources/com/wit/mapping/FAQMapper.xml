@@ -4,7 +4,7 @@
 	<select id="findAll" parameterType="com.wit.model.Page"
 		resultType="com.wit.model.FAQ">
 		select id,questionType,title,answer,showIndex,
-		createTime,createBy,getUserName(createBy) as  createByName
+		createTime,createBy,getUserName(createBy) as createByName
 		from FAQ
 		order by ID limit
 		#{begin},#{pageNum}
@@ -21,11 +21,14 @@
 		id,questionType,title,answer,showIndex, createTime,createBy
 		from FAQ
 	</select>
-	
-	<select id="getFaqByType" parameterType="java.lang.Integer" resultType="com.wit.model.FAQ">
+
+	<select id="getFaqByType" parameterType="java.lang.Integer"
+		resultType="com.wit.model.FAQ">
 		select
-		id,questionType,title,answer,showIndex, createTime,createBy
-		from FAQ where questionType=#{faqType} order by showIndex
+		id,questionType,title,answer,showIndex,
+		createTime,createBy
+		from FAQ where questionType=#{faqType} order by
+		showIndex
 	</select>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="java.lang.Integer">
@@ -34,7 +37,8 @@
 	</delete>
 	<delete id="deleteByIds" parameterType="java.lang.String">
 		delete from FAQ
-		where  FIND_IN_SET(id,#{ids})
+		where
+		FIND_IN_SET(id,#{ids})
 	</delete>
 	<!-- 添加 -->
 	<insert id="add" parameterType="com.wit.model.FAQ">
@@ -50,7 +54,7 @@
 	<select id="findbyId" resultType="com.wit.model.FAQ"
 		parameterType="Integer">
 		select id,questionType,title,answer,showIndex,
-		createTime,createBy,getUserName(createBy) as  createByName
+		createTime,createBy,getUserName(createBy) as createByName
 		from FAQ
 		where id=#{id}
 	</select>

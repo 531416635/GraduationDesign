@@ -28,39 +28,42 @@ div {
 <body>
 	<div>
 		<form action="companyProductPriceAdd.do" method="post">
-			<input type="hidden" name="companyProductId"  required="required"  value="${companyProductId}"/>
+			<input type="hidden" name="companyProductId" required="required"
+				value="${companyProductId}" />
 			<table border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<th></th>
-			<td><input type="hidden"   readOnly="readonly"" userId" value="${userInfo.id}"/></td>
-		</tr>
-		<tr>
-			<th>最小数量:</th>
-			<td><input type="text"  required="required"  name="minNum"/></td>
-		</tr>
-		<tr >
-			<th>最大数量:</th>
-			<td><input type="text"  required="required"   name="maxNum"/></td>
-		</tr>
-		<tr >
-			<th>商品价格编码:</th>
-			<td><input type="text"  required="required"   name="companyProductCode"/></td>
-		</tr>
-		<tr >
-			<th>价格:</th>
-			<td><input type="text"  required="required"  name="price"/></td>
-		</tr>
-		<tr >
-			<th>毛利价格:</th>
-			<td><input type="text"  required="required"   name="grossMargin"/></td>
-		</tr>
-		<tr >
-			<th>到期时间:</th>
-			<td><input type="text"  required="required"   name="endTime"/></td>
-		</tr>
+				<tr>
+					<th></th>
+					<td><input type="hidden" readOnly="readonly"
+						" userId" value="${userInfo.id}" /></td>
+				</tr>
+				<tr>
+					<th>最小数量:</th>
+					<td><input type="text" required="required" name="minNum" /></td>
+				</tr>
+				<tr>
+					<th>最大数量:</th>
+					<td><input type="text" required="required" name="maxNum" /></td>
+				</tr>
+				<tr>
+					<th>商品价格编码:</th>
+					<td><input type="text" required="required"
+						name="companyProductCode" /></td>
+				</tr>
+				<tr>
+					<th>价格:</th>
+					<td><input type="text" required="required" name="price" /></td>
+				</tr>
+				<tr>
+					<th>毛利价格:</th>
+					<td><input type="text" required="required" name="grossMargin" /></td>
+				</tr>
+				<tr>
+					<th>到期时间:</th>
+					<td><input type="text" required="required" name="endTime" /></td>
+				</tr>
 			</table>
-			<input type="submit" value="增加" />
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
 		</form>
 	</div>
 </body>

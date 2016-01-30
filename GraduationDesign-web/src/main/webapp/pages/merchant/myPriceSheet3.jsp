@@ -20,7 +20,7 @@
 	type="text/css" />
 <link rel="stylesheet" href="<%=path%>/css/header/global.css"
 	type="text/css" />
-	<link rel="stylesheet" href="<%=path%>/css/redcss/jindutiao.css" />
+<link rel="stylesheet" href="<%=path%>/css/redcss/jindutiao.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/houtai.css" />
 <link rel="stylesheet" type="text/css"
@@ -294,19 +294,20 @@ p {
 
 		<div id="t2">
 			<p style="margin: 0px; background-color: #e5e5e5; font-size: 14px">配送地点</p>
-			<span id="msg" style="color:red;">*请填写数量*</span><span id="msg3"
-				style="color:red;">*您填写的数量与货品数量不符 *</span><span id="msg2"
-				style="color:red;">*请填写日期*</span>
+			<span id="msg" style="color: red;">*请填写数量*</span><span id="msg3"
+				style="color: red;">*您填写的数量与货品数量不符 *</span><span id="msg2"
+				style="color: red;">*请填写日期*</span>
 			<p id="pSign">
 				<c:forEach items="${shopAdds}" var="sa">
 					<input type="checkbox" name="chkAddId" value="${sa.id }" />  [${sa.adderssName}]  ${sa.address}<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;数量：<input class="Num input_text" type="text"
-						id="txtNum${sa.id}" />&nbsp;&nbsp;配送时间：<input class="input_text" type="text"
-						id="deliveryTime${sa.id}"
+					&nbsp;&nbsp;&nbsp;&nbsp;数量：<input class="Num input_text"
+						type="text" id="txtNum${sa.id}" />&nbsp;&nbsp;配送时间：<input
+						class="input_text" type="text" id="deliveryTime${sa.id}"
 						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						onchange="changeExpectTime('${sa.id}')" readonly="readonly"
-						style="width:120px;" />&nbsp;&nbsp;验收人：
-					<select class="input_text" id="usersNum${sa.id}" name="usersNum${sa.id}">
+						style="width: 120px;" />&nbsp;&nbsp;验收人：
+					<select class="input_text" id="usersNum${sa.id}"
+						name="usersNum${sa.id}">
 						<c:forEach items="${users}" var="u">
 							<c:if test="${u.status=='1'}">
 								<option value="${u.id}">${u.userName}(${u.userCode})</option>
@@ -319,26 +320,28 @@ p {
 			<br />
 			<p>
 				&nbsp;增加默认配送地点&nbsp;<input type="hidden" id="addressIds"
-					value="${addressIds}" /> 地址简称：<input id="shortAddress" class="input_text" type="text" />
-				&nbsp;地址详细：<input id="detailAddress" class="input_text" type="text" />
+					value="${addressIds}" /> 地址简称：<input id="shortAddress"
+					class="input_text" type="text" /> &nbsp;地址详细：<input
+					id="detailAddress" class="input_text" type="text" />
 				<button class="orange" id="input_buttn" onclick="addAddress();">增加</button>
 			</p>
 		</div>
-		<input class="action orange" type="button" value="确认提交" id="input_buttn"
-			onclick="AddDispatchBill()" /> <input class="orange" type="button"
-			value="取消返回" id="input_buttn" onclick="history.back()" />
+		<input class="action orange" type="button" value="确认提交"
+			id="input_buttn" onclick="AddDispatchBill()" /> <input
+			class="orange" type="button" value="取消返回" id="input_buttn"
+			onclick="history.back()" />
 	</div>
 
 	<br />
-<div class="overlay"></div>
+	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候...
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 
 </body>
 </html>

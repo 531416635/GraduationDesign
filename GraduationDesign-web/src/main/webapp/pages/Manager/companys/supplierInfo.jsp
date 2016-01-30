@@ -14,6 +14,7 @@ body {
 	background-color: #FFFFFF;
 	text-align: center;
 }
+
 div {
 	position: absolute;
 	top: 30%;
@@ -21,6 +22,7 @@ div {
 	left: 40%;
 	margin-left: -50px;
 }
+
 .input_txt {
 	width: 200px;
 	height: 20px;
@@ -46,83 +48,60 @@ div {
 </style>
 </head>
 <body>
-<div>
-	<form action="findSupplier.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr style="display: none">
-				<th>公司ID</th>
-				<td><input  name="id" type="text" readonly="readonly"
-					value="${c.id}"/>
-				</td>
-			</tr>
-			<tr>
-				<th>公司名称:</th>
-				<td>
-					<span>${c.companyName}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司地址:</th>
-				<td>
-				<span>${c.companyAddress}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司规模:</th>
-				<td>
-				<span>${c.companyScale}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>注册资本:</th>
-				<td>
-				<span>${c.registeredCapital}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司电话:</th>
-				<td>
-				<span>${c.companyTel}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>邮政编码:</th>
-				<td>
-				<span>${c.zipCode}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司简介:</th>
-				<td>
-				<span>${c.companyInfo}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>销售人员:</th>
-				<td>
-				<span>${c.salesMan}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司网址:</th>
-				<td>
-				<span>${c.companyWebsite}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司联系人:</th>
-				<td>
-				<span>${c.companyContact}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>公司类别:</th>
-				<td>
-				<span>${c.companyTypeName}</span>
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div>
+		<form action="findSupplier.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr style="display: none">
+					<th>公司ID</th>
+					<td><input name="id" type="text" readonly="readonly"
+						value="${c.id}" /></td>
+				</tr>
+				<tr>
+					<th>公司名称:</th>
+					<td><span>${c.companyName}</span></td>
+				</tr>
+				<tr>
+					<th>公司地址:</th>
+					<td><span>${c.companyAddress}</span></td>
+				</tr>
+				<tr>
+					<th>公司规模:</th>
+					<td><span>${c.companyScale}</span></td>
+				</tr>
+				<tr>
+					<th>注册资本:</th>
+					<td><span>${c.registeredCapital}</span></td>
+				</tr>
+				<tr>
+					<th>公司电话:</th>
+					<td><span>${c.companyTel}</span></td>
+				</tr>
+				<tr>
+					<th>邮政编码:</th>
+					<td><span>${c.zipCode}</span></td>
+				</tr>
+				<tr>
+					<th>公司简介:</th>
+					<td><span>${c.companyInfo}</span></td>
+				</tr>
+				<tr>
+					<th>销售人员:</th>
+					<td><span>${c.salesMan}</span></td>
+				</tr>
+				<tr>
+					<th>公司网址:</th>
+					<td><span>${c.companyWebsite}</span></td>
+				</tr>
+				<tr>
+					<th>公司联系人:</th>
+					<td><span>${c.companyContact}</span></td>
+				</tr>
+				<tr>
+					<th>公司类别:</th>
+					<td><span>${c.companyTypeName}</span></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

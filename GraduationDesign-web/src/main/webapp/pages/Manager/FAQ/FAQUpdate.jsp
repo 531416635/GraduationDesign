@@ -57,7 +57,8 @@ body {
 		<form action="FAQUpdate.do" method="post"
 			enctype="multipart/form-data" id="form">
 			<input type="hidden" name="id" value="${FAQ.id}" />
-			<table style="border: 1px solid #d7d7d7;width: 90%;text-align:left;">
+			<table
+				style="border: 1px solid #d7d7d7; width: 90%; text-align: left;">
 				<tr>
 					<th>问题类型:</th>
 					<td><c:forEach items="${questionType }" var="q">
@@ -77,8 +78,7 @@ body {
 				<tr>
 					<th>问题回答:</th>
 					<td colspan="3"><textarea id="content" cols="100"
-							name="answer">${FAQ.answer}</textarea>
-					</td>
+							name="answer">${FAQ.answer}</textarea></td>
 				</tr>
 			</table>
 

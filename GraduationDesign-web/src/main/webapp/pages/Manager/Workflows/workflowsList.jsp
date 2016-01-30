@@ -142,68 +142,72 @@ div.meneame span {
 
 <body>
 	<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-    <li><a href="#">系统后台</a></li>
-    <li><a href="#">管理系统</a></li>
-    <li><a href="#">流程管理</a></li>
-    <li><a href="#">用户流程</a></li>
-    </ul>
-    </div>
-	
-    
-    
-    
-    <div class="tools">
-    	<ul class="toolbar">
-        <li><a class="tablelink" href="toWorkflowsAdd.do?"><span><img src="../images/t01.png" /></span>添加</a></li>
-       <li class="click2"><span><img src="<%=path%>/images/t03.png" /></span>
-                <a href="javascript:;" onclick="getText();">删除</a></li>
-        
-        </ul>
-        
-        
-    
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" name="" value="" onclick="checkAll();"/></th>
-        <th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th>流程类型ID</th>  
-        <th>节点ID</th>    
-        <th>用户ID</th>      
-        <th>状态</th>      
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${dispatch}" var="dis">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="${dis.id}" /></td>
-		        <td>${dis.id}</td>
-		        <td>${dis.workflowTypeId}</td>
-		        <td>${dis.nodeId}</td>     
-		        <td>${dis.userId}</td>		        
-		        <td>${dis.status}</td>		        
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">系统后台</a></li>
+			<li><a href="#">管理系统</a></li>
+			<li><a href="#">流程管理</a></li>
+			<li><a href="#">用户流程</a></li>
+		</ul>
+	</div>
 
-		        <td><a href="deleteWorkflows.do?id=${dis.id }" class="tablelink"> 删除  </a>
-		        	<a href="toWorkflowsUpdate.do?id=${dis.id}" class="tablelink">修改</a>
-		        </td>
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-    	<!-- 分页 -->
-			<div class="pagin">
-			<!-- <div class="message">
+
+
+
+	<div class="tools">
+		<ul class="toolbar">
+			<li><a class="tablelink" href="toWorkflowsAdd.do?"><span><img
+						src="../images/t01.png" /></span>添加</a></li>
+			<li class="click2"><span><img
+					src="<%=path%>/images/t03.png" /></span> <a href="javascript:;"
+				onclick="getText();">删除</a></li>
+
+		</ul>
+
+
+
+	</div>
+
+
+	<table class="tablelist">
+		<thead>
+			<tr>
+				<th><input id="checkAll" type="checkbox" name="" value=""
+					onclick="checkAll();" /></th>
+				<th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
+				<th>流程类型ID</th>
+				<th>节点ID</th>
+				<th>用户ID</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${dispatch}" var="dis">
+				<tr>
+					<td><input name="box" type="checkbox" value="${dis.id}" /></td>
+					<td>${dis.id}</td>
+					<td>${dis.workflowTypeId}</td>
+					<td>${dis.nodeId}</td>
+					<td>${dis.userId}</td>
+					<td>${dis.status}</td>
+
+					<td><a href="deleteWorkflows.do?id=${dis.id }"
+						class="tablelink"> 删除 </a> <a
+						href="toWorkflowsUpdate.do?id=${dis.id}" class="tablelink">修改</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-    <%--  <!-- 分页 -->
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
+	<%--  <!-- 分页 -->
      <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
@@ -235,10 +239,10 @@ div.meneame span {
                 </c:choose>    
         </ul>
     </div> --%>
-   
-    
-    
-    <script type="text/javascript">
+
+
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

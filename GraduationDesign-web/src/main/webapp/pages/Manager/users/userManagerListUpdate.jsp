@@ -71,18 +71,18 @@ div {
 <body>
 	<div>
 		<form action="userManagerUpdate.do" name="userForm" method="post">
-			<input type="hidden" name="id" id="userId" value="${db.id}" /> 
+			<input type="hidden" name="id" id="userId" value="${db.id}" />
 			<%-- <input type="hidden" name="regTime" value="${db.regTime}" /> --%>
 			<table border="0" cellpadding="0" cellspacing="0">
 				<tr class="info">
 					<th>用户名:</th>
 					<td><input type="text" name="userCode" value="${db.userCode}"
-						style="width:70px;"/></td>
+						style="width: 70px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>用户姓名:</th>
 					<td><input type="text" name="userName" value="${db.userName}"
-						style="width:70px;" /></td>
+						style="width: 70px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>用户密码:</th>
@@ -91,7 +91,7 @@ div {
 				</tr>
 				<tr class="info">
 					<th>用户类型:</th>
-					<td><select name="userType" style="width:110px;">
+					<td><select name="userType" style="width: 110px;">
 							<option value="1"
 								<c:if test="${db.userType==1}">
 			 selected="selected"
@@ -100,35 +100,33 @@ div {
 								<c:if test="${db.userType==2}">
 			 selected="selected"
 			 </c:if>>商户用户</option>
-					</select><a style="color:#FF0000">*</a>
-					</td>
+					</select><a style="color: #FF0000">*</a></td>
 				</tr>
 				<tr class="info">
 					<th>用户单位:</th>
 					<td><select name='companyId' id="companyId"
-						style="width:180px;">
+						style="width: 180px;">
 							<c:forEach items="${companys }" var="c">
 								<option value="${c.id}"
 									<c:if test="${c.id==db.companyId}"> selected="selected"</c:if>>
 									${c.companyName}</option>
 							</c:forEach>
-					</select>
-					</td>
+					</select></td>
 				</tr>
 				<tr class="info">
 					<th>Email:</th>
 					<td><input type="text" name="email" value="${db.email}"
-						style="width:180px;" /></td>
+						style="width: 180px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>电话:</th>
 					<td><input type="text" name="tel" value="${db.tel}"
-						style="width:180px;" /></td>
+						style="width: 180px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>联系地址:</th>
-					<td><input type="text" name="address" value="${db.addressName}"
-						style="width:180px;" size="200px" /></td>
+					<td><input type="text" name="address"
+						value="${db.addressName}" style="width: 180px;" size="200px" /></td>
 				</tr>
 				<tr class="info">
 					<th>邮编:</th>
@@ -138,12 +136,12 @@ div {
 				<tr class="info">
 					<th>固定电话:</th>
 					<td><input type="text" name="fixedLineTel"
-						value="${db.fixedLineTel}" style="width:70px;" /></td>
+						value="${db.fixedLineTel}" style="width: 70px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>传真:</th>
 					<td><input type="text" name="fax" value="${db.fax}"
-						style="width:70px;" /></td>
+						style="width: 70px;" /></td>
 				</tr>
 
 				<tr class="info">
@@ -165,8 +163,7 @@ div {
 								<c:if test="${db.status==3}">
                         			selected="selected"
                         		</c:if>>删除</option>
-					</select><a style="color:#FF0000">*</a>
-					</td>
+					</select><a style="color: #FF0000">*</a></td>
 				</tr>
 
 				<tr class="info">
@@ -180,8 +177,7 @@ div {
 									<option value="${ro.id }">${ro.roleName}</option>
 								</c:if>
 							</c:forEach>
-					</select><a style="color:#FF0000">*</a>
-					</td>
+					</select><a style="color: #FF0000">*</a></td>
 				</tr>
 				<%-- <tr class="info">
 					<th>公司ID:</th>

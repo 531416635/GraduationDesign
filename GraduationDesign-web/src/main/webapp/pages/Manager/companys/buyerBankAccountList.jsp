@@ -120,10 +120,10 @@ div.meneame span {
 
 		<div class="tools">
 			<ul class="toolbar">
-				<li class="click"><span><img src="images/t01.png" />
-				</span><a href="/ssm/toAddBuyerBankAccount.do">添加</a>
-				</li>
-				<li><a class="tablelink" href="#" onclick="getText();"><span><img src="images/t03.png" /></span>删除</a></li>
+				<li class="click"><span><img src="images/t01.png" /> </span><a
+					href="/ssm/toAddBuyerBankAccount.do">添加</a></li>
+				<li><a class="tablelink" href="#" onclick="getText();"><span><img
+							src="images/t03.png" /></span>删除</a></li>
 			</ul>
 		</div>
 
@@ -131,7 +131,8 @@ div.meneame span {
 		<table class="tablelist">
 			<thead>
 				<tr>
-					<th><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th>
+					<th><input name="" id="checkAll" type="checkbox"
+						onclick="checkAll();" />全选</th>
 					<th>公司ID</th>
 					<th>银行账号</th>
 					<th>开户行地址</th>
@@ -151,22 +152,20 @@ div.meneame span {
 						<td>${c.bankAccount}</td>
 						<td>${c.bankAddress}</td>
 						<td>${c.bankName}</td>
-						<td>
-                        	<c:choose>
-                        		<c:when test="${c.status==0}">
+						<td><c:choose>
+								<c:when test="${c.status==0}">
                         			初始
                         		</c:when>
-                        		<c:when test="${c.status==1}">
+								<c:when test="${c.status==1}">
                         			可用
                         		</c:when>
-                        		<c:when test="${c.status==2}">
+								<c:when test="${c.status==2}">
                         			冻结
                         		</c:when>
-                        		<c:otherwise>
+								<c:otherwise>
                         			删除
                         		</c:otherwise>
-                        	</c:choose>
-                        </td>
+							</c:choose></td>
 						<td>${c.createTime}</td>
 						<td><a class="tablelink"
 							href="/ssm/toUpdateBuyerBankAccount.do?id=${c.companyId}">修改</a>
@@ -177,10 +176,10 @@ div.meneame span {
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 
 		<%-- <div class="pagin">
 			<div class="message">
@@ -240,8 +239,7 @@ div.meneame span {
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认对信息的修改 ？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

@@ -94,7 +94,7 @@
 	background: rgba(0, 0, 0, 0.6);
 	background-color: transparent \9;
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1,
-		startColorstr='#60000000', endColorstr='#60000000' );
+		startColorstr='#60000000', endColorstr='#60000000');
 }
 
 .item-list .subitem {
@@ -145,23 +145,23 @@
 	border-left: 1px solid #CCC;
 }
 
-.item-list .subitem dd em a,.item-list .cat-right dd a {
+.item-list .subitem dd em a, .item-list .cat-right dd a {
 	color: #666;
 	text-decoration: none;
 }
 
-.item-list .subitem dd em a:hover,.item-list .cat-right dd a:hover {
+.item-list .subitem dd em a:hover, .item-list .cat-right dd a:hover {
 	font-weight: normal;
 	text-decoration: underline;
 }
 
 /* Default link styles */
-a:link,a:visited {
+a:link, a:visited {
 	text-decoration: none;
 	font-style: normal;
 }
 
-a:hover,a:active {
+a:hover, a:active {
 	font-style: normal;
 }
 
@@ -293,16 +293,16 @@ a:hover,a:active {
 
 #tabs a {
 	color: #898989;
-	display:block;
+	display: block;
 	width: 100px;
 	border-radius: 6px 6px 0 0;
 }
 
- #tabs a:hover,#tabs a:hover::after,#tabs a:focus,#tabs a:focus::after {
+#tabs a:hover, #tabs a:hover::after, #tabs a:focus, #tabs a:focus::after
+	{
 	background: #9a0010;
 	color: #FFF;
-	
-} 
+}
 /* #tabs li:hover,#tabs li:hover::after,#tabs li:focus,#tabs li:focus::after {
 	background: #9a0010;
 	color: #FFF;
@@ -312,7 +312,7 @@ a:hover,a:active {
 #content {
 	background: #fff;
 	padding: 2em;
-	/* position: relative; */ 
+	/* position: relative; */
 	z-index: 2;
 	-moz-border-radius: 0 5px 5px 5px;
 	-webkit-border-radius: 0 5px 5px 5px;
@@ -323,8 +323,8 @@ a:hover,a:active {
 	border: 1px solid #d3d3d3;
 }
 
-#content h2,#content h3,#content p {
-	margin:15px 0;
+#content h2, #content h3, #content p {
+	margin: 15px 0;
 }
 /* ------------------------------------------------- */
 #about {

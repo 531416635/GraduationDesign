@@ -62,9 +62,8 @@ body {
 			</tr>
 			<tr class="info">
 				<th>报价单编号:</th>
-				<td><input type="text" name="priceSheetId" style="width:70px;"
-					value="${priceSheet.priceSheetId}" />
-				</td>
+				<td><input type="text" name="priceSheetId" style="width: 70px;"
+					value="${priceSheet.priceSheetId}" /></td>
 			</tr>
 			<tr class="info">
 				<th>供应商名称:</th>
@@ -91,8 +90,7 @@ body {
 			<tr class="info">
 				<th>数量单位:</th>
 				<td><input type="text" name="productUnit"
-					value="${priceSheet.productUnit}" />
-				</td>
+					value="${priceSheet.productUnit}" /></td>
 			</tr>
 			<tr class="info">
 				<th>单价:</th>
@@ -103,14 +101,14 @@ body {
 			<tr class="info">
 				<th>交货期:</th>
 				<td><input type="text" name="deliveryDate"
-					onclick="WdatePicker()" readonly="readonly" style="width:70px;"
+					onclick="WdatePicker()" readonly="readonly" style="width: 70px;"
 					value="${priceSheet.deliveryDate}" /></td>
 			</tr>
 
 			<tr class="info">
 				<th>有效期至:</th>
 				<td><input type="text" name="validUntil"
-					onclick="WdatePicker()" readonly="readonly" style="width:70px;"
+					onclick="WdatePicker()" readonly="readonly" style="width: 70px;"
 					value="${priceSheet.validUntil}" /></td>
 			</tr>
 			<tr class="info">

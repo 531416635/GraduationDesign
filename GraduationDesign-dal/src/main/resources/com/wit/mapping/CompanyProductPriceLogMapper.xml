@@ -2,31 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wit.dao.CompanyProductPriceLogDao">
 	<!--查询所有 -->
-	<select id="findAllByCompanyProductId" parameterType="Integer" resultMap="companyProductPriceLogMap">
+	<select id="findAllByCompanyProductId" parameterType="Integer"
+		resultMap="companyProductPriceLogMap">
 		SELECT
 		ID, CompanyProductID,
-		MinNum, MaxNum, Price, GrossmMarginPriceID, UserID, PriceDate,
+		MinNum, MaxNum, Price,
+		GrossmMarginPriceID, UserID, PriceDate,
 		CompanyProductCode
-		FROM CompanyProductPriceLog where CompanyProductID=#{companyProductId}
+		FROM
+		CompanyProductPriceLog where CompanyProductID=#{companyProductId}
 	</select>
-	<select id="findAllByCompanyId" parameterType="hashMap" resultMap="companyProductPriceLogMap">
+	<select id="findAllByCompanyId" parameterType="hashMap"
+		resultMap="companyProductPriceLogMap">
 		SELECT
 		c1.ID, c1.CompanyProductID,
-		c1.MinNum, c1.MaxNum, c1.Price, c1.GrossmMarginPriceID, c1.UserID, c1.PriceDate,
+		c1.MinNum, c1.MaxNum,
+		c1.Price, c1.GrossmMarginPriceID, c1.UserID, c1.PriceDate,
 		c1.CompanyProductCode
-		FROM CompanyProductPriceLog c1 left join CompanyProducts c2
+		FROM CompanyProductPriceLog c1 left join
+		CompanyProducts c2
 		on c2.id = c1.CompanyProductID
-		where c2.ProductId=#{productId} order by ID limit #{page.begin},#{page.pageNum};
+		where
+		c2.ProductId=#{productId} order by ID limit
+		#{page.begin},#{page.pageNum};
 	</select>
 	<!-- companyProductPriceLogMap -->
 	<resultMap type="com.wit.model.CompanyProductPriceLog" id="companyProductPriceLogMap">
-        <association property="grossMargins" column="grossmMarginPriceId"
-            javaType="com.wit.model.GrossMargin" select="findGrossmMarginPrice">
-        </association> 
-    </resultMap>
-     <!-- findGrossmMarginPrice -->
-    <select id="findGrossmMarginPrice" parameterType="Integer" resultType="com.wit.model.GrossMargin">
-	   select ID, GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status, CreateBy from GrossMargin where id=#{grossmMarginPriceId}
+		<association property="grossMargins" column="grossmMarginPriceId"
+			javaType="com.wit.model.GrossMargin" select="findGrossmMarginPrice">
+		</association>
+	</resultMap>
+	<!-- findGrossmMarginPrice -->
+	<select id="findGrossmMarginPrice" parameterType="Integer"
+		resultType="com.wit.model.GrossMargin">
+		select ID, GrossMargin, ProductID, SupplierID, StartTime,
+		EndTime, Status,
+		CreateBy from GrossMargin where
+		id=#{grossmMarginPriceId}
 	</select>
 	<!--根据ID查找 -->
 	<select id="findById" parameterType="Integer"
@@ -63,18 +75,22 @@
 	<insert id="insert" parameterType="com.wit.model.CompanyProductPriceLog">
 		INSERT INTO
 		CompanyProductPriceLog (
-		 CompanyProductID, MinNum, MaxNum, Price, GrossmMarginPriceID, UserID,
-		PriceDate, CompanyProductCode
+		CompanyProductID, MinNum, MaxNum, Price,
+		GrossmMarginPriceID, UserID,
+		PriceDate,
+		CompanyProductCode
 		) VALUES (
-		 #{companyProductId}, #{minNum}, #{maxNum}, #{price},
-		#{grossmMarginPriceId}, #{userId},CURDATE(), #{companyProductCode}
+		#{companyProductId}, #{minNum}, #{maxNum}, #{price},
+		#{grossmMarginPriceId},
+		#{userId},CURDATE(), #{companyProductCode}
 		)
 	</insert>
 	<!-- findRows -->
 	<select id="findRows" parameterType="Integer" resultType="int">
 		SELECT
 		COUNT(c1.ID)
-		FROM CompanyProductPriceLog c1 left join CompanyProducts c2
+		FROM CompanyProductPriceLog c1 left join CompanyProducts
+		c2
 		on c2.id = c1.CompanyProductID
 		where c2.ProductId=#{productId}
 	</select>

@@ -42,11 +42,15 @@ body {
 <body>
 	<form action="users/departmentInfo.do" method="post">
 		<table border="0" cellpadding="0" cellspacing="0">
-			<tr><td>部门名称</td></tr>
-			<c:forEach items="${dm}" var="d">
 			<tr>
-				<td><a href="findJobName.do?departmentId=${d.id}"><input name="departmentName" readonly="readonly" value="${d.departmentName}" /></a></td>
+				<td>部门名称</td>
 			</tr>
+			<c:forEach items="${dm}" var="d">
+				<tr>
+					<td><a href="findJobName.do?departmentId=${d.id}"><input
+							name="departmentName" readonly="readonly"
+							value="${d.departmentName}" /></a></td>
+				</tr>
 			</c:forEach>
 		</table>
 	</form>

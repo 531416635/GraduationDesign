@@ -39,7 +39,7 @@
 	}
 </script>
 <style type="text/css">
-input[type=text]{
+input[type=text] {
 	font-size: 16px;
 }
 </style>
@@ -60,7 +60,7 @@ input[type=text]{
 			<div class="formdiv">
 				<form action="/ssm/web/wjmm.do" method="post" id="form">
 					<p style="font-size: 16px;">
-						用户名 : <input type="text" name=userCode " class="search-input" /> 
+						用户名 : <input type="text" name=userCode " class="search-input" />
 					</p>
 					<br />
 					<p style="font-size: 16px;">
@@ -68,8 +68,8 @@ input[type=text]{
 						<img src="/ssm/pages/website/makeCertPic.jsp" id="code"
 							onclick="reloadcode()" style="cursor: pointer;" alt="换一张">
 					</p>
-					<span  style="color: red;" id="msg"></span><br/>
-					<input type="button" value="下一步" class="sub1" onclick="check();" />
+					<span style="color: red;" id="msg"></span><br /> <input
+						type="button" value="下一步" class="sub1" onclick="check();" />
 				</form>
 
 			</div>

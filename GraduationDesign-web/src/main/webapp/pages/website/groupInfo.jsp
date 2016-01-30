@@ -262,12 +262,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<input type="hidden" id="provinceName" value="${sessionScope.province.dicName }"/>
-<input type="hidden" id="provinceId" value="${sessionScope.province.id }"/>
-<input type="hidden" id="cityName" value="${sessionScope.city.dicName }"/>
-<input type="hidden" id="cityId" value="${sessionScope.city.id }"/>
-<input type="hidden" id="areaName" value="${sessionScope.area.dicName }"/>
-<input type="hidden" id="areaId" value="${sessionScope.area.id }"/>
+	<input type="hidden" id="provinceName"
+		value="${sessionScope.province.dicName }" />
+	<input type="hidden" id="provinceId"
+		value="${sessionScope.province.id }" />
+	<input type="hidden" id="cityName"
+		value="${sessionScope.city.dicName }" />
+	<input type="hidden" id="cityId" value="${sessionScope.city.id }" />
+	<input type="hidden" id="areaName"
+		value="${sessionScope.area.dicName }" />
+	<input type="hidden" id="areaId" value="${sessionScope.area.id }" />
 	<div class="warp">
 		<div class="detail_left">
 			<div class="detail_left_nav">
@@ -281,7 +285,8 @@ $(document).ready(function(){
 										<em style="margin: -5px 10px 0px -30px;"
 											class="A-em${status1.count}"></em> <a class="nav_left"
 											href="toSecondIndex.do?cateGoryId=${proca.id}&cateGoryLevel=1">${proca.cateGoryName}</a>
-										<input type="hidden" id="hidCateGoryId${status1.count}"		value="${proca.id}" />
+										<input type="hidden" id="hidCateGoryId${status1.count}"
+											value="${proca.id}" />
 									</h3>
 									<div class="item-list clearfix">
 										<!-- 弹出层关闭小叉叉<div class="close">x</div> -->
@@ -356,7 +361,8 @@ $(document).ready(function(){
 									rel="useZoom: 'zoom1', smallImage: '<%=path%>${p3.filePath}' ">
 									<img id="img${status.count}" src="<%=path%>${p3.filePath}"
 									alt="Thumbnail 1" width="46" height="44"
-									class="zoom-tiny-image" /> </a>
+									class="zoom-tiny-image" />
+								</a>
 							</c:forEach>
 						</p>
 
@@ -369,35 +375,40 @@ $(document).ready(function(){
 							<input type="hidden" id="groupID" value="${g.id}" />
 							<dl>
 								<dt>${g.ProductName}</dt>
-								<dt style="background-color:#eee">
+								<dt style="background-color: #eee">
 									团购价：￥<span id="GrouponPrice">${g.GrouponPrice}</span>
-									<table style="float:right;border-collapse:collapse;" >
+									<table style="float: right; border-collapse: collapse;">
 										<tr>
-											<td style="border-right:2px solid #ccc;width:60px;text-align:center">${g.Discount}折</td>
-											<td style="width:60px;text-align:center"><span
-												style="text-decoration:line-through;font-size:0.7em;">￥${g.UnitPrice}</span>
+											<td
+												style="border-right: 2px solid #ccc; width: 60px; text-align: center">${g.Discount}折</td>
+											<td style="width: 60px; text-align: center"><span
+												style="text-decoration: line-through; font-size: 0.7em;">￥${g.UnitPrice}</span>
 											</td>
 										</tr>
 										<tr>
-											<td style="border-right:2px solid #ccc;text-align:center">折扣</td>
-											<td style="text-align:center">价值</td>
+											<td style="border-right: 2px solid #ccc; text-align: center">折扣</td>
+											<td style="text-align: center">价值</td>
 										</tr>
 									</table>
 								</dt>
 								<dt
 									style="background:url(<%=path%>/images/btn_03.png) no-repeat left;height:1.5em;">
-									<span id="future_date_${g.id}" style="display:inline;margin-left:28%;"></span>
-						<script type="text/javascript">
+									<span id="future_date_${g.id}"
+										style="display: inline; margin-left: 28%;"></span>
+									<script type="text/javascript">
 							$(document).ready(function() {
 								countTimer('${g.id}', '${g.ValidityTime}');
 							});
 						</script>
 								</dt>
-							
-								<dt  style="height:50px;">
-								<span style="width:50px;">已售<c:if test="${g.SoldOut==null}">0</c:if>
-									<c:if test="${g.SoldOut!=null}">${g.SoldOut }</c:if>
-									${g.ProductUnit}</span>|<span style="width:50px;">剩余&nbsp;${g.ProductUnit}</span>|<span style="width:50px;">评价</span>
+
+								<dt style="height: 50px;">
+									<span style="width: 50px;">已售<c:if
+											test="${g.SoldOut==null}">0</c:if> <c:if
+											test="${g.SoldOut!=null}">${g.SoldOut }</c:if>
+										${g.ProductUnit}
+									</span>|<span style="width: 50px;">剩余&nbsp;${g.ProductUnit}</span>|<span
+										style="width: 50px;">评价</span>
 								</dt>
 							</dl>
 
@@ -406,19 +417,19 @@ $(document).ready(function(){
 
 						<div class="shop">
 							<div class="shop_box">
-								<span id="msg" style="color:red;display:none;">*请先填写数量与地址*</span><br />
+								<span id="msg" style="color: red; display: none;">*请先填写数量与地址*</span><br />
 								<div class="buy">
 
 									<span>购买数量：</span> <input type="button" id="jian" value="-"
 										onclick="subNum()" /> <input type="text" id="buyNum"
 										name="buyNum" value="1"
 										onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
-									onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')" /><span
+										onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')" /><span
 										id="one"></span> <input type="button" id="add" value="+"
 										onclick="addNum()" /> <span>${product.productUnit}</span>
 								</div>
 								<div>
-									<ul id="list1" style="width:620px;margin:40px auto 0 auto;">
+									<ul id="list1" style="width: 620px; margin: 40px auto 0 auto;">
 										<li>
 											<div class="dt">配送至：</div>
 											<div class="dd">
@@ -589,15 +600,15 @@ $(document).ready(function(){
 
 		};
 	</script>
-		<div class="overlay"></div>
+	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候... 
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>
 

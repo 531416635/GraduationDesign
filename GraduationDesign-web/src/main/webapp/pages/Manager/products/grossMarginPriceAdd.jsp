@@ -29,49 +29,47 @@ div {
 	<div>
 		<form action="addProssMarginPrice.do" method="post">
 			<table border="0" cellpadding="0" cellspacing="0">
-				<tr >
-			<th>商品名称:</th>
-			<td><input type="text" name="productName"/></td>
-		</tr>
-		<tr >
-			<th>商品类别:</th>
-			<td>
-			<select name="productType">
-			<c:forEach items="${productTypes}" var="p">
-			<option value="${p.id}">${p.typeName}</option>
-			 </c:forEach>
-			</select>
-			</td>
-		</tr>
-		<tr >
-			<th>商品品牌:</th>
-			<td><input type="text"   required="required"  name="commodityBrand"/></td>
-		</tr>
-		<tr>
-			<th>商品单价:</th>
-			<td><input type="text"  required="required"   name="unitPrice"/></td>
-		</tr>
-		<tr>
-			<th>商品简介:</th>
-			<td><input type="text"  required="required"   name="productInfo"/></td>
-		</tr>
-		<tr>
-			<th>商品产地:</th>
-			<td><input type="text"  required="required"  name="producingArea"/></td>
-		</tr>
-		<tr>
-			<th>商品品类:</th>
-			<td>
-			<select name="productCategory">
-			<c:forEach items="${productCategorys}" var="p">
-			<option value="${p.id}">${p.cateGoryName}</option>
-			 </c:forEach>
-			</select>
-			</td>
-		</tr>
+				<tr>
+					<th>商品名称:</th>
+					<td><input type="text" name="productName" /></td>
+				</tr>
+				<tr>
+					<th>商品类别:</th>
+					<td><select name="productType">
+							<c:forEach items="${productTypes}" var="p">
+								<option value="${p.id}">${p.typeName}</option>
+							</c:forEach>
+					</select></td>
+				</tr>
+				<tr>
+					<th>商品品牌:</th>
+					<td><input type="text" required="required"
+						name="commodityBrand" /></td>
+				</tr>
+				<tr>
+					<th>商品单价:</th>
+					<td><input type="text" required="required" name="unitPrice" /></td>
+				</tr>
+				<tr>
+					<th>商品简介:</th>
+					<td><input type="text" required="required" name="productInfo" /></td>
+				</tr>
+				<tr>
+					<th>商品产地:</th>
+					<td><input type="text" required="required"
+						name="producingArea" /></td>
+				</tr>
+				<tr>
+					<th>商品品类:</th>
+					<td><select name="productCategory">
+							<c:forEach items="${productCategorys}" var="p">
+								<option value="${p.id}">${p.cateGoryName}</option>
+							</c:forEach>
+					</select></td>
+				</tr>
 			</table>
-			<input type="submit" value="增加" />
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
 		</form>
 	</div>
 </body>

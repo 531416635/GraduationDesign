@@ -9,7 +9,6 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <style type="text/css">
-
 </style>
 <script type="text/javascript">
 
@@ -21,7 +20,8 @@
 
 <body>
 
-	<div class="rightinfo" style="border: 2px solid;color:#000;position:relative;">
+	<div class="rightinfo"
+		style="border: 2px solid; color: #000; position: relative;">
 
 		<div>
 			<table>
@@ -39,17 +39,20 @@
 				</tr>
 			</table>
 		</div>
-		
-		<div style="border: 1px solid;height:40%;color:#000;position:absolute;top:30%; right:10%;">
-			账户金额:
-			<input style="color: red;text-align:right;font-size: 18px;" type="text" name="balance" value="${companyBalance.balance}"/>
-		</div><br />
 
-	</div><br/>
-		
-	
+		<div
+			style="border: 1px solid; height: 40%; color: #000; position: absolute; top: 30%; right: 10%;">
+			账户金额: <input style="color: red; text-align: right; font-size: 18px;"
+				type="text" name="balance" value="${companyBalance.balance}" />
+		</div>
+		<br />
+
+	</div>
+	<br />
+
+
 	<p align="center">对账单明细</p>
-	<div style="border: 2px solid;color:#000;">
+	<div style="border: 2px solid; color: #000;">
 		<table class="tablelist">
 			<thead>
 				<tr>
@@ -77,16 +80,14 @@
 						<td align="right">${c.settledAmount}</td>
 						<td>${c.currency}</td>
 						<td>${c.discount}</td>
-						<td>
-						<c:choose>
-							<c:when test="${c.status==0}">
+						<td><c:choose>
+								<c:when test="${c.status==0}">
 							未对账
 							</c:when>
-							<c:when test="${c.status==1}">
+								<c:when test="${c.status==1}">
 							已对账
 							</c:when>
-						</c:choose>
-						</td>
+							</c:choose></td>
 						<td><a href="duizhang.do?id=${c.id}&&companyId=${companyId}">对账</a></td>
 					</tr>
 				</c:forEach>

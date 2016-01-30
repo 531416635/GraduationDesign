@@ -40,7 +40,7 @@
 	margin: 10px 0;
 	width: 302px;
 	float: left;
-	border: 1px solid #D3D3D3; 
+	border: 1px solid #D3D3D3;
 }
 
 .zoom-tiny-image {
@@ -120,12 +120,13 @@
 
 #tabs a {
 	color: #898989;
-	display:block;
+	display: block;
 	width: 100px;
 	border-radius: 6px 6px 0 0;
 }
 
-#tabs a:hover,#tabs a:hover::after,#tabs a:focus,#tabs a:focus::after {
+#tabs a:hover, #tabs a:hover::after, #tabs a:focus, #tabs a:focus::after
+	{
 	background: #9a0010;
 	color: #FFF;
 }
@@ -142,7 +143,7 @@
 	border: 1px solid #d3d3d3;
 }
 
-#content h2,#content h3,#content p {
+#content h2, #content h3, #content p {
 	margin: 0 0 15px 0;
 }
 /* ------------------------------------------------- */
@@ -194,7 +195,7 @@
 	margin: 0 2px;
 }
 
-#add,#jian {
+#add, #jian {
 	width: 26px;
 	height: 20px;
 	float: left;

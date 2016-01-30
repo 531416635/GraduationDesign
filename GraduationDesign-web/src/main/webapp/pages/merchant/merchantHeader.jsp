@@ -230,7 +230,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	z-index: 2;
-	 position: relative; 
+	position: relative;
 }
 
 #nav li {
@@ -374,7 +374,8 @@ ul {
 					<a href="/ssm/web/toLogin.do">${user.userName }</a>&nbsp;
 						<span> |</span>
 					<a href="/ssm/web/cancel.do">退出</a>
-				</c:if> | <a rel="sidebar" href="#" style="cursor: pointer; 
+				</c:if> | <a rel="sidebar" href="#"
+				style="cursor: pointer; 
 				background: transparent url('<%=path%>/images/redimg/ico_01.png') no-repeat scroll left center;
 				padding-left: 20px;"
 				onclick="favorites();">加入收藏 </a>| <a href="#">联系客服</a>

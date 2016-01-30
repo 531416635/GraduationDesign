@@ -434,7 +434,8 @@ div.meneame span {
 									rel="useZoom: 'zoom1', smallImage: '<%=path%>${p3.filePath}' ">
 									<img id="img${status.count}" src="<%=path%>${p3.filePath}"
 									alt="Thumbnail 1" width="46" height="44"
-									class="zoom-tiny-image" /> </a>
+									class="zoom-tiny-image" />
+								</a>
 							</c:forEach>
 						</p>
 
@@ -454,7 +455,7 @@ div.meneame span {
 												<c:forEach items="${product.productCategorys}" var="p2">
 													<c:if
 														test="${p1.id==p2.parentCateGory&&p1.id!=p3.id&&p1.id!=p4.id}">
-														<dd>${p1.cateGoryName} : ${p2.cateGoryName}</dd>
+														<dd>${p1.cateGoryName}:${p2.cateGoryName}</dd>
 													</c:if>
 												</c:forEach>
 											</c:forEach>
@@ -468,7 +469,7 @@ div.meneame span {
 
 					<div class="shop">
 						<div class="shop_box">
-							<span id="msg" style="color:red;display:none;">*请先填写数量与地址*</span><br />
+							<span id="msg" style="color: red; display: none;">*请先填写数量与地址*</span><br />
 							<div class="buy">
 
 								<span>我要买：</span> <input type="button" id="jian" value="-"
@@ -495,7 +496,7 @@ div.meneame span {
 							
 							</div> --%>
 							<div>
-								<ul id="list1" style="width:620px;margin:40px auto 0 auto;">
+								<ul id="list1" style="width: 620px; margin: 40px auto 0 auto;">
 									<li id="summary-stock">
 										<div class="dt">配送至：</div>
 										<div class="dd">
@@ -598,14 +599,14 @@ div.meneame span {
 						<c:if test="${user !=null }">
 							<c:if test="${findProductSample==1 }">
 								<p
-									style="float:right;color:red;font-size:1.3em;margin-right:40px;">可申请</p>
+									style="float: right; color: red; font-size: 1.3em; margin-right: 40px;">可申请</p>
 							</c:if>
 							<c:if test="${findProductSample==null }">
 								<p
-									style="float:right;color:red;font-size:1.3em;margin-right:40px;">未提供</p>
+									style="float: right; color: red; font-size: 1.3em; margin-right: 40px;">未提供</p>
 							</c:if>
 							<br /> 往期申请
-								<table style="width:100%">
+								<table style="width: 100%">
 								<tr>
 									<th>样品名称</th>
 									<th>申请者</th>
@@ -628,8 +629,7 @@ div.meneame span {
 										<td>${p.requestTime }</td>
 										<td><c:if test="${p.status==0 }">已申请</c:if> <c:if
 												test="${p.status==1 }">已收到</c:if> <c:if
-												test="${p.status==2 }">已寄出</c:if>
-										</td>
+												test="${p.status==2 }">已寄出</c:if></td>
 									</tr>
 
 								</c:forEach>
@@ -638,10 +638,11 @@ div.meneame span {
 
 						</c:if>
 						<!-- 分页 -->
-						<p class="pagin" style="display:block">
-							<p id="Pagination" class="meneame" style="clear:left"></p>
+						<p class="pagin" style="display: block">
+							<p id="Pagination" class="meneame" style="clear: left"></p>
 						</p>
-						<input type="hidden" value="${product.id }" id="productID" name="productID"/>
+						<input type="hidden" value="${product.id }" id="productID"
+							name="productID" />
 					</div>
 				</div>
 			</div>

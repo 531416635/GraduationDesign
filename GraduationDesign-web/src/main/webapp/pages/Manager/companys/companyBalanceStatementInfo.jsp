@@ -88,8 +88,8 @@ $('.tablelist tbody tr:odd').addClass('odd');
 		}
 </script>
 <style type="text/css">
-th{
-	align:center;
+th {
+	align: center;
 }
 </style>
 
@@ -114,8 +114,8 @@ th{
 		<table class="tablelist">
 			<thead>
 				<tr>
-					<th style="display:none">ID</th>
-					<th style="display:none">公司ID</th>
+					<th style="display: none">ID</th>
+					<th style="display: none">公司ID</th>
 					<th>开始时间</th>
 					<th>结束时间</th>
 					<th>币种</th>
@@ -130,21 +130,20 @@ th{
 			<tbody>
 				<c:forEach items="${cbs}" var="c">
 					<tr>
-						<td style="display:none"><input name="id" value="${c.id}"/></td>
-						<td style="display:none"><input name="companyId" value="${c.companyId}"/></td>
+						<td style="display: none"><input name="id" value="${c.id}" /></td>
+						<td style="display: none"><input name="companyId"
+							value="${c.companyId}" /></td>
 						<td>${c.startTime}</td>
 						<td>${c.endTime}</td>
 						<td>${c.currency}</td>
-						<td align="right">
-						<c:if test="${c.stateType==1}">
+						<td align="right"><c:if test="${c.stateType==1}">
 						${c.amount}
-						</c:if>
-						<c:if test="${c.stateType==2}">
+						</c:if> <c:if test="${c.stateType==2}">
 						${-c.amount}
-						</c:if>
-						</td>
-						<td><input name="discount" id="discount${c.id}" type="text" value="${c.discount}"/></td>
-					<%-- 	<td align="right">
+						</c:if></td>
+						<td><input name="discount" id="discount${c.id}" type="text"
+							value="${c.discount}" /></td>
+						<%-- 	<td align="right">
 							<c:choose>
 								<c:when test="${c.settledAmount==null || c.settledAmount==''}">
 									0
@@ -154,17 +153,13 @@ th{
 								</c:otherwise>
 							</c:choose>
 						</td> --%>
-						<td align="right">
-						<c:if test="${c.stateType == 1}">
+						<td align="right"><c:if test="${c.stateType == 1}">
 						${c.settledAmount}
-						</c:if>
-						<c:if test="${c.stateType == 2}">
+						</c:if> <c:if test="${c.stateType == 2}">
 						${-c.settledAmount}
-						</c:if>
-						</td>						
+						</c:if></td>
 						<td>
-							<!--<input readonly="true" name="status"/> -->
-							<c:choose>
+							<!--<input readonly="true" name="status"/> --> <c:choose>
 								<c:when test="${c.status==0}">未对账</c:when>
 								<c:when test="${c.status==1}">已对账</c:when>
 								<c:when test="${c.status==2}">系统对账</c:when>
@@ -173,24 +168,24 @@ th{
 								<c:when test="${c.status==5}">发票已签收</c:when>
 							</c:choose>
 						</td>
-						<td>
-						<c:if test="${c.status==0}">
-						<input type="button" value="对账" onclick='duizhang(${c.id},${c.amount},$("#discount"+"${c.id}").val(),${c.companyId},${c.stateType});'/>
-						</c:if>
-						<c:if test="${c.stateType == 1}">
-							<c:if test="${c.status==2}">
-							<input type="button" value="申请发票" onclick="shenqing(${c.settledAmount},${c.companyId},${c.id})"/>
-							</c:if>
-							<c:if test="${c.status==4}">
-							<input type="button" value="发票签收" onclick="qianshou(${c.id},${companyId})"/>
-							</c:if>
-						</c:if>
-						<c:if test="${c.stateType == 2}">
-							<c:if test="${c.status==3}">
-							<input type="button" value="发票寄出" onclick="fapiao(${c.id},${c.companyId})"/>
-							</c:if>
-						</c:if>
-						</td>
+						<td><c:if test="${c.status==0}">
+								<input type="button" value="对账"
+									onclick='duizhang(${c.id},${c.amount},$("#discount"+"${c.id}").val(),${c.companyId},${c.stateType});' />
+							</c:if> <c:if test="${c.stateType == 1}">
+								<c:if test="${c.status==2}">
+									<input type="button" value="申请发票"
+										onclick="shenqing(${c.settledAmount},${c.companyId},${c.id})" />
+								</c:if>
+								<c:if test="${c.status==4}">
+									<input type="button" value="发票签收"
+										onclick="qianshou(${c.id},${companyId})" />
+								</c:if>
+							</c:if> <c:if test="${c.stateType == 2}">
+								<c:if test="${c.status==3}">
+									<input type="button" value="发票寄出"
+										onclick="fapiao(${c.id},${c.companyId})" />
+								</c:if>
+							</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>

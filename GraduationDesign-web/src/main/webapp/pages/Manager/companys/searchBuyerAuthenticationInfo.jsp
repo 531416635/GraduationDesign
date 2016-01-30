@@ -18,7 +18,7 @@
 
 		<div class="tools">
 			<form action="searchBuyerAuthenticationInfo.do" method="post">
-				<table style="border:1px solid #999;padding:3px;">
+				<table style="border: 1px solid #999; padding: 3px;">
 					<tr>
 						<td><input type="text" name="companyName"
 							value="${companyName}" /><input type="submit" value="搜索" /></td>
@@ -54,8 +54,7 @@
 						<td><c:choose>
 								<c:when test="${c.status==1}">已认证</c:when>
 								<c:when test="${c.status==0}">未认证</c:when>
-							</c:choose>
-						</td>
+							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
 							href="/ssm/buyerAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
@@ -74,21 +73,18 @@
 				<c:choose>
 					<c:when test="${page.currentPage==1}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/searthBuyerAuthenticationInfo.do?currentPage=${page.currentPage-1}&&companyName=${companyName}"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach begin="1" end="${page.totalPage}" var="s3">
 					<c:choose>
 						<c:when test="${s3==page.currentPage}">
-							<li class="paginItem current"><a href="#">${s3}</a>
-							</li>
+							<li class="paginItem current"><a href="#">${s3}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
@@ -100,14 +96,12 @@
 				<c:choose>
 					<c:when test="${page.currentPage==page.totalPage or s3<=10}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/searthBuyerAuthenticationInfo.do?currentPage=${page.currentPage+1}&&companyName=${companyName}"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

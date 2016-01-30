@@ -244,7 +244,7 @@ function SetRemainTime2() {
 
 .inner_div p {
 	background-color: #F0F0F0;
-    padding-left:10px;
+	padding-left: 10px;
 	font-size: 14px;
 	margin-top: 5px;
 	height: 30px;
@@ -252,7 +252,7 @@ function SetRemainTime2() {
 }
 
 p span {
-	float:right;
+	float: right;
 	color: red;
 	margin-top: 0%;
 	cursor: pointer;
@@ -267,69 +267,76 @@ p span {
 	color: white;
 }
 
-#sj,#yx,#mima {
+#sj, #yx, #mima {
 	display: none;
 	font-size: 14px;
 	margin-left: 50px;
 	line-height: 35px;
 }
-input{
-    width: 200px;
-    height: 23px;
-   /*  margin-right: 20px; */
+
+input {
+	width: 200px;
+	height: 23px;
+	/*  margin-right: 20px; */
 }
-.input_but1{
+
+.input_but1 {
 	width: 150px;
-    height: 23px;
+	height: 23px;
 }
-.input_but2{
+
+.input_but2 {
 	width: 70px;
-    height: 23px;
+	height: 23px;
 }
 
 div button {
 	background-color: #E05010;
 }
-td{
-  padding-right: 10px;
+
+td {
+	padding-right: 10px;
 }
 </style>
 </head>
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span><span
 				class="lo2"> 账户安全</span>
 		</div>
 		<%-- <c:if test="${userinfo.parentID == null || userinfo.parentID == '' }"> --%>
 
-			<form action="chageAccountPsw.do" method="post" id="form3">
-				<!-- <p>
+		<form action="chageAccountPsw.do" method="post" id="form3">
+			<!-- <p>
 					修改密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码安全度 <input type="text"
 						class="mima" readonly="readonly" value="100%" /> <span class="tel"
 						onclick="displayDiv3();" id="sz">设置/修改</span>
 				</p> -->
-				<br />
-				<div id="mima">
-				    <table>
-				    	<tr>
-				    		<td>原始密码：</td>
-				    		<td><input type="text" placeholder="请输入原始密码" name="psw" /></td>
-				    	</tr>
-				    	<tr>
-				    		<td>新密码：</td>
-				    		<td colspan="3"><input type="text" placeholder="请输入新密码" name="newPsw" /></td>
-				    	</tr>
-				    	<tr>
-				    		<td>确认密码：</td>
-				    		<td><input type="text" placeholder="请确认" name="rNewPsw" /></td>
-				    		<td><input class="input_but2 orange" type="button" value="提交" onclick="check3();" /></td>
-				    		<td><span id="msg3" style="color: red;font-size: 14px;"></span></td>
-				    	</tr>
-				    </table>
+			<br />
+			<div id="mima">
+				<table>
+					<tr>
+						<td>原始密码：</td>
+						<td><input type="text" placeholder="请输入原始密码" name="psw" /></td>
+					</tr>
+					<tr>
+						<td>新密码：</td>
+						<td colspan="3"><input type="text" placeholder="请输入新密码"
+							name="newPsw" /></td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td><input type="text" placeholder="请确认" name="rNewPsw" /></td>
+						<td><input class="input_but2 orange" type="button" value="提交"
+							onclick="check3();" /></td>
+						<td><span id="msg3" style="color: red; font-size: 14px;"></span></td>
+					</tr>
+				</table>
 
-				</div>
-			</form>
+			</div>
+		</form>
 		<%-- </c:if> --%>
 
 		<form action="telCode.do" method="post" id="form1">
@@ -347,19 +354,22 @@ td{
 			</p>
 			<br />
 			<div id="sj">
-			<table>
-				<tr>
-					<td>手机验证：</td>
-					<td><input type="text" placeholder="请输入您的手机号" name="phone" id="phone"/></td>
-					<td colspan="2"><input class="input_but1 orange" type="button" id="btn" value="发送短信验证码" onclick="send();" /></td>
-				</tr>
-				<tr>
-					<td>输入验证码：</td>
-					<td><input type="text" name="telCode" /></td>
-					<td><input type="button" class="input_but2 orange" value="提交" onclick="check();" /></td>
-					<td><span id="msg1" style="color: red;font-size: 14px;"></span></td>
-				</tr>
-			</table>
+				<table>
+					<tr>
+						<td>手机验证：</td>
+						<td><input type="text" placeholder="请输入您的手机号" name="phone"
+							id="phone" /></td>
+						<td colspan="2"><input class="input_but1 orange"
+							type="button" id="btn" value="发送短信验证码" onclick="send();" /></td>
+					</tr>
+					<tr>
+						<td>输入验证码：</td>
+						<td><input type="text" name="telCode" /></td>
+						<td><input type="button" class="input_but2 orange" value="提交"
+							onclick="check();" /></td>
+						<td><span id="msg1" style="color: red; font-size: 14px;"></span></td>
+					</tr>
+				</table>
 			</div>
 		</form>
 
@@ -378,20 +388,23 @@ td{
 			</p>
 			<br />
 			<div id="yx">
-			<table>
-				<tr>
-					<td>邮箱验证：</td>
-					<td><input type="text" placeholder="请输入您的邮箱" name="mail" id="mail"/></td>
-					<td><input class="input_but1 orange" type="button" id="yzm" value="发送验证码" onclick="sendMail();" /></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>输入验证码：</td>
-					<td><input type="text" name="mailCode" /></td>
-					<td><input type="button" class="input_but2 orange" value="提交" onclick="check2();" /></td>
-					<td><span id="msg2" style="color: red;font-size: 14px;"></span></td>
-				</tr>
-			</table>
+				<table>
+					<tr>
+						<td>邮箱验证：</td>
+						<td><input type="text" placeholder="请输入您的邮箱" name="mail"
+							id="mail" /></td>
+						<td><input class="input_but1 orange" type="button" id="yzm"
+							value="发送验证码" onclick="sendMail();" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>输入验证码：</td>
+						<td><input type="text" name="mailCode" /></td>
+						<td><input type="button" class="input_but2 orange" value="提交"
+							onclick="check2();" /></td>
+						<td><span id="msg2" style="color: red; font-size: 14px;"></span></td>
+					</tr>
+				</table>
 			</div>
 		</form>
 	</div>

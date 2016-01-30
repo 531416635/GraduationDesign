@@ -23,9 +23,10 @@
 		WHERE
 		CompanyID=#{companyId}
 		and status !=3
-		order by id limit #{page.begin},#{page.pageNum}
+		order by
+		id limit #{page.begin},#{page.pageNum}
 	</select>
-	
+
 	<!--根据ID查找 -->
 	<select id="findById" parameterType="Integer"
 		resultType="com.wit.model.AuthenticationManager">
@@ -52,7 +53,8 @@
 
 	<!--删除 -->
 	<update id="delete" parameterType="Integer">
-		update AuthenticationManager set status=3
+		update AuthenticationManager
+		set status=3
 		where
 		id=#{id}
 	</update>
@@ -64,28 +66,33 @@
 		</selectKey>
 		INSERT INTO
 		AuthenticationManager (
-		AuthenticationName, FilePath,CompanyType, Status,CompanyID,
+		AuthenticationName,
+		FilePath,CompanyType, Status,CompanyID,
 		UploadTime, UploadBy, FileClass
 		) VALUES (
-		 #{authenticationName}, #{filePath},#{companyType},
-		#{status},#{companyId}, NOW(), #{uploadBy}, 0
+		#{authenticationName}, #{filePath},#{companyType},
+		#{status},#{companyId}, NOW(),
+		#{uploadBy}, 0
 		)
 	</insert>
-	
+
 	<!-- 认证信息分行 -->
 	<select id="rows" parameterType="Integer" resultType="int">
-		select count(id) from AuthenticationManager 
-		where companyId=#{companyId} and status !=3
+		select
+		count(id) from AuthenticationManager
+		where companyId=#{companyId} and
+		status !=3
 	</select>
-	
+
 	<!-- 根据ID字符数组删除数据 -->
 	<update id="deleteByIds" parameterType="string">
-		update AuthenticationManager  set
+		update
+		AuthenticationManager set
 		status=3
 		where FIND_IN_SET(id,#{ids})
 	</update>
-	
-	<!--商户认证  -->
+
+	<!--商户认证 -->
 	<update id="merchantAuthentication" parameterType="int">
 	<![CDATA[
 		CALL addAuthentication(#{tmpCompanyId, mode=IN, jdbcType=INTEGER});

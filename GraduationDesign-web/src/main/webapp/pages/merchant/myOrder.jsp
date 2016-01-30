@@ -18,17 +18,23 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/detail.css" />
-	<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>
-<link href="<%=path%>/css/redcss/core.css" type="text/css" rel="stylesheet"/>
-<script src="<%=path%>/js/redjs/jquery.1.3.2.js" type="text/javascript" language="javascript"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
+<link href="<%=path%>/css/redcss/core.css" type="text/css"
+	rel="stylesheet" />
+<script src="<%=path%>/js/redjs/jquery.1.3.2.js" type="text/javascript"
+	language="javascript"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
 <link rel="stylesheet" href="<%=path%>/css/redcss/jindutiao.css" />
 <script type="text/javascript">
 
@@ -243,91 +249,124 @@ function checkTime(){
 }
 </script>
 <style type="text/css">
-.input_text{
-   width: 150px;
-   height: 20px;
-} 
+.input_text {
+	width: 150px;
+	height: 20px;
+}
 
-select{
-   width: 100px;
-   height: 20px;
+select {
+	width: 100px;
+	height: 20px;
 }
- #button_ss{
-   width: 70px;
-   height: 20px;
-} 
- #table_2 td,th{
-  text-align: center;
-  border: 0.5px solid #999;
+
+#button_ss {
+	width: 70px;
+	height: 20px;
 }
-#table_1 td{
-    height:30px;
+
+#table_2 td, th {
+	text-align: center;
+	border: 0.5px solid #999;
+}
+
+#table_1 td {
+	height: 30px;
 	padding-right: 10px;
 }
 </style>
-<script src="<%=path%>/js/redjs/popup_layer.js" type="text/javascript" language="javascript"></script>
+<script src="<%=path%>/js/redjs/popup_layer.js" type="text/javascript"
+	language="javascript"></script>
 
 </head>
 
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span class="lo2">我的订单</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span
+				class="lo2">我的订单</span>
 		</div>
-<!-- 		<a href="javascript:exportExcel();" class="myBtn"><em>导出</em></a> -->
+		<!-- 		<a href="javascript:exportExcel();" class="myBtn"><em>导出</em></a> -->
 		<!-- <p>
 			日期&nbsp;<input onclick="WdatePicker()" readonly="readonly" />&nbsp;至
 			&nbsp;<input onclick="WdatePicker()" readonly="readonly" />
 		</p> -->
 
 		<div class="detail_list">
-<!-- 			<a href="#">订单存档</a> -->
+			<!-- 			<a href="#">订单存档</a> -->
 			<ul id="tabs">
-				<li><a href="<%=path %>/merchant/myOrder.do" title="tab1">近三个月订单 </a></li>
+				<li><a href="<%=path %>/merchant/myOrder.do" title="tab1">近三个月订单
+				</a></li>
 				<li><a href="<%=path%>/merchant/myOldOrder.do" title="tab2">三个月前订单</a></li>
 			</ul>
 			<div id="content">
 				<div id="tab1">
 					<input type="hidden" id="ele1" value="">
-     <form name="orders" action="/ssm/merchant/myOrder.do" method="post">
-     <table id="table_1">
-     	<tr>
-     		<td>订单号：</td>
-     		<td><input class="input_text" type="text" name="orderId" id="orderId" <c:if test="${page.orderId!=''}">value="${page.orderId}"</c:if> /></td>
-     		<td>货品名称：</td>
-     		<td><input class="input_text" type="text" name="productName"   id="productName"  <c:if test="${page.productName!=''}">value="${page.productName}"</c:if> /></td>
-     	</tr>
-     	<tr>
-     		<td>成交时间：</td>
-     		<td colspan="3">
-     			<input class="input_text" onchange="checkTime()" onclick="WdatePicker()" readonly="readonly" name="orderTimeStart"  id="orderTimeStart" value="${page.orderTimeStart }" />-
-     			<input class="input_text" onchange="checkTime()" onclick="WdatePicker()" readonly="readonly"  name="orderTimeStop"  id="orderTimeStop"  value="${page.orderTimeStop}" />
-     		</td>
-     	</tr>
-     	<tr>
-     		<td>订单状态：</td>
-     		<td colspan="3">
-     			<input  style="width:20px;height:10px" type="radio" name= "orderStatus" value=""  <c:if test="${page.orderStatus==''||page.orderStatus==null}"> checked="checked"</c:if>/><span>全部</span>
-				<input  style="width:20px;height:10px" type="radio" name= "orderStatus" value="0"   <c:if test="${page.orderStatus==0}"> checked="checked"</c:if>/><span>未完结</span>
-				<input  style="width:20px;height:10px" type="radio" name= "orderStatus" value="1"   <c:if test="${page.orderStatus==1}"> checked="checked"</c:if>/><span>已完结</span>
-				<input  style="width:20px;height:10px" type="radio" name= "orderStatus" value="2"  <c:if test="${page.orderStatus==2}"> checked="checked"</c:if>/><span>已拆分</span>
-				<input  style="width:20px;height:10px" type="radio" name= "orderStatus" value="3"   <c:if test="${page.orderStatus==3}"> checked="checked"</c:if>/><span>已关闭</span>
-     		</td>
-     	</tr>
-     	<tr>				
-		<td>订单类型：</td>
-		<td colspan="3"><select name="orderType">
-		<option <c:if test="${page.orderType!=1&&page.orderType!=2&&page.orderType!=3}"> selected="true" </c:if> value="">全部</option>
-		<option <c:if test="${page.orderType==1}"> selected="true" </c:if> value="1">询价订单</option>
-		<option <c:if test="${page.orderType==2}"> selected="true" </c:if> value="2">团购订单</option>
-		<option <c:if test="${page.orderType==3}"> selected="true" </c:if>  value="3">特价订单</option>
-		</select></td>
-		</tr>
-     </table>
-					<br>
-					<input id="button_ss" class="action orange" type="submit" value="搜索"/></p>
-    </form>
-					<table  id="table_2" border="1px solid #D0D0D0" cellspacing="0" width="100%">
+					<form name="orders" action="/ssm/merchant/myOrder.do" method="post">
+						<table id="table_1">
+							<tr>
+								<td>订单号：</td>
+								<td><input class="input_text" type="text" name="orderId"
+									id="orderId"
+									<c:if test="${page.orderId!=''}">value="${page.orderId}"</c:if> /></td>
+								<td>货品名称：</td>
+								<td><input class="input_text" type="text"
+									name="productName" id="productName"
+									<c:if test="${page.productName!=''}">value="${page.productName}"</c:if> /></td>
+							</tr>
+							<tr>
+								<td>成交时间：</td>
+								<td colspan="3"><input class="input_text"
+									onchange="checkTime()" onclick="WdatePicker()"
+									readonly="readonly" name="orderTimeStart" id="orderTimeStart"
+									value="${page.orderTimeStart }" />- <input class="input_text"
+									onchange="checkTime()" onclick="WdatePicker()"
+									readonly="readonly" name="orderTimeStop" id="orderTimeStop"
+									value="${page.orderTimeStop}" /></td>
+							</tr>
+							<tr>
+								<td>订单状态：</td>
+								<td colspan="3"><input style="width: 20px; height: 10px"
+									type="radio" name="orderStatus" value=""
+									<c:if test="${page.orderStatus==''||page.orderStatus==null}"> checked="checked"</c:if> /><span>全部</span>
+									<input style="width: 20px; height: 10px" type="radio"
+									name="orderStatus" value="0"
+									<c:if test="${page.orderStatus==0}"> checked="checked"</c:if> /><span>未完结</span>
+									<input style="width: 20px; height: 10px" type="radio"
+									name="orderStatus" value="1"
+									<c:if test="${page.orderStatus==1}"> checked="checked"</c:if> /><span>已完结</span>
+									<input style="width: 20px; height: 10px" type="radio"
+									name="orderStatus" value="2"
+									<c:if test="${page.orderStatus==2}"> checked="checked"</c:if> /><span>已拆分</span>
+									<input style="width: 20px; height: 10px" type="radio"
+									name="orderStatus" value="3"
+									<c:if test="${page.orderStatus==3}"> checked="checked"</c:if> /><span>已关闭</span>
+								</td>
+							</tr>
+							<tr>
+								<td>订单类型：</td>
+								<td colspan="3"><select name="orderType">
+										<option
+											<c:if test="${page.orderType!=1&&page.orderType!=2&&page.orderType!=3}"> selected="true" </c:if>
+											value="">全部</option>
+										<option
+											<c:if test="${page.orderType==1}"> selected="true" </c:if>
+											value="1">询价订单</option>
+										<option
+											<c:if test="${page.orderType==2}"> selected="true" </c:if>
+											value="2">团购订单</option>
+										<option
+											<c:if test="${page.orderType==3}"> selected="true" </c:if>
+											value="3">特价订单</option>
+								</select></td>
+							</tr>
+						</table>
+						<br> <input id="button_ss" class="action orange"
+							type="submit" value="搜索" />
+						</p>
+					</form>
+					<table id="table_2" border="1px solid #D0D0D0" cellspacing="0"
+						width="100%">
 						<thead>
 							<tr style="background-color: #f1f1f1;">
 								<th>订单编号</th>
@@ -343,14 +382,15 @@ select{
 						</thead>
 						<tbody>
 							<c:forEach items="${order1}" var="d">
-							<tr><%-- 用于初始化7个计数变量的初值 --%>
-                                              <c:set var="n1" value="0"></c:set>
-					                          <c:set var="n2" value="0"></c:set>
-					                          <c:set var="n3" value="0"></c:set>
-					                          <c:set var="n4" value="0"></c:set> 
-					                          <c:set var="n5" value="0"></c:set>
-					                          <c:set var="n6" value="0"></c:set> 
-					                          <c:set var="n7" value="0"></c:set>
+								<tr>
+									<%-- 用于初始化7个计数变量的初值 --%>
+									<c:set var="n1" value="0"></c:set>
+									<c:set var="n2" value="0"></c:set>
+									<c:set var="n3" value="0"></c:set>
+									<c:set var="n4" value="0"></c:set>
+									<c:set var="n5" value="0"></c:set>
+									<c:set var="n6" value="0"></c:set>
+									<c:set var="n7" value="0"></c:set>
 									<td>${d.orderId}</td>
 									<td>${d.productName}</td>
 									<td>${d.unitPrice}</td>
@@ -360,49 +400,73 @@ select{
 											<c:when test="${d.status==0}">未完结</c:when>
 											<c:when test="${d.status==1}">已完结</c:when>
 											<c:when test="${d.status==2}">
-											<%--下面的代码用于在“订单状态”字段中统计并显示处于各个状态的被拆分订单的个数 --%>                           
-											<c:forEach items="${d.orderStatus}" var="c" >
-										<c:if test="${c==0}"><c:set var="n1" value="${n1+1}"></c:set></c:if>
-										<c:if test="${c==1}"><c:set var="n2" value="${n2+1}"></c:set></c:if>
-										<c:if test="${c==2}"><c:set var="n3" value="${n3+1}"></c:set></c:if>
-										<c:if test="${c==3}"><c:set var="n4" value="${n4+1}"></c:set></c:if>
-										<c:if test="${c==4}"><c:set var="n5" value="${n5+1}"></c:set></c:if>
-										<c:if test="${c==5}"><c:set var="n6"  value="${n6+1}"></c:set></c:if>
-										<c:if test="${c==6}"><c:set var="n7"  value="${n7+1}"></c:set></c:if>									
-											</c:forEach>
-											<c:if test="${n1>0}">有${n1}个订单未配送<br></c:if> 
-											<c:if test="${n2>0}">有${n2}个订单已对账<br></c:if>
-											<c:if test="${n3>0}">有${n3}个订单已配送<br></c:if>
-											<c:if test="${n4>0}">有${n4}个订单未验收<br></c:if>
-											<c:if test="${n5>0}">有${n5}个订单已验收<br></c:if>
-											<c:if test="${n6>0}">有${n6}个订单未审核<br></c:if>
-											<c:if test="${n7>0}">有${n7}个订单已审核<br></c:if>
-											</c:when>	
-											<c:when test="${d.status==3 }">已关闭</c:when>	
+												<%--下面的代码用于在“订单状态”字段中统计并显示处于各个状态的被拆分订单的个数 --%>
+												<c:forEach items="${d.orderStatus}" var="c">
+													<c:if test="${c==0}">
+														<c:set var="n1" value="${n1+1}"></c:set>
+													</c:if>
+													<c:if test="${c==1}">
+														<c:set var="n2" value="${n2+1}"></c:set>
+													</c:if>
+													<c:if test="${c==2}">
+														<c:set var="n3" value="${n3+1}"></c:set>
+													</c:if>
+													<c:if test="${c==3}">
+														<c:set var="n4" value="${n4+1}"></c:set>
+													</c:if>
+													<c:if test="${c==4}">
+														<c:set var="n5" value="${n5+1}"></c:set>
+													</c:if>
+													<c:if test="${c==5}">
+														<c:set var="n6" value="${n6+1}"></c:set>
+													</c:if>
+													<c:if test="${c==6}">
+														<c:set var="n7" value="${n7+1}"></c:set>
+													</c:if>
+												</c:forEach>
+												<c:if test="${n1>0}">有${n1}个订单未配送<br>
+												</c:if>
+												<c:if test="${n2>0}">有${n2}个订单已对账<br>
+												</c:if>
+												<c:if test="${n3>0}">有${n3}个订单已配送<br>
+												</c:if>
+												<c:if test="${n4>0}">有${n4}个订单未验收<br>
+												</c:if>
+												<c:if test="${n5>0}">有${n5}个订单已验收<br>
+												</c:if>
+												<c:if test="${n6>0}">有${n6}个订单未审核<br>
+												</c:if>
+												<c:if test="${n7>0}">有${n7}个订单已审核<br>
+												</c:if>
+											</c:when>
+											<c:when test="${d.status==3 }">已关闭</c:when>
 											<%-- 			<c:when test="${d.status==3}">待评价</c:when>
 											<c:when test="${d.status==4}">交易成功</c:when> --%>
 										</c:choose></td>
-									<td>
-									<a href="#">查看评价</a>&nbsp;<br />
-									<a href="<%=path%>/merchant/acceptanceDetails.do?id=${d.id}">验收情况</a>&nbsp;<br />
-									<!-- <a href="#">申请售后</a>&nbsp;<br /> -->
-								   <c:choose>
-										<c:when test="${d.status==0}"><c:if test="${d.orderType==1}"><a href="splitPriceSheet.do?id=${d.id}">订单拆分</a></c:if>
-										<c:if test="${d.orderType==2}"><a href="<%=path%>/web/toGrouponPay.do?id=${d.id}">等待付款</a></c:if></c:when>
-									<%-- 	<c:when test="${d.status==2}"><a class="ele1" href="javascript:ele1checked(${d.id});">拆分详情</a></c:when>		 --%>
-									</c:choose>
-									</td>
+									<td><a href="#">查看评价</a>&nbsp;<br /> <a
+										href="<%=path%>/merchant/acceptanceDetails.do?id=${d.id}">验收情况</a>&nbsp;<br />
+										<!-- <a href="#">申请售后</a>&nbsp;<br /> --> <c:choose>
+											<c:when test="${d.status==0}">
+												<c:if test="${d.orderType==1}">
+													<a href="splitPriceSheet.do?id=${d.id}">订单拆分</a>
+												</c:if>
+												<c:if test="${d.orderType==2}">
+													<a href="<%=path%>/web/toGrouponPay.do?id=${d.id}">等待付款</a>
+												</c:if>
+											</c:when>
+											<%-- 	<c:when test="${d.status==2}"><a class="ele1" href="javascript:ele1checked(${d.id});">拆分详情</a></c:when>		 --%>
+										</c:choose></td>
 									<td>${d.orderTime}</td>
-									<td><c:if test="${d.orderType==1}">询价订单</c:if>
-									<c:if test="${d.orderType==2}">团购订单</c:if>
-									<c:if test="${d.orderType==3}">现货订单</c:if></td>
+									<td><c:if test="${d.orderType==1}">询价订单</c:if> <c:if
+											test="${d.orderType==2}">团购订单</c:if> <c:if
+											test="${d.orderType==3}">现货订单</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-		<!-- 弹出层 -->
-	<!-- 	<div id="blk1" class="blk" style="display:none; width:1100px;height:auto;" >
+				<!-- 弹出层 -->
+				<!-- 	<div id="blk1" class="blk" style="display:none; width:1100px;height:auto;" >
             <div class="head"><div class="head-right"></div></div>
             <div class="main">
                 <h2>订单拆分配送单列表</h2>
@@ -416,26 +480,26 @@ select{
             </div>
             <div class="foot"><div class="foot-right"></div></div>
         </div> -->
-		
-		
+
+
 
 			</div>
 			<div id="page">
-			<!-- 分页 1-->
-			<div id="pagin1" class="pagin">
-			<!-- <div class="message">
+				<!-- 分页 1-->
+				<div id="pagin1" class="pagin">
+					<!-- <div class="message">
 				共<i id="rows1" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage1" class="blue"></i>页
 			</div> -->
-			<div id="Pagination1" class="meneame" style="clear:left"></div> 	
-			</div>
-			<!-- 分页 2-->
-			<!-- <div id="pagin2" class="pagin">
+					<div id="Pagination1" class="meneame" style="clear: left"></div>
+				</div>
+				<!-- 分页 2-->
+				<!-- <div id="pagin2" class="pagin">
 			<div class="message">
 				共<i id="rows2" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage2" class="blue"></i>页
 			</div>
 			<div id="Pagination2" class="meneame" style="clear:left"></div> 	
 			</div> -->
-			<!-- 
+				<!-- 
 			<div id="Pagination1" class="meneame" style="clear:left"></div> 
 
 			<div id="Pagination2" class="meneame" style="clear:left"></div> -->
@@ -569,14 +633,14 @@ select{
 			});
 		}); */
 	</script>
-<div class="overlay"></div>
+	<div class="overlay"></div>
 
-<div id="AjaxLoading" class="showbox">
-	<div class="loadingWord"><img src="<%=path%>/images/waiting.gif">加载中，请稍候...</div>
-</div>
+	<div id="AjaxLoading" class="showbox">
+		<div class="loadingWord">
+			<img src="<%=path%>/images/waiting.gif">加载中，请稍候...
+		</div>
+	</div>
 
-<div style="height:1200px;">
-	
-</div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>

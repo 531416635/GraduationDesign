@@ -86,10 +86,10 @@ function checkDelete(id){
 
 		<div class="tools">
 			<ul class="toolbar">
-				<li class="click"><span><img src="images/t01.png" />
-				</span><a href="/ssm/toAddSupplierBankAccount.do">添加</a>
-				</li>
-				<li><a class="tablelink" href="#" onclick="getText();"><span><img src="images/t03.png" /></span>删除</a></li>
+				<li class="click"><span><img src="images/t01.png" /> </span><a
+					href="/ssm/toAddSupplierBankAccount.do">添加</a></li>
+				<li><a class="tablelink" href="#" onclick="getText();"><span><img
+							src="images/t03.png" /></span>删除</a></li>
 			</ul>
 		</div>
 
@@ -97,7 +97,8 @@ function checkDelete(id){
 		<table class="tablelist">
 			<thead>
 				<tr>
-					 <th><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th>
+					<th><input name="" id="checkAll" type="checkbox"
+						onclick="checkAll();" />全选</th>
 					<th style="display: none">公司ID</th>
 					<th>银行账号</th>
 					<th>开户行地址</th>
@@ -117,27 +118,25 @@ function checkDelete(id){
 						<td>${c.bankAccount}</td>
 						<td>${c.bankAddress}</td>
 						<td>${c.bankName}</td>
-						<td>
-                        	<c:choose>
-                        		<c:when test="${c.status==0}">
+						<td><c:choose>
+								<c:when test="${c.status==0}">
                         			初始
                         		</c:when>
-                        		<c:when test="${c.status==1}">
+								<c:when test="${c.status==1}">
                         			可用
                         		</c:when>
-                        		<c:when test="${c.status==2}">
+								<c:when test="${c.status==2}">
                         			冻结
                         		</c:when>
-                        		<c:otherwise>
+								<c:otherwise>
                         			删除
                         		</c:otherwise>
-                        	</c:choose>
-                        </td>
+							</c:choose></td>
 						<td>${c.createTime}</td>
 						<td><a class="tablelink"
 							href="/ssm/toUpdateSupplierBankAccount.do?id=${c.companyId}">修改</a>
-							<a class="tablelink" href="#" onclick="checkDelete(${c.companyId})">删除</a>
-							<%-- <input type="button" value="删除"
+							<a class="tablelink" href="#"
+							onclick="checkDelete(${c.companyId})">删除</a> <%-- <input type="button" value="删除"
 							onclick="location.href='deleteSupplierBankAccount.do?id=${c.companyId}';" /> --%>
 						</td>
 					</tr>
@@ -154,23 +153,18 @@ function checkDelete(id){
 				<c:choose>
 					<c:when test="${page.currentPage==1}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagepre"></span>
-						</a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/findSupplierBankAccount.do?currentPage=${page.currentPage-1}"><span
-								class="pagepre"></span>
-						</a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach begin="1" end="${page.totalPage}" var="s3">
 					<c:choose>
 						<c:when test="${s3==page.currentPage}">
-							<li class="paginItem current"><a href="#">${s3}</a>
-							</li>
+							<li class="paginItem current"><a href="#">${s3}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
@@ -182,16 +176,12 @@ function checkDelete(id){
 				<c:choose>
 					<c:when test="${page.currentPage==page.totalPage or s3<=10}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagenxt"></span>
-						</a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/findSupplierBankAccount.do?currentPage=${page.currentPage+1}"><span
-								class="pagenxt"></span>
-						</a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -204,8 +194,7 @@ function checkDelete(id){
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认对信息的修改 ？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

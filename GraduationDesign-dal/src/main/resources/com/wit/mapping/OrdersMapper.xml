@@ -14,8 +14,7 @@
 		#{begin},#{pageNum};
 	</select>
 	<!-- 打印查询所有 -->
-	<select id="getAlljExcel" parameterType="Integer"
-		resultType="com.wit.model.Orders">
+	<select id="getAlljExcel" parameterType="Integer" resultType="com.wit.model.Orders">
 		select p.productName,d.ID,
 		d.OrderTime, d.Status,
 		d.OrderID,
@@ -71,9 +70,9 @@
 		<if test="orderType!=null and orderType!=''">,#{orderType}</if>
 		)
 	</insert>
-	<select id="getOrderByID" parameterType="int"
-		resultType="com.wit.model.Orders">
-		select now() as OrderTime,0 as Status,PriceSheetID as
+	<select id="getOrderByID" parameterType="int" resultType="com.wit.model.Orders">
+		select
+		now() as OrderTime,0 as Status,PriceSheetID as
 		OrderID,UserID,CompanyProductID,Quantity,ProductUnit,
 		UnitPrice,(Quantity*UnitPrice)as
 		TotolAmount,(Quantity*UnitPrice*ccs.Earnest) as
@@ -128,8 +127,7 @@
 	</select>
 
 	<!--根据用户ID显示三个月前订单信息 -->
-	<select id="findAll" parameterType="hashMap"
-		resultType="com.wit.model.Orders">
+	<select id="findAll" parameterType="hashMap" resultType="com.wit.model.Orders">
 		select p.productName,d.ID, d.OrderTime, d.Status,
 		d.OrderID,
 		d.UserID,d.CompanyProductID,
@@ -162,13 +160,15 @@
 			AND d.OrderTime&lt;=#{oldOrderTimeStop}
 		</if>
 		<if test="orderType!=null and orderType!=''">
-		AND d.OrderType=#{orderType}
+			AND d.OrderType=#{orderType}
 		</if>
 		order by d.OrderTime DESC ,d.OrderID DESC
-		limit #{page.begin},#{page.pageNum};
+		limit
+		#{page.begin},#{page.pageNum};
 	</select>
- <select id="findOldOrderRows" parameterType="hashMap" resultType="int">
- select count(d.ID)
+	<select id="findOldOrderRows" parameterType="hashMap"
+		resultType="int">
+		select count(d.ID)
 		from Orders
 		d
 		LEFT JOIN CompanyProducts cp
@@ -194,9 +194,9 @@
 			AND d.OrderTime&lt;=#{oldOrderTimeStop}
 		</if>
 		<if test="orderType!=null and orderType!=''">
-		    AND d.OrderType=#{orderType}
+			AND d.OrderType=#{orderType}
 		</if>
- </select>
+	</select>
 	<!--根据用户ID显示近三个月订单信息 -->
 	<select id="findOrderInfo" parameterType="hashMap" resultMap="ordersMap">
 		select p.productName,d.ID, d.OrderTime, d.Status,
@@ -207,16 +207,19 @@
 		d.TotolAmount,d.EarnestAmount, d.DeliveryDate,
 		d.ValidUntil,d.OrderTime,d.OrderType
 		from Orders d
-		LEFT JOIN CompanyProducts cp
+		LEFT JOIN
+		CompanyProducts cp
 		ON
 		d.CompanyProductID = cp.ID
 		LEFT JOIN
 		Products p
-		ON p.ID = cp.ProductID
+		ON
+		p.ID = cp.ProductID
 		where userId =#{userId}
-		  AND d.OrderTime &gt;= DATE_SUB( CURRENT_DATE() ,
-	    INTERVAL 3 MONTH )
-		
+		AND d.OrderTime &gt;=
+		DATE_SUB( CURRENT_DATE() ,
+		INTERVAL 3 MONTH )
+
 		<if test="orderId !=null and orderId!=''">
 			AND d.OrderID=#{orderId}
 		</if>
@@ -234,7 +237,7 @@
 			d.Status=#{orderStatus}
 		</if>
 		<if test="orderType!=null and orderType!=''">
-		    AND d.OrderType=#{orderType}
+			AND d.OrderType=#{orderType}
 		</if>
 		order by d.OrderTime DESC ,d.OrderID DESC
 		limit
@@ -292,8 +295,8 @@
 		<if test="orderStatus!=null and orderStatus!=''">
 			AND d.Status=#{orderStatus}
 		</if>
-        <if test="orderType!=null and orderType!=''">
-		    AND d.OrderType=#{orderType}
+		<if test="orderType!=null and orderType!=''">
+			AND d.OrderType=#{orderType}
 		</if>
 	</select>
 

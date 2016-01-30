@@ -21,22 +21,25 @@ bkLib.onDomLoaded(function() {
 	});
 </script>
 <style type="text/css">
-#yangshi{
+#yangshi {
 	margin-top: 5px;
 	width: 820px;
 	height: 770px;
-	overflow:scroll;
-	border:1px solid;
+	overflow: scroll;
+	border: 1px solid;
 }
-td{
+
+td {
 	font-size: 14px;
 	line-height: 30px;
 	padding-right: 10px;
 }
-tr{
+
+tr {
 	height: 30px;
 }
-table{
+
+table {
 	margin: 10px 10px;
 }
 </style>
@@ -44,33 +47,32 @@ table{
 
 <body>
 	<div class="inner_div">
-	<table>
-	   <tr>
-	   		<td><b>合同时间：</b></td>
-	   		<td>${companyContracts.contractTime}</td>
-	   		<td><b>合同年限：</b></td>
-	   		<td>${companyContracts.contractExpirationTime}</td>
-	   		<td><b>合同账期：</b></td>
-	   		<td>${companyContracts.contractTerms}</td>
-	   </tr>
-	   <tr>
-	   		<td><b>合同类型：</b></td>
-	   		<td>
-	   			<c:choose>
-				<c:when test="${companyContracts.contractType==0}">
+		<table>
+			<tr>
+				<td><b>合同时间：</b></td>
+				<td>${companyContracts.contractTime}</td>
+				<td><b>合同年限：</b></td>
+				<td>${companyContracts.contractExpirationTime}</td>
+				<td><b>合同账期：</b></td>
+				<td>${companyContracts.contractTerms}</td>
+			</tr>
+			<tr>
+				<td><b>合同类型：</b></td>
+				<td><c:choose>
+						<c:when test="${companyContracts.contractType==0}">
 				采购合同
 				</c:when>
-				<c:when test="${companyContracts.contractType==1}">
+						<c:when test="${companyContracts.contractType==1}">
 				供应合同
 				</c:when>
-				</c:choose>
-	   		</td>
-	   		<td><b>供应品类：</b></td>
-	   		<td colspan="3">${companyContracts.supplyCategory}</td>
-	   </tr>
-	</table>
+					</c:choose></td>
+				<td><b>供应品类：</b></td>
+				<td colspan="3">${companyContracts.supplyCategory}</td>
+			</tr>
+		</table>
 		<div id="yangshi">
-		<div id="content" cols="100" style="font-size: 16px; line-height: 35px;" >${companyContracts.contractContent}</div>
+			<div id="content" cols="100"
+				style="font-size: 16px; line-height: 35px;">${companyContracts.contractContent}</div>
 		</div>
 	</div>
 </body>

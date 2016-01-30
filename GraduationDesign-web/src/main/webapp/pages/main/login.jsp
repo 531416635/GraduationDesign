@@ -27,7 +27,7 @@
 </head>
 
 <body
-	style="background-color:#1c77ac; background-image:url(images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+	style="background-color: #1c77ac; background-image: url(images/light.png); background-repeat: no-repeat; background-position: center top; overflow: hidden;">
 
 
 
@@ -40,12 +40,9 @@
 	<div class="logintop">
 		<span>欢迎登录团餐管理平台</span>
 		<ul>
-			<li><a href="#">回首页</a>
-			</li>
-			<li><a href="#">帮助</a>
-			</li>
-			<li><a href="#">关于</a>
-			</li>
+			<li><a href="#">回首页</a></li>
+			<li><a href="#">帮助</a></li>
+			<li><a href="#">关于</a></li>
 		</ul>
 	</div>
 
@@ -59,14 +56,12 @@
 				<ul>
 
 					<li><input name="userName" type="text" class="loginuser" /></li>
-					<div style="color:red">${msg}</div>
+					<div style="color: red">${msg}</div>
 					<li><input name="userPsw" type="password" class="loginpwd" />
 					</li>
 					<li><input name="" type="submit" class="loginbtn" value="登录" /><label><input
 							name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a
-							href="#">忘记密码？</a>
-					</label>
-					</li>
+							href="#">忘记密码？</a> </label></li>
 				</ul>
 
 

@@ -1,5 +1,5 @@
-<decorators defaultdir="/pages/merchant/">   
-       <decorator name="header" page="merchantHeader.jsp">   
-           <pattern>/merchant/*</pattern>   
-       </decorator>
+<decorators defaultdir="/pages/merchant/">
+	<decorator name="header" page="merchantHeader.jsp">
+		<pattern>/merchant/*</pattern>
+	</decorator>
 </decorators> 

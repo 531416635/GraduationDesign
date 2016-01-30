@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>一起采</title>
 <%
 	String path = request.getContextPath();
@@ -16,18 +16,24 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/detail.css" />
-	<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>
-<link href="<%=path%>/css/redcss/core.css" type="text/css" rel="stylesheet"/>
-<script src="<%=path%>/js/redjs/jquery.1.3.2.js" type="text/javascript" language="javascript"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
+<link href="<%=path%>/css/redcss/core.css" type="text/css"
+	rel="stylesheet" />
+<script src="<%=path%>/js/redjs/jquery.1.3.2.js" type="text/javascript"
+	language="javascript"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
-  <script type="text/javascript">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
+<script type="text/javascript">
        //自动生成系统当前时间用于默认赋值
       $(document).ready(function() {
      var myDate = new Date();
@@ -119,74 +125,97 @@ function checkTime(){
      
 }
   </script>
-  <style type="text/css">
-.input_text{
-   width: 150px;
-   height: 20px;
-} 
+<style type="text/css">
+.input_text {
+	width: 150px;
+	height: 20px;
+}
 
-select{
-   width: 100px;
-   height: 20px;
+select {
+	width: 100px;
+	height: 20px;
 }
- #button_ss{
-   width: 70px;
-   height: 20px;
-} 
- #table_2 td,th{
-  text-align: center;
-  border: 0.5px solid #999;
+
+#button_ss {
+	width: 70px;
+	height: 20px;
 }
-#table_1 td{
-    height:30px;
+
+#table_2 td, th {
+	text-align: center;
+	border: 0.5px solid #999;
+}
+
+#table_1 td {
+	height: 30px;
 	padding-right: 10px;
 }
 </style>
-    
-  </head>
-  
-  <body>
-   <div class="inner_div">
-      <div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-           <span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span class="lo2">我的订单</span>
+
+</head>
+
+<body>
+	<div class="inner_div">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">订单管理 ></span><span
+				class="lo2">我的订单</span>
 		</div>
-		
+
 		<div class="detail_list">
-		<ul id="tabs">
-				<li><a href="<%=path%>/merchant/myOrder.do" title="tab1">近三个月订单 </a></li>
+			<ul id="tabs">
+				<li><a href="<%=path%>/merchant/myOrder.do" title="tab1">近三个月订单
+				</a></li>
 				<li><a href="<%=path%>/merchant/myOldOrder.do" title="tab2">三个月前订单</a></li>
 			</ul>
 			<div id="content">
-					<div id="tab">
-   <form  action="<%=path%>/merchant/myOldOrder.do" method="post">
-		<table id="table_1">
-		<tr>
-		<td>订单号：</td>
-		<td><input  class="input_text" type="text" name="orderId"  id="orderId" <c:if test="${page1.orderId!=''}">value="${page1.orderId}"</c:if>/></td>
-		<td>货品名称：</td>
-		<td><input  class="input_text" type="text" name="productName" id="productName" <c:if test="${page1.productName!=''}">value="${page1.productName}"</c:if> /></td>
-		</tr>
-		<tr>
-		<td>成交时间</td>
-		<td colspan="3">
-		<input   class="input_text" onchange="checkTime()" onclick="WdatePicker()" readonly="readonly" name="orderTimeStart"  id="orderTimeStart" value="${page1.orderTimeStart }"/>-
-		<input   class="input_text" onchange="checkTime()" onclick="WdatePicker()" readonly="readonly" name="orderTimeStop"  id="orderTimeStop"  value="${page1.orderTimeStop }" />
-		</td>
-		 </tr>
-		<tr>				
-		<td>订单类型：</td>
-		<td colspan="3"><select name="orderType">
-		<option <c:if test="${page1.orderType==''}"> selected="true" </c:if> value="">全部</option>
-		<option <c:if test="${page1.orderType==1}"> selected="true" </c:if> value="1">询价订单</option>
-		<option <c:if test="${page1.orderType==2}"> selected="true" </c:if> value="2">团购订单</option>
-		<option <c:if test="${page1.orderType==3}"> selected="true" </c:if>  value="3">特价订单</option>
-		</select></td>
-		</tr>
-		</table>
-	 <p>
-		<input id="button_ss" class="orange" type="submit" value="搜索"/>	</p>			
-		   </form>
-					<table  id="table_2" border="1px solid #D0D0D0" cellspacing="0" width="100%">
+				<div id="tab">
+					<form action="<%=path%>/merchant/myOldOrder.do" method="post">
+						<table id="table_1">
+							<tr>
+								<td>订单号：</td>
+								<td><input class="input_text" type="text" name="orderId"
+									id="orderId"
+									<c:if test="${page1.orderId!=''}">value="${page1.orderId}"</c:if> /></td>
+								<td>货品名称：</td>
+								<td><input class="input_text" type="text"
+									name="productName" id="productName"
+									<c:if test="${page1.productName!=''}">value="${page1.productName}"</c:if> /></td>
+							</tr>
+							<tr>
+								<td>成交时间</td>
+								<td colspan="3"><input class="input_text"
+									onchange="checkTime()" onclick="WdatePicker()"
+									readonly="readonly" name="orderTimeStart" id="orderTimeStart"
+									value="${page1.orderTimeStart }" />- <input class="input_text"
+									onchange="checkTime()" onclick="WdatePicker()"
+									readonly="readonly" name="orderTimeStop" id="orderTimeStop"
+									value="${page1.orderTimeStop }" /></td>
+							</tr>
+							<tr>
+								<td>订单类型：</td>
+								<td colspan="3"><select name="orderType">
+										<option
+											<c:if test="${page1.orderType==''}"> selected="true" </c:if>
+											value="">全部</option>
+										<option
+											<c:if test="${page1.orderType==1}"> selected="true" </c:if>
+											value="1">询价订单</option>
+										<option
+											<c:if test="${page1.orderType==2}"> selected="true" </c:if>
+											value="2">团购订单</option>
+										<option
+											<c:if test="${page1.orderType==3}"> selected="true" </c:if>
+											value="3">特价订单</option>
+								</select></td>
+							</tr>
+						</table>
+						<p>
+							<input id="button_ss" class="orange" type="submit" value="搜索" />
+						</p>
+					</form>
+					<table id="table_2" border="1px solid #D0D0D0" cellspacing="0"
+						width="100%">
 						<thead>
 							<tr style="background-color: #f1f1f1;">
 								<th>货品</th>
@@ -210,9 +239,11 @@ select{
 											<c:when test="${b.status==1}">已完结</c:when>
 											<c:when test="${b.status==2}">已拆分</c:when>
 											<c:when test="${b.status==3}">已关闭</c:when>
-											
+
 										</c:choose></td>
-									<td><a href="#">查看评价</a><br>&nbsp;<a href="<%=path%>/merchant/acceptanceDetails.do?id=${b.id}">验收情况</a>&nbsp;<br><!-- <ahref="#">申请售后</a><br> --></td>
+									<td><a href="#">查看评价</a><br>&nbsp;<a
+										href="<%=path%>/merchant/acceptanceDetails.do?id=${b.id}">验收情况</a>&nbsp;<br>
+										<!-- <ahref="#">申请售后</a><br> --></td>
 									<td>${b.orderTime}</td>
 								</tr>
 							</c:forEach>
@@ -222,15 +253,15 @@ select{
 			</div>
 			<%--分页部分 --%>
 			<div id="page">
-			<div id="pagin2" class="pagin">
-			<!-- <div class="message">
+				<div id="pagin2" class="pagin">
+					<!-- <div class="message">
 				共<i id="rows2" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage2" class="blue"></i>页
 			</div> -->
-			<div id="Pagination2" class="meneame" style="clear:left"></div> 	
+					<div id="Pagination2" class="meneame" style="clear: left"></div>
+				</div>
 			</div>
-			 </div>
-		
+
 		</div>
-   </div> 
-  </body>
+	</div>
+</body>
 </html>

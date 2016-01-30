@@ -12,9 +12,12 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/wjmm.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/wjmm.css" />
 <script language="javascript" type="text/javascript"
 	src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript">
@@ -27,15 +30,18 @@
 <body>
 
 	<div class="inner_div">
-		<div style="width: 500px; height: 300px; margin: 50px auto; border: 2px solid #d6d6d6; border-radius: 5px; text-align:center;padding: 30px;">
-			<p id="pp"><img width="80px" height="80px" src="<%=path%>/images/redimg/jinggao.png"/></p>
+		<div
+			style="width: 500px; height: 300px; margin: 50px auto; border: 2px solid #d6d6d6; border-radius: 5px; text-align: center; padding: 30px;">
+			<p id="pp">
+				<img width="80px" height="80px"
+					src="<%=path%>/images/redimg/jinggao.png" />
+			</p>
 			<p>企业未进行认证</p>
 			<p>请进入企业认证页面进行认证和相关资料填写</p>
-	
+
 			<div>
-					<input type="button" class="orange" name="czmm" id="cg" value="进行企业认证"
-						onclick="check();" /><br />
-					<br />
+				<input type="button" class="orange" name="czmm" id="cg"
+					value="进行企业认证" onclick="check();" /><br /> <br />
 			</div>
 		</div>
 

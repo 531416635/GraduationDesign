@@ -69,23 +69,20 @@ body {
 				<th>节点角色:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nodeRole"
-					value="${workFlowNodes.nodeRole}" />
-				</td>
+					value="${workFlowNodes.nodeRole}" /></td>
 			</tr>
 
 			<tr class="info">
 				<th>节点类型:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nodeType"
-					value="${workFlowNodes.nodeType}" />
-				</td>
+					value="${workFlowNodes.nodeType}" /></td>
 			</tr>
 			<tr class="info">
 				<th>批复:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="processResult"
-					value="${workFlowNodes.processResult}" />
-				</td>
+					value="${workFlowNodes.processResult}" /></td>
 			</tr>
 			<tr class="info">
 				<th>批复内容:</th>
@@ -97,22 +94,19 @@ body {
 				<th>上一个节点:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="prevNode"
-					value="${workFlowNodes.prevNode}" />
-				</td>
+					value="${workFlowNodes.prevNode}" /></td>
 			</tr>
 			<tr class="info">
 				<th>下一个节点:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="nextNode"
-					value="${workFlowNodes.nextNode}" />
-				</td>
+					value="${workFlowNodes.nextNode}" /></td>
 			</tr>
 			<tr class="info">
 				<th>流程类型ID:</th>
 				<td><input type="text"
 					onkeyup="value=value.replace(/[^(\d)]/g,'')" name="workflowTypeId"
-					value="${workFlowNodes.workflowTypeId}" />
-				</td>
+					value="${workFlowNodes.workflowTypeId}" /></td>
 			</tr>
 
 		</table>

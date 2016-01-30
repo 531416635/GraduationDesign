@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wit.dao.CompanyBalanceStatementDao" >
-	<!--新闻公告商信息列表  -->
+<mapper namespace="com.wit.dao.CompanyBalanceStatementDao">
+	<!--新闻公告商信息列表 -->
 	<select id="findCompanyBalanceStatement" resultType="com.wit.model.CompanyBalanceStatement">
-	SELECT
-		ID, CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status
-		FROM CompanyBalanceStatement
+		SELECT
+		ID,
+		CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status
+		FROM
+		CompanyBalanceStatement
 	</select>
 	<!-- 删除新闻公告 -->
 	<delete id="deleteCompanyBalanceStatement" parameterType="Integer">
-		delete from CompanyBalanceStatement where ID=#{id}
+		delete
+		from CompanyBalanceStatement where ID=#{id}
 	</delete>
-	<!-- 添加新闻-->
+	<!-- 添加新闻 -->
 	<insert id="addCompanyBalanceStatement" parameterType="com.wit.model.CompanyBalanceStatement">
-		insert into CompanyBalanceStatement ( CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status
+		insert
+		into CompanyBalanceStatement ( CompanyID, StartTime, EndTime, Amount,
+		Currency, Discount, Status
 		) values(
 		#{companyId},
 		#{startTime},
@@ -24,197 +29,249 @@
 		0
 		)
 	</insert>
-	
-	<!--根据Id查询新闻公告信息  -->
-	<select id="findByCompanyId" parameterType="hashMap" resultType="com.wit.model.CompanyBalanceStatement">
-		select ID, CompanyID, StartTime, EndTime, Amount, Currency, IFNULL(Discount,0) as Discount, Status,settledAmount,stateType
-		from CompanyBalanceStatement 
+
+	<!--根据Id查询新闻公告信息 -->
+	<select id="findByCompanyId" parameterType="hashMap"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		select ID, CompanyID, StartTime, EndTime, Amount, Currency,
+		IFNULL(Discount,0) as Discount, Status,settledAmount,stateType
+		from
+		CompanyBalanceStatement
 		where CompanyID=#{companyId}
-		order by StartTime desc limit #{page.begin},#{page.pageNum}
+		order by StartTime
+		desc limit
+		#{page.begin},#{page.pageNum}
 	</select>
 	<!-- 根据公司ID查询对账单信息（微信端） -->
-	<select id="findStatementByCompanyId"  parameterType="hashMap" resultType="com.wit.model.CompanyBalanceStatement">
-			select ID, CompanyID, StartTime, EndTime, Amount, IFNULL(Discount,0) as Discount, Status
-		from CompanyBalanceStatement 
+	<select id="findStatementByCompanyId" parameterType="hashMap"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		select ID, CompanyID, StartTime, EndTime, Amount,
+		IFNULL(Discount,0) as
+		Discount, Status
+		from CompanyBalanceStatement
 		where CompanyID=#{companyId}
-		order by StartTime desc limit #{page.begin},#{page.pageNum}
+		order by StartTime desc limit
+		#{page.begin},#{page.pageNum}
 	</select>
 	<!-- 根据公司ID查询对账单条数（微信端） -->
-	<select id="findStatementRowsByCompanyId"  parameterType="Integer" resultType="Integer">
-			select COUNT(ID)
-		from CompanyBalanceStatement 
-		where CompanyID=#{companyId}
+	<select id="findStatementRowsByCompanyId" parameterType="Integer"
+		resultType="Integer">
+		select COUNT(ID)
+		from CompanyBalanceStatement
+		where
+		CompanyID=#{companyId}
 	</select>
-	
-	<!--更新新闻公告  -->
+
+	<!--更新新闻公告 -->
 	<update id="updateCompanyBalanceStatement" parameterType="com.wit.model.CompanyBalanceStatement">
-		update CompanyBalanceStatement set 
+		update
+		CompanyBalanceStatement set
 		companyId=#{companyId},startTime=#{startTime},
 		endTime=#{endTime},amount=#{amount},
 		currency=#{currency},discount=#{discount},status=#{status}
-		where id=#{id}
-	</update> 
-	
-	<!--资金账单行数  -->
-	<select id="rows" parameterType="Integer" resultType="int"> 
-		<!-- select count(id) from CompanyBalanceStatement
-		where companyId = #{companyId} -->
-		
-		SELECT COUNT(asd.id) from (SELECT  db.DispatchBillID,cbs.ID,cbs.CompanyID,cbs.StartTime,cbs.EndTime,cbs.Amount,cbs.Currency,cbs.Discount,cbs.`Status`,cbs.SettledAmount
-		from CompanyBalanceStatement cbs 
-		LEFT JOIN DispatchBill  db ON cbs.StartTime = db.CheckTime
-		WHERE cbs.CompanyID = #{companyId} and cbs.status in(0,2)) asd
+		where
+		id=#{id}
+	</update>
+
+	<!--资金账单行数 -->
+	<select id="rows" parameterType="Integer" resultType="int">
+		<!-- select count(id) from CompanyBalanceStatement where companyId = #{companyId} -->
+
+		SELECT COUNT(asd.id) from (SELECT
+		db.DispatchBillID,cbs.ID,cbs.CompanyID,cbs.StartTime,cbs.EndTime,cbs.Amount,cbs.Currency,cbs.Discount,cbs.`Status`,cbs.SettledAmount
+		from CompanyBalanceStatement cbs
+		LEFT JOIN DispatchBill db ON
+		cbs.StartTime = db.CheckTime
+		WHERE
+		cbs.CompanyID = #{companyId} and
+		cbs.status in(0,2)) asd
 	</select>
-	
-	<!--对账  -->
+
+	<!--对账 -->
 	<update id="webReconciliation" parameterType="String">
 		update CompanyBalanceStatement
 		set status = 1
-		where FIND_IN_SET(id,#{ids})>0 and status = 2;
-		<!-- <![CDATA[
-		CALL updateFinanceInfo(#{ids, mode=IN, jdbcType=VARCHAR});
-		]]> -->
+		where
+		FIND_IN_SET(id,#{ids})>0 and status = 2;
+		<!-- <![CDATA[ CALL updateFinanceInfo(#{ids, mode=IN, jdbcType=VARCHAR}); 
+			]]> -->
 	</update>
-	
-	<!--对账,给折扣  -->
+
+	<!--对账,给折扣 -->
 	<update id="reconciliation">
 		update CompanyBalanceStatement
 		set status = 2,discount = #{discount},
 		<if test="stateType==1">
-		settledAmount=Amount-#{discount}
+			settledAmount=Amount-#{discount}
 		</if>
 		<if test="stateType==2">
-		settledAmount=Amount+#{discount}
+			settledAmount=Amount+#{discount}
 		</if>
 		where id=#{id};
-		<!-- <![CDATA[
-		CALL updateFinanceInfo(#{ids, mode=IN, jdbcType=VARCHAR});
-		]]> -->
+		<!-- <![CDATA[ CALL updateFinanceInfo(#{ids, mode=IN, jdbcType=VARCHAR}); 
+			]]> -->
 	</update>
-	
+
 	<!-- 查看一段时间账单清空 -->
-	<select id="findTimeAccount" parameterType="com.wit.model.CompanyBalanceStatement" resultType="com.wit.model.CompanyBalanceStatement">
-	SELECT ID, CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status
- 	from CompanyBalanceStatement 
- 	where StartTime &gt; #{startTime} AND EndTime &lt; #{endTime}
+	<select id="findTimeAccount" parameterType="com.wit.model.CompanyBalanceStatement"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		SELECT ID, CompanyID, StartTime, EndTime, Amount, Currency,
+		Discount, Status
+		from CompanyBalanceStatement
+		where StartTime &gt;
+		#{startTime} AND EndTime &lt; #{endTime}
 	</select>
-	
-	<!--未结账款  -->
-	<select id="findNotCheckAccount" parameterType="hashMap" resultType="com.wit.model.CompanyBalanceStatement">
-		select ID, CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status,settledAmount
-		from CompanyBalanceStatement 
-		where CompanyID=#{companyId} and EndTime&gt;NOW()
+
+	<!--未结账款 -->
+	<select id="findNotCheckAccount" parameterType="hashMap"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		select ID, CompanyID, StartTime, EndTime, Amount, Currency,
+		Discount, Status,settledAmount
+		from CompanyBalanceStatement
+		where
+		CompanyID=#{companyId} and EndTime&gt;NOW()
 		order by StartTime desc
 		limit #{page.begin},#{page.pageNum}
 	</select>
-	
-	<!--未结欠款  -->
-	<select id="findNotCheckArrears" parameterType="hashMap" resultType="com.wit.model.CompanyBalanceStatement">
-		select ID, CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status,settledAmount
-		from CompanyBalanceStatement 
-		where CompanyID=#{companyId} and EndTime&lt;NOW()
+
+	<!--未结欠款 -->
+	<select id="findNotCheckArrears" parameterType="hashMap"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		select ID, CompanyID, StartTime, EndTime, Amount, Currency,
+		Discount, Status,settledAmount
+		from CompanyBalanceStatement
+		where
+		CompanyID=#{companyId} and EndTime&lt;NOW()
 		order by StartTime desc
 		limit #{page.begin},#{page.pageNum}
 	</select>
-	
-	<!--本次对账金额  -->
-	<select id="findReconciliationAmount" parameterType="String" resultType="BigDecimal">
+
+	<!--本次对账金额 -->
+	<select id="findReconciliationAmount" parameterType="String"
+		resultType="BigDecimal">
 		SELECT sum(Amount) from CompanyBalanceStatement
-	 	where FIND_IN_SET(id,#{ids})>0 
+		where
+		FIND_IN_SET(id,#{ids})>0
 	</select>
-	
-	<!--对账状态  -->
-	<select id="findAccountStatus" parameterType="String" resultType="int">
-		select status from CompanyBalanceStatement 
-		where FIND_IN_SET(id,#{ids})>0
+
+	<!--对账状态 -->
+	<select id="findAccountStatus" parameterType="String"
+		resultType="int">
+		select status from CompanyBalanceStatement
+		where
+		FIND_IN_SET(id,#{ids})>0
 	</select>
-	
-	<!--资金对账单信息（关联订单编号显示）  -->
+
+	<!--资金对账单信息（关联订单编号显示） -->
 	<select id="accountInfo" resultType="hashMap" parameterType="hashMap">
 		SELECT
-		d.ID, d.DispatchBillID, d.OrderID,o.OrderID as OrderCode,d.CompanyID,
-		d.CompanyProductID, d.ProductUnit, d.UnitPrice, d.Amount, d.StorageID,
-		d.ShoppingAddressID, d.DeliveryUser, d.DeliveryTime,d.Accepter,
-		d.AcceptTime, d.CheckUser, d.CheckTime, d.STATUS, d.PurchaseQuantity,
-		d.PackagesNumber,getAddress(d.ShoppingAddressID) as ShoppingAddressName,
+		d.ID, d.DispatchBillID, d.OrderID,o.OrderID as
+		OrderCode,d.CompanyID,
+		d.CompanyProductID, d.ProductUnit, d.UnitPrice,
+		d.Amount, d.StorageID,
+		d.ShoppingAddressID, d.DeliveryUser,
+		d.DeliveryTime,d.Accepter,
+		d.AcceptTime, d.CheckUser, d.CheckTime,
+		d.STATUS, d.PurchaseQuantity,
+		d.PackagesNumber,getAddress(d.ShoppingAddressID) as
+		ShoppingAddressName,
 		getUserName(d.DeliveryUser) as DeliveryUserName,
 		getUserName(d.Accepter) as AccepterUserName,
-		getUserName(d.CheckUser) as CheckUserName,
+		getUserName(d.CheckUser)
+		as CheckUserName,
 		getProductName(cp.ProductID) as ProductName,
 		getStorageName(d.StorageID) as StorageName,
 		getProductPic(cp.ProductID) as ProductPic,
 		getCompanyName(cp.CompanyID) as SupplierName
-		FROM vDispatchBill d	
-		LEFT JOIN Orders o ON o.id =d.orderId
-		LEFT JOIN CompanyProducts cp ON d.CompanyProductID=cp.ID
+		FROM vDispatchBill d
+		LEFT
+		JOIN Orders o ON o.id =d.orderId
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID=cp.ID
 		WHERE
-		d.status = 1 and d.AcceptTime  &gt;= #{startTime} 
-		and d.AcceptTime  &lt;= #{endTime}
+		d.status = 1 and d.AcceptTime &gt;=
+		#{startTime}
+		and d.AcceptTime &lt;= #{endTime}
 		<if test="stateType==1">
-		and d.CompanyID = #{companyId} 
+			and d.CompanyID = #{companyId}
 		</if>
 		<if test="stateType==2">
-		and d.AccepterCompanyID = #{companyId} 
+			and d.AccepterCompanyID = #{companyId}
 		</if>
 		order by d.AcceptTime desc
 		limit #{page.begin},#{page.pageNum}
 	</select>
-	
-	<!--对账单明细行数  -->
+
+	<!--对账单明细行数 -->
 	<select id="accountRow" resultType="int" parameterType="hashMap">
-	select COUNT(sdf.id) from
+		select COUNT(sdf.id) from
 		(SELECT
-		d.ID, d.DispatchBillID, d.OrderID,o.OrderID as OrderCode,d.CompanyID,
-		d.CompanyProductID, d.ProductUnit, d.UnitPrice, d.Amount, d.StorageID,
+		d.ID, d.DispatchBillID,
+		d.OrderID,o.OrderID as OrderCode,d.CompanyID,
+		d.CompanyProductID,
+		d.ProductUnit, d.UnitPrice, d.Amount, d.StorageID,
 		d.ShoppingAddressID, d.DeliveryUser, d.DeliveryTime,d.Accepter,
 		d.AcceptTime, d.CheckUser, d.CheckTime, d.STATUS, d.PurchaseQuantity,
-		d.PackagesNumber,getAddress(d.ShoppingAddressID) as ShoppingAddressName,
+		d.PackagesNumber,getAddress(d.ShoppingAddressID) as
+		ShoppingAddressName,
 		getUserName(d.DeliveryUser) as DeliveryUserName,
 		getUserName(d.Accepter) as AccepterUserName,
-		getUserName(d.CheckUser) as CheckUserName,
+		getUserName(d.CheckUser)
+		as CheckUserName,
 		getProductName(cp.ProductID) as ProductName,
 		getStorageName(d.StorageID) as StorageName,
 		getProductPic(cp.ProductID) as ProductPic,
 		getCompanyName(cp.CompanyID) as SupplierName
-		FROM vDispatchBill d	
-		LEFT JOIN Orders o ON o.id =d.orderId
-		LEFT JOIN CompanyProducts cp ON d.CompanyProductID=cp.ID
+		FROM vDispatchBill d
+		LEFT
+		JOIN Orders o ON o.id =d.orderId
+		LEFT JOIN CompanyProducts cp ON
+		d.CompanyProductID=cp.ID
 		WHERE
-		d.status = 1 and d.AcceptTime  &gt;= #{startTime} 
-		and d.AcceptTime  &lt;= #{endTime}
+		d.status = 1 and d.AcceptTime &gt;=
+		#{startTime}
+		and d.AcceptTime &lt;= #{endTime}
 		<if test="stateType==1">
-		and d.CompanyID = #{companyId} 
+			and d.CompanyID = #{companyId}
 		</if>
 		<if test="stateType==2">
-		and d.AccepterCompanyID = #{companyId} 
+			and d.AccepterCompanyID = #{companyId}
 		</if>
 		order by d.AcceptTime desc) sdf
 	</select>
-	
+
 	<!-- 根据ID查找 -->
-	<select id="findAccountInfoById" parameterType="Integer" resultType="com.wit.model.CompanyBalanceStatement">
-		select ID, CompanyID, StartTime, EndTime, Amount, Currency, Discount, Status,settledAmount,StateType
-		from CompanyBalanceStatement 
+	<select id="findAccountInfoById" parameterType="Integer"
+		resultType="com.wit.model.CompanyBalanceStatement">
+		select ID, CompanyID, StartTime, EndTime, Amount, Currency,
+		Discount, Status,settledAmount,StateType
+		from CompanyBalanceStatement
 		where id=#{id}
 		order by StartTime desc
-		</select>
-		<!-- 每季度根据公司ID统计累计采购金额 -->
-		<select id="CountPurchaseAmount"  resultType="BigDecimal">
-		SELECT IFNULL(ABS(SUM(Amount)),0) FROM CompanyBalanceStatement 
-		WHERE QUARTER(StartTime)=QUARTER(#{date}) and CompanyID=#{companyId} AND Amount&lt;0
-		</select>
-		<!-- 每季度根据公司ID统计累计供应金额-->
-		<select id="CountSupplyAmount"  resultType="BigDecimal">
-		SELECT IFNULL(ABS(SUM(Amount)),0) FROM CompanyBalanceStatement 
-		WHERE QUARTER(StartTime)=QUARTER(#{date}) and CompanyID=#{companyId} AND Amount&gt;0
-		</select>
-		
-		<!--改变对账状态，添加账户金额，记录账户流水  -->
-		<insert id="editCompanyBalanceStatement">
+	</select>
+	<!-- 每季度根据公司ID统计累计采购金额 -->
+	<select id="CountPurchaseAmount" resultType="BigDecimal">
+		SELECT
+		IFNULL(ABS(SUM(Amount)),0) FROM CompanyBalanceStatement
+		WHERE
+		QUARTER(StartTime)=QUARTER(#{date}) and CompanyID=#{companyId} AND
+		Amount&lt;0
+	</select>
+	<!-- 每季度根据公司ID统计累计供应金额 -->
+	<select id="CountSupplyAmount" resultType="BigDecimal">
+		SELECT
+		IFNULL(ABS(SUM(Amount)),0) FROM CompanyBalanceStatement
+		WHERE
+		QUARTER(StartTime)=QUARTER(#{date}) and CompanyID=#{companyId} AND
+		Amount&gt;0
+	</select>
+
+	<!--改变对账状态，添加账户金额，记录账户流水 -->
+	<insert id="editCompanyBalanceStatement">
 			<![CDATA[
 		CALL editCompanyBalanceStatement(#{ids, mode=IN, jdbcType=INTEGER});
 		]]>
-		</insert>
+	</insert>
 </mapper>
 
 

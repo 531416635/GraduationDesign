@@ -107,7 +107,7 @@ body {
 			<tr class="info">
 				<th>期望交期:</th>
 				<td><input type="text" name="expectTime"
-					onclick="WdatePicker()" readonly="readonly" style="width:70px;"
+					onclick="WdatePicker()" readonly="readonly" style="width: 70px;"
 					value="${inquirySheet.expectTime}" /></td>
 			</tr>
 			<tr class="info">

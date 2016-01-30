@@ -140,10 +140,8 @@ div.meneame span {
 	<div class="place">
 		<span>位置：</span>
 		<ul class="placeul">
-			<li><a href="#">系统后台</a>
-			</li>
-			<li><a href="#">报价单管理</a>
-			</li>
+			<li><a href="#">系统后台</a></li>
+			<li><a href="#">报价单管理</a></li>
 
 		</ul>
 	</div>
@@ -153,13 +151,10 @@ div.meneame span {
 		<ul class="toolbar">
 			<li><a class="tablelink"
 				href="/ssm/main/toPriceSheetListAdd.do?"><span><img
-						src="../images/t01.png" />
-				</span>添加</a>
-			</li>
+						src="../images/t01.png" /> </span>添加</a></li>
 			<li class="click2"><span><img
-					src="<%=path%>/images/t03.png" />
-			</span> <a href="javascript:;" onclick="getText();">删除</a>
-			</li>
+					src="<%=path%>/images/t03.png" /> </span> <a href="javascript:;"
+				onclick="getText();">删除</a></li>
 	</div>
 
 
@@ -167,11 +162,9 @@ div.meneame span {
 		<thead>
 			<tr>
 				<th><input id="checkAll" type="checkbox" value=""
-					onclick="checkAll();" />
-				</th>
+					onclick="checkAll();" /></th>
 				<th style="display: none">ID<i class="sort"><img
-						src="<%=path%>/images/px.gif" />
-				</i>
+						src="<%=path%>/images/px.gif" /> </i>
 				</th>
 				<th style="display: none">用户ID</th>
 				<th>用户名</th>
@@ -190,8 +183,7 @@ div.meneame span {
 		<tbody>
 			<c:forEach items="${dispatch}" var="dis">
 				<tr>
-					<td><input name="box" type="checkbox" value="${dis.id}" />
-					</td>
+					<td><input name="box" type="checkbox" value="${dis.id}" /></td>
 					<td style="display: none">${dis.id}</td>
 					<td style="display: none">${dis.userId}</td>
 					<td>${dis.users.userName}</td>
@@ -216,16 +208,17 @@ div.meneame span {
 			</c:forEach>
 		</tbody>
 	</table>
- 		<!-- 分页 -->
- 		<div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
-		</div>
-			<div class="pagin">
-			<!-- <div class="message">
+	<!-- 分页 -->
+	<div class="message">
+		共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+			style="color: blue;">${page.currentPage}&nbsp;</i>页
+	</div>
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
 	<%-- <!-- 分页 -->
 	<div class="pagin">
 		<div class="message">

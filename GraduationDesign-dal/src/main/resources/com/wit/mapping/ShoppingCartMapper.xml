@@ -7,8 +7,7 @@
 		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status
 		FROM ShoppingCart
 	</select>
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.ShoppingCart">
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.ShoppingCart">
 		SELECT
 		id,userId,productId,productQuantity,productUnit,refPrice,expectPrice,status,address
 		FROM ShoppingCart
@@ -63,7 +62,7 @@
 		FROM ShoppingCart
 		WHERE userId=#{userId}
 	</select>
-<!-- 	findByUserIdLimit -->
+	<!-- findByUserIdLimit -->
 	<select id="findByUserIdLimit" parameterType="Integer"
 		resultType="com.wit.model.ShoppingCart">
 		SELECT
@@ -72,7 +71,8 @@
 		as ProductCategoryName
 		FROM ShoppingCart
 		WHERE userId=#{userId}
-		ORDER BY ID DESC
+		ORDER BY
+		ID DESC
 		limit #{limit}
 	</select>
 	<!--根据用户ID查询商品数量 -->
@@ -103,15 +103,19 @@
 		CompanyID,DepartmentID,ProductID,address,sum(ProductQuantity) as
 		sumNum from vShoppingCart
 		where Status=0
-		GROUP BY CompanyID,DepartmentID,ProductID,Address) as csc
+		GROUP BY
+		CompanyID,DepartmentID,ProductID,Address) as csc
 		LEFT JOIN Products
-		p ON p.ID=csc.ProductID
+		p ON
+		p.ID=csc.ProductID
 		LEFT JOIN ProductBrand pb ON
 		p.ProductBrandID=pb.ID
 		where csc.CompanyID is not NULL and
-		csc.DepartmentID is not NULL and csc.ProductID is not NULL
+		csc.DepartmentID is not NULL and
+		csc.ProductID is not NULL
 		and
-		csc.CompanyID = #{companyId} and csc.DepartmentID=#{departId}
+		csc.CompanyID = #{companyId} and
+		csc.DepartmentID=#{departId}
 		limit #{page.begin},#{page.pageNum};
 	</select>
 	<select id="findShopCartCompanyRows" resultType="int">
@@ -121,13 +125,17 @@
 		CompanyID,DepartmentID,ProductID,sum(ProductQuantity) as sumNum from
 		vShoppingCart
 		where Status=0
-		GROUP BY CompanyID,DepartmentID,ProductID) as csc
+		GROUP BY CompanyID,DepartmentID,ProductID)
+		as csc
 		LEFT JOIN Products p ON
 		p.ID=csc.ProductID
-		LEFT JOIN ProductBrand pb ON p.ProductBrandID=pb.ID
-		where csc.CompanyID is not NULL and csc.DepartmentID is not NULL and
+		LEFT JOIN ProductBrand
+		pb ON p.ProductBrandID=pb.ID
+		where csc.CompanyID is not NULL and
+		csc.DepartmentID is not NULL and
 		csc.ProductID is not NULL
-		and csc.CompanyID = #{companyId} and
+		and
+		csc.CompanyID = #{companyId} and
 		csc.DepartmentID=#{departId}),0);
 	</select>
 	<select id="findShopCartCompanyItem" resultType="hashMap">
@@ -170,37 +178,51 @@
 	<!--展示询价购物车信息 -->
 	<select id="findShopCartInfo" parameterType="hashMap"
 		resultType="hashMap">
-		SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
-		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address) as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as ShoppingCartAddressName
+		SELECT s.ID as
+		ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
+		as
+		FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address)
+		as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as
+		ShoppingCartAddressName
 		from ShoppingCart s
-		LEFT JOIN Products p ON s.ProductID = p.ID
-		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Products p ON
+		s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID =
+		pb.ID
 		LEFT JOIN Users u ON s.UserID = u.ID
-		WHERE  s.status = 0 and s.ShopType =1 
+		WHERE s.status = 0 and
+		s.ShopType =1
 		<if test="departId!=null">
-		 and s.userID = #{userId}
+			and s.userID = #{userId}
 		</if>
 		<if test="departId==null">
-		 and u.companyID = #{companyId}
+			and u.companyID = #{companyId}
 		</if>
-		
+
 		order by s.ID limit #{page.begin},#{page.pageNum};
 	</select>
 	<!-- 现货购物车查询详细信息 -->
 	<select id="findSpotShopCartInfo" parameterType="hashMap"
 		resultType="hashMap">
-		SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
-		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address) as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as ShoppingCartAddressName
+		SELECT s.ID as
+		ShoppingCartId,p.ID,p.ProductName,p.UnitPrice,getProductPic(s.ProductID)
+		as
+		FilePath,s.ProductQuantity,pb.BrandName,s.Address,s.ShopType,p.ProductModel,p.ProductBrand,getAddressName(s.Address)
+		as ShoppingAddressName,getAddressNameShoppingCart(s.Address) as
+		ShoppingCartAddressName
 		from ShoppingCart s
-		LEFT JOIN Products p ON s.ProductID = p.ID
-		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Products p ON
+		s.ProductID = p.ID
+		LEFT JOIN ProductBrand pb ON p.ProductBrandID =
+		pb.ID
 		LEFT JOIN Users u ON s.UserID = u.ID
-		WHERE  s.status = 0 and s.ShopType =2 
+		WHERE s.status = 0 and
+		s.ShopType =2
 		<if test="departId!=null">
-		 and s.userID = #{userId}
+			and s.userID = #{userId}
 		</if>
 		<if test="departId==null">
-		 and u.companyID = #{companyId}
+			and u.companyID = #{companyId}
 		</if>
 		order by s.ID limit #{page.begin},#{page.pageNum};
 	</select>
@@ -208,50 +230,66 @@
 		resultType="int">
 		SELECT IFNULL((select COUNT(s.ID)
 		from ShoppingCart s
-		LEFT JOIN Products p ON s.ProductID = p.ID
-		LEFT JOIN ProductPic pp ON p.ID = pp.ProductID
+		LEFT
+		JOIN Products p ON s.ProductID = p.ID
+		LEFT JOIN ProductPic pp ON p.ID =
+		pp.ProductID
 		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
 		WHERE s.userID = #{userId} and s.status = 0
 		order by p.ID),0);
 	</select>
 	<select id="findShopCartInfoRows" parameterType="hashMap"
 		resultType="int">
-		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
-		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
-		from ShoppingCart s
+		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as
+		ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
+		as
+		FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
+		from
+		ShoppingCart s
 		LEFT JOIN Products p ON s.ProductID = p.ID
-		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
-		LEFT JOIN Users u ON s.UserID = u.ID
+		LEFT JOIN
+		ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON
+		s.UserID = u.ID
 		WHERE s.status = 0 and s.ShopType =1
 		<if test="departId!=null">
-		 and s.userID = #{userId}
+			and s.userID = #{userId}
 		</if>
 		<if test="departId==null">
-		 and u.companyID = #{companyId}
-		</if>) asd
+			and u.companyID = #{companyId}
+		</if>
+		) asd
 	</select>
 	<!-- 现货购物车查询行数 -->
 	<select id="findSpotShopCartInfoRows" parameterType="hashMap"
 		resultType="int">
-		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
-		as FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
-		from ShoppingCart s
+		SELECT COUNT(asd.ShoppingCartId) FROM (SELECT s.ID as
+		ShoppingCartId,p.ID,p.ProductName,getProductPic(s.ProductID)
+		as
+		FilePath,s.ProductQuantity,pb.BrandName,s.Address,p.ProductModel
+		from
+		ShoppingCart s
 		LEFT JOIN Products p ON s.ProductID = p.ID
-		LEFT JOIN ProductBrand pb ON p.ProductBrandID = pb.ID
-		LEFT JOIN Users u ON s.UserID = u.ID
-		WHERE  s.status = 0 and s.ShopType =2
+		LEFT JOIN
+		ProductBrand pb ON p.ProductBrandID = pb.ID
+		LEFT JOIN Users u ON
+		s.UserID = u.ID
+		WHERE s.status = 0 and s.ShopType =2
 		<if test="departId!=null">
-		 and s.userID = #{userId}
+			and s.userID = #{userId}
 		</if>
 		<if test="departId==null">
-		 and u.companyID = #{companyId}
-		</if>) asd
+			and u.companyID = #{companyId}
+		</if>
+		) asd
 	</select>
 	<!--询价购物车行数 -->
 	<select id="rows" parameterType="Integer" resultType="int">
-		SELECT IFNULL((SELECT COUNT(p.ID)
+		SELECT
+		IFNULL((SELECT COUNT(p.ID)
 		from ShoppingCart s
-		WHERE s.userID = #{userId}
+		WHERE s.userID =
+		#{userId}
 		) ,0)
 	</select>
 

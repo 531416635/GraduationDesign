@@ -137,20 +137,23 @@ function SetRemainTime() {
         }	
 </script>
 <style type="text/css">
- table{
- 	margin: 0 auto;
- 	color: #666;
- }
- tr{
-   height: 50px;
- }
-.input_trxt{
-    width: 300px;
-    height: 30px;
-    margin: 0 10px;
-    font-size: 14px;
+table {
+	margin: 0 auto;
+	color: #666;
 }
-span{
+
+tr {
+	height: 50px;
+}
+
+.input_trxt {
+	width: 300px;
+	height: 30px;
+	margin: 0 10px;
+	font-size: 14px;
+}
+
+span {
 	font-size: 14px;
 }
 </style>
@@ -160,13 +163,15 @@ span{
 
 	<div class="warp">
 		<div class="detail_list" style="height: 500px;">
-            <!--<ul id="tabs">
+			<!--<ul id="tabs">
 				<li><a href="#" title="tab1">商户注册</a></li>
 			</ul> -->
-			<div id="content"  style="height: 435px;">
-			<div id="tab1" style="width: 870px; margin-left: 240px;" >
-				<h4 style="color: #666;">用户注册协议</h4>
-	   <textarea  onmouseout="check2();" style=" font-size:12px; line-height: 25px; width: 656px; height: 330px" readonly="readonly" id="textarea">
+			<div id="content" style="height: 435px;">
+				<div id="tab1" style="width: 870px; margin-left: 240px;">
+					<h4 style="color: #666;">用户注册协议</h4>
+					<textarea onmouseout="check2();"
+						style="font-size: 12px; line-height: 25px; width: 656px; height: 330px"
+						readonly="readonly" id="textarea">
                                              
 一、总则
    一起采网（http://www.51yqc.com）的所有权和运营权归公采网络科技有限公司所有，为获得网络信息服务，服务使用人（以下简称“用户”）必须仔细阅读和完全同意本协议的全部条款并完成注册申请程序，才能正式成为一起采网（以下简称“本网站”）的正式用户。用户在进行注册申请程序过程中点击“同意”按钮即表示用户完全接受本协议项下的全部条款。
@@ -223,73 +228,85 @@ span{
     3、用户在其发表的信息中加入宣传资料或参与广告策划，在本网站的服务上展示他们的产品，任何这类促销方法，包括运输货物、付款、服务、商业条件、担保及与广告有关的描述都只是在相应的用户和广告销售商之间发生。本网站不承担任何责任，没有义务为这类广告销售负任何一部分的责任。
     			                                一起采网
 		</textarea>
-		<p style="margin: 8px 0;">
-			<input type="checkbox" name="check" id="check" disabled="true" />
-			<span style="font-size:13px""> 我已阅读并同意</span>
-			<span style="color: red;font-size:13px"">《一起采团餐平台商户注册协议》</span>
-		</p>
-		<P style="padding-left: 110px;">
-			<input style="height: 25px;" class="button orange medium" type="button" value="确认" onclick="checkbutton();">
-		    
-		    <span style="color: red;" id="msg4">
-		</P>
+					<p style="margin: 8px 0;">
+						<input type="checkbox" name="check" id="check" disabled="true" />
+						<span style="font-size: 13px""> 我已阅读并同意</span> <span
+							style="color: red; font-size: 13px"">《一起采团餐平台商户注册协议》</span>
+					</p>
+					<P style="padding-left: 110px;">
+						<input style="height: 25px;" class="button orange medium"
+							type="button" value="确认" onclick="checkbutton();"> <span
+							style="color: red;" id="msg4">
+					</P>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 注册层，点击提交弹出，浮于协议页面之上 
+		<!-- 注册层，点击提交弹出，浮于协议页面之上 
 	<div id="xieyi1" style="display:none; position:absolute; width:1128px; height:500px; margin-left:-564px; left: 50%; background-color: #d5d5d5;filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; " ></div>-->
-	<div id="xieyi2" style="display:none; position:absolute; border:1px solid #d5d5d5; border-radius:10px; margin-left:-325px; left: 50%; padding: 30px; margin-top:30px; background-color: #fff;">
-	   
-					<br />
-					<form action="reg.do" method="post" id="form1">
-						<input type="hidden" name="userType" value="2" />
-						<P style="font-size: 20px; text-align: center; width: 650px; height:40px; line-height:40px; margin: 0 auto; background-color: #e5e5e5;">商 户 注 册</P>
-						<table>
-							<tr>
-								<td align="right" width="75">会员名:</td>
-								<td><input class="input_trxt" type="text" name="userCode" />
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span style="color: red; font-size: 14px;" id="msg"></span></td>
-								<td style="width:5%">&nbsp;</td>
-							</tr>
-							<tr>
-								<td align="right">手机号:</td>
-								<td><input class="input_trxt" type="text" name="tel" id="tel"/><input style="height: 23px;width:150px; color:#FAA51A; border: 1px solid #DA7C0C; padding: 0;" class="button" type="button" value="&nbsp;&nbsp;发送验证码到手机&nbsp;&nbsp;&nbsp;" onclick="sendCode();" id="btnSendCode"/>
-								<span style="color: red;" id="msg1"></span></td>
-								<input type="hidden" id="yzCode" name="yzCode"/>
-							</tr>
-							<tr>
-								<td align="right">验证码:</td>
-								<td><input class="input_trxt" type="text" name="yzm" id="yzm" onchange="checkCode();"/>
-								<span style="color: red;" id="msgy"></span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>登录密码:</td>
-								<td><input class="input_trxt" type="password" name="userPsw" />
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span style="color: red;" id="msg2"></span>
-								</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>确认密码:</td>
-								<td><input class="input_trxt" type="password" name="qrmm" /><span style="color: red;" id="msg3"></span></td>
-								<td></td>
-							</tr>
-							</tr>
-							<tr style="height: 20px;"><td colspan="3" align="center"><span style="color: red;" id="msgg"></span></td></tr>
-							<tr>
-								<td colspan="3" align="center">
-								    <input style="height: 25px;" class="button orange medium" type="button" value="立即注册" onclick="check1();">
-									 <input style="height: 25px; margin-left: 50px;" class="button orange medium" type="button" value="返回" onclick="checkbutton2();">
-								</td>
-							</tr>
-						</table>
-					</form>
-				
-	   </div>
-		
+		<div id="xieyi2"
+			style="display: none; position: absolute; border: 1px solid #d5d5d5; border-radius: 10px; margin-left: -325px; left: 50%; padding: 30px; margin-top: 30px; background-color: #fff;">
+
+			<br />
+			<form action="reg.do" method="post" id="form1">
+				<input type="hidden" name="userType" value="2" />
+				<P
+					style="font-size: 20px; text-align: center; width: 650px; height: 40px; line-height: 40px; margin: 0 auto; background-color: #e5e5e5;">商
+					户 注 册</P>
+				<table>
+					<tr>
+						<td align="right" width="75">会员名:</td>
+						<td><input class="input_trxt" type="text" name="userCode" />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+							style="color: red; font-size: 14px;" id="msg"></span></td>
+						<td style="width: 5%">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="right">手机号:</td>
+						<td><input class="input_trxt" type="text" name="tel" id="tel" /><input
+							style="height: 23px; width: 150px; color: #FAA51A; border: 1px solid #DA7C0C; padding: 0;"
+							class="button" type="button"
+							value="&nbsp;&nbsp;发送验证码到手机&nbsp;&nbsp;&nbsp;"
+							onclick="sendCode();" id="btnSendCode" /> <span
+							style="color: red;" id="msg1"></span></td>
+						<input type="hidden" id="yzCode" name="yzCode" />
+					</tr>
+					<tr>
+						<td align="right">验证码:</td>
+						<td><input class="input_trxt" type="text" name="yzm" id="yzm"
+							onchange="checkCode();" /> <span style="color: red;" id="msgy"></span></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>登录密码:</td>
+						<td><input class="input_trxt" type="password" name="userPsw" />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+							style="color: red;" id="msg2"></span></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>确认密码:</td>
+						<td><input class="input_trxt" type="password" name="qrmm" /><span
+							style="color: red;" id="msg3"></span></td>
+						<td></td>
+					</tr>
+					</tr>
+					<tr style="height: 20px;">
+						<td colspan="3" align="center"><span style="color: red;"
+							id="msgg"></span></td>
+					</tr>
+					<tr>
+						<td colspan="3" align="center"><input style="height: 25px;"
+							class="button orange medium" type="button" value="立即注册"
+							onclick="check1();"> <input
+							style="height: 25px; margin-left: 50px;"
+							class="button orange medium" type="button" value="返回"
+							onclick="checkbutton2();"></td>
+					</tr>
+				</table>
+			</form>
+
+		</div>
+
 	</div>
 	<script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
 	<script>

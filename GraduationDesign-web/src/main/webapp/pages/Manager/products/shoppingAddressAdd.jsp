@@ -28,27 +28,27 @@ div {
 <body>
 	<div>
 		<form action="shoppingAddressAdd.do" method="post">
-		<input type="hidden" name="status" value="1">
+			<input type="hidden" name="status" value="1">
 			<table border="0" cellpadding="0" cellspacing="0">
-		<tr >
-			<th>配送地址:</th>
-			<td><input type="text" name="shoppingAddress"/></td>
-		</tr>
-		<tr >
-			<th>地址简称:</th>
-			<td><input type="text" name="adderssName"/></td>
-		</tr>
-		<tr >
-			<th>公司名称:</th>
-			<td><input type="text" name="companyId"/></td>
-		</tr>
-		<tr >
-			<th>用户名称:</th>
-			<td><input type="text" name="userId"/></td>
-		</tr>
+				<tr>
+					<th>配送地址:</th>
+					<td><input type="text" name="shoppingAddress" /></td>
+				</tr>
+				<tr>
+					<th>地址简称:</th>
+					<td><input type="text" name="adderssName" /></td>
+				</tr>
+				<tr>
+					<th>公司名称:</th>
+					<td><input type="text" name="companyId" /></td>
+				</tr>
+				<tr>
+					<th>用户名称:</th>
+					<td><input type="text" name="userId" /></td>
+				</tr>
 			</table>
-			<input type="submit" value="增加" />
-			<input type="reset" value="取消" onclick="history.back()">
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
 		</form>
 	</div>
 </body>

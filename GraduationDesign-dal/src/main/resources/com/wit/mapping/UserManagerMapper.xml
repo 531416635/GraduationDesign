@@ -35,13 +35,13 @@
 		SELECT
 		u.id,u.userCode,u.userName,u.userPsw,u.userType,u.userUnits,u.regTime,u.email,u.tel,u.address,u.zipCode,u.fixedLineTel,u.fax,
 		u.status,u.roleId,u.isEmailVerify,u.isTelVerify,u.companyId,u.departmentId,u.jobsId
-		FROM Users u where 1=1 
+		FROM Users u where 1=1
 		<if test="companyId!=null and companyId!=''">
 			and u.companyId = #{companyId}
 		</if>
 		<if test="departmentId!=null and departmentId!=''">
 			and u.departmentId = #{departmentId}
-		</if>	
+		</if>
 		order by u.ID
 	</select>
 	<select id="findRows" resultType="int">
@@ -66,10 +66,10 @@
 		</foreach>
 	</select>
 	<!--根据ID查找 -->
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.Users">
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Users">
 		SELECT
-		id,userCode,userName,userPsw,userType,userUnits,regTime,email,tel,getAddressName(address) as addressName,zipCode,fixedLineTel,fax,
+		id,userCode,userName,userPsw,userType,userUnits,regTime,email,tel,getAddressName(address)
+		as addressName,zipCode,fixedLineTel,fax,
 		status,roleId,isEmailVerify,isTelVerify,companyId,departmentId,jobsId,companyPlant
 		FROM Users
 		WHERE
@@ -93,11 +93,12 @@
 		UPDATE Users
 		SET
 		userCode=#{userCode}, userName=#{userName},
-		 userType=#{userType}, <!-- userUnits=#{userUnits}, -->
+		userType=#{userType}, <!-- userUnits=#{userUnits}, -->
 		email=#{email},tel=#{tel},address=#{address},zipCode=#{zipCode},
 		fixedLineTel=#{fixedLineTel},fax=#{fax},status=#{status},
 		roleId=#{roleId},isEmailVerify=#{isEmailVerify},
-		isTelVerify=#{isTelVerify},companyId=#{companyId},departmentId=#{departmentId}, jobsId=#{jobsId}
+		isTelVerify=#{isTelVerify},companyId=#{companyId},departmentId=#{departmentId},
+		jobsId=#{jobsId}
 		WHERE
 		ID=#{id}
 	</update>
@@ -132,39 +133,39 @@
 		UPDATE Users
 		SET
 		<if test="userName != null and userName != '' ">
-		userName=#{userName}
+			userName=#{userName}
 		</if>
 		<if test="gender != null and gender != '' ">,</if>
 		<if test="gender != null and gender != '' ">
-		gender=#{gender}
+			gender=#{gender}
 		</if>
 		<if test="email != null and email != '' ">,</if>
 		<if test="email != null and email != '' ">
-		email=#{email}
+			email=#{email}
 		</if>
 		<if test="tel != null and tel != '' ">,</if>
 		<if test="tel != null and tel != '' ">
-		tel=#{tel}
+			tel=#{tel}
 		</if>
 		<if test="address != null and address != '' ">,</if>
 		<if test="address != null and address != '' ">
-		address=#{address}
+			address=#{address}
 		</if>
 		<if test="zipCode != null and zipCode != '' ">,</if>
 		<if test="zipCode != null and zipCode != '' ">
-		zipCode=#{zipCode}
+			zipCode=#{zipCode}
 		</if>
 		<if test="fixedLineTel != null and fixedLineTel != '' ">,</if>
 		<if test="fixedLineTel != null and fixedLineTel != '' ">
-		fixedLineTel=#{fixedLineTel}
+			fixedLineTel=#{fixedLineTel}
 		</if>
 		<if test="fax != null and fax != '' ">,</if>
 		<if test="fax != null and fax != '' ">
-		fax=#{fax}
+			fax=#{fax}
 		</if>
 		<if test="companyPlant != null and companyPlant !='' ">,</if>
 		<if test="companyPlant != null and companyPlant !='' ">
-		companyPlant = #{companyPlant}
+			companyPlant = #{companyPlant}
 		</if>
 		WHERE
 		ID=#{id}
@@ -178,12 +179,15 @@
 		u.Fax,u.FixedlineTel,u.`Status`,d.DepartmentName,j.JobName,r.RoleName
 		from Users u
 		LEFT JOIN Departments d ON u.departmentId = d.id
-		LEFT JOIN Jobs j ON
+		LEFT JOIN
+		Jobs j ON
 		u.jobsId = j.id
 		LEFT JOIN Roles r ON u.RoleID = r.ID
-		where u.CompanyID =
+		where
+		u.CompanyID =
 		#{companyId} and u.ParentID !=0 and u.`Status` !=3
-		order by u.ID limit
+		order
+		by u.ID limit
 		#{page.begin},#{page.pageNum}
 	</select>
 

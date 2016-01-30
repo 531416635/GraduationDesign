@@ -128,19 +128,19 @@
 #name, #pwd {
 	width: 290px;
 	height: 35px;
-	line-height:35px;
-	padding-left:5px;
+	line-height: 35px;
+	padding-left: 5px;
 	font-size: 16px;
 	color: #666;
 }
 
 #yzm {
 	height: 35px;
-	line-height:35px;
-	padding-left:5px;
+	line-height: 35px;
+	padding-left: 5px;
 	width: 150px;
 	font-size: 16px;
-    color: #666;
+	color: #666;
 	/* margin-top: 15px; */
 }
 </style>
@@ -161,18 +161,15 @@
 						<tr>
 							<td colspan="2"><input id="name"
 								style="margin-bottom: 16px;" type="text" name="userCode"
-								placeholder="&nbsp;请输入用户名、邮箱或手机号" /> 
-							</td>
+								placeholder="&nbsp;请输入用户名、邮箱或手机号" /></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input id="pwd" style="margin-bottom: 11px;"
-								type="password" name="userPsw" placeholder="&nbsp;请输入密码"/>
-								</td>
+								type="password" name="userPsw" placeholder="&nbsp;请输入密码" /></td>
 						</tr>
 						<tr>
 							<td><input id="yzm" type="text" name="yzm"
-								placeholder="&nbsp;请输入验证码"/>
-								</td>
+								placeholder="&nbsp;请输入验证码" /></td>
 							<td><img src="/ssm/pages/website/makeCertPic.jsp" id="code"
 								onclick="reloadcode()" style="cursor: pointer;" alt="换一张"></td>
 						</tr>

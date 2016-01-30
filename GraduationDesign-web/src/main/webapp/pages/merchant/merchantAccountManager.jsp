@@ -14,20 +14,32 @@
 			+ path + "/";
 	String jsonAddrs = (String) request.getAttribute("jsonAddrs");
 %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/detail.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/redcss/address.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/css/redcss/selector.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/css/redcss/selector2.css" />
-<link href="<%=path%>/css/redcss/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/detail.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/redcss/address.css" />
+<link type="text/css" rel="stylesheet"
+	href="<%=path%>/css/redcss/selector.css" />
+<link type="text/css" rel="stylesheet"
+	href="<%=path%>/css/redcss/selector2.css" />
+<link href="<%=path%>/css/redcss/style.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/ajaxfileupload.js"></script>
-<script type="text/javascript" src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
-<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
+<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <script type="text/javascript">
 var jsonAddrs =<%=jsonAddrs%>
@@ -526,23 +538,27 @@ div.meneame span {
 	display: inline;
 }
 
-input,select{
+input, select {
 	width: 140px;
 	height: 20px;
 }
-.input_but{
+
+.input_but {
 	width: 70px;
 	height: 20px;
 }
-.input_radio{
+
+.input_radio {
 	width: 13px;
 	height: 13px;
 }
-tr{
-   height: 35px;
+
+tr {
+	height: 35px;
 }
-td{
-   padding-right: 10px;
+
+td {
+	padding-right: 10px;
 }
 </style>
 </head>
@@ -551,9 +567,12 @@ td{
 
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span><span class="lo2">账户信息</span>
-		</div><br/>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span><span
+				class="lo2">账户信息</span>
+		</div>
+		<br />
 		<div class="detail_list">
 			<%-- <ul id="tabs">
 				<li>基本信息</li>
@@ -563,143 +582,127 @@ td{
 				</c:if>
 			</ul> --%>
 			<div id="content">
-			
-			<form action="completeMerchantAccountInfo.do" enctype="multipart/form-data" method="post" id="form1">
-				
-				<div id="tab1">
-				<h3>基本信息</h3>
-					<p align="right">
-						<span style="color: red;">*</span>表示必填项
-					</p>
-					<span id="msg" style="color: red;"></span>
-					<table>
-						<tr>
-						 	<td style="width: 5px;"><input type="hidden" id="id" name="id" value="${user.id}"/>
-						 	<input type="hidden" name="companyId" value="${user.companyId}"/>
-						 	<input type="hidden" name="userType" value="${user.userType}"/>
-						<span style="color: red;">*</span> 
-						</td>
-							<td>
-						姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</td>
-							<td><c:choose>
-						<c:when test="${user.userName!=null}">
-						<input type="hidden" id="userName" name="userName" value="${user.userName}"/>
+
+				<form action="completeMerchantAccountInfo.do"
+					enctype="multipart/form-data" method="post" id="form1">
+
+					<div id="tab1">
+						<h3>基本信息</h3>
+						<p align="right">
+							<span style="color: red;">*</span>表示必填项
+						</p>
+						<span id="msg" style="color: red;"></span>
+						<table>
+							<tr>
+								<td style="width: 5px;"><input type="hidden" id="id"
+									name="id" value="${user.id}" /> <input type="hidden"
+									name="companyId" value="${user.companyId}" /> <input
+									type="hidden" name="userType" value="${user.userType}" /> <span
+									style="color: red;">*</span></td>
+								<td>姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><c:choose>
+										<c:when test="${user.userName!=null}">
+											<input type="hidden" id="userName" name="userName"
+												value="${user.userName}" />
 						${user.userName}
 						</c:when>
-						<c:otherwise>
-						<input id="userName" name="userName" value="${user.userName}" />
-						</c:otherwise>
-						</c:choose>
-							<span id="msgUserName" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td><span style="color: red;">*</span></td>
-							<td>性别：
-						<input type="hidden" value="${user.gender}" id="gender"/>	
-							</td>
-							<td>
-								<c:if test="${user.gender != null}">
-						<c:if test="${user.gender == 1}">
-						<span><input type="hidden" name="gender" value="1"/>先生</span>
-						</c:if>
-						<c:if test="${user.gender == 2}">
-						<span><input type="hidden" name="gender" value="2"/>女士</span>
-						</c:if>
-						</c:if>
-						<c:if test="${user.gender == null}">
-						<input class="input_radio" type="radio" name="gender" value="1" checked="checked"/><span>先生</span>
-						<input class="input_radio" type="radio" name="gender" value="2"/><span>女士</span>
-						</c:if>
-							<span id="msgGender" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								公司职务：
-							</td>
-							<td>
-							<c:if test="${user.companyPlant!=null && user.companyPlant!='' }">
-								<input type="hidden" id="companyPlant" name="companyPlant" value="${user.companyPlant}"/>${user.companyPlant}
-							</c:if>
-							<c:if test="${user.companyPlant ==null || user.companyPlant =='' }">
-								<input type="text" id="companyPlant" name="companyPlant" value="${user.companyPlant}"/>
-							</c:if>
-							<span id="msgCompanyPlant" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								联系邮箱：
-							</td>
-							<td>
-								<c:choose>
-						<c:when test="${user.email != null && user.email != ''}">
-						<input type="hidden" name="email" value="${user.email}"/>${user.email}
+										<c:otherwise>
+											<input id="userName" name="userName" value="${user.userName}" />
+										</c:otherwise>
+									</c:choose> <span id="msgUserName" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td><span style="color: red;">*</span></td>
+								<td>性别： <input type="hidden" value="${user.gender}"
+									id="gender" />
+								</td>
+								<td><c:if test="${user.gender != null}">
+										<c:if test="${user.gender == 1}">
+											<span><input type="hidden" name="gender" value="1" />先生</span>
+										</c:if>
+										<c:if test="${user.gender == 2}">
+											<span><input type="hidden" name="gender" value="2" />女士</span>
+										</c:if>
+									</c:if> <c:if test="${user.gender == null}">
+										<input class="input_radio" type="radio" name="gender"
+											value="1" checked="checked" />
+										<span>先生</span>
+										<input class="input_radio" type="radio" name="gender"
+											value="2" />
+										<span>女士</span>
+									</c:if> <span id="msgGender" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>公司职务：</td>
+								<td><c:if
+										test="${user.companyPlant!=null && user.companyPlant!='' }">
+										<input type="hidden" id="companyPlant" name="companyPlant"
+											value="${user.companyPlant}" />${user.companyPlant}
+							</c:if> <c:if
+										test="${user.companyPlant ==null || user.companyPlant =='' }">
+										<input type="text" id="companyPlant" name="companyPlant"
+											value="${user.companyPlant}" />
+									</c:if> <span id="msgCompanyPlant" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>联系邮箱：</td>
+								<td><c:choose>
+										<c:when test="${user.email != null && user.email != ''}">
+											<input type="hidden" name="email" value="${user.email}" />${user.email}
 						</c:when>
-						<c:otherwise>
-						<input id="email" type="text" name="email" value="${user.email}"/>
-						</c:otherwise>
-						</c:choose>
-						<span id="msgEmail" style="color: red;"></span>
-							</td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								联系手机
-							</td>
-							<td>
-								<c:choose>
-						<c:when test="${user.tel != null && user.tel != ''}">
-						<input type="hidden" name="tel" value="${user.tel}"/>${user.tel}
+										<c:otherwise>
+											<input id="email" type="text" name="email"
+												value="${user.email}" />
+										</c:otherwise>
+									</c:choose> <span id="msgEmail" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>联系手机</td>
+								<td><c:choose>
+										<c:when test="${user.tel != null && user.tel != ''}">
+											<input type="hidden" name="tel" value="${user.tel}" />${user.tel}
 						</c:when>
-						<c:otherwise>
-						<input type="text" id="tel" name="tel" value="${user.tel}"/>
-						</c:otherwise>
-						</c:choose>
-							<span id="msgTel" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								固定电话：
-							</td>
-							<td>
-						<c:choose>
-						<c:when test="${user.fixedLineTel != null && user.fixedLineTel != ''}">
-						<input type="hidden" name="fixedLineTel" id="fixedLineTel" value="${user.fixedLineTel}"/>${user.fixedLineTel}
+										<c:otherwise>
+											<input type="text" id="tel" name="tel" value="${user.tel}" />
+										</c:otherwise>
+									</c:choose> <span id="msgTel" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>固定电话：</td>
+								<td><c:choose>
+										<c:when
+											test="${user.fixedLineTel != null && user.fixedLineTel != ''}">
+											<input type="hidden" name="fixedLineTel" id="fixedLineTel"
+												value="${user.fixedLineTel}" />${user.fixedLineTel}
 						</c:when>
-						<c:otherwise>
-						<input  type="text" id="fixedLineTel" name="fixedLineTel" value="${user.fixedLineTel}"/>
-						</c:otherwise>
-						</c:choose>
-							<span id="msgFixedLineTel" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								传真：
-							</td>
-							<td>
-								<c:choose>
-						<c:when test="${user.fax != null && user.fax != ''}">
-						<input type="hidden" name="fax" value="${user.fax}"/>${user.fax}
+										<c:otherwise>
+											<input type="text" id="fixedLineTel" name="fixedLineTel"
+												value="${user.fixedLineTel}" />
+										</c:otherwise>
+									</c:choose> <span id="msgFixedLineTel" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>传真：</td>
+								<td><c:choose>
+										<c:when test="${user.fax != null && user.fax != ''}">
+											<input type="hidden" name="fax" value="${user.fax}" />${user.fax}
 						</c:when>
-						<c:otherwise>
-						<input type="text" id="fax"  name="fax" value="${user.fax}"/>
-						</c:otherwise>
-						</c:choose>
-							<span id="msgFax" style="color: red;"></span></td>
-						</tr>
-						<tr >
-						<td><span style="color: red;">*</span> </td>
-							<td>
-								联系地址：
-							</td>
-							<td>
-								<c:if test="${user.address == null || user.address == ''}">
-						<%-- <select id="province"
+										<c:otherwise>
+											<input type="text" id="fax" name="fax" value="${user.fax}" />
+										</c:otherwise>
+									</c:choose> <span id="msgFax" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td><span style="color: red;">*</span></td>
+								<td>联系地址：</td>
+								<td><c:if
+										test="${user.address == null || user.address == ''}">
+										<%-- <select id="province"
 							name="province" onblur="checkSs(this.value)">
 							<option value="1">请选择省份</option>
 							<c:forEach items="${dictionarys}" var="d">
@@ -718,7 +721,7 @@ td{
 							onfocus="if(this.value=='详细地址') {this.value='';}"
 							onblur="if(this.value=='') {this.value='详细地址';}"
 							/>  --%>
-								<div class="dd" >
+										<div class="dd">
 											<div id="store-selector">
 												<div class="text">
 													<div></div>
@@ -730,84 +733,79 @@ td{
 											<div id="store-prompt">
 												<strong></strong>
 											</div>
-								</div>								
-								
-								<input style="width: 500px; height: 50px;" type="text" id="detail0" name="detail0" placeholder="详细地址"/>
-						</c:if>
-						<input type="hidden" id="ddp" name="address" value="${user.address}"/>
-						<c:if test="${user.address != null && user.address != ''}">
-							<input type="hidden" id="province" value="${provice.dicName}"/>${provice.dicName}
-							<input type="hidden" id="city" value="${city.dicName}"/>${city.dicName}
-							<input type="hidden" id="district" value="${district.dicName}"/>${district.dicName}
-							<input type="hidden" id="detail0" value="${detail0}"/>${detail0}
-							<input type="hidden" id="dds" value="${address}"/>${address}
-						</c:if>
-							<span id="msgAddress" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								邮编：
-							</td>
-							<td>
-								<c:choose>
-						<c:when test="${user.zipCode != null && user.zipCode != ''}">
-						<input type="hidden" name="zipCode" value="${user.zipCode}"/>${user.zipCode}
+										</div>
+
+										<input style="width: 500px; height: 50px;" type="text"
+											id="detail0" name="detail0" placeholder="详细地址" />
+									</c:if> <input type="hidden" id="ddp" name="address"
+									value="${user.address}" /> <c:if
+										test="${user.address != null && user.address != ''}">
+										<input type="hidden" id="province" value="${provice.dicName}" />${provice.dicName}
+							<input type="hidden" id="city" value="${city.dicName}" />${city.dicName}
+							<input type="hidden" id="district" value="${district.dicName}" />${district.dicName}
+							<input type="hidden" id="detail0" value="${detail0}" />${detail0}
+							<input type="hidden" id="dds" value="${address}" />${address}
+						</c:if> <span id="msgAddress" style="color: red;"></span></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>邮编：</td>
+								<td><c:choose>
+										<c:when test="${user.zipCode != null && user.zipCode != ''}">
+											<input type="hidden" name="zipCode" value="${user.zipCode}" />${user.zipCode}
 						</c:when>
-						<c:otherwise>
-						<input type="text" id="zipCode"  name="zipCode" value="${user.zipCode}"/>
-						</c:otherwise>
-						</c:choose>
-							<span id="msgZipCode" style="color: red;"></span></td>
-						</tr>
-					</table>
-					<c:if test="${user.parentID!=null && user.parentID != ''}">
-							<input class="input_but orange" type="button" value="保存" onclick="saveSonAccount();"/>
+										<c:otherwise>
+											<input type="text" id="zipCode" name="zipCode"
+												value="${user.zipCode}" />
+										</c:otherwise>
+									</c:choose> <span id="msgZipCode" style="color: red;"></span></td>
+							</tr>
+						</table>
+						<c:if test="${user.parentID!=null && user.parentID != ''}">
+							<input class="input_but orange" type="button" value="保存"
+								onclick="saveSonAccount();" />
 							<span id="msg2" style="color: red"></span>
-					</c:if>
-					<c:if test="${user.parentID==null || user.parentID == ''}">
-						<input class=" continue input_but orange" type="button" value="下一步" onclick="next();"/>
-					</c:if>
-				</div>
-				<input type="hidden" name="companyStatus" value="${user.companyStatus}"/>
-				<input type="hidden" name="parentID" value="${user.parentID}"/>
-			<c:if test="${user.parentID==0 || user.parentID==null}">
-				<div id="tab2">
-				<h3>公司信息</h3>
-					<p align="right">
-						<span style="color: red;">*</span>表示必填项
-					</p>
-					<input type="hidden" name="companyId" value="${companys.id}"/>
-					<input type="hidden" name="status" value="${companys.status}"/>	
-					<table>
-						<tr>
-						<td style="width: 5px;"><span style="color: red;">*</span></td>
-							<td>
-								<b style="font-weight: bold;">
-						公司名称：</b>
-							</td>
-							<td colspan="3">
-								<c:choose>
-							
-					<c:when test="${companys.companyName != null && companys.companyName != ''}">
-					<input type="hidden" name="companyName" id="companyName" value="${companys.companyName}"/>${companys.companyName}
+						</c:if>
+						<c:if test="${user.parentID==null || user.parentID == ''}">
+							<input class=" continue input_but orange" type="button"
+								value="下一步" onclick="next();" />
+						</c:if>
+					</div>
+					<input type="hidden" name="companyStatus"
+						value="${user.companyStatus}" /> <input type="hidden"
+						name="parentID" value="${user.parentID}" />
+					<c:if test="${user.parentID==0 || user.parentID==null}">
+						<div id="tab2">
+							<h3>公司信息</h3>
+							<p align="right">
+								<span style="color: red;">*</span>表示必填项
+							</p>
+							<input type="hidden" name="companyId" value="${companys.id}" />
+							<input type="hidden" name="status" value="${companys.status}" />
+							<table>
+								<tr>
+									<td style="width: 5px;"><span style="color: red;">*</span></td>
+									<td><b style="font-weight: bold;"> 公司名称：</b></td>
+									<td colspan="3"><c:choose>
+
+											<c:when
+												test="${companys.companyName != null && companys.companyName != ''}">
+												<input type="hidden" name="companyName" id="companyName"
+													value="${companys.companyName}" />${companys.companyName}
 					</c:when>
-					<c:otherwise>
-					<input type="text"  name="companyName" id="companyName" value="${companys.companyName}"/>
-					</c:otherwise>
-					</c:choose>
-							<span id="msgCompanyName" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td><span style="color: red;">*</span></td>
-							<td>
-								
-					<b style="font-weight: bold;">公司地址：</b>
-					<%-- <input type="hidden" name="companyAddress" id="companyAddress" value="${companys.companyAddress}"/> --%>
-							</td>
-							<td colspan="3">
-								<c:if test="${companys.companyAddress == null || companys.companyAddress == ''}">
-					<%-- <select id="province2"
+											<c:otherwise>
+												<input type="text" name="companyName" id="companyName"
+													value="${companys.companyName}" />
+											</c:otherwise>
+										</c:choose> <span id="msgCompanyName" style="color: red;"></span></td>
+								</tr>
+								<tr>
+									<td><span style="color: red;">*</span></td>
+									<td><b style="font-weight: bold;">公司地址：</b> <%-- <input type="hidden" name="companyAddress" id="companyAddress" value="${companys.companyAddress}"/> --%>
+									</td>
+									<td colspan="3"><c:if
+											test="${companys.companyAddress == null || companys.companyAddress == ''}">
+											<%-- <select id="province2"
 						 onblur="checkSs2(this.value)">
 						<option value="1">请选择省份</option>
 						<c:forEach items="${dictionarys}" var="d">
@@ -824,217 +822,194 @@ td{
 							onfocus="if(this.value=='详细地址') {this.value='';}"
 							onblur="if(this.value=='') {this.value='详细地址';}"
 							/>  --%>
-							<div class="dd2" >
-											<div id="store-selector2">
-												<div class="text2">
-													<div></div>
-													<b></b><input type="hidden" id="addressjoin2" value="" />
+											<div class="dd2">
+												<div id="store-selector2">
+													<div class="text2">
+														<div></div>
+														<b></b><input type="hidden" id="addressjoin2" value="" />
+													</div>
+													<div onclick="$('#store-selector2').removeClass('hover')"
+														class="close2"></div>
 												</div>
-												<div onclick="$('#store-selector2').removeClass('hover')"
-													class="close2"></div>
+												<div id="store-prompt2">
+													<strong></strong>
+												</div>
 											</div>
-											<div id="store-prompt2">
-												<strong></strong>
-											</div>
-								</div>
-								
-								<input style="width: 500px; height: 50px;" id="detail1" type="text" name="detail1" placeholder="详细地址"/>
-					</c:if>
-					<input type="hidden" id="ddp2" name ="companyAddress"  value="${companys.companyAddress}"/>
-					<c:if test="${companys.companyAddress != null && companys.companyAddress != ''}">
-						<input type="hidden" id="province2" value="${provice2.dicName}"/>${provice2.dicName}
-						<input type="hidden" id="city2" value="${city2.dicName}"/>${city2.dicName}
-						<input type="hidden" id="district2" value="${district2.dicName}"/>${district2.dicName}
-						<input type="hidden" id="detail1" value="${detail1}"/>${detail1}
-						<input type="hidden" id="dds2" value="${companyAddress}"/>${companyAddress}
-					</c:if>
-							<span id="msgCompanyAddress" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td><span style="color: red;">*</span></td>
-							<td>
-								<b style="font-weight: bold;">公司电话：</b>
-							</td>
-							<td colspan="3">
-								<c:choose>
-					<c:when test="${companys.companyTel != null && companys.companyTel != ''}">
-					<input type="hidden" name="companyTel" id="companyTel" value="${companys.companyTel}"/>${companys.companyTel}
+
+											<input style="width: 500px; height: 50px;" id="detail1"
+												type="text" name="detail1" placeholder="详细地址" />
+										</c:if> <input type="hidden" id="ddp2" name="companyAddress"
+										value="${companys.companyAddress}" /> <c:if
+											test="${companys.companyAddress != null && companys.companyAddress != ''}">
+											<input type="hidden" id="province2"
+												value="${provice2.dicName}" />${provice2.dicName}
+						<input type="hidden" id="city2" value="${city2.dicName}" />${city2.dicName}
+						<input type="hidden" id="district2" value="${district2.dicName}" />${district2.dicName}
+						<input type="hidden" id="detail1" value="${detail1}" />${detail1}
+						<input type="hidden" id="dds2" value="${companyAddress}" />${companyAddress}
+					</c:if> <span id="msgCompanyAddress" style="color: red;"></span></td>
+								</tr>
+								<tr>
+									<td><span style="color: red;">*</span></td>
+									<td><b style="font-weight: bold;">公司电话：</b></td>
+									<td colspan="3"><c:choose>
+											<c:when
+												test="${companys.companyTel != null && companys.companyTel != ''}">
+												<input type="hidden" name="companyTel" id="companyTel"
+													value="${companys.companyTel}" />${companys.companyTel}
 					</c:when>
-					<c:otherwise>
-					<input type="text"
-						name="companyTel" id="companyTel" value="${companys.companyTel}"/>
-					</c:otherwise>
-					</c:choose>
-							<span id="msgCompanyTel" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								<b style="font-weight: bold;">公司传真：</b>
-							</td>
-							<td colspan="3">
-							<c:if test="${companys.companyFax == null || companys.companyFax == '' }">
-								<input type="text" id="companyFax"  name="companyFax" value="${companys.companyFax}"/>
-							</c:if>
-							<c:if test="${companys.companyFax != null && companys.companyFax != '' }">
-								<input type="hidden"  name="companyFax" value="${companys.companyFax}"/>${companys.companyFax}
-							</c:if>
-					<span id="msgCompanyFax" style="color: red;"></span>
-							</td>
-						</tr>
-						<tr>
-						<td><span style="color: red;">*</span></td>
-							<td>
-								<b style="font-weight: bold;">公司邮编：</b>
-							</td>
-							<td colspan="3">
-								<c:choose>
-					<c:when test="${companys.companyZipCode != null && companys.companyZipCode != ''}">
-					<input type="hidden" id="companyZip" name="companyZip" value="${companys.companyZipCode}"/>${companys.companyZipCode}
+											<c:otherwise>
+												<input type="text" name="companyTel" id="companyTel"
+													value="${companys.companyTel}" />
+											</c:otherwise>
+										</c:choose> <span id="msgCompanyTel" style="color: red;"></span></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><b style="font-weight: bold;">公司传真：</b></td>
+									<td colspan="3"><c:if
+											test="${companys.companyFax == null || companys.companyFax == '' }">
+											<input type="text" id="companyFax" name="companyFax"
+												value="${companys.companyFax}" />
+										</c:if> <c:if
+											test="${companys.companyFax != null && companys.companyFax != '' }">
+											<input type="hidden" name="companyFax"
+												value="${companys.companyFax}" />${companys.companyFax}
+							</c:if> <span id="msgCompanyFax" style="color: red;"></span></td>
+								</tr>
+								<tr>
+									<td><span style="color: red;">*</span></td>
+									<td><b style="font-weight: bold;">公司邮编：</b></td>
+									<td colspan="3"><c:choose>
+											<c:when
+												test="${companys.companyZipCode != null && companys.companyZipCode != ''}">
+												<input type="hidden" id="companyZip" name="companyZip"
+													value="${companys.companyZipCode}" />${companys.companyZipCode}
 					</c:when>
-					<c:otherwise>
-					<input type="text" name="companyZipCode"
-						id="companyZip"  value="${companys.companyZipCode}"/>
-					</c:otherwise>
-					</c:choose>
-							<span id="msgCompanyZip" style="color: red;"></span></td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								<b style="font-weight: bold;">公司网址：</b>
-							</td>
-							<td colspan="3">
-								<c:if test="${companys.companyWebsite == null || companys.companyWebsite == ''}">
-						<input type="text"  id="" name="companyWebsite" value="${companys.companyWebsite}"/>
-						</c:if>
-						<c:if test="${companys.companyWebsite != null && companys.companyWebsite != ''}">
-						<input type="hidden" name="companyWebsite" value="${companys.companyWebsite}"/>${companys.companyWebsite}
-						</c:if>
-							<span id="msgCompanyWebsite" style="color: red;"></span></td>
-						</tr>
-						<tr style="background-color: #e5e5e5; height: 25px;">
-							<td colspan="4" >
-								<b style="font-weight: bold;">公司规模</b>
-							</td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								<b style="font-weight: bold;">员工数量：</b>
-							</td>
-							<td>
-								<c:if test="${companys.companyScale == null || companys.companyScale == ''}">
-								<select name="companyScale">
-								<option value="" selected="selected">请选择员工数</option>
-								<option value="1">10人以下</option>
-								<option value="2">10-50(人)</option>
-								<option value="3">50-100(人)</option>
-								<option value="4">100人以上</option>
-								</select>&nbsp; 
-								</c:if>
-								
-								<c:if test="${companys.companyScale != null && companys.companyScale != ''}">
-								<c:choose>
-								<c:when test="${companys.companyScale == 0}">请选择员工数</c:when>
-								<c:when test="${companys.companyScale == 1}">10人以下</c:when>
-								<c:when test="${companys.companyScale == 2}">10-50(人)</c:when>
-								<c:when test="${companys.companyScale == 3}">50-100(人)</c:when>
-								<c:when test="${companys.companyScale == 4}">100人以上</c:when>
-								</c:choose>
+											<c:otherwise>
+												<input type="text" name="companyZipCode" id="companyZip"
+													value="${companys.companyZipCode}" />
+											</c:otherwise>
+										</c:choose> <span id="msgCompanyZip" style="color: red;"></span></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><b style="font-weight: bold;">公司网址：</b></td>
+									<td colspan="3"><c:if
+											test="${companys.companyWebsite == null || companys.companyWebsite == ''}">
+											<input type="text" id="" name="companyWebsite"
+												value="${companys.companyWebsite}" />
+										</c:if> <c:if
+											test="${companys.companyWebsite != null && companys.companyWebsite != ''}">
+											<input type="hidden" name="companyWebsite"
+												value="${companys.companyWebsite}" />${companys.companyWebsite}
+						</c:if> <span id="msgCompanyWebsite" style="color: red;"></span></td>
+								</tr>
+								<tr style="background-color: #e5e5e5; height: 25px;">
+									<td colspan="4"><b style="font-weight: bold;">公司规模</b></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><b style="font-weight: bold;">员工数量：</b></td>
+									<td><c:if
+											test="${companys.companyScale == null || companys.companyScale == ''}">
+											<select name="companyScale">
+												<option value="" selected="selected">请选择员工数</option>
+												<option value="1">10人以下</option>
+												<option value="2">10-50(人)</option>
+												<option value="3">50-100(人)</option>
+												<option value="4">100人以上</option>
+											</select>&nbsp; 
+								</c:if> <c:if
+											test="${companys.companyScale != null && companys.companyScale != ''}">
+											<c:choose>
+												<c:when test="${companys.companyScale == 0}">请选择员工数</c:when>
+												<c:when test="${companys.companyScale == 1}">10人以下</c:when>
+												<c:when test="${companys.companyScale == 2}">10-50(人)</c:when>
+												<c:when test="${companys.companyScale == 3}">50-100(人)</c:when>
+												<c:when test="${companys.companyScale == 4}">100人以上</c:when>
+											</c:choose>
 								&nbsp; 
-								</c:if>
-							</td>
-							<td>
-								<b style="font-weight: bold;">注册资本：</b>
-							</td>
-							<td>
-								<c:if test="${companys.registeredCapital == null || companys.registeredCapital == ''}">
-								<select name="registeredCapital">
-								<option value="" selected="selected">请选择注册资本</option>
-								<option value="1">50万以下(元)</option>
-								<option value="2">50-100万(元)</option>
-								<option value="3">100-500万(元)</option>
-								<option value="4">500万以上(元)</option>
-								</select>&nbsp;
-								</c:if>
-								
-								<c:if test="${companys.registeredCapital != null && companys.registeredCapital != ''}">
-								<c:choose>
-								<c:when test="${companys.registeredCapital == 0}">请选择注册资本</c:when>
-								<c:when test="${companys.registeredCapital == 1}">50万以下(元)</c:when>
-								<c:when test="${companys.registeredCapital == 2}">50-100万(元)</c:when>
-								<c:when test="${companys.registeredCapital == 3}">100-500万(元)</c:when>
-								<c:when test="${companys.registeredCapital == 4}">500万以上(元)</c:when>
-								</c:choose>
+								</c:if></td>
+									<td><b style="font-weight: bold;">注册资本：</b></td>
+									<td><c:if
+											test="${companys.registeredCapital == null || companys.registeredCapital == ''}">
+											<select name="registeredCapital">
+												<option value="" selected="selected">请选择注册资本</option>
+												<option value="1">50万以下(元)</option>
+												<option value="2">50-100万(元)</option>
+												<option value="3">100-500万(元)</option>
+												<option value="4">500万以上(元)</option>
+											</select>&nbsp;
+								</c:if> <c:if
+											test="${companys.registeredCapital != null && companys.registeredCapital != ''}">
+											<c:choose>
+												<c:when test="${companys.registeredCapital == 0}">请选择注册资本</c:when>
+												<c:when test="${companys.registeredCapital == 1}">50万以下(元)</c:when>
+												<c:when test="${companys.registeredCapital == 2}">50-100万(元)</c:when>
+												<c:when test="${companys.registeredCapital == 3}">100-500万(元)</c:when>
+												<c:when test="${companys.registeredCapital == 4}">500万以上(元)</c:when>
+											</c:choose>
 								&nbsp;
-								</c:if>
-							</td>
-						</tr>
-						<tr>
-						<td>&nbsp;</td>
-							<td>
-								<b style="font-weight: bold;">配送车辆：</b>
-							</td>
-							<td>
-								<c:if test="${companys.distributionCar == null || companys.distributionCar == ''}">
-								<select name="distributionCar">
-								<option value="" selected="selected">请选择配送车辆</option>
-								<option value="1">5辆以下</option>
-								<option value="2">5-10辆</option>
-								<option value="3">10-20辆</option>
-								<option value="4">20辆以上</option>
-								</select>&nbsp;
-								</c:if>
-								
-								<c:if test="${companys.distributionCar != null && companys.distributionCar != ''}">
-								<c:choose>
-								<c:when test="${companys.distributionCar == 0}">请选择配送车辆</c:when>
-								<c:when test="${companys.distributionCar == 1}">5辆以下</c:when>
-								<c:when test="${companys.distributionCar == 2}">5-10辆</c:when>
-								<c:when test="${companys.distributionCar == 3}">10-20辆</c:when>
-								<c:when test="${companys.distributionCar == 4}">20辆以上</c:when>
-								</c:choose>
+								</c:if></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td><b style="font-weight: bold;">配送车辆：</b></td>
+									<td><c:if
+											test="${companys.distributionCar == null || companys.distributionCar == ''}">
+											<select name="distributionCar">
+												<option value="" selected="selected">请选择配送车辆</option>
+												<option value="1">5辆以下</option>
+												<option value="2">5-10辆</option>
+												<option value="3">10-20辆</option>
+												<option value="4">20辆以上</option>
+											</select>&nbsp;
+								</c:if> <c:if
+											test="${companys.distributionCar != null && companys.distributionCar != ''}">
+											<c:choose>
+												<c:when test="${companys.distributionCar == 0}">请选择配送车辆</c:when>
+												<c:when test="${companys.distributionCar == 1}">5辆以下</c:when>
+												<c:when test="${companys.distributionCar == 2}">5-10辆</c:when>
+												<c:when test="${companys.distributionCar == 3}">10-20辆</c:when>
+												<c:when test="${companys.distributionCar == 4}">20辆以上</c:when>
+											</c:choose>
 								&nbsp;
-								</c:if>
-							</td>
-							<td>
-								<b style="font-weight: bold;">食堂数量：</b>
-							</td>
-							<td>
-								<c:if test="${companys.diningRoomNumber == null || companys.diningRoomNumber == ''}">
-								<select name="diningRoomNumber">
-								<option value="" selected="selected">请选择食堂数量</option>
-								<option value="1" >10家以下</option>
-								<option value="2" >10-20家</option>
-								<option value="3" >20-50家</option>
-								<option value="4" >50家以上</option>
-								</select>
-								</c:if>
-								
-								<c:if test="${companys.diningRoomNumber != null && companys.diningRoomNumber != ''}">
-								<c:choose>
-								<c:when test="${companys.diningRoomNumber == 0}">请选择食堂数量</c:when>
-								<c:when test="${companys.diningRoomNumber == 1}">10家以下</c:when>
-								<c:when test="${companys.diningRoomNumber == 2}">10-20家</c:when>
-								<c:when test="${companys.diningRoomNumber == 3}">20-50家</c:when>
-								<c:when test="${companys.diningRoomNumber == 4}">50家以上</c:when>
-								</c:choose>
-								
-								</c:if>
-							</td>
-						</tr>
-						
-					</table>
-					<br/>
-					<input type="button" value="上一步" class="back input_but orange" onclick="back();"/>&nbsp;&nbsp;
-					<input type="button" value="保存" class="input_but orange" onclick="check();"/>
-				</div>
-				</c:if>
-				</div>
-				</form>
+								</c:if></td>
+									<td><b style="font-weight: bold;">食堂数量：</b></td>
+									<td><c:if
+											test="${companys.diningRoomNumber == null || companys.diningRoomNumber == ''}">
+											<select name="diningRoomNumber">
+												<option value="" selected="selected">请选择食堂数量</option>
+												<option value="1">10家以下</option>
+												<option value="2">10-20家</option>
+												<option value="3">20-50家</option>
+												<option value="4">50家以上</option>
+											</select>
+										</c:if> <c:if
+											test="${companys.diningRoomNumber != null && companys.diningRoomNumber != ''}">
+											<c:choose>
+												<c:when test="${companys.diningRoomNumber == 0}">请选择食堂数量</c:when>
+												<c:when test="${companys.diningRoomNumber == 1}">10家以下</c:when>
+												<c:when test="${companys.diningRoomNumber == 2}">10-20家</c:when>
+												<c:when test="${companys.diningRoomNumber == 3}">20-50家</c:when>
+												<c:when test="${companys.diningRoomNumber == 4}">50家以上</c:when>
+											</c:choose>
+
+										</c:if></td>
+								</tr>
+
+							</table>
+							<br /> <input type="button" value="上一步"
+								class="back input_but orange" onclick="back();" />&nbsp;&nbsp;
+							<input type="button" value="保存" class="input_but orange"
+								onclick="check();" />
+						</div>
+					</c:if>
 			</div>
+			</form>
 		</div>
+	</div>
 	</div>
 
 	<script>

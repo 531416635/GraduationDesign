@@ -109,8 +109,7 @@ function checkDeletes(){
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toInsertSupplierBalance.do">添加</a>
-				</li>
+					href="/ssm/toInsertSupplierBalance.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
@@ -154,15 +153,15 @@ function checkDeletes(){
 								<c:when test="${c.status==3}">
                         			删除
                         		</c:when>
-							</c:choose>
-						</td>
+							</c:choose></td>
 						<td><a class="tablelink"
 							href="/ssm/toUpdateSupplierBalance.do?id=${c.companys.id}">修改</a>
-							<a class="tablelink" href="#" onclick="checkDelete(${c.companys.id},${c.balance})">删除</a>
-							<a href="/ssm/frozenSupplierBalance.do?id=${c.companys.id}">冻结</a>
-							<a class="tablelink"
-							href="/ssm/companyBalanceLog.do?id=${c.companys.id}">历史流水</a>
-							<a class="tablelink"
+							<a class="tablelink" href="#"
+							onclick="checkDelete(${c.companys.id},${c.balance})">删除</a> <a
+							href="/ssm/frozenSupplierBalance.do?id=${c.companys.id}">冻结</a> <a
+							class="tablelink"
+							href="/ssm/companyBalanceLog.do?id=${c.companys.id}">历史流水</a> <a
+							class="tablelink"
 							href="findCompanyBalanceStatement.do?companyId=${c.companys.id}">查看对账单</a>
 						</td>
 					</tr>
@@ -179,40 +178,34 @@ function checkDeletes(){
 				<c:choose>
 					<c:when test="${page.currentPage==1}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/findSupplierBalance.do?currentPage=${page.currentPage-1}"><span
-								class="pagepre"></span> </a>
-						</li>
+								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach begin="1" end="${page.totalPage}" var="s3">
 					<c:choose>
 						<c:when test="${s3==page.currentPage}">
-							<li class="paginItem current"><a href="#">${s3}</a>
-							</li>
+							<li class="paginItem current"><a href="#">${s3}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findSupplierBalance.do?currentPage=${s3}">${s3}</a>
-							</li>
+								href="/ssm/findSupplierBalance.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${page.currentPage==page.totalPage or s3<=10}">
 						<li class="paginItem current"><a href="#"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
 							href="/ssm/findSupplierBalance.do?currentPage=${page.currentPage+1}"><span
-								class="pagenxt"></span> </a>
-						</li>
+								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

@@ -101,9 +101,7 @@ function checkDeletes(){
 				<li class="click"><span><img src="images/t01.png" /> </span><a
 					href="/ssm/toAddSupplierAuthentication.do?companyId=${companyId}">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 
@@ -128,33 +126,29 @@ function checkDeletes(){
 
 				<c:forEach items="${au}" var="au">
 					<tr>
-						<td><input name="box" type="checkbox"
-							value="${au.id}" /></td>
+						<td><input name="box" type="checkbox" value="${au.id}" /></td>
 						<td style="display: none">${au.id}</td>
 						<td>${au.authenticationName}</td>
 						<td>${au.filePath}</td>
 						<td style="display: none">${au.companyId}</td>
-						<td>
-                        	<c:choose>
-                        		<c:when test="${au.status==0}">
+						<td><c:choose>
+								<c:when test="${au.status==0}">
                         			未认证
                         		</c:when>
-                        		<c:when test="${au.status==1}">
+								<c:when test="${au.status==1}">
                         			已认证
                         		</c:when>
-                        	</c:choose>
-                        </td>
-                        <td>${au.uploadTime}</td>
+							</c:choose></td>
+						<td>${au.uploadTime}</td>
 						<td>${au.uploadBy}</td>
 						<td>${au.fileClass}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateSupplierAuthentication.do?id=${au.id}">修改</a> 
-							<a class="tablelink" href="#" onclick="checkDelete(${au.id},${companyId});">删除</a>
-							<%-- <input
+							href="/ssm/toUpdateSupplierAuthentication.do?id=${au.id}">修改</a>
+							<a class="tablelink" href="#"
+							onclick="checkDelete(${au.id},${companyId});">删除</a> <%-- <input
 							type="button" value="删除"
 							onclick="location.href='deleteSupplierAuthentication.do?
-							id=${au.id}&&companyId=${companyId}';" />  --%>
-						</td>
+							id=${au.id}&&companyId=${companyId}';" />  --%></td>
 					</tr>
 				</c:forEach>
 			</tbody>

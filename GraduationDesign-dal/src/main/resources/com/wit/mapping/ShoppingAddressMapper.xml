@@ -3,109 +3,144 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.wit.dao.ShoppingAddressDao">
 	<!-- 查询所有 -->
-	<select id="getAll" resultType="com.wit.model.ShoppingAddress" >
-	select id,shoppingAddress,adderssName,status,companyId,userId
-	from ShoppingAddress
+	<select id="getAll" resultType="com.wit.model.ShoppingAddress">
+		select
+		id,shoppingAddress,adderssName,status,companyId,userId
+		from
+		ShoppingAddress
 	</select>
 	<!-- 添加配送地址 -->
-	<insert id="insertPurchaserAddress" parameterType="com.wit.model.ShoppingAddress" statementType="CALLABLE">
-		<!-- <selectKey keyProperty="id" resultType="Integer" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey> -->
-		CALL AddShoppingAddress(#{shoppingAddress, mode=IN, jdbcType=VARCHAR},#{adderssName, mode=IN, jdbcType=VARCHAR},1,#{companyId, mode=IN, jdbcType=INTEGER},#{userId, mode=IN, jdbcType=INTEGER},#{province, mode=IN, jdbcType=INTEGER},#{city, mode=IN, jdbcType=INTEGER},#{district, mode=IN, jdbcType=INTEGER},1,#{id, jdbcType=INTEGER,mode=OUT});
+	<insert id="insertPurchaserAddress" parameterType="com.wit.model.ShoppingAddress"
+		statementType="CALLABLE">
+		<!-- <selectKey keyProperty="id" resultType="Integer" order="AFTER"> SELECT 
+			LAST_INSERT_ID() </selectKey> -->
+		CALL AddShoppingAddress(#{shoppingAddress, mode=IN,
+		jdbcType=VARCHAR},#{adderssName, mode=IN,
+		jdbcType=VARCHAR},1,#{companyId, mode=IN, jdbcType=INTEGER},#{userId,
+		mode=IN, jdbcType=INTEGER},#{province, mode=IN,
+		jdbcType=INTEGER},#{city, mode=IN, jdbcType=INTEGER},#{district,
+		mode=IN, jdbcType=INTEGER},1,#{id, jdbcType=INTEGER,mode=OUT});
 		<!-- insert into ShoppingAddress(shoppingAddress,adderssName,status,companyId,userId,province,city,district,addressType) 
-		values(#{shoppingAddress},#{adderssName},1,#{companyId},#{userId},#{province},#{city},#{district},1); -->
+			values(#{shoppingAddress},#{adderssName},1,#{companyId},#{userId},#{province},#{city},#{district},1); -->
 	</insert>
 	<!-- 添加供应地域 -->
-	<insert id="insertSupplierAddress" parameterType="com.wit.model.ShoppingAddress" statementType="CALLABLE">
-		<!-- <selectKey keyProperty="id" resultType="Integer" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into ShoppingAddress(shoppingAddress,adderssName,status,companyId,userId,province,city,district,addressType) 
-		values(#{shoppingAddress},#{adderssName},1,#{companyId},#{userId},#{province},#{city},#{district},2); -->
-		CALL AddShoppingAddress(#{shoppingAddress, mode=IN, jdbcType=VARCHAR},#{adderssName, mode=IN, jdbcType=VARCHAR},1,#{companyId, mode=IN, jdbcType=INTEGER},#{userId, mode=IN, jdbcType=INTEGER},#{province, mode=IN, jdbcType=INTEGER},#{city, mode=IN, jdbcType=INTEGER},#{district, mode=IN, jdbcType=INTEGER},2,#{id, jdbcType=INTEGER,mode=OUT});
-		
+	<insert id="insertSupplierAddress" parameterType="com.wit.model.ShoppingAddress"
+		statementType="CALLABLE">
+		<!-- <selectKey keyProperty="id" resultType="Integer" order="AFTER"> SELECT 
+			LAST_INSERT_ID() </selectKey> insert into ShoppingAddress(shoppingAddress,adderssName,status,companyId,userId,province,city,district,addressType) 
+			values(#{shoppingAddress},#{adderssName},1,#{companyId},#{userId},#{province},#{city},#{district},2); -->
+		CALL AddShoppingAddress(#{shoppingAddress, mode=IN,
+		jdbcType=VARCHAR},#{adderssName, mode=IN,
+		jdbcType=VARCHAR},1,#{companyId, mode=IN, jdbcType=INTEGER},#{userId,
+		mode=IN, jdbcType=INTEGER},#{province, mode=IN,
+		jdbcType=INTEGER},#{city, mode=IN, jdbcType=INTEGER},#{district,
+		mode=IN, jdbcType=INTEGER},2,#{id, jdbcType=INTEGER,mode=OUT});
+
 	</insert>
 	<!-- 根据分页查询 -->
-	<select id="getAlls" resultType="com.wit.model.ShoppingAddress" parameterType="com.wit.model.Page">
-	select id,shoppingAddress,adderssName,status,companyId,userId
-	from ShoppingAddress order by ID limit #{begin},#{pageNum}
+	<select id="getAlls" resultType="com.wit.model.ShoppingAddress"
+		parameterType="com.wit.model.Page">
+		select
+		id,shoppingAddress,adderssName,status,companyId,userId
+		from
+		ShoppingAddress order by ID limit #{begin},#{pageNum}
 	</select>
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Integer">
-	delete from ShoppingAddress
-	where id=#{id}
+		delete from ShoppingAddress
+		where id=#{id}
 	</delete>
 	<!--根据ID字符数组删除数据 -->
 	<delete id="deleteByIds" parameterType="string">
-	delete from ShoppingAddress
-	where FIND_IN_SET(id,#{ids})
+		delete from
+		ShoppingAddress
+		where FIND_IN_SET(id,#{ids})
 	</delete>
 	<!-- 添加配送地址 -->
 	<update id="addPurchaserAddress" parameterType="Integer">
-	update ShoppingAddress set
-	shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status='1'
-	where companyId=#{companyId}
+		update
+		ShoppingAddress set
+		shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status='1'
+		where companyId=#{companyId}
 	</update>
-	
+
 	<!-- 添加供应地域 -->
 	<update id="addSupplierAddress" parameterType="Integer">
-	update ShoppingAddress set
-	shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status='2'
-	where companyId=#{companyId}
+		update
+		ShoppingAddress set
+		shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status='2'
+		where companyId=#{companyId}
 	</update>
-	
-	
+
+
 	<!--根据Id查询 -->
-	<select id="findbyId" parameterType="Integer" 
-	resultType="com.wit.model.ShoppingAddress">
-	select id,shoppingAddress,adderssName,status,companyId,userId
-	from ShoppingAddress
-	where id=#{id}
+	<select id="findbyId" parameterType="Integer"
+		resultType="com.wit.model.ShoppingAddress">
+		select
+		id,shoppingAddress,adderssName,status,companyId,userId
+		from
+		ShoppingAddress
+		where id=#{id}
 	</select>
-	
+
 	<!--根据公司Id查询 -->
-	<select id="findbyShoppingAddress" 
-	resultType="com.wit.model.ShoppingAddress">
-	select sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
-	CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,'')) as address 
-	from ShoppingAddress sa 
-	where sa.companyId=#{companyId} and sa.status=1 and CONCAT(sa.Province,',',sa.City,',',sa.District)=#{address} and sa.addressType=1
+	<select id="findbyShoppingAddress" resultType="com.wit.model.ShoppingAddress">
+		select
+		sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
+		CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,''))
+		as address
+		from ShoppingAddress sa
+		where sa.companyId=#{companyId} and
+		sa.status=1 and
+		CONCAT(sa.Province,',',sa.City,',',sa.District)=#{address} and
+		sa.addressType=1
 	</select>
 	<!--根据地址Id查询 -->
-	<select id="findbyShoppingAddressId" 
-	resultType="com.wit.model.ShoppingAddress">
-	select sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
-	CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,'')) as address 
-	from ShoppingAddress sa 
-	where sa.ID=#{id} and sa.status=1
+	<select id="findbyShoppingAddressId" resultType="com.wit.model.ShoppingAddress">
+		select
+		sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
+		CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,''))
+		as address
+		from ShoppingAddress sa
+		where sa.ID=#{id} and sa.status=1
 	</select>
-	<select id="getShoppingAddressByCompanyID" 	resultType="com.wit.model.ShoppingAddress">
-	select sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
-	getDicName(sa.Province) as ProvinceName,getDicName(sa.City) as CityName,getDicName(sa.District) as DistrictName,
-	CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,'')) as address 
-	from ShoppingAddress sa 
-	where sa.companyId=#{companyId} and sa.userId=#{userId} and sa.status=1 and sa.AddressType=#{addressType} order by sa.ID desc limit #{page.begin},#{page.pageNum} 
+	<select id="getShoppingAddressByCompanyID" resultType="com.wit.model.ShoppingAddress">
+		select
+		sa.ID,sa.shoppingAddress,sa.adderssName,sa.status,sa.companyId,sa.userId,
+		getDicName(sa.Province) as ProvinceName,getDicName(sa.City) as
+		CityName,getDicName(sa.District) as DistrictName,
+		CONCAT(getDicName(sa.Province),getDicName(sa.City),getDicName(sa.District),IFNULL(sa.ShoppingAddress,''))
+		as address
+		from ShoppingAddress sa
+		where sa.companyId=#{companyId} and
+		sa.userId=#{userId} and sa.status=1 and
+		sa.AddressType=#{addressType}
+		order by sa.ID desc limit
+		#{page.begin},#{page.pageNum}
 	</select>
 	<select id="getShoppingAddressRowsByCompanyID" resultType="int">
-	    SELECT
-		COUNT(sa.ID) 
+		SELECT
+		COUNT(sa.ID)
 		FROM ShoppingAddress sa
-		where sa.companyId=#{companyId} and sa.userId=#{userId} and sa.status=1 and sa.AddressType=#{addressType}
+		where
+		sa.companyId=#{companyId} and
+		sa.userId=#{userId} and sa.status=1 and
+		sa.AddressType=#{addressType}
 	</select>
 	<!-- 修改 -->
 	<update id="update" parameterType="com.wit.model.ShoppingAddress">
-	update ShoppingAddress set
-	shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status=#{status},
-	companyId=#{companyId},userId=#{userId}
-	where id=#{id}
+		update ShoppingAddress set
+		shoppingAddress=#{shoppingAddress},adderssName=#{adderssName},status=#{status},
+		companyId=#{companyId},userId=#{userId}
+		where id=#{id}
 	</update>
 	<!-- findRows -->
 	<select id="findRows" resultType="int">
-	    SELECT
-		COUNT(id) 
-		FROM ShoppingAddress
+		SELECT
+		COUNT(id)
+		FROM
+		ShoppingAddress
 	</select>
-	
-	
+
+
 </mapper>

@@ -3,12 +3,10 @@
 <mapper namespace="com.wit.dao.CompanyBalanceLogDao">
 	<!--查询所有 -->
 	<select id="findAll" parameterType="com.wit.model.Page"
-	resultType="com.wit.model.CompanyBalanceLog">
-		<!-- select cb.id,cb.companyId,
-		cb.currency,cb.balance,cb.balanceChange,cb.changeDate 
-		from CompanyBalanceLog cb
-		LEFT JOIN CompanyBalance c on cb.CompanyID=c.CompanyID
-		order by cb.id limit #{begin},#{pageNum} -->
+		resultType="com.wit.model.CompanyBalanceLog">
+		<!-- select cb.id,cb.companyId, cb.currency,cb.balance,cb.balanceChange,cb.changeDate 
+			from CompanyBalanceLog cb LEFT JOIN CompanyBalance c on cb.CompanyID=c.CompanyID 
+			order by cb.id limit #{begin},#{pageNum} -->
 	</select>
 
 	<!--增加 -->
@@ -49,15 +47,18 @@
 		FROM CompanyBalanceLog
 		WHERE
 		companyId=#{companyId}
-		ORDER BY ChangeDate DESC limit #{Page.begin},#{Page.pageNum} 
+		ORDER BY
+		ChangeDate DESC limit #{Page.begin},#{Page.pageNum}
 	</select>
-	
-	<!--查询历史流水行数  -->
+
+	<!--查询历史流水行数 -->
 	<select id="rows" parameterType="Integer" resultType="int">
-		select count(cb.id) from CompanyBalanceLog cb
-		LEFT JOIN Companys c ON cb.CompanyID = c.ID
+		select
+		count(cb.id) from CompanyBalanceLog cb
+		LEFT JOIN Companys c ON
+		cb.CompanyID = c.ID
 		where cb.companyId = #{c.id}
 	</select>
-	
-	
+
+
 </mapper>

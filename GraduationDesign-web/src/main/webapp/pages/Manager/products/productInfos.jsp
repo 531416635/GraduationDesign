@@ -37,73 +37,66 @@ body {
 .info td {
 	text-align: left;
 }
+
 div {
 	position: absolute;
 	top: 40%;
 	margin-top: -50px;
-	left:40%;
+	left: 40%;
 	margin-left: -50px;
 }
-
 </style>
 </head>
 <body>
-<div>
-	<form action="" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<th>&nbsp;&nbsp;商品ID:</th>
-				<td>
-					${product.id}
-				</td>
-			</tr>
-			<tr>
-				<th>商品名称:</th>
-				<td>${product. productName}
-				</td>
-			</tr>
-			<tr>
-				<th>商品类别:</th>
-				<td><%-- <input name="productType" readonly="readonly" value="${product.productTypee.typeName}" /> --%>
-				<c:forEach items="${product.productTypes}" var="m" varStatus="s">
-                            		<c:choose>
-                            			<c:when test="${s.last}">
+	<div>
+		<form action="" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>&nbsp;&nbsp;商品ID:</th>
+					<td>${product.id}</td>
+				</tr>
+				<tr>
+					<th>商品名称:</th>
+					<td>${product. productName}</td>
+				</tr>
+				<tr>
+					<th>商品类别:</th>
+					<td>
+						<%-- <input name="productType" readonly="readonly" value="${product.productTypee.typeName}" /> --%>
+						<c:forEach items="${product.productTypes}" var="m" varStatus="s">
+							<c:choose>
+								<c:when test="${s.last}">
                             				${m.typeName}
                             			</c:when>
-                            			<c:otherwise>
+								<c:otherwise>
                             				${m.typeName}、
                             			</c:otherwise>
-                            		</c:choose>
-                            	</c:forEach> 
-				</td>
-			</tr>
-			<tr>
-				<th>商品品牌:</th>
-				<td>${product.commodityBrand}
-				</td>
-			</tr>
-			<tr>
-				<th>商品单价:</th>
-				<td>${product.unitPrice}
-				</td>
-			</tr>
-			<tr>
-				<th>商品简介:</th>
-				<td>${product.productInfo}
-				</td>
-			</tr>
-			<tr>
-				<th>商品产地:</th>
-				<td>${product.producingArea}
-				</td>
-			</tr>
-			<tr>
-				<th>商品品类:</th>
-				<td>${product.productCategorys.cateGoryName}
-				</td>
-			</tr>
-		</table>
-	</form>
+							</c:choose>
+						</c:forEach>
+					</td>
+				</tr>
+				<tr>
+					<th>商品品牌:</th>
+					<td>${product.commodityBrand}</td>
+				</tr>
+				<tr>
+					<th>商品单价:</th>
+					<td>${product.unitPrice}</td>
+				</tr>
+				<tr>
+					<th>商品简介:</th>
+					<td>${product.productInfo}</td>
+				</tr>
+				<tr>
+					<th>商品产地:</th>
+					<td>${product.producingArea}</td>
+				</tr>
+				<tr>
+					<th>商品品类:</th>
+					<td>${product.productCategorys.cateGoryName}</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

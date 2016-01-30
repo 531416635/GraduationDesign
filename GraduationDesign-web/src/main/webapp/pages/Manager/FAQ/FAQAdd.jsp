@@ -59,7 +59,7 @@ body {
 	<div id=div1>
 		<form action="FAQAdd.do" method="post" enctype="multipart/form-data"
 			id="form">
-			<table style="border: 1px solid #d7d7d7;width: 90%;">
+			<table style="border: 1px solid #d7d7d7; width: 90%;">
 				<tr>
 					<th>问题类别:</th>
 					<td><select name="questionType">
@@ -71,23 +71,21 @@ body {
 				</tr>
 				<tr>
 					<th>标题:</th>
-					<td><input type="text" name="title" required="required" />
-					</td>
+					<td><input type="text" name="title" required="required" /></td>
 				</tr>
 				<tr>
 					<th>显示序列:</th>
 					<td><input type="text" name="showIndex"
 						onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
 						onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
-						required="required" />
-					</td>
+						required="required" /></td>
 				</tr>
 				<!-- <tr>
 			<th>创建时间:</th>
 		</tr> -->
 				<tr>
 					<th>创建者:</th>
-					<td>${user.userName } <input type="hidden" name="createBy"
+					<td>${user.userName }<input type="hidden" name="createBy"
 						value="${user.id }" /></td>
 				</tr>
 				<tr>

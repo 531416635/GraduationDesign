@@ -2,20 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wit.dao.SuppliersDao">
 	<!--查询所有 -->
-	<select id="findAll"  parameterType="com.wit.model.Page" resultType="com.wit.model.Suppliers">
-		SELECT ID, BuyCompanyID, SellCompanyProductID, IsDefault, IsLock, UpdateTime, UpdateBy FROM Suppliers
+	<select id="findAll" parameterType="com.wit.model.Page"
+		resultType="com.wit.model.Suppliers">
+		SELECT ID, BuyCompanyID, SellCompanyProductID, IsDefault,
+		IsLock, UpdateTime, UpdateBy FROM Suppliers
 		limit #{begin},#{pageNum}
 	</select>
 
 	<!--根据ID查找 -->
 	<select id="findById" parameterType="Integer" resultType="com.wit.model.Suppliers">
-		SELECT ID, BuyCompanyID, SellCompanyProductID, IsDefault, IsLock, UpdateTime, UpdateBy FROM Suppliers
+		SELECT
+		ID, BuyCompanyID, SellCompanyProductID, IsDefault, IsLock, UpdateTime,
+		UpdateBy FROM Suppliers
 		WHERE
 		ID=#{id}
 	</select>
-	<select id="findAllByCompanyProductId" parameterType="hashMap" resultType="com.wit.model.Suppliers">
-		SELECT ID, BuyCompanyID, SellCompanyProductID, IsDefault, IsLock, UpdateTime, UpdateBy FROM Suppliers
-		WHERE BuyCompanyID=#{companyId} and SellCompanyProductID=#{companyProductId}
+	<select id="findAllByCompanyProductId" parameterType="hashMap"
+		resultType="com.wit.model.Suppliers">
+		SELECT ID, BuyCompanyID, SellCompanyProductID, IsDefault,
+		IsLock, UpdateTime, UpdateBy FROM Suppliers
+		WHERE
+		BuyCompanyID=#{companyId} and SellCompanyProductID=#{companyProductId}
 	</select>
 	<!--增加 -->
 	<insert id="insertSuppliers" parameterType="com.wit.model.Suppliers">
@@ -23,9 +30,13 @@
 			SELECT LAST_INSERT_ID() AS id
 		</selectKey>
 		INSERT INTO Suppliers (
-		 BuyCompanyID, SellCompanyProductID, IsDefault, IsLock, UpdateTime, UpdateBy
-		) VALUES (
-		 #{buyCompanyId}, #{sellCompanyProductId}, #{isDefault}, #{isLock}, #{updateTime}, #{updateBy}
+		BuyCompanyID, SellCompanyProductID, IsDefault,
+		IsLock, UpdateTime, UpdateBy
+		) VALUES
+		(
+		#{buyCompanyId},
+		#{sellCompanyProductId}, #{isDefault}, #{isLock}, #{updateTime},
+		#{updateBy}
 		)
 	</insert>
 
@@ -33,29 +44,34 @@
 	<update id="updateSuppliers" parameterType="com.wit.model.Suppliers">
 		UPDATE Suppliers
 		SET
-		BuyCompanyID=#{buyCompanyId}, SellCompanyProductID=#{sellCompanyProductId}, IsDefault=#{isDefault},
+		BuyCompanyID=#{buyCompanyId},
+		SellCompanyProductID=#{sellCompanyProductId}, IsDefault=#{isDefault},
 		IsLock=#{isLock}, UpdateTime=#{updateTime}, UpdateBy=#{updateBy}
 		WHERE
 		ID=#{id}
 	</update>
 	<!--删除 -->
 	<delete id="deleteSuppliers" parameterType="Integer">
-		DELETE FROM 
+		DELETE FROM
 		Suppliers
 		WHERE
 		ID=#{id}
 	</delete>
-	
-	<select id="findSuppliers" parameterType="hashMap"
-		resultType="hashMap">
-		select s.ID,BuyCompanyID,getCompanyName(BuyCompanyID) as BuyCompanyName,SellCompanyProductID,
-		getCompanyName(cp.CompanyID) as SellCompanyName,s.IsDefault,s.IsLock,
+
+	<select id="findSuppliers" parameterType="hashMap" resultType="hashMap">
+		select s.ID,BuyCompanyID,getCompanyName(BuyCompanyID) as
+		BuyCompanyName,SellCompanyProductID,
+		getCompanyName(cp.CompanyID) as
+		SellCompanyName,s.IsDefault,s.IsLock,
 		getCompanyProductPic(cp.CompanyID) as FilePath,
 		getProductName(cp.ProductID) as ProductName
-		FROM Suppliers s LEFT JOIN CompanyProducts cp on s.SellCompanyProductID=cp.ID
-		WHERE s.BuyCompanyID=#{companyId}
+		FROM Suppliers s LEFT JOIN
+		CompanyProducts cp on s.SellCompanyProductID=cp.ID
+		WHERE
+		s.BuyCompanyID=#{companyId}
 		order by s.ID DESC
-		limit #{page.begin},#{page.pageNum}
+		limit
+		#{page.begin},#{page.pageNum}
 	</select>
 	<select id="findSuppliersRows" parameterType="hashMap"
 		resultType="int">
@@ -64,9 +80,11 @@
 		BuyCompanyID=#{companyId}
 	</select>
 	<update id="editSuppliersStatus" parameterType="hashMap">
-		CALL editSuppliersStatus(#{updateBy},#{isDefault},#{isLock},#{ids});
+		CALL
+		editSuppliersStatus(#{updateBy},#{isDefault},#{isLock},#{ids});
 	</update>
 	<delete id="delSuppliers" parameterType="String">
-		DELETE FROM Suppliers where FIND_IN_SET(id,#{ids})>0
+		DELETE FROM Suppliers
+		where FIND_IN_SET(id,#{ids})>0
 	</delete>
 </mapper>

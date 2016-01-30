@@ -227,10 +227,10 @@ tbody {
 
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">询价管理 ></span><span
-				class="lo2">我的报价单></span><span
-				class="lo3">商品资质</span>
+				class="lo2">我的报价单></span><span class="lo3">商品资质</span>
 		</div>
 		<%-- <c:if test="${!empty priceSheet}"> --%>
 		<div>
@@ -238,39 +238,33 @@ tbody {
 				<c:forEach items="${productsCertificate }" var="dis">
 					<tr>
 						<td><c:if test="${dis.fileClass==100||dis.fileClass==2 }">食品安全资质：</c:if>
-						<c:if test="${dis.fileClass==101||dis.fileClass==3 }">生产许可证：</c:if>
-						<c:if test="${dis.fileClass==102||dis.fileClass==4 }">QS商城许可证：</c:if>
-						<c:if test="${dis.fileClass==103||dis.fileClass==5 }">检测报告：</c:if>
-						<c:if test="${dis.fileClass==104||dis.fileClass==6 }">品牌资质授权：</c:if>
-						<c:if test="${dis.fileClass==105||dis.fileClass==7 }">厂家代理授权：</c:if>
-						
+							<c:if test="${dis.fileClass==101||dis.fileClass==3 }">生产许可证：</c:if>
+							<c:if test="${dis.fileClass==102||dis.fileClass==4 }">QS商城许可证：</c:if>
+							<c:if test="${dis.fileClass==103||dis.fileClass==5 }">检测报告：</c:if>
+							<c:if test="${dis.fileClass==104||dis.fileClass==6 }">品牌资质授权：</c:if>
+							<c:if test="${dis.fileClass==105||dis.fileClass==7 }">厂家代理授权：</c:if>
+
 						</td>
 
 						<td><c:if test="${dis.fileClass==100||dis.fileClass==2 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-							<c:if test="${dis.fileClass==101||dis.fileClass==3 }">
+							</c:if> <c:if test="${dis.fileClass==101||dis.fileClass==3 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-							<c:if test="${dis.fileClass==102||dis.fileClass==4 }">
+							</c:if> <c:if test="${dis.fileClass==102||dis.fileClass==4 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-							<c:if test="${dis.fileClass==103||dis.fileClass==5 }">
+							</c:if> <c:if test="${dis.fileClass==103||dis.fileClass==5 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-							<c:if test="${dis.fileClass==104||dis.fileClass==6 }">
+							</c:if> <c:if test="${dis.fileClass==104||dis.fileClass==6 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-							<c:if test="${dis.fileClass==105||dis.fileClass==7 }">
+							</c:if> <c:if test="${dis.fileClass==105||dis.fileClass==7 }">
 								<img id="img" src="<%=path%>${dis.filePath }" alt="Thumbnail 1"
 									class="zoom-tiny-image" />
-							</c:if>
-						</td>
+							</c:if></td>
 						<br />
 				</c:forEach>
 			</table>

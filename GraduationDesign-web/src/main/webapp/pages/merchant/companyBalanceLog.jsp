@@ -110,41 +110,42 @@ input {
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">结算管理 ></span><span
 				class="lo2">资金账户流水</span>
 		</div>
 
-					<table border="1" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th>币种</th>
-								<th>账户金额</th>
-								<th>账户变更</th>
-								<th>变更时间</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${companyBalanceLog}" var="c">
-								<tr>
-									<td align="center">${c.currency}</td>
-									<td align="right">${c.balance}</td>
-									<td align="right">${c.balanceChange}</td>
-									<td align="center">${c.changeDate}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<!-- 分页 -->
-			<div class="pagin">
+		<table border="1" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>币种</th>
+					<th>账户金额</th>
+					<th>账户变更</th>
+					<th>变更时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${companyBalanceLog}" var="c">
+					<tr>
+						<td align="center">${c.currency}</td>
+						<td align="right">${c.balance}</td>
+						<td align="right">${c.balanceChange}</td>
+						<td align="center">${c.changeDate}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="pagin">
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-				</div>
-			</div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
 		</div>
+	</div>
+	</div>
+	</div>
 
 	</div>
 

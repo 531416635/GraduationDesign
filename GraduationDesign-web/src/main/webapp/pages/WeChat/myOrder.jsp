@@ -14,7 +14,8 @@
 	String num = (String) request.getAttribute("currentPage"); 
 %>
 <!-- Custom Theme files -->
-<link href="<%=path %>/css/WeChatcss/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=path %>/css/WeChatcss/style.css" rel="stylesheet"
+	type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="<%=path%>/js/redjs/jquery.js"></script>
@@ -23,8 +24,7 @@
 	font-size: 120%;
 }
 
-
-#order1,#order2 {
+#order1, #order2 {
 	border-bottom: 1px dashed #999;
 	padding: 10px 0;
 }
@@ -136,7 +136,7 @@ var currentPage =parseInt(<%=num%>);
 </head>
 <body>
 	<div class="login">
-			<div class="login-top">
+		<div class="login-top">
 			<p id="p1">我的订单</p>
 			<hr color="#999999" />
 			<c:forEach items="${orders }" var="p" varStatus="status">
@@ -163,8 +163,8 @@ var currentPage =parseInt(<%=num%>);
 					</p> -->
 				</div>
 			</c:forEach>
-			<p id="ps" style="text-align:center">
-				<input style="outline:none; background-color:#fff; color:#666"
+			<p id="ps" style="text-align: center">
+				<input style="outline: none; background-color: #fff; color: #666"
 					type="button" value="点击查看更多↓" onclick="viewMore()">
 			</p>
 			<form action="orderInquiry.do" method="post">
@@ -172,14 +172,15 @@ var currentPage =parseInt(<%=num%>);
 					value="全部订单" />
 			</form>
 			<form action="orderInquiry.do" method="post">
-				<input type="hidden" name="status" value="1" /> <input type="submit"
-					value="已完结订单" />
+				<input type="hidden" name="status" value="1" /> <input
+					type="submit" value="已完结订单" />
 			</form>
 			<form action="orderInquiry.do" method="post">
-				<input type="hidden" name="status" value="0" /> <input type="submit"
-					value="未处理订单" />
+				<input type="hidden" name="status" value="0" /> <input
+					type="submit" value="未处理订单" />
 			</form>
-			<div style="clear:both;margin:0px;padding:0px;line-height:0px;"></div>
+			<div
+				style="clear: both; margin: 0px; padding: 0px; line-height: 0px;"></div>
 
 		</div>
 	</div>

@@ -11,11 +11,10 @@
 		FROM Products order by ID limit #{begin},#{pageNum};
 	</select>
 	<!-- 后端根据相应的搜索条件列出商品 -->
-	<select id="findAllByName" parameterType="hashMap"
-		resultMap="productMap">
+	<select id="findAllByName" parameterType="hashMap" resultMap="productMap">
 		SELECT
 		id,productName,productType,productBrand,unitPrice,productInfo,productCategory
-		FROM Products 
+		FROM Products
 		<if test="productName!=null and productName!=''">
 			where productName like CONCAT('%',#{productName},'%')
 		</if>
@@ -63,19 +62,16 @@
 		p1.id,p1.productName,p1.productType,p1.productBrandID,p1.unitPrice,p1.productInfo,p1.productCategory,p1.isHomeShow,p1.isSubPageShow,p1.isHotShow,p2.filePath,p1.productTitle
 		FROM Products p1 left join ProductPic p2 on p1.id=p2.productId where
 		p1.IsHomeShow=1 and p2.IsDefault=1 and p1.status=1 and
-		FIND_IN_SET(#{productCategoryId},p1.productCategory) order by p1.id desc limit 10
+		FIND_IN_SET(#{productCategoryId},p1.productCategory) order by p1.id
+		desc limit 10
 	</select>
 	<!-- 现货特供首页根据类别Id查询类别展示商品 -->
-	<!-- <select id="findProductspot" parameterType="java.lang.Integer"
-		resultType="com.wit.model.Products">
-		SELECT
-		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
-		as spotUnitPrice,p.filePath
-		FROM Products u left join CompanyProducts r
-		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId
-		where u.ID = r.productID and p.IsDefault=1 and
-		FIND_IN_SET(#{id},productCategory) limit 8
-	</select> -->
+	<!-- <select id="findProductspot" parameterType="java.lang.Integer" resultType="com.wit.model.Products"> 
+		SELECT u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice 
+		as spotUnitPrice,p.filePath FROM Products u left join CompanyProducts r on 
+		u.ID = r.productID inner join ProductPic p on u.ID = p.productId where u.ID 
+		= r.productID and p.IsDefault=1 and FIND_IN_SET(#{id},productCategory) limit 
+		8 </select> -->
 	<!-- productMap -->
 	<!-- 门户商品关联图 <resultMap type="com.wit.model.Products" id="productMaps"> 
 		<id property="id" column="id" /> <association property="productPic" column="id" 
@@ -118,25 +114,17 @@
 			select="findProductCategory">
 		</collection>
 		<collection property="productTypes" column="id"
-			javaType="java.util.ArrayList" select="findProductTypes"
-			ofType="com.wit.model.ProductType">
+			javaType="java.util.ArrayList" select="findProductTypes" ofType="com.wit.model.ProductType">
 		</collection>
 		<collection property="companys" column="id"
-			javaType="java.util.ArrayList" select="findCompanys"
-			ofType="com.wit.model.Companys">
+			javaType="java.util.ArrayList" select="findCompanys" ofType="com.wit.model.Companys">
 		</collection>
-		<!-- <collection property="originArea" column="originPlace"
-			javaType="java.util.ArrayList" select="findDictionarys"
-			ofType="com.wit.model.Dictionarys">
-		</collection> -->
+		<!-- <collection property="originArea" column="originPlace" javaType="java.util.ArrayList" 
+			select="findDictionarys" ofType="com.wit.model.Dictionarys"> </collection> -->
 	</resultMap>
-	<!-- <select id="findDictionarys" parameterType="string" resultType="com.wit.model.Dictionarys">
-	SELECT
-		id,dicName,dicCode,dicValue,dicParent,dicType
-		FROM
-		Dictionarys
-		WHERE FIND_IN_SET(id,#{originPlace})
-	</select> -->
+	<!-- <select id="findDictionarys" parameterType="string" resultType="com.wit.model.Dictionarys"> 
+		SELECT id,dicName,dicCode,dicValue,dicParent,dicType FROM Dictionarys WHERE 
+		FIND_IN_SET(id,#{originPlace}) </select> -->
 	<!-- 门户三级商品详情信息 -->
 	<select id="findWebById" parameterType="Integer" resultMap="webProductMap">
 		SELECT
@@ -175,8 +163,7 @@
 			select="findProductPics">
 		</collection>
 		<collection property="productCategorys" column="productCategory"
-			javaType="java.util.ArrayList" select="findProductCategory"
-			ofType="com.wit.model.ProductCategory">
+			javaType="java.util.ArrayList" select="findProductCategory" ofType="com.wit.model.ProductCategory">
 		</collection>
 	</resultMap>
 	<!-- 门户三级商品详情关联图片 查询 -->
@@ -209,9 +196,10 @@
 		resultType="com.wit.model.Products">
 		SELECT
 		p1.id,p1.productName,p1.productModel,p1.productTitle,p1.productType,p1.productBrandID,p1.unitPrice,p1.productInfo,p1.productCategory,p1.isHomeShow,p1.isSubPageShow,p1.isHotShow,p2.filePath
-		FROM Products p1 left join ProductPic p2 
+		FROM Products p1 left join ProductPic p2
 		on p1.id=p2.productId
-		where 1=1 and p2.isDefault = 1
+		where 1=1
+		and p2.isDefault = 1
 		<if test="superclass!=null and superclass!=''">
 			and FIND_IN_SET(#{superclass},productCategory)>0
 		</if>
@@ -234,8 +222,9 @@
 	<select id="findRowsByCategorys" parameterType="com.wit.model.SecondPage"
 		resultType="int">
 		SELECT COUNT(p1.id)
-		FROM Products p1 left join ProductPic p2 
-		on p1.id=p2.productId 
+		FROM Products p1 left join ProductPic p2
+		on
+		p1.id=p2.productId
 		where 1=1 and p2.isDefault = 1
 		<if test="superclass!=null and superclass!=''">
 			and FIND_IN_SET(#{superclass},productCategory)>0
@@ -258,18 +247,18 @@
 	<!-- 门户三级商品详情关联查询商品所有属性信息 <select id="findProductCategorys" parameterType="string" 
 		resultMap="webProductTypeMap"> select id,typeName,parentType,typeCode from 
 		ProductType where FIND_IN_SET(id,#{productCategory}) </select> -->
-	<!-- 门户三级商品详情关联查询父类别 <resultMap type="com.wit.model.ProductType" 
-		id="webProdusctTypeMap"> <id property="id" column="parentType" /> <association 
-		property="parentTypee" column="parentType" javaType="com.wit.model.ProductType" 
-		select="findPrarentProductType"> </association> </resultMap> 门户三级商品详情关联查询父类别信息 
-		<select id="findPrarentProductType" parameterType="Integer" resultType="com.wit.model.ProductType"> 
-		select id,typeName,parentType,typeCode from ProductType where id = #{parentType} 
-		</select> -->
+	<!-- 门户三级商品详情关联查询父类别 <resultMap type="com.wit.model.ProductType" id="webProdusctTypeMap"> 
+		<id property="id" column="parentType" /> <association property="parentTypee" 
+		column="parentType" javaType="com.wit.model.ProductType" select="findPrarentProductType"> 
+		</association> </resultMap> 门户三级商品详情关联查询父类别信息 <select id="findPrarentProductType" 
+		parameterType="Integer" resultType="com.wit.model.ProductType"> select id,typeName,parentType,typeCode 
+		from ProductType where id = #{parentType} </select> -->
 
 
 	<!-- findById -->
 	<select id="findById" parameterType="int" resultMap="productMap">
-		SELECT id,productName,productType,productBrandID,productModel,productUnit,productCode,unitPrice,productInfo,productCategory,isHomeShow,isSubpageShow,isHotShow,status,productBrand,productTitle,productDescription,originPlace,detailAddress 
+		SELECT
+		id,productName,productType,productBrandID,productModel,productUnit,productCode,unitPrice,productInfo,productCategory,isHomeShow,isSubpageShow,isHotShow,status,productBrand,productTitle,productDescription,originPlace,detailAddress
 		FROM Products
 		WHERE id=#{id}
 	</select>
@@ -291,7 +280,7 @@
 		SELECT
 		id,productName,productType,productBrandID,productInfo,productCategory,Status
 		FROM Products
-		where  Status IN (0,1,2,3)
+		where Status IN (0,1,2,3)
 		<if test="productName!=null and productName!=''">
 			and productName like CONCAT('%',#{productName},'%')
 		</if>
@@ -386,13 +375,13 @@
 			where productName like CONCAT('%',#{productName},'%')
 		</if>
 	</select>
-	
+
 
 	<select id="findcheckListRows" resultType="int">
 		SELECT
 		COUNT(id)
 		FROM
-		Products where  Status IN (0,1,2,3)
+		Products where Status IN (0,1,2,3)
 		<if test="productName!=null and productName!=''">
 			and productName like CONCAT('%',#{productName},'%')
 		</if>
@@ -412,10 +401,10 @@
 		UPDATE Products
 		SET
 		<if test="productType == 1">
-		productType= null
+			productType= null
 		</if>
 		<if test="productType != 1">
-		productType= 1
+			productType= 1
 		</if>
 		where
 		id=#{id}
@@ -440,34 +429,42 @@
 		from ProductSample ps
 		LEFT JOIN Users s ON ps.supplierId = s.ID
 		LEFT JOIN
-		CompanyProducts c ON ps.companyProductId = c.ID
+		CompanyProducts c ON
+		ps.companyProductId = c.ID
 		LEFT JOIN Companys sc
 		ON c.companyId = sc.ID
 		LEFT JOIN Products p ON c.productId = p.ID
 		where
-		ps.supplierId=#{supplierId} and p.ID =#{productId} limit #{page.begin},#{page.pageNum}
+		ps.supplierId=#{supplierId} and p.ID =#{productId} limit
+		#{page.begin},#{page.pageNum}
 	</select>
 	<!--商品小样分页 findRowsSamples -->
 	<select id="findRowsSamples" parameterType="hashMap" resultType="int">
 		select
 		count(ps.id)
 		from ProductSample ps
-		LEFT JOIN Users s ON ps.supplierId = s.ID
+		LEFT JOIN Users s ON
+		ps.supplierId = s.ID
 		LEFT JOIN
-		CompanyProducts c ON ps.companyProductId = c.ID
+		CompanyProducts c ON ps.companyProductId
+		= c.ID
 		LEFT JOIN Companys sc
 		ON c.companyId = sc.ID
-		LEFT JOIN Products p ON c.productId = p.ID
+		LEFT JOIN Products p
+		ON c.productId = p.ID
 		where
-		ps.supplierId=#{supplierId} and p.ID =#{productId} 
+		ps.supplierId=#{supplierId} and p.ID
+		=#{productId}
 	</select>
-	
+
 	<!--查询指定商品小样的申请时间 -->
 	<select id="checkProductSample" parameterType="Integer"
 		resultType="Date">
 		select RequestTime from ProductSample
-		where supplierId=#{supplierId}
-		and companyProductId=#{CompanyProductID}   ORDER BY RequestTime DESC limit 1
+		where
+		supplierId=#{supplierId}
+		and companyProductId=#{CompanyProductID} ORDER
+		BY RequestTime DESC limit 1
 
 	</select>
 
@@ -477,47 +474,66 @@
 		SELECT * FROM (
 		SELECT
 		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
-		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		as
+		spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id
+		AS supplyId
 		FROM Products u left join CompanyProducts r
-		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
-		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
+		on u.ID =
+		r.productID inner join ProductPic p on u.ID = p.productId left JOIN
+		ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID
+		and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
 		FIND_IN_SET(#{id},productCategory) limit 4)asd
 		GROUP BY asd.id
 	</select>
-	
+
 	<!-- 现货二级页面信息 -->
 	<select id="findSecondSpotProducts" parameterType="java.lang.Integer"
 		resultType="hashMap">
 		SELECT * FROM (
 		SELECT
 		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
-		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		as
+		spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id
+		AS supplyId
 		FROM Products u left join CompanyProducts r
-		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
-		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
+		on u.ID =
+		r.productID inner join ProductPic p on u.ID = p.productId left JOIN
+		ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID
+		and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
 		FIND_IN_SET(#{id},productCategory) limit 20)asd
 		GROUP BY asd.id
 	</select>
-	
+
 	<!-- 现货二级页面热门推荐 -->
 	<select id="findHotSpotProducts" parameterType="java.lang.Integer"
 		resultType="hashMap">
 		SELECT * FROM (
 		SELECT
 		u.id,u.productName,u.productType,u.productBrandID,u.unitPrice,u.productInfo,u.productCategory,u.isHomeShow,u.isSubPageShow,u.isHotShow,r.unitPrice
-		as spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id AS supplyId
+		as
+		spotUnitPrice,p.filePath,u.productTitle,u.productModel,pb.logoPath,u.ProductDescription,pb.BrandName,u.OriginPlace,r.id
+		AS supplyId
 		FROM Products u left join CompanyProducts r
-		on u.ID = r.productID inner join ProductPic p on u.ID = p.productId left JOIN ProductBrand pb on pb.ID = u.productBrandID
-		where u.ID = r.productID and p.IsDefault=1 and u.productType = 1 and u.status = 1 and u.isHotShow = 1 and
+		on u.ID =
+		r.productID inner join ProductPic p on u.ID = p.productId left JOIN
+		ProductBrand pb on pb.ID = u.productBrandID
+		where u.ID = r.productID
+		and p.IsDefault=1 and u.productType = 1 and u.status = 1 and
+		u.isHotShow = 1 and
 		FIND_IN_SET(#{id},productCategory) limit 20)asd
 		GROUP BY asd.id
 	</select>
-	
+
 	<select id="findProductByModel" resultType="Integer">
-	select id from Products where productName like CONCAT('%',#{productName},'%')
-	and productModel = #{productModel} limit 1
+		select id from
+		Products where productName like
+		CONCAT('%',#{productName},'%')
+		and
+		productModel = #{productModel} limit 1
 	</select>
-	
+
 
 
 	<cache type="org.mybatis.caches.ehcache.EhcacheCache">

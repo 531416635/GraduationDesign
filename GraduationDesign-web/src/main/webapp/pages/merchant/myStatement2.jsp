@@ -12,13 +12,18 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/detail.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/frontcss/houtai.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/detail.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/css/frontcss/houtai.css" />
 <script type="text/javascript" src="<%=path%>/js/lanrenzhijia.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/datePicker/WdatePicker.js"></script>
-<script language="javascript" type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/cloud-zoom.1.0.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/datePicker/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript"
+	src="../js/jquery.js"></script>
 <script type="text/javascript">
 	function checkPastDetial(){
 		var startTime=$("#startTime").val();
@@ -164,39 +169,45 @@ function newAccount(){
 }
 </script>
 <style type="text/css">
-.btnq{
+.btnq {
 	border: none;
 	width: 70px;
 	height: 20px;
-	margin-left:20%;
+	margin-left: 20%;
 	font-size: 12px;
 	color: white;
 }
-.btnf{
+
+.btnf {
 	border: none;
 	width: 70px;
 	height: 20px;
-	margin-left:50px;;
+	margin-left: 50px;;
 	font-size: 12px;
 	color: white;
 }
-th{
+
+th {
 	background-color: #F0F0F0;
 	border: 0.5px solid #999;
 }
-td{
+
+td {
 	border: 0.5px solid #999;
 }
-tr{
-   height: 32px;
+
+tr {
+	height: 32px;
 }
-input{
-   height:23px;
-   width: 150px;
+
+input {
+	height: 23px;
+	width: 150px;
 }
-.input_radio{
-    width: 13px;
-    height: 13px;
+
+.input_radio {
+	width: 13px;
+	height: 13px;
 }
 </style>
 </head>
@@ -204,64 +215,67 @@ input{
 <body>
 
 	<div class="inner_div">
-	<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">结算管理 ></span><span class="lo2">我的结算单</span>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">结算管理 ></span><span
+				class="lo2">我的结算单</span>
 		</div>
 		<div class="detail_list">
 			<ul id="tabs">
-				<li><a href="#" title="tab1">往期结算单</a>
-				</li>
-				<li><a href="#" title="tab2">我的结算单</a>
-				</li>
+				<li><a href="#" title="tab1">往期结算单</a></li>
+				<li><a href="#" title="tab2">我的结算单</a></li>
 			</ul>
 			<div id="content">
 
 				<div id="tab1">
 					<h4>往期账单</h4>
-<!-- 					<form action="<%=path%>/merchant/statement.do"> -->
-					日期&nbsp;<input id="startTime" value="" onclick="WdatePicker()" readonly="readonly" name="startTime"/>&nbsp;
-					至&nbsp;<input id="endTime" value="" onclick="WdatePicker()" readonly="readonly" name="endTime"/>&nbsp;&nbsp;&nbsp;&nbsp;
-					
-						<input class="btnq orange" id="checkBtn" type="button" onclick="checkPastDetial()" value="查看"/>
-						<br/><br/>
-						<table border="1" cellspacing="0" width="100%">
-							<thead>
+					<!-- 					<form action="<%=path%>/merchant/statement.do"> -->
+					日期&nbsp;<input id="startTime" value="" onclick="WdatePicker()"
+						readonly="readonly" name="startTime" />&nbsp; 至&nbsp;<input
+						id="endTime" value="" onclick="WdatePicker()" readonly="readonly"
+						name="endTime" />&nbsp;&nbsp;&nbsp;&nbsp; <input
+						class="btnq orange" id="checkBtn" type="button"
+						onclick="checkPastDetial()" value="查看" /> <br /> <br />
+					<table border="1" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th>付款时间</th>
+								<th>结算金额</th>
+								<th>结款人</th>
+								<th>发票号</th>
+								<th>银行账户</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${st}" var="c">
 								<tr>
-									<th>付款时间</th>
-									<th>结算金额</th>
-									<th>结款人</th>
-									<th>发票号</th>
-									<th>银行账户</th>
+									<td align="center">${c.SettleTime}</td>
+									<td align="center">${c.SettleAmount}</td>
+									<td align="center">${c.SettleBy }</td>
+									<td align="right">${c.InvoiceID}</td>
+									<td align="right">${c.BankAccount}</td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${st}" var="c">
-									<tr>
-										<td align="center">${c.SettleTime}</td>
-										<td align="center">${c.SettleAmount}</td>
-										<td align="center">${c.SettleBy }</td>
-										<td align="right">${c.InvoiceID}</td>
-										<td align="right">${c.BankAccount}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table><br/>
-<!-- 					</form> -->
+							</c:forEach>
+						</tbody>
+					</table>
+					<br />
+					<!-- 					</form> -->
 				</div>
 
 
 				<div id="tab2">
 					<table border="1" cellspacing="0" width="100%">
-							<tr>
-								<th>账户余额</th>
-								<td><input type="text" value="${companyBalance[0].balance}" readonly="readonly" style="text-align: right;"/></td>
-							</tr>
-							<tr>
-								<th>结款金额</th>
-								<td><input type="text" name="" id="pay" /></td>
-							</tr>
-							<tr>
-								<%-- <th>发票抬头</th>	
+						<tr>
+							<th>账户余额</th>
+							<td><input type="text" value="${companyBalance[0].balance}"
+								readonly="readonly" style="text-align: right;" /></td>
+						</tr>
+						<tr>
+							<th>结款金额</th>
+							<td><input type="text" name="" id="pay" /></td>
+						</tr>
+						<tr>
+							<%-- <th>发票抬头</th>	
 									<td>
 									<!-- <input type="text" name="" id="head"/> -->
 									<select name="invoice">
@@ -271,72 +285,71 @@ input{
 									</c:forEach>
 									</select>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a href="">申请发票</a> --%>
-									
-									<!-- <input type="button" value="新增" onclick="title();"/> </td>-->
-									
-									<!-- <input type="button" value="新增" onclick="newAccount();"/></td>-->
-									
-									<th>
-										结算类型
-									</th>
-									<td>
-										<input  class="input_radio" name="settleType" type="radio" value="0"/><span>付款</span>
-										<input  class="input_radio" name="settleType" type="radio" value="1"/><span>结款</span>
-									</td>
-								</tr>
-								<tr>
-									<th>银行账号</th>
-									<td>
-									<!-- <input type="text" name="bankAccount" id="bankAccount"/> -->
-									<select name="bankAccount" style="width: 152px; height: 25px;">
+
+							<!-- <input type="button" value="新增" onclick="title();"/> </td>-->
+
+							<!-- <input type="button" value="新增" onclick="newAccount();"/></td>-->
+
+							<th>结算类型</th>
+							<td><input class="input_radio" name="settleType"
+								type="radio" value="0" /><span>付款</span> <input
+								class="input_radio" name="settleType" type="radio" value="1" /><span>结款</span>
+							</td>
+						</tr>
+						<tr>
+							<th>银行账号</th>
+							<td>
+								<!-- <input type="text" name="bankAccount" id="bankAccount"/> -->
+								<select name="bankAccount" style="width: 152px; height: 25px;">
 									<option selected="selected"></option>
 									<c:forEach items="${companyBankAccount}" var="c">
-									<option value="${c.bankAccount}">${c.bankAccount}</option>
+										<option value="${c.bankAccount}">${c.bankAccount}</option>
 									</c:forEach>
-									</select>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="">新增银行账号</a>
-									</td>
-								</tr>
-								<tr align="center">
-								<td colspan="2"><input type="button" class="btnq orange" value="确认结算" onclick="pay();"/></td>
-								</tr>
-					</table><br/>
-					
-					
-					<table border="1" cellspacing="0" width="100%">
-					<thead>
-					<tr>
-						<th>结算编号</th>
-						<th>结算币种</th>
-						<th>结算金额</th>
-						<th>结算手续费</th>
-						<th>结算人</th>
-						<th>结算时间</th>
-						<th>结算状态</th>
-						<th>银行账号</th>
-						<th>结算类型</th>
+							</select>&nbsp;&nbsp;&nbsp;&nbsp; <a href="">新增银行账号</a>
+							</td>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<tr align="center">
+							<td colspan="2"><input type="button" class="btnq orange"
+								value="确认结算" onclick="pay();" /></td>
 						</tr>
-					</tbody>
 					</table>
-					
+					<br />
+
+
+					<table border="1" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th>结算编号</th>
+								<th>结算币种</th>
+								<th>结算金额</th>
+								<th>结算手续费</th>
+								<th>结算人</th>
+								<th>结算时间</th>
+								<th>结算状态</th>
+								<th>银行账号</th>
+								<th>结算类型</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+
 					<!-- <input type="button" class="btnq" value="申请发票" onclick="apply();"/>&nbsp;&nbsp;&nbsp;&nbsp; -->
-					
-					<input type="hidden" id="settlement"/>
-					
-					
+
+					<input type="hidden" id="settlement" />
+
+
 					<%-- <table border="1" cellspacing="0" width="100%">
 					<tr>
 					<th>本次取款</th>

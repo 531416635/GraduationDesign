@@ -14,57 +14,74 @@
 	
 </script>
 <style type="text/css">
-body {text-align:center;}
-table1 {aligh:center;font-size:150%;}
+body {
+	text-align: center;
+}
 
-#mydiv1 {margin:0 auto;width:1000px;font-size:150%; }
+table1 {
+	aligh: center;
+	font-size: 150%;
+}
+
+#mydiv1 {
+	margin: 0 auto;
+	width: 1000px;
+	font-size: 150%;
+}
 </style>
 </head>
 <body>
-<div id="mydiv1">
-	<table id="table1"  >
-	 <tbody>
-        
-        <c:forEach items="${news}" var="c">
-        <tr>
-        <td><a href="newOrNoiceInfo.do?newOrNoticeId=${c.id}&&type=${type}">${c.title}</a></td>
-        <td><fmt:formatDate value="${c.releaseTime}" pattern="yyyy-MM-dd"/></td>
-        </tr> 
-        </c:forEach>
-        </tbody>
-	</table>
-	<div class="pagin">
-    	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
-        <ul class="paginList">
-        		<c:choose>
-                		<c:when test="${page.currentPage==1}">
-                		 <li style="float:left"><a href="#"><button >上一页</button></a></li>
-                		</c:when>
-                		<c:otherwise>
-                		<li style="float:left"><a href="newOrNoiceMore.do?currentPage=${page.currentPage-1}&&type=${type}"><button >上一页</button></a></li>
-                		</c:otherwise>
-                </c:choose>
-        		<c:forEach begin="1" end="${page.totalPage}" var="s3">
-        		
-					 	<c:choose>
-                    		<c:when test="${s3==page.currentPage}">
-                    		 <li style="float:left"><a href="#">${s3}</a></li>
-                    		</c:when>
-                    		<c:otherwise>
-                    		<li style="float:left"><a href="newOrNoiceMore.do?currentPage=${s3}&&type=${type}">${s3}</a></li>
-                    		</c:otherwise>
-                    	</c:choose>
+	<div id="mydiv1">
+		<table id="table1">
+			<tbody>
+
+				<c:forEach items="${news}" var="c">
+					<tr>
+						<td><a
+							href="newOrNoiceInfo.do?newOrNoticeId=${c.id}&&type=${type}">${c.title}</a></td>
+						<td><fmt:formatDate value="${c.releaseTime}"
+								pattern="yyyy-MM-dd" /></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<div class="pagin">
+			<div class="message">
+				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<c:choose>
+					<c:when test="${page.currentPage==1}">
+						<li style="float: left"><a href="#"><button>上一页</button></a></li>
+					</c:when>
+					<c:otherwise>
+						<li style="float: left"><a
+							href="newOrNoiceMore.do?currentPage=${page.currentPage-1}&&type=${type}"><button>上一页</button></a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach begin="1" end="${page.totalPage}" var="s3">
+
+					<c:choose>
+						<c:when test="${s3==page.currentPage}">
+							<li style="float: left"><a href="#">${s3}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li style="float: left"><a
+								href="newOrNoiceMore.do?currentPage=${s3}&&type=${type}">${s3}</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 				<c:choose>
-                		<c:when test="${page.currentPage==page.totalPage or s3<=50}">
-                		 <li style="float:left"><a href="#"><button >下一页</button></a></li>
-                		</c:when>
-                		<c:otherwise>
-                		 <li style="float:left"><a href="newOrNoiceMore.do?currentPage=${page.currentPage+1}&&type=${type}"><button >下一页</button></a></li>
-                		</c:otherwise>
-                </c:choose>    
-        </ul>
-    </div>
-    </div>
+					<c:when test="${page.currentPage==page.totalPage or s3<=50}">
+						<li style="float: left"><a href="#"><button>下一页</button></a></li>
+					</c:when>
+					<c:otherwise>
+						<li style="float: left"><a
+							href="newOrNoiceMore.do?currentPage=${page.currentPage+1}&&type=${type}"><button>下一页</button></a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

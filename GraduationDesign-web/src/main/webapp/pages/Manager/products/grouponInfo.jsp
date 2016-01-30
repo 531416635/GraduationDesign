@@ -110,8 +110,7 @@ body {
 					<td>${g.ValidityTime }</td>
 					<th>团购状态：</th>
 					<td><c:if test='${g.Status==2}'>是</c:if> <c:if
-							test='${g.Status!=2}'>否</c:if>
-					</td>
+							test='${g.Status!=2}'>否</c:if></td>
 
 				</tr>
 				<tr class="info">
@@ -122,17 +121,21 @@ body {
 				</tr>
 				<tr>
 					<th>图片展示：</th>
-					<td><c:if test="${g.IsDefault==1}"><img src="<%=path %>${g.filePath}" /></c:if>
-					</td>
+					<td><c:if test="${g.IsDefault==1}">
+							<img src="<%=path %>${g.filePath}" />
+						</c:if></td>
 				</tr>
 				<tr class="info">
 					<th>购买须知:</th>
-					<td colspan="3"><textarea cols="100" id="content"readonly="readonly"
-							style="overflow:auto;background-attachment:fixed;background-repeat:no-repeat;border-style:solid;border-color:#FFFFFF;width:90%;height:auto;min-height:300px;"
+					<td colspan="3"><textarea cols="100" id="content"
+							readonly="readonly"
+							style="overflow: auto; background-attachment: fixed; background-repeat: no-repeat; border-style: solid; border-color: #FFFFFF; width: 90%; height: auto; min-height: 300px;"
 							name="Remark">${g.Remark}</textarea></td>
 				</tr>
 			</table>
-			<div style="margin:0 auto;text-align:center;"><input type="button" value="返回" onclick="history.back()"></div>
+			<div style="margin: 0 auto; text-align: center;">
+				<input type="button" value="返回" onclick="history.back()">
+			</div>
 		</c:forEach>
 	</div>
 </body>

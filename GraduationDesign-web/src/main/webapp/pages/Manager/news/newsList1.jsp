@@ -146,9 +146,8 @@ function checkDeletes(){
 	});
 </script>
 <style type="text/css">
-
- div.meneame span {
-	display:inline;
+div.meneame span {
+	display: inline;
 }
 </style>
 
@@ -163,13 +162,9 @@ function checkDeletes(){
 
 			<ul class="toolbar">
 				<li><a class="tablelink" href="/ssm/news/toAddNew.do?newType=1"><span><img
-							src="../images/t01.png" />
-					</span>添加</a>
-				</li>
+							src="../images/t01.png" /> </span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="../images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="../images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 		<table class="tablelist">
@@ -192,17 +187,14 @@ function checkDeletes(){
 				<c:forEach items="${news}" var="c">
 					<tr>
 						<td><input type="checkbox" name="box" onclick="checkBox();"
-							value="${c.id}" />
-						</td>
+							value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td>${c.title}</td>
 						<td>${c.content}</td>
 						<td><fmt:formatDate value="${c.releaseTime}"
-								pattern="yyyy-MM-dd" />
-						</td>
+								pattern="yyyy-MM-dd" /></td>
 						<td><fmt:formatDate value="${c.releaseAging}"
-								pattern="yyyy-MM-dd" />
-						</td>
+								pattern="yyyy-MM-dd" /></td>
 						<td>${c.publishers}</td>
 						<c:choose>
 
@@ -226,9 +218,9 @@ function checkDeletes(){
 		</table>
 
 		<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 		<%--   <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">

@@ -33,20 +33,17 @@ body {
 				<tr>
 					<th>名称:</th>
 					<td align="left"><input type="text" name="dicName"
-						value="${dictionary.dicName}" />
-					</td>
+						value="${dictionary.dicName}" /></td>
 				</tr>
 				<tr>
 					<th>编号:</th>
 					<td align="left"><input type="text" name="dicCode"
-						value="${dictionary.dicCode}" />
-					</td>
+						value="${dictionary.dicCode}" /></td>
 				</tr>
 				<tr>
 					<th>别名:</th>
 					<td align="left"><input type="text" name="dicValue"
-						value="${dictionary.dicValue}" />
-					</td>
+						value="${dictionary.dicValue}" /></td>
 				</tr>
 				<tr>
 					<th>父名:</th>
@@ -60,9 +57,7 @@ body {
 								</c:forEach>
 
 							</select>
-						</c:if>
-						<c:if test="${dictionary.dicParent==null }">顶级地域无父名</c:if>
-						<%-- <input type="text" name="dicParent" value="${dictionary.dicParent}"/></td> --%>
+						</c:if> <c:if test="${dictionary.dicParent==null }">顶级地域无父名</c:if> <%-- <input type="text" name="dicParent" value="${dictionary.dicParent}"/></td> --%>
 				</tr>
 				<tr>
 					<th>字典类别:</th>

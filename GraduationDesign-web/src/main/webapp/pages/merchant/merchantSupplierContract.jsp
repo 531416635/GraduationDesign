@@ -20,7 +20,7 @@
 <script type="text/javascript" src="../js/frontjs/lanrenzhijia.js"></script>
 <script language="javascript" type="text/javascript"
 	src="<%=path%>/js/jquery.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <link rel="stylesheet" type="text/css"
@@ -57,67 +57,68 @@ $(function(){
 div.meneame span {
 	display: inline;
 }
-tr{
-   height: 35px;
-}
-td{
-    text-align:center;
-    border-left: 1px solid #D0D0D0;
-}
-th{
-   border-left: 1px solid #D0D0D0;
+
+tr {
+	height: 35px;
 }
 
+td {
+	text-align: center;
+	border-left: 1px solid #D0D0D0;
+}
+
+th {
+	border-left: 1px solid #D0D0D0;
+}
 </style>
 </head>
 
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
-			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span>
-			<span class="lo2"> 
-			<c:if test="${companyType==3}">供应合同</c:if>
-			<c:if test="${companyType==2}">采购合同</c:if>
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
+			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span> <span
+				class="lo2"> <c:if test="${companyType==3}">供应合同</c:if> <c:if
+					test="${companyType==2}">采购合同</c:if>
 			</span>
 		</div>
 
 
-			<div>
-				<table  width="100%" cellspacing="0" align="center">
-			<thead style="border: 1px solid #D0D0D0">
-				<tr style="background-color: #f1f1f1;">
-					<th style="display: none">合同ID</th>
-					<th style="display: none">公司ID</th>
-					<th>合同年限</th>
-					<th>合同账期</th>
-					<th>供应品类</th>
-					<th>状态</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody style="border: 1px solid #D0D0D0">
-
-				<c:forEach items="${companyContracts}" var="c">
-					<tr>
-						<td style="display: none">${c.id}</td>
-						<td style="display: none">${c.companyId}</td>
-						<td>${c.contractTime}</td>
-						<td>${c.contractTerms}</td>
-						<td>${c.supplyCategory}</td>
-						<td><c:choose>
-								<c:when test="${c.status==0}">未签订</c:when>
-								<c:when test="${c.status==1}">签订</c:when>
-							</c:choose>
-						</td>
-						<td>
-						<a  class="tablelink" href="/ssm/merchant/merchantSupplierContract.do?id=${c.id}">合同详情</a>
-						</td>
+		<div>
+			<table width="100%" cellspacing="0" align="center">
+				<thead style="border: 1px solid #D0D0D0">
+					<tr style="background-color: #f1f1f1;">
+						<th style="display: none">合同ID</th>
+						<th style="display: none">公司ID</th>
+						<th>合同年限</th>
+						<th>合同账期</th>
+						<th>供应品类</th>
+						<th>状态</th>
+						<th>操作</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div id="Pagination" class="meneame" style="clear:left"></div> 			
-	</div>
+				</thead>
+				<tbody style="border: 1px solid #D0D0D0">
+
+					<c:forEach items="${companyContracts}" var="c">
+						<tr>
+							<td style="display: none">${c.id}</td>
+							<td style="display: none">${c.companyId}</td>
+							<td>${c.contractTime}</td>
+							<td>${c.contractTerms}</td>
+							<td>${c.supplyCategory}</td>
+							<td><c:choose>
+									<c:when test="${c.status==0}">未签订</c:when>
+									<c:when test="${c.status==1}">签订</c:when>
+								</c:choose></td>
+							<td><a class="tablelink"
+								href="/ssm/merchant/merchantSupplierContract.do?id=${c.id}">合同详情</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 	</div>
 </body>
 </html>

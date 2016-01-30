@@ -37,84 +37,82 @@ body {
 .info td {
 	text-align: left;
 }
+
 div {
 	position: absolute;
 	top: 40%;
 	margin-top: -50px;
-	left:40%;
+	left: 40%;
 	margin-left: -50px;
 }
 </style>
 </head>
 <body>
-<div>
-	<form action="" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<th>公司ID</th>
-				<td><input  name="id" type="text" readonly="readonly"
-					value="${company.id}"/>
-				</td>
-			</tr>
-			<tr>
-				<th>公司名称</th>
-				<td><input  name=companyName type="text" readonly="readonly"
-					value="${company.companyName}"/>
-				</td>
-			</tr>
-			<tr>
-				<th>公司地址</th>
-				<td><input name="companyAddress" readonly="readonly" value="${company.companyAddress}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司规模</th>
-				<td><input name="companyScale" readonly="readonly" value="${company.companyScale}" />
-				</td>
-			</tr>
-			<tr>
-				<th>注册资本</th>
-				<td><input name="registeredCapital" readonly="readonly"
-					value="${company.registeredCapital}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司电话</th>
-				<td><input name="companyTel" readonly="readonly" value="${company.companyTel}" />
-				</td>
-			</tr>
-			<tr>
-				<th>邮政编码</th>
-				<td><input name="companyZipCode" readonly="readonly" value="${company.companyZipCode}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司简介</th>
-				<td><input name="companyInfo" readonly="readonly" value="${company.companyInfo}"/>
-				</td>
-			</tr>
-			<tr>
-				<th>销售人员</th>
-				<td><input name="salesan" readonly="readonly" value="${company.salesMan}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司网址</th>
-				<td><input name="companyWebsite" readonly="readonly" value="${company.companyWebsite}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司联系人</th>
-				<td><input name="companyContact" readonly="readonly" value="${company.companyContact}" />
-				</td>
-			</tr>
-			<tr>
-				<th>公司类别</th>
-				<td><input name="companyType" readonly="readonly" value="${company.companyType}" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div>
+		<form action="" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>公司ID</th>
+					<td><input name="id" type="text" readonly="readonly"
+						value="${company.id}" /></td>
+				</tr>
+				<tr>
+					<th>公司名称</th>
+					<td><input name=companyName type="text" readonly="readonly"
+						value="${company.companyName}" /></td>
+				</tr>
+				<tr>
+					<th>公司地址</th>
+					<td><input name="companyAddress" readonly="readonly"
+						value="${company.companyAddress}" /></td>
+				</tr>
+				<tr>
+					<th>公司规模</th>
+					<td><input name="companyScale" readonly="readonly"
+						value="${company.companyScale}" /></td>
+				</tr>
+				<tr>
+					<th>注册资本</th>
+					<td><input name="registeredCapital" readonly="readonly"
+						value="${company.registeredCapital}" /></td>
+				</tr>
+				<tr>
+					<th>公司电话</th>
+					<td><input name="companyTel" readonly="readonly"
+						value="${company.companyTel}" /></td>
+				</tr>
+				<tr>
+					<th>邮政编码</th>
+					<td><input name="companyZipCode" readonly="readonly"
+						value="${company.companyZipCode}" /></td>
+				</tr>
+				<tr>
+					<th>公司简介</th>
+					<td><input name="companyInfo" readonly="readonly"
+						value="${company.companyInfo}" /></td>
+				</tr>
+				<tr>
+					<th>销售人员</th>
+					<td><input name="salesan" readonly="readonly"
+						value="${company.salesMan}" /></td>
+				</tr>
+				<tr>
+					<th>公司网址</th>
+					<td><input name="companyWebsite" readonly="readonly"
+						value="${company.companyWebsite}" /></td>
+				</tr>
+				<tr>
+					<th>公司联系人</th>
+					<td><input name="companyContact" readonly="readonly"
+						value="${company.companyContact}" /></td>
+				</tr>
+				<tr>
+					<th>公司类别</th>
+					<td><input name="companyType" readonly="readonly"
+						value="${company.companyType}" /></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

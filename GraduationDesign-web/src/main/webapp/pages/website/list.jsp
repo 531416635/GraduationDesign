@@ -1,5 +1,5 @@
-Pagination<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+Pagination<%@ page language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
@@ -30,7 +30,8 @@ Pagination<%@ page language="java" contentType="text/html; charset=UTF-8"
 <link href="<%=path%>/css/redcss/public.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript" src="<%=path%>/js/redjs/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <script type="text/javascript" src="<%=path%>/js/redjs/nav.js"></script>
 <script type="text/javascript">
@@ -461,54 +462,57 @@ function xunjia(id,a){
 	}
 </script>
 <style type="text/css">
-
-.input_but_sx{
-	padding:0;
-	width:8px;
-	height:8px;
-	font-size:6px;
-	border:none;
-	background-color:#fff;
-	color:#666;
-	background-repeat:no-repeat;
-	background-size:cover;
-	-moz-background-size:cover;
-	-webkit-background-size:cover;
+.input_but_sx {
+	padding: 0;
+	width: 8px;
+	height: 8px;
+	font-size: 6px;
+	border: none;
+	background-color: #fff;
+	color: #666;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
 }
-.input_txt_sx{
-	width:60px;
-	border:none;
+
+.input_txt_sx {
+	width: 60px;
+	border: none;
 	padding-left: 5px;
 }
-td{
-	border:1px solid #D1D1D1;
-	
+
+td {
+	border: 1px solid #D1D1D1;
 }
-#anniu{
-	height:20px;
-	width:55px;
-	font-size:12px;
+
+#anniu {
+	height: 20px;
+	width: 55px;
+	font-size: 12px;
 	border-radius: 0px;
 }
-.div_anniu{
-	margin:5px 0 0 15px;
-	float:left;
+
+.div_anniu {
+	margin: 5px 0 0 15px;
+	float: left;
 }
-.yangs{
-	text-align:center;
-    font-size: 12px; 
-    color: #a4a1a1;
-    white-space:nowrap;
-	width:160px; 
-	text-overflow :ellipsis;
-	-o-text-overflow:ellipsis;
+
+.yangs {
+	text-align: center;
+	font-size: 12px;
+	color: #a4a1a1;
+	white-space: nowrap;
+	width: 160px;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
 	overflow: hidden;
 }
 </style>
 </head>
 
 <body>
-<%-- <input id="superclass" type="hidden" value="${cateGoryId}">
+	<%-- <input id="superclass" type="hidden" value="${cateGoryId}">
 <input id="subclass" type="hidden" value="${cateGorySunId}"> --%>
 	<!--通栏-->
 	<div class="warp">
@@ -516,130 +520,133 @@ td{
 			<div class="detail_left_nav">
 				<div class="left_nav">
 					<c:if test="${empty sessionScope.filtratePage }">
-					<div class="all-sort-list" >
-						<c:forEach items="${productCategorys}" var="proca">
-							<c:if test="${proca.parentCateGory == cateGoryId }">
-								<div class="item bo">
-									<h3>
-										<a class="nav_left"
-											href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cateGoryLevel=2">${proca.cateGoryName}</a>
-									</h3>
-									<div class="item-list clearfix">
-										<!--关闭弹出层小叉叉 <div class="close">x</div> -->
-										<div class="subitem">
-											<c:forEach items="${productCategorys}" var="pcs">
-												<c:if test="${pcs.parentCateGory == proca.id}">
-													<dl class="fore1">
-														<dt>
-															<a
-																href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cg3Id=${pcs.id}&cateGoryLevel=3">${pcs.cateGoryName}</a>
-														</dt>
-														<dd>
-															<c:forEach items="${productCategorys}" var="pcItem">
-																<c:if test="${pcItem.parentCateGory == pcs.id }">
-																	<em><a
-																		href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cg3Id=${pcs.id}&cg4Id=${pcItem.id}&cateGoryLevel=4">${pcItem.cateGoryName}</a>
-																	</em>
-																</c:if>
-															</c:forEach>
-														</dd>
-													</dl>
-												</c:if>
-											</c:forEach>
+						<div class="all-sort-list">
+							<c:forEach items="${productCategorys}" var="proca">
+								<c:if test="${proca.parentCateGory == cateGoryId }">
+									<div class="item bo">
+										<h3>
+											<a class="nav_left"
+												href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cateGoryLevel=2">${proca.cateGoryName}</a>
+										</h3>
+										<div class="item-list clearfix">
+											<!--关闭弹出层小叉叉 <div class="close">x</div> -->
+											<div class="subitem">
+												<c:forEach items="${productCategorys}" var="pcs">
+													<c:if test="${pcs.parentCateGory == proca.id}">
+														<dl class="fore1">
+															<dt>
+																<a
+																	href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cg3Id=${pcs.id}&cateGoryLevel=3">${pcs.cateGoryName}</a>
+															</dt>
+															<dd>
+																<c:forEach items="${productCategorys}" var="pcItem">
+																	<c:if test="${pcItem.parentCateGory == pcs.id }">
+																		<em><a
+																			href="toSecondIndex.do?cateGoryId=${cateGoryId}&cateGorySunId=${proca.id}&cg3Id=${pcs.id}&cg4Id=${pcItem.id}&cateGoryLevel=4">${pcItem.cateGoryName}</a>
+																		</em>
+																	</c:if>
+																</c:forEach>
+															</dd>
+														</dl>
+													</c:if>
+												</c:forEach>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
+								</c:if>
+							</c:forEach>
+						</div>
 					</c:if>
-					<c:if test="${! empty sessionScope.filtratePage }">	
-				<div class="all-sort-list">
-					<c:forEach items="${productCategorys2}" var="proca"
-						varStatus="status1">
-						<%-- ${proca.parentCateGory} --%>
-						<c:if test="${proca.parentCateGory == null }">
-							<div class="item bo">
-								<h3 class="nav_left_con">
-									<em style="margin: -5px 10px 0px -30px;"
-										class="A-em${status1.count}"></em> <a class="nav_left"
-										href="toSecondIndex.do?cateGoryId=${proca.id}&cateGoryLevel=1">${proca.cateGoryName}</a>
-									<input type="hidden" id="hidCateGoryId${status1.count}"
-										value="${proca.id}">
-								</h3>
-								<div class="item-list clearfix">
-									<!-- 弹出层关闭小叉叉<div class="close">x</div> -->
-									<div class="subitem"></div>
-								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+					<c:if test="${! empty sessionScope.filtratePage }">
+						<div class="all-sort-list">
+							<c:forEach items="${productCategorys2}" var="proca"
+								varStatus="status1">
+								<%-- ${proca.parentCateGory} --%>
+								<c:if test="${proca.parentCateGory == null }">
+									<div class="item bo">
+										<h3 class="nav_left_con">
+											<em style="margin: -5px 10px 0px -30px;"
+												class="A-em${status1.count}"></em> <a class="nav_left"
+												href="toSecondIndex.do?cateGoryId=${proca.id}&cateGoryLevel=1">${proca.cateGoryName}</a>
+											<input type="hidden" id="hidCateGoryId${status1.count}"
+												value="${proca.id}">
+										</h3>
+										<div class="item-list clearfix">
+											<!-- 弹出层关闭小叉叉<div class="close">x</div> -->
+											<div class="subitem"></div>
+										</div>
+									</div>
+								</c:if>
+							</c:forEach>
+
+						</div>
+					</c:if>
 
 				</div>
-				</c:if>
-								
-				</div>
 			</div>
-			
+
 			<!--  热销商品推荐 -->
 			<div class="hot">
-				<span class="scan"  >热销商品</span><!--  <span class="more">>>更多</span> -->
+				<span class="scan">热销商品</span>
+				<!--  <span class="more">>>更多</span> -->
 				<div class="goods_list">
 					<c:forEach items="${hotProducts}" var="pros" varStatus="status1">
-					<c:if test="${status1.count<=10}">
+						<c:if test="${status1.count<=10}">
+							<dl>
+								<dt>
+									<b class="b_num"><span class="span_item">${status1.count}</span></b>
+									<b class="b_img"> <a
+										href="toProductInfo.do?ProductId=${pros.id}"> <img
+											height="50" width="50" src="<%=path%>${pros.filePath}" /></a>
+									</b>
+								</dt>
+								<dd>
+									<a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a><b></b>
+								</dd>
+							</dl>
+							<!-- 华丽的分割线 -->
+							<hr class="hr_hot_line" />
+						</c:if>
+					</c:forEach>
+					<div style="padding-bottom: 10px;"></div>
+				</div>
+			</div>
+
+			<!--  最近浏览 -->
+			<div class="recvisit">
+				<span class="scan">最近浏览</span>
+				<!-- <span class="more">>>更多</span> -->
+				<div class="goods_list">
+					<c:forEach items="${viewProducts}" var="pros" varStatus="status1">
 						<dl>
 							<dt>
-								<b class="b_num"><span class="span_item">${status1.count}</span></b>
-								<b class="b_img">
-								<a href="toProductInfo.do?ProductId=${pros.id}">
-								<img height="50" width="50" src="<%=path%>${pros.filePath}" /></a>
+								<a href="toProductInfo.do?ProductId=${pros.id}"> <b
+									class="b_img"> <c:if test="${pros.productPics!=null}">
+											<c:forEach items="${pros.productPics}" var="pros2"
+												varStatus="status2">
+												<c:if test="${status2.count==1}">
+													<img height="58" width="58"
+														src="<%=path%>${pros2.filePath}" />
+												</c:if>
+											</c:forEach>
+										</c:if> <%-- <img height="68" width="68"src="<%=path%>${pros.filePath}" /> --%>
 								</b>
+								</a>
 							</dt>
 							<dd>
 								<a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a><b></b>
 							</dd>
 						</dl>
 						<!-- 华丽的分割线 -->
-						<hr class="hr_hot_line"/>
-						</c:if>
+						<hr class="hr_hot_line" />
 					</c:forEach>
 					<div style="padding-bottom: 10px;"></div>
 				</div>
 			</div>
-			
-			<!--  最近浏览 -->
-		<div class="recvisit">
-				<span class="scan"  >最近浏览</span> <!-- <span class="more">>>更多</span> -->
-				 <div class="goods_list">
-					<c:forEach items="${viewProducts}" var="pros" varStatus="status1">
-						<dl>
-							<dt><a href="toProductInfo.do?ProductId=${pros.id}">
-								<b class="b_img">
-								<c:if test="${pros.productPics!=null}">
-								<c:forEach items="${pros.productPics}" var="pros2" varStatus="status2">
-								<c:if test="${status2.count==1}">
-								<img height="58" width="58"src="<%=path%>${pros2.filePath}" />
-								</c:if>
-								</c:forEach>
-								</c:if>													        
-								<%-- <img height="68" width="68"src="<%=path%>${pros.filePath}" /> --%>
-								</b>
-								</a>
-							</dt>							
-							<dd>											
-								<a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a><b></b>						
-							</dd>								
-						</dl>
-						<!-- 华丽的分割线 -->
-						<hr class="hr_hot_line"/>
-					</c:forEach>
-					<div style="padding-bottom: 10px;"></div>
-				</div>
-			</div>
-			
-			
+
+
 		</div>
-		
+
 
 		<div class="detail_right">
 			<div class="loca2">
@@ -653,19 +660,23 @@ td{
 								<c:if test="${proca.id == cateGorySunId }">${proca.cateGoryName}
 							</c:if>
 							</c:forEach>
-					</c:if> </strong> </span>
+					</c:if> </strong>
+				</span>
 			</div>
 			<div class="xbt_div">
 				<div class="xbt">精品推荐</div>
 			</div>
 
-			<div class="zzsc" style="overflow: visible;"> 
-				<c:forEach items="${subpageShows}" var="pros"  varStatus="status1">
-					<c:if test="${ status1.count <=4}">  <!-- fn:length(subpageShows) -->
-						<div class="case_li" style='${ status1.count eq  4 ? "margin-left: 0px; margin-right:0px;" : "margin-right: 25px;" }  overflow:visible; '>
-						   <div >
-							   <a href="toProductInfo.do?ProductId=${pros.id}"> <!--   --> 
-								<img width="170" height="165" src="<%=path%>${pros.filePath}" /></a> <%--  /ssm/img/167/104.jpg  --%>
+			<div class="zzsc" style="overflow: visible;">
+				<c:forEach items="${subpageShows}" var="pros" varStatus="status1">
+					<c:if test="${ status1.count <=4}">
+						<!-- fn:length(subpageShows) -->
+						<div class="case_li"
+							style='${ status1.count eq  4 ? "margin-left: 0px; margin-right:0px;" : "margin-right: 25px;" }  overflow:visible; '>
+							<div>
+								<a href="toProductInfo.do?ProductId=${pros.id}"> <!--   -->
+									<img width="170" height="165" src="<%=path%>${pros.filePath}" /></a>
+								<%--  /ssm/img/167/104.jpg  --%>
 
 								<%-- 灰色半透明遮罩层<div class="zzcs_li_txt" style="width: 171px; border: 0px;">
 									<div class="span_mr_txt"><a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a></div>
@@ -673,31 +684,43 @@ td{
 							</div>
 							<%--询价按钮 <div class="span_detail_new">
 									<a href="toProductInfo.do?ProductId=${pros.id}" class="button orange medium"> 询价</a>
-								</div> --%> 
-								<div class="span_mr_txt">
-								<p><a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a></p>
+								</div> --%>
+							<div class="span_mr_txt">
+								<p>
+									<a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a>
+								</p>
 								<p class="yangs">${pros.productTitle}</p>
-								<p style="color: #c4c4c4;">已有<span style="color: #0e5380; font-weight: 700;">1376</span>人评价</p>
-								</div>
-					
-								<div class="div_anniu">
-			                        <table cellpadding=0 cellspacing=0>
-			                          <tr>
-			                            <td rowspan="2"><input class="input_txt_sx" type="text" id="inps${pros.id}"  value="0"
-									onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
-									onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')" ></td>
-			                            <td><input class="input_but_sx" type="button" style="background-image:url(<%=path%>/images/shang.png);" onclick="doits(1,${pros.id})"/></td>
-			                          </tr>
-			                          <tr>
-			                            <td><input class="input_but_sx" type="button" style="background-image:url(<%=path%>/images/xia.png);" onclick="doits(-1,${pros.id})"/></td>
-			                          </tr>
-			                       </table>
-			                    </div>
-			                    <div class="div_anniu"><a href="javascript:xunjia(${pros.id},0);" class="button orange medium"> 询价</a></div>
-								
+								<p style="color: #c4c4c4;">
+									已有<span style="color: #0e5380; font-weight: 700;">1376</span>人评价
+								</p>
+							</div>
+
+							<div class="div_anniu">
+								<table cellpadding=0 cellspacing=0>
+									<tr>
+										<td rowspan="2"><input class="input_txt_sx" type="text"
+											id="inps${pros.id}" value="0"
+											onkeyup="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"
+											onafterpaste="this.value=this.value.replace(/^0/,'').replace(/\D/g,'')"></td>
+										<td><input class="input_but_sx" type="button"
+											style="background-image:url(<%=path%>/images/shang.png);"
+											onclick="doits(1,${pros.id})" /></td>
+									</tr>
+									<tr>
+										<td><input class="input_but_sx" type="button"
+											style="background-image:url(<%=path%>/images/xia.png);"
+											onclick="doits(-1,${pros.id})" /></td>
+									</tr>
+								</table>
+							</div>
+							<div class="div_anniu">
+								<a href="javascript:xunjia(${pros.id},0);"
+									class="button orange medium"> 询价</a>
+							</div>
+
 						</div>
 					</c:if>
-					
+
 				</c:forEach>
 			</div>
 
@@ -711,12 +734,14 @@ td{
 
 					<c:forEach items="${productCategorys}" var="proca">
 						<c:if test="${proca.parentCateGory == cateGoryId }">
-						<% int i=1; %>
+							<% int i=1; %>
 							<c:forEach items="${productCategorys}" var="pcs">
-								<c:if test="${pcs.parentCateGory == proca.id and proca.id==cateGorySunId}">
-									
+								<c:if
+									test="${pcs.parentCateGory == proca.id and proca.id==cateGorySunId}">
+
 									<li class="select-list">
-										<dl id="select<%=i%>"><% i++; %>
+										<dl id="select<%=i%>">
+											<% i++; %>
 											<dt>
 												<a title="${pcs.cateGoryName}" href="javascript:void(0);">${pcs.cateGoryName}</a>
 											</dt>
@@ -740,12 +765,13 @@ td{
 				</ul>
 			</div>
 			<!-- 筛选商品展示 -->
-			<div id="search" > <!--  id 为 search -->
-			   <!--  测试数据；-->
-			  
+			<div id="search">
+				<!--  id 为 search -->
+				<!--  测试数据；-->
+
 				<!--  测试数据； end..-->
-					
-			<%-- <c:forEach items="${searchProducts}" var="pros">
+
+				<%-- <c:forEach items="${searchProducts}" var="pros">
 					<div class="case_li" style="float:left">
 					
 					<a href="toProductInfo.do?ProductId=${pros.id}">
@@ -758,14 +784,14 @@ td{
 								<a href="toProductInfo.do?ProductId=${pros.id}" class="button orange medium"> 询价</a>
 							</div>
 					</div>
-				</c:forEach> --%>			
+				</c:forEach> --%>
 			</div>
 			<!-- 分页 -->
-			<div class="pagin" style="clear:left">
-<!-- 			<div class="meneame" style="float: left;" >
+			<div class="pagin" style="clear: left">
+				<!-- 			<div class="meneame" style="float: left;" >
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 		
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 			</div>
 			<%-- <div class="pagin" style="clear:both">
     	   		<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
@@ -800,9 +826,9 @@ td{
         </ul>
    			 </div> --%>
 		</div>
-		
+
 	</div>
-<%-- <script type="text/javascript" src="<%=path%>/js/redjs/script.js"></script> --%>
+	<%-- <script type="text/javascript" src="<%=path%>/js/redjs/script.js"></script> --%>
 	<script type="text/javascript">
 		$(".all-sort-list > .item").hover(
 				function() {

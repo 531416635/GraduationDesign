@@ -109,7 +109,7 @@ body {
 
 </head>
 <body>
-	<div id="div1" style="margin:0 auto;">
+	<div id="div1" style="margin: 0 auto;">
 		<form id="form" action="updateGroupon.do"
 			enctype="multipart/form-data" method="post">
 
@@ -117,7 +117,8 @@ body {
 
 				<input type="hidden" name="id" value="${g.id }" />
 				<input type="hidden" name="productId" value="${g.ProductID }" />
-				<input type="hidden" name="Validity" id="Validity" value="${g.ValidityTime }" />
+				<input type="hidden" name="Validity" id="Validity"
+					value="${g.ValidityTime }" />
 				<input type="hidden" name="SoldOut" value="${g.SoldOut }" />
 
 				<table border="0" cellpadding="0" cellspacing="0">
@@ -132,9 +133,9 @@ body {
 					<tr class="info">
 						<th>团购价：</th>
 						<td><input type="text" name="GrouponPrice" id="GrouponPrice"
-						onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
-				onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"	value="${g.GrouponPrice }" />
-						</td>
+							onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
+							onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
+							value="${g.GrouponPrice }" /></td>
 						<th>成交数：</th>
 						<td><c:if test="${g.SoldOut==null }">0</c:if> <c:if
 								test="${g.SoldOut!=null }">${g.SoldOut }</c:if>&nbsp;${g.ProductUnit
@@ -145,9 +146,8 @@ body {
 					<tr class="info">
 						<th>有效期限：</th>
 						<td><input onclick="WdatePicker()" name="ValidityTime"
-							onchange="changeExpectTime('${g.id}')"
-							id="ValidityTime_${g.id}" value="${g.ValidityTime }" />
-						</td>
+							onchange="changeExpectTime('${g.id}')" id="ValidityTime_${g.id}"
+							value="${g.ValidityTime }" /></td>
 						<th>团购状态：</th>
 						<td><input type="checkbox" name="Status"
 							<c:if test='${g.Status==2}'> checked="checked"</c:if> value="2" />
@@ -160,17 +160,18 @@ body {
 						</td>
 						<th>节省：</th>
 						<td><input type="text" name="Spare" value="${g.Spare }" />
-					</tr>				
+					</tr>
 					<tr>
 						<th>图片展示：</th>
-						<td><c:if test="${g.IsDefault==1}"><img src="<%=path %>${g.filePath}" /></c:if>
-						</td>
+						<td><c:if test="${g.IsDefault==1}">
+								<img src="<%=path %>${g.filePath}" />
+							</c:if></td>
 					</tr>
 					<tr class="info">
 						<th>购买须知:</th>
 						<td colspan="3"><textarea cols="100" id="content"
-								style="width:90%; height:auto;min-height:300px;" name="Remark">${g.Remark}</textarea>
-						</td>
+								style="width: 90%; height: auto; min-height: 300px;"
+								name="Remark">${g.Remark}</textarea></td>
 					</tr>
 				</table>
 

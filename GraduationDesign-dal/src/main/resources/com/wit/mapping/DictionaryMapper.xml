@@ -22,7 +22,8 @@
 	<!-- 查询所有父类字典 -->
 	<select id="findParentDic" resultType="com.wit.model.Dictionarys">
 		SELECT
-		DISTINCT d1.id,d1.dicName,d1.dicCode,d1.dicValue,d1.dicParent,d1.dicType
+		DISTINCT
+		d1.id,d1.dicName,d1.dicCode,d1.dicValue,d1.dicParent,d1.dicType
 		FROM
 		Dictionarys d1 LEFT JOIN Dictionarys d2
 		on d1.id = d2.dicParent
@@ -46,13 +47,13 @@
 		)
 	</insert>
 	<!-- 根据Id查询字典 -->
-	<select id="findById" parameterType="Integer"
-		resultType="com.wit.model.Dictionarys">
+	<select id="findById" parameterType="Integer" resultType="com.wit.model.Dictionarys">
 		SELECT
 		id,dicName,dicCode,dicValue,dicParent,dicType
 		FROM
 		Dictionarys
-		WHERE id=#{id}
+		WHERE
+		id=#{id}
 	</select>
 
 	<!-- 根据字典类型查询字典 -->
@@ -68,8 +69,7 @@
 	<resultMap type="com.wit.model.Dictionarys" id="pageDicMap">
 		<id property="id" column="id" />
 		<collection property="dictionarys" column="id"
-			javaType="java.util.ArrayList" select="findDictionarys"
-			ofType="com.wit.model.Dictionarys">
+			javaType="java.util.ArrayList" select="findDictionarys" ofType="com.wit.model.Dictionarys">
 		</collection>
 	</resultMap>
 	<!-- 废弃的查询 -->
@@ -112,7 +112,8 @@
 		resultType="com.wit.model.Dictionarys">
 		SELECT DISTINCT
 		d.DicName,d.DicCode,d.DicParent,d.DicType,d.DicValue,d.ID
-		from Dictionarys d
+		from
+		Dictionarys d
 		INNER JOIN Dictionarys ds WHERE d.DicParent = #{id}
 	</select>
 
@@ -123,5 +124,5 @@
 		Dictionarys d
 		WHERE d.DicParent is null and d.id != 40
 	</select>
-	
+
 </mapper>

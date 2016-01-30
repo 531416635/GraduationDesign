@@ -37,66 +37,53 @@ body {
 .info td {
 	text-align: left;
 }
+
 div {
 	position: absolute;
 	top: 40%;
 	margin-top: -50px;
-	left:40%;
+	left: 40%;
 	margin-left: -50px;
 }
 </style>
 </head>
 <body>
-<div>
-	<form action="findSupplier.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<th>商品追溯id</th>
-				<td>
-				<span>${productTransfer.id}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>供应商商品id</th>
-				<td>
-				<span>${productTransfer.companyProductId}</span>
-				</td>
+	<div>
+		<form action="findSupplier.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>商品追溯id</th>
+					<td><span>${productTransfer.id}</span></td>
+				</tr>
+				<tr>
+					<th>供应商商品id</th>
+					<td><span>${productTransfer.companyProductId}</span></td>
 
-			</tr>
-			<tr>
-				<th>中转地</th>
-				<td>
-				<span>${productTransfer.transitShipment}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>联系人</th>
-				<td>
-				<span>${productTransfer.linkMan}</span>
-				</td>
+				</tr>
+				<tr>
+					<th>中转地</th>
+					<td><span>${productTransfer.transitShipment}</span></td>
+				</tr>
+				<tr>
+					<th>联系人</th>
+					<td><span>${productTransfer.linkMan}</span></td>
 
-			</tr>
-			<tr>
-				<th>联系电话</th>
-				<td>
-				<span>${productTransfer.linkTel}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>到达时间</th>
-				<td>
-				<span>${productTransfer.arrivalTime}</span>
-				</td>
-			</tr>
-			<tr>
-				<th>批次</th>
-				<td>
-				<span>${productTransfer.batch}</span>
-				</td>
-				
-			</tr>
-		</table>
-	</form>
+				</tr>
+				<tr>
+					<th>联系电话</th>
+					<td><span>${productTransfer.linkTel}</span></td>
+				</tr>
+				<tr>
+					<th>到达时间</th>
+					<td><span>${productTransfer.arrivalTime}</span></td>
+				</tr>
+				<tr>
+					<th>批次</th>
+					<td><span>${productTransfer.batch}</span></td>
+
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

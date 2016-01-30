@@ -34,7 +34,7 @@
 		alert("添加成功，请重新申请发票");
 		location.href="/ssm/supplys/sysAddTitle.do?companyId="+companyId+"&&title="+encodeURI(encodeURI(title));
 	}
-</script>	
+</script>
 <!-- <style type="text/css">
 div {
 	position: absolute;
@@ -48,51 +48,47 @@ div {
 </head>
 <body>
 	<div>
-			<table border="0" cellpadding="0" cellspacing="0">
-				<tr class="info">
-					<th>发票类型:</th>
-					<td><input type="radio" name="invoiceType" value="1" checked="checked"/><span>增值税发票</span>
-						<input type="radio" name="invoiceType" value="2" /><span>普通发票</span>
-						<input type="radio" name="invoiceType" value="3" /><span>专业发票</span>
-					</td>
-				</tr>
-				<tr class="info">
-					<th>发票抬头:</th>
-					<td>
-						<select name="InvoiceTitle" id="titleValue">
-									<c:forEach items="${invoice}" var="t">
-									<c:if test="${t.invoiceTitle != null && t.invoiceTitle != ''}">
-									<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
-									</c:if> 
-									</c:forEach>
-							</select>
-					</td>
-				</tr>
-				<tr class="info">
-					<th>增加默认发票抬头:</th>
-					<td><input type="text" id="title"/><input type="button" value="增加" onclick="addInvoiceTitle(${tmpCompanyId},$('#title').val());"/>
-					</td>
-				</tr>
-				<tr class="info">
-					<th>发票金额:</th>
-					<td>${tmpSettledAmount}
-					</td>
-				</tr>
-				<tr class="info" style="display: none">
-					<th>公司ID:</th>
-					<td>${tmpCompanyId}
-					</td>
-				</tr>
-				<tr class="info" style="display: none">
-					<th>对账单号:</th>
-					<td>${tmpStatementId}
-					</td>
-				</tr>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr class="info">
+				<th>发票类型:</th>
+				<td><input type="radio" name="invoiceType" value="1"
+					checked="checked" /><span>增值税发票</span> <input type="radio"
+					name="invoiceType" value="2" /><span>普通发票</span> <input
+					type="radio" name="invoiceType" value="3" /><span>专业发票</span></td>
+			</tr>
+			<tr class="info">
+				<th>发票抬头:</th>
+				<td><select name="InvoiceTitle" id="titleValue">
+						<c:forEach items="${invoice}" var="t">
+							<c:if test="${t.invoiceTitle != null && t.invoiceTitle != ''}">
+								<option value="${t.invoiceTitle}">${t.invoiceTitle}</option>
+							</c:if>
+						</c:forEach>
+				</select></td>
+			</tr>
+			<tr class="info">
+				<th>增加默认发票抬头:</th>
+				<td><input type="text" id="title" /><input type="button"
+					value="增加"
+					onclick="addInvoiceTitle(${tmpCompanyId},$('#title').val());" /></td>
+			</tr>
+			<tr class="info">
+				<th>发票金额:</th>
+				<td>${tmpSettledAmount}</td>
+			</tr>
+			<tr class="info" style="display: none">
+				<th>公司ID:</th>
+				<td>${tmpCompanyId}</td>
+			</tr>
+			<tr class="info" style="display: none">
+				<th>对账单号:</th>
+				<td>${tmpStatementId}</td>
+			</tr>
 
-			</table>
-			<input type="button" value="提交" 
-			onclick='tijiao($("input[name=invoiceType]:checked").val(),$("#titleValue option:selected").val(),${tmpSettledAmount},${tmpCompanyId},${tmpStatementId})'/>&nbsp;
-			<input type="reset" value="取消" onclick="history.back()" />
+		</table>
+		<input type="button" value="提交"
+			onclick='tijiao($("input[name=invoiceType]:checked").val(),$("#titleValue option:selected").val(),${tmpSettledAmount},${tmpCompanyId},${tmpStatementId})' />&nbsp;
+		<input type="reset" value="取消" onclick="history.back()" />
 	</div>
 </body>
 </html>

@@ -10,11 +10,11 @@
 	</select>
 
 	<!--根据ID查找 -->
-	<select id="findById" parameterType="Integer"
-		resultMap="companyProductPriceMap">
+	<select id="findById" parameterType="Integer" resultMap="companyProductPriceMap">
 		SELECT
 		ID, CompanyProductID, MinNum, MaxNum, Price,
-		GrossmMarginPriceID, UserID, CompanyProductCode
+		GrossmMarginPriceID,
+		UserID, CompanyProductCode
 		FROM
 		CompanyProductPrice
 		WHERE
@@ -22,26 +22,33 @@
 	</select>
 	<!-- companyProductPriceMap -->
 	<resultMap type="com.wit.model.CompanyProductPrice" id="companyProductPriceMap">
-        <association property="grossMargins" column="grossmMarginPriceId"
-            javaType="com.wit.model.GrossMargin" select="findGrossmMarginPrice">
-        </association> 
-    </resultMap>
-     <!-- findGrossmMarginPrice -->
-    <select id="findGrossmMarginPrice" parameterType="Integer" resultType="com.wit.model.GrossMargin">
-	   select ID, GrossMargin, ProductID, SupplierID, StartTime, EndTime, Status, CreateBy from GrossMargin where id=#{grossmMarginPriceId}
+		<association property="grossMargins" column="grossmMarginPriceId"
+			javaType="com.wit.model.GrossMargin" select="findGrossmMarginPrice">
+		</association>
+	</resultMap>
+	<!-- findGrossmMarginPrice -->
+	<select id="findGrossmMarginPrice" parameterType="Integer"
+		resultType="com.wit.model.GrossMargin">
+		select ID, GrossMargin, ProductID, SupplierID, StartTime,
+		EndTime, Status,
+		CreateBy from GrossMargin where
+		id=#{grossmMarginPriceId}
 	</select>
 	<!--根据IDs查找 -->
 	<select id="findByIds" parameterType="hashmap"
 		resultType="com.wit.model.CompanyProductPrice">
 		SELECT
-		c1.ID, c1.CompanyProductID, c1.MinNum, c1.MaxNum, c1.Price,
+		c1.ID, c1.CompanyProductID, c1.MinNum, c1.MaxNum,
+		c1.Price,
 		c1.GrossmMarginPriceID, c1.UserID, c1.CompanyProductCode
 		FROM
-		CompanyProductPrice as c1 join CompanyProducts as c2 on c1.CompanyProductID=c2.id 
+		CompanyProductPrice as c1 join CompanyProducts as c2 on
+		c1.CompanyProductID=c2.id
 		WHERE
-		c2.CompanyID=#{companyId} and c2.ProductID=#{productId}
+		c2.CompanyID=#{companyId} and
+		c2.ProductID=#{productId}
 	</select>
-	
+
 	<!--根据companyProductID查找 -->
 	<select id="findByCompanyProductId" parameterType="Integer"
 		resultType="com.wit.model.CompanyProductPrice">
@@ -62,7 +69,8 @@
 		FROM
 		CompanyProductPrice
 		WHERE
-		CompanyProductID=#{id} order by ID limit #{page.begin},#{page.pageNum};
+		CompanyProductID=#{id} order by ID limit
+		#{page.begin},#{page.pageNum};
 	</select>
 
 	<!--修改 -->
@@ -79,23 +87,27 @@
 
 	<!--删除 -->
 	<delete id="delete" parameterType="Integer">
-		DELETE from CompanyProductPrice
+		DELETE from
+		CompanyProductPrice
 		WHERE
 		ID=#{id}
 	</delete>
-	<!-- 根据ID字符数组删除数据  -->
+	<!-- 根据ID字符数组删除数据 -->
 	<delete id="deleteByIds" parameterType="string">
-		delete from CompanyProductPrice where FIND_IN_SET(id,#{ids})
+		delete from
+		CompanyProductPrice where FIND_IN_SET(id,#{ids})
 	</delete>
 
 	<!--增加 -->
 	<insert id="insert" parameterType="com.wit.model.CompanyProductPrice">
 		INSERT INTO
 		CompanyProductPrice (
-		 CompanyProductID, MinNum, MaxNum, Price, UserID,
+		CompanyProductID, MinNum, MaxNum, Price, UserID,
 		CompanyProductCode
 		) VALUES (
-		 #{companyProductId}, #{minNum}, #{maxNum}, #{price},#{userId}, #{companyProductCode}
+		#{companyProductId}, #{minNum}, #{maxNum},
+		#{price},#{userId},
+		#{companyProductCode}
 		)
 	</insert>
 	<!-- findRows -->

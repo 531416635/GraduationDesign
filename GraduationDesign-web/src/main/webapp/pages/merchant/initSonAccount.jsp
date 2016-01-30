@@ -50,20 +50,21 @@
             }
 </script>
 <style type="text/css">
- td{
+td {
 	text-align: center;
 }
 </style>
 </head>
 <body>
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">账户管理 ></span><span
-				class="lo2"> 子账户密码初始化</span> 
+				class="lo2"> 子账户密码初始化</span>
 		</div>
-		
+
 		<div>
-		<table width="100%" id="person" style="" >
+			<table width="100%" id="person" style="">
 				<thead>
 					<tr>
 						<!-- <th><input name="ids" id="checkAll" type="checkbox"
@@ -77,17 +78,17 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${users}" var="s">
-					
+
 						<tr>
-							<td style="display: none"><input name="userId" value="${s.ID}"/></td>
+							<td style="display: none"><input name="userId"
+								value="${s.ID}" /></td>
 							<%-- <td><input type="checkbox" name="box" value="${c.id}" /></td> --%>
 							<td>${s.UserCode}</td>
 							<td>${s.DepartmentName}</td>
 							<td>${s.JobName}</td>
 							<td>${s.RoleName}</td>
-							<td>
-								<input type="button" value="初始化密码"  onclick="chushi(${s.ID})"/>
-							</td>
+							<td><input type="button" value="初始化密码"
+								onclick="chushi(${s.ID})" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -135,7 +136,7 @@
 				</ul>
 			</div>
 		</div>
-</div>
+	</div>
 
 </body>
 </html>

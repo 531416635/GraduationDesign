@@ -22,25 +22,27 @@ bkLib.onDomLoaded(function() {
 	});
 </script>
 <style type="text/css">
-#yangs{
+#yangs {
 	position: absolute;
 	top: 10%;
 	margin-top: -50px;
 	left: 20%;
 	margin-left: -50px;
 }
-#title{
+
+#title {
 	font-size: 24px;
 	font-style: inherit;
-	font-family:"Microsoft YaHei",微软雅黑;
+	font-family: "Microsoft YaHei", 微软雅黑;
 }
 </style>
 </head>
 
 <body>
 	<div id="yangs">
-		<input type="text" name="title" id="title" value="${faq.title}" readonly="readonly"/><br/>
-		<div id="content" cols="100" >${faq.answer}</div>
+		<input type="text" name="title" id="title" value="${faq.title}"
+			readonly="readonly" /><br />
+		<div id="content" cols="100">${faq.answer}</div>
 	</div>
 </body>
 </html>

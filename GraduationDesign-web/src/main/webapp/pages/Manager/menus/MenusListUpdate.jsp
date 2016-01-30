@@ -79,14 +79,16 @@ body {
 						<c:forEach items="${menusLists}" var="menu">
 							<c:choose>
 								<c:when test="${menu.id==menus.parentMenu}">
-									<option value="${menu.id}" selected="selected"> ${menu.patformName}：${menu.menuName}</option>
+									<option value="${menu.id}" selected="selected">
+										${menu.patformName}：${menu.menuName}</option>
 								</c:when>
 								<c:otherwise>
-									<option value="${menu.id}"> ${menu.patformName}：${menu.menuName}</option>
+									<option value="${menu.id}">
+										${menu.patformName}：${menu.menuName}</option>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-				</select><a style="color:#FF0000">*</a></td>
+				</select><a style="color: #FF0000">*</a></td>
 			</tr>
 			<tr class="info">
 				<th>状态:</th>
@@ -155,33 +157,30 @@ body {
 							<input type="radio" name="menuType" value="3" />
 							<span>按钮</span>
 						</c:otherwise>
-					</c:choose>
-				</td>
+					</c:choose></td>
 			</tr>
 
 			<tr class="info">
 				<th>所属平台:</th>
 				<td><c:choose>
 						<c:when test="${menus.patform==1}">
-							<input type="radio" name="patform" value="1"  checked="checked" />
+							<input type="radio" name="patform" value="1" checked="checked" />
 							<span>管理平台</span>
 						</c:when>
 						<c:otherwise>
 							<input type="radio" name="patform" value="1" />
 							<span>管理平台</span>
 						</c:otherwise>
-					</c:choose>
-					 <c:choose>
+					</c:choose> <c:choose>
 						<c:when test="${menus.patform==2}">
-							<input type="radio" name="patform" value="2"  checked="checked" />
+							<input type="radio" name="patform" value="2" checked="checked" />
 							<span>商户管理平台</span>
 						</c:when>
 						<c:otherwise>
 							<input type="radio" name="patform" value="2" />
 							<span>商户管理平台</span>
 						</c:otherwise>
-					</c:choose> 
-					<%-- 
+					</c:choose> <%-- 
 					<c:choose>
 						<c:when test="${menus.patform==3}">
 							<input type="radio" name="patform" value="3"  checked="checked" />
@@ -192,9 +191,7 @@ body {
 							<span>采购商平台</span>
 						</c:otherwise>
 					</c:choose>
-					--%>
-					
-					</td>
+					--%></td>
 			</tr>
 
 		</table>

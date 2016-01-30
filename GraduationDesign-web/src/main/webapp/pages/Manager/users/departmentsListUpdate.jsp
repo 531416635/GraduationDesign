@@ -69,8 +69,7 @@ div {
 				</tr>
 				<tr class="info">
 					<th>部门名称:</th>
-					<td> <select
-						name="departmentName" id="departmentName">
+					<td><select name="departmentName" id="departmentName">
 							<c:forEach items="${departList }" var="p">
 								<option value='${p.departmentName }'
 									<c:if test="${p.departmentName==db.DepartmentName }"> selected="selected"</c:if>>
@@ -91,16 +90,14 @@ div {
 				</tr>
 				<tr class="info">
 					<th>状态:</th>
-					<td>
-					<c:choose>
+					<td><c:choose>
 							<c:when test="${db.Status==0}">
 								<input type="radio" name="status" value="0" checked="checked" />未启用
 							</c:when>
 							<c:otherwise>
 								<input type="radio" name="status" value="0" />未启用
 							</c:otherwise>
-						</c:choose> 
-						<c:choose>
+						</c:choose> <c:choose>
 							<c:when test="${db.Status==1}">
 								<input type="radio" name="status" value="1" checked="checked" />已启用
 							</c:when>

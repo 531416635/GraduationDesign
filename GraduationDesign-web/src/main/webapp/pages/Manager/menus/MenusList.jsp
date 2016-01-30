@@ -187,8 +187,7 @@ div.meneame span {
 			<thead>
 				<tr>
 					<th><input id="checkAll" type="checkbox" name="" value=""
-						onclick="checkAll();" />
-					</th>
+						onclick="checkAll();" /></th>
 					<th>ID</th>
 					<th>菜单名称</th>
 					<!-- <th>菜单简码</th> -->
@@ -219,8 +218,7 @@ div.meneame span {
 				</tr> -->
 				<c:forEach items="${dispatch}" var="dis">
 					<tr>
-						<td><input name="box" type="checkbox" value="${dis.id}" />
-						</td>
+						<td><input name="box" type="checkbox" value="${dis.id}" /></td>
 						<td>${dis.id}</td>
 						<td>${dis.menuName}</td>
 						<%-- <td>${dis.menuCode}</td> --%>
@@ -262,24 +260,25 @@ div.meneame span {
                         			供应商
                         		</c:when> --%>
 							</c:choose></td>
-						<td><a href="deleteMenus.do?id=${dis.id}&&menuType=${dis.menuType}" class="tablelink">
-								删除 </a> <a href="toMenusListUpdate.do?id=${dis.id}"
-							class="tablelink">修改</a>
+						<td><a
+							href="deleteMenus.do?id=${dis.id}&&menuType=${dis.menuType}"
+							class="tablelink"> 删除 </a> <a
+							href="toMenusListUpdate.do?id=${dis.id}" class="tablelink">修改</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 分页 -->
-							<c:if test="${patform==1}">
-									<input type="hidden"  value="manegerMenus" id="patform"/>
-								</c:if>
-								<c:if test="${patform==2}">
-								<input type="hidden"  value="purchaserMenus" id="patform"/>	
-								</c:if>
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<c:if test="${patform==1}">
+			<input type="hidden" value="manegerMenus" id="patform" />
+		</c:if>
+		<c:if test="${patform==2}">
+			<input type="hidden" value="purchaserMenus" id="patform" />
+		</c:if>
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 		<%-- <div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页

@@ -63,11 +63,10 @@ div.meneame span {
 
 		<div class="tools">
 			<form action="searchBuyerContractInfo.do" method="post">
-				<table style="border:1px solid #999;padding:3px;">
+				<table style="border: 1px solid #999; padding: 3px;">
 					<tr>
-						<td><input type="text" name="companyName" value="${companyName}" /><input
-							type="submit" value="搜索" />
-						</td>
+						<td><input type="text" name="companyName"
+							value="${companyName}" /><input type="submit" value="搜索" /></td>
 					</tr>
 				</table>
 			</form>
@@ -99,26 +98,22 @@ div.meneame span {
 						<td>${c.registeredCapital}</td>
 						<td>${c.companyTel}</td>
 						<td>${c.companyWebsite}</td>
-						<td>
-						<c:choose>
-						<c:when test="${c.status==0}">未认证</c:when>
-						<c:when test="${c.status==1}">已认证</c:when>
-						</c:choose>
-						</td>
+						<td><c:choose>
+								<c:when test="${c.status==0}">未认证</c:when>
+								<c:when test="${c.status==1}">已认证</c:when>
+							</c:choose></td>
 						<td>${c.companyContact}</td>
-						<td><a
-							class="tablelink"
-							href="/ssm/buyerContractInfo.do?companyId=${c.id}">合同信息</a>
-						</td>
+						<td><a class="tablelink"
+							href="/ssm/buyerContractInfo.do?companyId=${c.id}">合同信息</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
-			<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 		<%-- <div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
@@ -177,8 +172,7 @@ div.meneame span {
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认对信息的修改 ？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

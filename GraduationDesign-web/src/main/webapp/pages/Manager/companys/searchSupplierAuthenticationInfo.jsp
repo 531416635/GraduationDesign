@@ -18,11 +18,10 @@
 
 		<div class="tools">
 			<form action="searchSupplierAuthenticationInfo.do" method="post">
-				<table style="border:1px solid #999;padding:3px;">
+				<table style="border: 1px solid #999; padding: 3px;">
 					<tr>
-						<td><input type="text" name="companyName" value="${companyName}" /><input
-							type="submit" value="搜索" />
-						</td>
+						<td><input type="text" name="companyName"
+							value="${companyName}" /><input type="submit" value="搜索" /></td>
 					</tr>
 				</table>
 			</form>
@@ -115,8 +114,7 @@
 			</div>
 
 			<div class="tipinfo">
-				<span><img src="../images/ticon.png" />
-				</span>
+				<span><img src="../images/ticon.png" /> </span>
 				<div class="tipright">
 					<p>是否确认对信息的修改 ？</p>
 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>

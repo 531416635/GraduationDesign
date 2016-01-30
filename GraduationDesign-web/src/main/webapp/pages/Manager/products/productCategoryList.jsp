@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,11 +14,16 @@
 			+ path + "/";
 	String productCategorys =(String)request.getAttribute("productCategorys");
 %>
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/zTree/jquery.ztree.all-3.5.min.js"></script>
-<link href="<%=path%>/js/zTree/zTreeStyle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
-<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/zTree/jquery.ztree.all-3.5.min.js"></script>
+<link href="<%=path%>/js/zTree/zTreeStyle.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript"
+	src="<%=path%>/js/artDialog/dialog-plus-min.js"></script>
+<link href="<%=path%>/js/artDialog/ui-dialog.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript">  
     var zTree;  
     var setting = {
@@ -367,9 +373,9 @@
 		});
       }
      
-    </script>   
+    </script>
 </head>
-    
+
 
 <body>
 	<ul id="tree" class="ztree"></ul>

@@ -3,8 +3,7 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.wit.dao.GrouponDao">
 	<!-- 后端列出商品 -->
-	<select id="findAll" parameterType="hashMap"
-		resultType="hashMap">
+	<select id="findAll" parameterType="hashMap" resultType="hashMap">
 		SELECT
 		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,g.ValidityTime
 		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut
@@ -12,20 +11,21 @@
 		LEFT JOIN
 		Products p ON g.ProductID =p.id
 		<if test="productName!=null and productName!=''">
-		where p.ProductName like CONCAT('%',#{productName},'%')
+			where p.ProductName like CONCAT('%',#{productName},'%')
 		</if>
 		order by ID limit #{page.begin},#{page.pageNum};
 	</select>
 
-	<select id="findById" parameterType="int"
-		resultType="hashMap">
+	<select id="findById" parameterType="int" resultType="hashMap">
 		select
 		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,pc.filePath,g.ValidityTime
 		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut,pc.IsDefault
-		from groupon g
+		from
+		groupon g
 		LEFT JOIN
 		Products p ON g.ProductID =p.id
-		LEFT JOIN Productpic pc ON g.ProductID
+		LEFT JOIN Productpic
+		pc ON g.ProductID
 		= pc.ProductID
 		where pc.IsDefault=1 and g.id=#{id}
 	</select>
@@ -44,7 +44,8 @@
 	<!-- 根据ID字符数组删除数据 -->
 	<delete id="deleteByIds" parameterType="string">
 		delete from Groupon
-		where FIND_IN_SET(id,#{ids})
+		where
+		FIND_IN_SET(id,#{ids})
 	</delete>
 	<insert id="insert" parameterType="com.wit.model.Groupon">
 		insert into Groupon(
@@ -87,21 +88,25 @@
 		select
 		g.id,g.ProductID,p.ProductName,p.ProductUnit,p.UnitPrice,g.GrouponPrice,pc.filePath,g.ValidityTime
 		,g.Remark,g.Discount,g.Spare,g.Status,g.SoldOut,p.productCategory
-		from groupon g
+		from
+		groupon g
 		LEFT JOIN
 		Products p ON g.ProductID =p.id
-		LEFT JOIN Productpic pc ON g.ProductID
+		LEFT JOIN Productpic
+		pc ON g.ProductID
 		= pc.ProductID
-		LEFT JOIN CompanyProducts c ON g.ProductID
+		LEFT JOIN CompanyProducts c ON
+		g.ProductID
 		= c.ProductID
-		where pc.IsDefault=1 and g.Status=2 
+		where pc.IsDefault=1 and g.Status=2
 		<if test="cateGoryId!=null and cateGoryId!=''">
 			and FIND_IN_SET(#{cateGoryId},p.productCategory)
 		</if>
-		and g.ProductID	= c.ProductID  GROUP BY c.ProductID
-		limit #{page.begin},#{page.pageNum}
+		and g.ProductID = c.ProductID GROUP BY c.ProductID
+		limit
+		#{page.begin},#{page.pageNum}
 	</select>
-	
+
 	<!--团购热销商品显示 findGrouponHot -->
 	<select id="findGrouponHot" parameterType="hashMap" resultType="hashMap">
 		select
@@ -114,12 +119,13 @@
 		= pc.ProductID
 		LEFT JOIN CompanyProducts c ON g.ProductID
 		= c.ProductID
-		where pc.IsDefault=1 and g.Status=2  and p.IsHotShow = 1
+		where pc.IsDefault=1 and g.Status=2 and p.IsHotShow = 1
 		<if test="cateGoryId!=null and cateGoryId!=''">
 			and FIND_IN_SET(#{cateGoryId},p.productCategory)
 		</if>
-		and g.ProductID	= c.ProductID  GROUP BY c.ProductID
-		limit #{begin},#{pageNum}
+		and g.ProductID = c.ProductID GROUP BY c.ProductID
+		limit
+		#{begin},#{pageNum}
 	</select>
 
 	<update id="checkStatus" parameterType="com.wit.model.Groupon">
@@ -135,9 +141,10 @@
 		COUNT(g.id)
 		FROM Groupon g
 		LEFT JOIN
-		Products p ON g.ProductID =p.id
+		Products p ON g.ProductID
+		=p.id
 		<if test="productName!=null and productName!=''">
-		where p.ProductName like CONCAT('%',#{productName},'%')
+			where p.ProductName like CONCAT('%',#{productName},'%')
 		</if>
 	</select>
 	<!-- 更新售出数量 -->

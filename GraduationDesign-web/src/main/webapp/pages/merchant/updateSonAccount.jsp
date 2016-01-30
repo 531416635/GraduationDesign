@@ -67,7 +67,8 @@
 	font-size: 14px;
 	color: white;
 }
-.input_text{
+
+.input_text {
 	width: 140px;
 	height: 23px;
 }
@@ -99,7 +100,8 @@
 							</tr>
 							<tr class="info">
 								<th>角色名称：</th>
-								<td><select class="input_text" style="width: 80px;" name="roleId">
+								<td><select class="input_text" style="width: 80px;"
+									name="roleId">
 										<option value="${db.roleId}">
 											<c:if test="${db.roleId== roles.id}">${roles.roleName}</c:if>
 										</option>
@@ -108,11 +110,11 @@
 												<option value="${ro.id }">${ro.roleName}</option>
 											</c:if>
 										</c:forEach>
-								</select><a style="color:#FF0000">*</a>
-								</td>
+								</select><a style="color: #FF0000">*</a></td>
 
 								<th>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</th>
-								<td><select class="input_text" style="width: 80px;" name='status' id="user_status">
+								<td><select class="input_text" style="width: 80px;"
+									name='status' id="user_status">
 										<option value="0"
 											<c:if test="${db.status==0}">
                         			selected="selected"
@@ -129,8 +131,7 @@
 											<c:if test="${db.status==3}">
                         			selected="selected"
                         		</c:if>>删除</option>
-								</select><a style="color:#FF0000">*</a>
-								</td>
+								</select><a style="color: #FF0000">*</a></td>
 							</tr>
 							<%-- <tr class="info">
 					<th>用户密码:</th>
@@ -138,35 +139,34 @@
 					</td>
 				</tr> --%>
 							<tr class="info" style="display: none">
-					<th>用户类型：</th>
-					<td><select name="userType" style="width:110px;">
-							<option value="1"
-								<c:if test="${db.userType==1}">
+								<th>用户类型：</th>
+								<td><select name="userType" style="width: 110px;">
+										<option value="1"
+											<c:if test="${db.userType==1}">
 			 selected="selected"
 			 </c:if>>管理用户</option>
-							<option value="2"
-								<c:if test="${db.userType==2}">
+										<option value="2"
+											<c:if test="${db.userType==2}">
 			 selected="selected"
 			 </c:if>>商户用户</option>
-					</select><a style="color:#FF0000">*</a>
-					</td>
-				</tr>
+								</select><a style="color: #FF0000">*</a></td>
+							</tr>
 							<tr class="info">
 
 								<th>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</th>
-								<td><input class="input_text" type="text" name="tel" value="${db.tel}"
-									 /></td>
+								<td><input class="input_text" type="text" name="tel"
+									value="${db.tel}" /></td>
 
 								<th>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</th>
-								<td><input class="input_text" type="text" name="email" value="${db.email}"
-									style="width:180px;" /></td>
+								<td><input class="input_text" type="text" name="email"
+									value="${db.email}" style="width: 180px;" /></td>
 							</tr>
 
 							<tr class="info">
 
 								<th>固定电话：</th>
-								<td><input class="input_text" type="text" name="fixedLineTel"
-									value="${db.fixedLineTel}" /></td>
+								<td><input class="input_text" type="text"
+									name="fixedLineTel" value="${db.fixedLineTel}" /></td>
 
 								<%-- <th>联系地址:</th>
 					<td><input type="text" name="address" value="${db.address}"
@@ -193,36 +193,40 @@
 							</tr>
 							<tr class="info" style="display: none">
 								<th>公司ID：${companysU}</th>
-								<td><select class="input_text" style="width: 80px;" name="companyId">
+								<td><select class="input_text" style="width: 80px;"
+									name="companyId">
 										<option value="${db.companyId}" selected>${db.companyId}</option>
 										<c:forEach items="${companysU}" var="companyu">
 											<option value="${companyu}">${companyu}</option>
 										</c:forEach>
-								</select><a style="color:#FF0000">*</a></td>
+								</select><a style="color: #FF0000">*</a></td>
 							</tr>
 							<tr class="info">
 								<th>部门：</th>
-								<td><select class="input_text" style="width: 80px;" name="departmentId" onchange="changeJob()">
+								<td><select class="input_text" style="width: 80px;"
+									name="departmentId" onchange="changeJob()">
 
 										<c:forEach items="${departmentsU}" var="departmentu">
 											<option value="${departmentu.id}"
 												<c:if test="${departmentu.id==db.departmentId}">selected</c:if>>${departmentu.departmentName}</option>
 										</c:forEach>
-								</select><a style="color:#FF0000">*</a></td>
+								</select><a style="color: #FF0000">*</a></td>
 							</tr>
 							<tr class="info">
 								<th>岗位：</th>
-								<td><select class="input_text" style="width: 80px;" name="jobsId">
+								<td><select class="input_text" style="width: 80px;"
+									name="jobsId">
 
 										<c:forEach items="${jobsU}" var="jobu">
 											<option value="${jobu.id}"
 												<c:if test="${jobu.id==db.jobsId}">selected</c:if>>${jobu.jobName}</option>
 										</c:forEach>
-								</select><a style="color:#FF0000">*</a></td>
+								</select><a style="color: #FF0000">*</a></td>
 							</tr>
 						</table>
-						<input class="orange" type="submit" value="提交" id="tijiao" />&nbsp; <input class="orange"
-							type="reset" value="取消" onclick="history.back()" id="quxiao" />
+						<input class="orange" type="submit" value="提交" id="tijiao" />&nbsp;
+						<input class="orange" type="reset" value="取消"
+							onclick="history.back()" id="quxiao" />
 					</div>
 				</form>
 			</div>

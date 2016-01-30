@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%
@@ -141,69 +141,75 @@ div.meneame span {
 
 <body>
 
-	
-    
-    <div class="rightinfo">
-    
-    <div class="tools">
-    	<ul class="toolbar">
-        <li class="click"><span><img src="<%=path%>/images/t01.png" /></span>添加</li>
-        <li class="click2"><span><img src="<%=path%>/images/t03.png" /></span>
-                <a href="javascript:;" onclick="getText();">删除</a></li>
-        </ul>
-    
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" value="" onclick="checkAll();"/></th>
-        <th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th>公司名称</th>
-        <th>部门名称</th>
-        <th>状态</th>
-        <th>创建人</th>
-         <th>创建时间</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${departments}" var="department">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="${department.ID}" /></td>
-		        <td>${department.ID}</td>
-		        <td>${department.CompanyName}</td>
-		        <td>${department.DepartmentName}</td>
-		        <td>
-		          <c:choose>
-                        		<c:when test="${department.Status==0}">
+
+
+	<div class="rightinfo">
+
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click"><span><img
+						src="<%=path%>/images/t01.png" /></span>添加</li>
+				<li class="click2"><span><img
+						src="<%=path%>/images/t03.png" /></span> <a href="javascript:;"
+					onclick="getText();">删除</a></li>
+			</ul>
+
+		</div>
+
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input id="checkAll" type="checkbox" value=""
+						onclick="checkAll();" /></th>
+					<th>ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
+					<th>公司名称</th>
+					<th>部门名称</th>
+					<th>状态</th>
+					<th>创建人</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${departments}" var="department">
+					<tr>
+						<td><input name="box" type="checkbox"
+							value="${department.ID}" /></td>
+						<td>${department.ID}</td>
+						<td>${department.CompanyName}</td>
+						<td>${department.DepartmentName}</td>
+						<td><c:choose>
+								<c:when test="${department.Status==0}">
                         			未启用
                         		</c:when>
-                        		<c:when test="${department.Status==1}">
+								<c:when test="${department.Status==1}">
                         			已启用
                         		</c:when>
-                        	</c:choose>
-		        </td>
-		        <td>${department.UserName}</td>
-		        <td>${department.CreateAt}</td>
-		        <td><a href="toDepartmentUpdate.do?id=${department.ID }" class="tablelink">修改</a>  <a href="departmentDelete.do?id=${department.ID }" class="tablelink"> 删除  </a></td>
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-    
-  			<!-- 分页 -->
-  			 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
+							</c:choose></td>
+						<td>${department.UserName}</td>
+						<td>${department.CreateAt}</td>
+						<td><a href="toDepartmentUpdate.do?id=${department.ID }"
+							class="tablelink">修改</a> <a
+							href="departmentDelete.do?id=${department.ID }" class="tablelink">
+								删除 </a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<!-- 分页 -->
+		<div class="message">
+			共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+				style="color: blue;">${page.currentPage}&nbsp;</i>页
 		</div>
-			<div class="pagin">
+		<div class="pagin">
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-   <%--   <div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+		<%--   <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -234,33 +240,36 @@ div.meneame span {
                 </c:choose>    
         </ul>
     </div> --%>
-    
-    
-    
-   <div class="tip">
-    	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
-      <div class="tipinfo">
-        <span><img src="../images/ticon.png" /></span>
-        <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
-        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-        </div>
-        </div>
-        
-        <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" onclick="location='toDepartmentAdd.do'"/>&nbsp;
-        <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    
-    </div>
-    
-    
-    
-    
-    </div>
-    
-    <script type="text/javascript">
+
+
+
+		<div class="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+
+			<div class="tipinfo">
+				<span><img src="../images/ticon.png" /></span>
+				<div class="tipright">
+					<p>是否确认对信息的修改 ？</p>
+					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				</div>
+			</div>
+
+			<div class="tipbtn">
+				<input name="" type="button" class="sure" value="确定"
+					onclick="location='toDepartmentAdd.do'" />&nbsp; <input name=""
+					type="button" class="cancel" value="取消" />
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

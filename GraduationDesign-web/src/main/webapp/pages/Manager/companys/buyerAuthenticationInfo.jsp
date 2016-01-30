@@ -108,9 +108,7 @@ function checkDeletes(){
 				<li class="click"><span><img src="images/t01.png" /> </span><a
 					href="/ssm/toAddBuyerAuthentication.do?companyId=${companyId}">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
 		</div>
 
@@ -118,8 +116,9 @@ function checkDeletes(){
 		<table class="tablelist">
 			<thead>
 				<tr>
-					<th><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th>
-					<th >认证ID</th>
+					<th><input name="" id="checkAll" type="checkbox"
+						onclick="checkAll();" />全选</th>
+					<th>认证ID</th>
 					<th>认证名称</th>
 					<th>认证文件</th>
 					<th style="display: none">企业名称ID</th>
@@ -134,10 +133,12 @@ function checkDeletes(){
 
 				<c:forEach items="${au}" var="au">
 					<tr>
-						<td><input name="box" type="checkbox" onclick="checkBox();" value="${au.id}" /></td>
-						<td >${au.id}</td>
+						<td><input name="box" type="checkbox" onclick="checkBox();"
+							value="${au.id}" /></td>
+						<td>${au.id}</td>
 						<td>${au.authenticationName}</td>
-						<td><img src="<%=path%>${au.filePath}" alt="" width="200px;" height="80px;"/></td>
+						<td><img src="<%=path%>${au.filePath}" alt="" width="200px;"
+							height="80px;" /></td>
 						<td style="display: none">${au.companyId}</td>
 						<%-- <td>
                         	<c:choose>
@@ -149,14 +150,13 @@ function checkDeletes(){
                         		</c:when>
                         	</c:choose>
                         </td> --%>
-                        <td>${au.uploadTime}</td>
+						<td>${au.uploadTime}</td>
 						<td style="display: none">${au.uploadBy}</td>
 						<td>${au.fileClass}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyerAuthentication.do?id=${au.id}">修改</a> 
-							 <a class="tablelink" href="#" onclick="checkDelete(${au.id},${companyId});">删除</a>
-							
-							<%-- <input
+							href="/ssm/toUpdateBuyerAuthentication.do?id=${au.id}">修改</a> <a
+							class="tablelink" href="#"
+							onclick="checkDelete(${au.id},${companyId});">删除</a> <%-- <input
 							type="button" value="删除"
 							onclick="location.href='deleteBuyerAuthentication.do?id=${au.id}&&companyId=${companyId}';" /> --%>
 						</td>

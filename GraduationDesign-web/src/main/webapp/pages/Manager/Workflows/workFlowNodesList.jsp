@@ -141,14 +141,10 @@ div.meneame span {
 	<div class="place">
 		<span>位置：</span>
 		<ul class="placeul">
-			<li><a href="#">系统后台</a>
-			</li>
-			<li><a href="#">管理系统</a>
-			</li>
-			<li><a href="#">流程管理</a>
-			</li>
-			<li><a href="#">流程节点</a>
-			</li>
+			<li><a href="#">系统后台</a></li>
+			<li><a href="#">管理系统</a></li>
+			<li><a href="#">流程管理</a></li>
+			<li><a href="#">流程节点</a></li>
 		</ul>
 	</div>
 
@@ -158,13 +154,10 @@ div.meneame span {
 	<div class="tools">
 		<ul class="toolbar">
 			<li><a class="tablelink" href="toWorkFlowNodesAdd.do?"><span><img
-						src="../images/t01.png" />
-				</span>添加</a>
-			</li>
+						src="../images/t01.png" /> </span>添加</a></li>
 			<li class="click2"><span><img
-					src="<%=path%>/images/t03.png" />
-			</span> <a href="javascript:;" onclick="getText();">删除</a>
-			</li>
+					src="<%=path%>/images/t03.png" /> </span> <a href="javascript:;"
+				onclick="getText();">删除</a></li>
 
 		</ul>
 
@@ -177,12 +170,9 @@ div.meneame span {
 		<thead>
 			<tr>
 				<th><input id="checkAll" type="checkbox" name="" value=""
-					onclick="checkAll();" />
-				</th>
-				<th>ID<class="sort">
-					<img src="<%=path%>/images/px.gif" />
-					</i>
-				</th>
+					onclick="checkAll();" /></th>
+				<th>ID<class="sort"> <img src="<%=path%>/images/px.gif" />
+					</i></th>
 				<th>节点名称</th>
 				<th>节点简称</th>
 				<th>节点角色</th>
@@ -199,8 +189,7 @@ div.meneame span {
 		<tbody>
 			<c:forEach items="${dispatch}" var="dis">
 				<tr>
-					<td><input name="box" type="checkbox" value="${dis.id}" />
-					</td>
+					<td><input name="box" type="checkbox" value="${dis.id}" /></td>
 					<td>${dis.id}</td>
 					<td>${dis.nodeName}</td>
 					<td>${dis.nodeCode}</td>
@@ -220,13 +209,13 @@ div.meneame span {
 			</c:forEach>
 		</tbody>
 	</table>
-			<!-- 分页 -->
-			<div class="pagin">
-			<!-- <div class="message">
+	<!-- 分页 -->
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
 	<!-- 分页 -->
 	<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>

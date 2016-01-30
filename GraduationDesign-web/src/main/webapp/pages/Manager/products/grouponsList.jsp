@@ -174,13 +174,13 @@ function checkDeletes(){
 
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /> </span>删除</a></li>
-			<li><form action="grouponFindAll.do" method="post">
-				<input type="hidden" id="productName1" value="${productName }" />
-				<input type="text" name="productName" placeholder="请输入商品名称" id="productName" value="${productName }" />
-				<input type="submit" value="点击搜索"  name="submitButton"/>
-				</form>
-				</li>
-        </ul>
+				<li><form action="grouponFindAll.do" method="post">
+						<input type="hidden" id="productName1" value="${productName }" />
+						<input type="text" name="productName" placeholder="请输入商品名称"
+							id="productName" value="${productName }" /> <input type="submit"
+							value="点击搜索" name="submitButton" />
+					</form></li>
+			</ul>
 		</div>
 
 
@@ -207,13 +207,11 @@ function checkDeletes(){
 						<td>${g.id}</td>
 						<td>${g.ProductName}</td>
 						<td>${g.UnitPrice}</td>
-						<td align="right">${g.GrouponPrice} &nbsp;&nbsp;</td>
+						<td align="right">${g.GrouponPrice}&nbsp;&nbsp;</td>
 						<td><c:if test="${g.SoldOut==null}">0</c:if> <c:if
-								test="${g.SoldOut!=null}">${g.SoldOut}</c:if>
-						</td>
+								test="${g.SoldOut!=null}">${g.SoldOut}</c:if></td>
 						<td><c:if test="${g.Status==2}">是</c:if> <c:if
-								test="${g.Status!=2}">否</c:if>
-						</td>
+								test="${g.Status!=2}">否</c:if></td>
 						<td><a class="tablelink"
 							href="/ssm/products/toGrouponInfo.do?id=${g.id}">团购详情</a> <a
 							class="tablelink"
@@ -227,7 +225,7 @@ function checkDeletes(){
 		</table>
 		<!-- 分页 -->
 		<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
 		</div>
 </body>
 

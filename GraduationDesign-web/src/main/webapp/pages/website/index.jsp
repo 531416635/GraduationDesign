@@ -229,27 +229,34 @@
 }
 </script> -->
 <style type="text/css">
-p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
+p {
+	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "宋体";
+}
 
-.yangs{
-	text-align:center;
-    font-size: 12px; 
-    color: #a4a1a1;
-    white-space:nowrap;
-	width:160px; 
-	text-overflow :ellipsis;
-	-o-text-overflow:ellipsis;
+.yangs {
+	text-align: center;
+	font-size: 12px;
+	color: #a4a1a1;
+	white-space: nowrap;
+	width: 160px;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
 	overflow: hidden;
 }
 </style>
 </head>
 
 <body>
-	
+
 	<!--  轮播 -->
 	<div class="banner">
-		<a href="#"><div style="background-size:100% 100%; background-image: url(<%=path%>/images/index/banner01.jpg);"><img src="<%=path%>/images/index/banner01_1.png"></div></a>
-		<a href="#"><div style="background-size:100% 100%; background-image: url(<%=path%>/images/index/banner02.jpg);"><img src="<%=path%>/images/index/banner02_2.png"></div></a>
+		<a href="#"><div
+				style="background-size:100% 100%; background-image: url(<%=path%>/images/index/banner01.jpg);">
+				<img src="<%=path%>/images/index/banner01_1.png">
+			</div></a> <a href="#"><div
+				style="background-size:100% 100%; background-image: url(<%=path%>/images/index/banner02.jpg);">
+				<img src="<%=path%>/images/index/banner02_2.png">
+			</div></a>
 		<ul class="ba_1">
 			<li class="ba_2"></li>
 			<li class="ba_2"></li>
@@ -316,7 +323,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 			<div class="div_hot_con">
 
 				<div class="div_hot_img">
-					 <img style="margin-top: 3px;"
+					<img style="margin-top: 3px;"
 						src="<%=path%>/images/index/gystpq.jpg">
 					<%-- <ul class="iw_thumbs" id="iw_thumbs">
 					      	<li><a href="#"><img src="<%=path%>/images/redimg/1.jpg"></a></li>
@@ -346,8 +353,13 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 
 				<div class="div_hot_board">
 					<div style="line-height: 30px;">
-						<div id="new1" style="float: left; width: 96px;text-align: center;" onmouseover="$('#new2').attr('class','hovered');$(this).attr('class','');$('.div_board_a').show();$('.div_board_b').hide();">商城公告</div>
-						<div id="new2" style="float: left; width: 100px; text-align:center;" class="hovered" onmouseover="$('#new1').attr('class','hovered');$(this).attr('class','');$('.div_board_a').hide();$('.div_board_b').show();">最新活动</div>
+						<div id="new1"
+							style="float: left; width: 96px; text-align: center;"
+							onmouseover="$('#new2').attr('class','hovered');$(this).attr('class','');$('.div_board_a').show();$('.div_board_b').hide();">商城公告</div>
+						<div id="new2"
+							style="float: left; width: 100px; text-align: center;"
+							class="hovered"
+							onmouseover="$('#new1').attr('class','hovered');$(this).attr('class','');$('.div_board_a').hide();$('.div_board_b').show();">最新活动</div>
 					</div>
 					<div>
 						<div class="div_board_a">
@@ -356,7 +368,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 									<li><a
 										href="newOrNoiceInfo.do?newOrNoticeId=${list.id}&&type=1">${list.title}</a>
 									</li>
-								</c:forEach>	
+								</c:forEach>
 							</ul>
 						</div>
 						<div class="div_board_b" style="display: none;">
@@ -368,7 +380,11 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 								</c:forEach>
 							</ul>
 						</div>
-						<div style=" height: 20px; padding: 10px 5px 0 120px;"><a href="<%=path%>/web/newsLists.do" style="color:#55546C;" id="color" onmouseover="changeColor()"onmouseout="changeColors()">更多资讯>></a></div>
+						<div style="height: 20px; padding: 10px 5px 0 120px;">
+							<a href="<%=path%>/web/newsLists.do" style="color: #55546C;"
+								id="color" onmouseover="changeColor()"
+								onmouseout="changeColors()">更多资讯>></a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -378,7 +394,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 			<c:if test="${pros1.parentCateGory==null}">
 				<div class="storey_box">
 					<div class="st_title" style="position: relative;">
-						<div style="float: left; ">
+						<div style="float: left;">
 							<b><span class="n${status1.count}"><img
 									src="<%=path%>/images/index/00_${status1.count}.png">
 									${status1.count}F/</span><span class="nn1">${pros1.cateGoryName}</span>
@@ -393,8 +409,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 								<c:if test="${pcs.parentCateGory == pros1.id }">
 									<c:if test="${ counter > 0}">|</c:if>
 									<!-- 调用ajax,实现商品替换     toSecondIndex.do?cateGoryId=${pros1.id}&cateGorySunId=${pcs.id}&cateGoryLevel=2-->
-									<a
-										href="javascript:void(0);"
+									<a href="javascript:void(0);"
 										onmouseover="findProduct('${pcs.id}','${status1.count}')">${pcs.cateGoryName}</a>
 									<c:set scope="page" var="counter" value="${ counter + 1 }"></c:set>
 								</c:if>
@@ -446,7 +461,8 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 
 						</div>
 						<!--中推荐商品展现-->
-						<div class="st_2_${status1.count}"  style=" float: right; width: 880px; overflow: hidden;">
+						<div class="st_2_${status1.count}"
+							style="float: right; width: 880px; overflow: hidden;">
 							<c:forEach items="${pros1.products}" var="pros2"
 								varStatus="status2">
 								<div class="grid_1">
@@ -457,7 +473,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 											</a>
 										</div> --%>
 										<ul class="gr_j"
-											style="position: absolute;left: 0px;top: 0px;">
+											style="position: absolute; left: 0px; top: 0px;">
 											<li class="j_1"><a
 												href="toProductInfo.do?ProductId=${pros2.id}"
 												style="height: 196px;"><img
@@ -469,12 +485,13 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 										<li class="j_3"><a
 											href="toProductInfo.do?ProductId=${pros2.id}">询价</a>
 										</li>  --%>
-										<li>
-											<div style="text-align: center;">
-												<p style="font-size: 13px;"><a href="toProductInfo.do?ProductId=${pros2.id}">${pros2.productName}</a></p>
-												<p class="yangs">${pros2.productTitle}</p>
-											</div>
-											<!-- <div class="banner_item_xunj">
+											<li>
+												<div style="text-align: center;">
+													<p style="font-size: 13px;">
+														<a href="toProductInfo.do?ProductId=${pros2.id}">${pros2.productName}</a>
+													</p>
+													<p class="yangs">${pros2.productTitle}</p>
+												</div> <!-- <div class="banner_item_xunj">
 												 <div class="div_anniu">
 							                        <table cellpadding=0 cellspacing=0>
 							                          <tr>
@@ -488,7 +505,7 @@ p{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
 							                    </div>
 							                    <div class="div_anniu"><input id="anniu" class="orange" type="button" value="询价"/></div>
 											</div> -->
-										</li>
+											</li>
 										</ul>
 										<%-- <div class="banner_item_price">
 											<a href="toProductInfo.do?ProductId=${pros2.id}"></a>

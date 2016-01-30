@@ -57,26 +57,22 @@ div {
 				<tr class="info">
 					<th>发货单号:</th>
 					<td><input type="text" name="dispatchBillId"
-						value="${db.dispatchBillId}" style="width:70px;" />
-					</td>
+						value="${db.dispatchBillId}" style="width: 70px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>订单ID:</th>
-					<td><input type="text" name="orderId"
-						value="${db.orderId}" style="width:70px;" /><a
-						style="color:#FF0000">*</a></td>
+					<td><input type="text" name="orderId" value="${db.orderId}"
+						style="width: 70px;" /><a style="color: #FF0000">*</a></td>
 				</tr>
 				<tr class="info">
 					<th>产品型号:</th>
 					<td><input type="text" name="companyProductId"
-						value="${db.companyProductId}" style="width:70px;" />
-					</td>
+						value="${db.companyProductId}" style="width: 70px;" /></td>
 				</tr>
 				<tr class="info">
 					<th>数量:</th>
 					<td><input type="text" name="quantity"
-						value="${db.purchaseQuantity}" />
-					</td>
+						value="${db.purchaseQuantity}" /></td>
 				</tr>
 				<tr class="info">
 					<th>数量单位:</th>
@@ -92,8 +88,7 @@ div {
 				<tr class="info">
 					<th>单价:</th>
 					<td><input type="text" name="unitPrice"
-						value="${db.unitPrice}" />
-					</td>
+						value="${db.unitPrice}" /></td>
 				</tr>
 				<tr class="info">
 					<th>金额小计:</th>
@@ -107,7 +102,7 @@ div {
 							<c:forEach items="${storageIdsU}" var="sto">
 								<option value="${sto}">${sto}</option>
 							</c:forEach>
-					</select><a style="color:#FF0000">*</a></td>
+					</select><a style="color: #FF0000">*</a></td>
 				</tr>
 
 			</table>

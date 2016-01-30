@@ -32,7 +32,7 @@ function check_reset() {
 	}
 </script>
 <style type="text/css">
-input[type=password]{
+input[type=password] {
 	font-size: 16px;
 }
 </style>
@@ -40,32 +40,32 @@ input[type=password]{
 
 <body>
 
-<div class="warp">
-   <div class="location">
-      <span class="lo1">首页</span>
-      >
-      <span class="lo2">找回密码</span>
-  </div>
-  <div class="common-bag">
-      <div class="common-tit">
-         <h1>找回密码</h1>
-      </div>
-      
-      <div class="formdiv">
-         <form action="reset.do" method="post" id="form">
-           <p>重置密码 : <input type="password" name="czmm" class="search-input" />
-           </p>
-           <br />
-           <p>确认密码 : <input type="password" name="qrmm"  class="search-input"/>
-           </p>
-           <span style="color: red;" id="msg"></span><br/>
-           <input type="button" value="下一步"  class="sub2" onclick="check_reset();"/>
-         </form>
+	<div class="warp">
+		<div class="location">
+			<span class="lo1">首页</span> > <span class="lo2">找回密码</span>
+		</div>
+		<div class="common-bag">
+			<div class="common-tit">
+				<h1>找回密码</h1>
+			</div>
 
-      </div>
-      
-  </div>
-</div>
+			<div class="formdiv">
+				<form action="reset.do" method="post" id="form">
+					<p>
+						重置密码 : <input type="password" name="czmm" class="search-input" />
+					</p>
+					<br />
+					<p>
+						确认密码 : <input type="password" name="qrmm" class="search-input" />
+					</p>
+					<span style="color: red;" id="msg"></span><br /> <input
+						type="button" value="下一步" class="sub2" onclick="check_reset();" />
+				</form>
+
+			</div>
+
+		</div>
+	</div>
 
 
 

@@ -137,98 +137,102 @@ div.meneame span {
 
 <body>
 	<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-    <li><a href="#">供应链系统</a></li>
-    <li><a href="#">询价单管理</a></li>
-    </ul>
-    </div>
-    
-   
-    
-    <div class="tools">
-    	<ul class="toolbar">
-    	 <li><a class="tablelink" href="/ssm/main/toInquiryListAdd.do?"><span><img src="../images/t01.png" /></span>添加</a></li>
-       
-       
-       
-         <li class="click2"><span><img src="<%=path%>/images/t03.png" /></span>
-                <a href="javascript:;" onclick="getText();">删除</a></li>
-        
-       </ul>
-    
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input id="checkAll"  type="checkbox" value="" onclick="checkAll();"/></th>
-        <th style="display:none ">ID<i class="sort"><img src="<%=path%>/images/px.gif" /></i></th>
-        <th style="display:none ">用户ID</th>
-        <th>用户名</th>
-        <th>询价单编号</th>
-        <th>币种</th>
-        <th>交货方式</th>
-        <th>产品型号</th>
-        <th>产品ID</th>
-        <th>产品数量</th>
-        <th>数量单位</th>
-        <th>参考单价</th>
-        <th>期望单价</th>
-        <th>期望交期</th>
-        <th>订单时间</th>
-        <th>状态</th>
-        
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${dispatch}" var="dis">
-	        <tr>
-		        <td><input name="box" type="checkbox" value="${dis.id}" /></td>
-		        <td style="display: none">${dis.id}</td>
-		        <td style="display: none">${dis.userId}</td>
-		        <td>${dis.users.userName}</td>
-		        <td>${dis.inquiryId}</td>
-		        <td>${dis.currency}</td>
-		        <td>${dis.deliveryType}</td>
-		        <td>${dis.productModel}</td>
-		        <td>${dis.productID}</td>
-		        <td>${dis.productQuantity}</td>
-		        <td>${dis.productUnit}</td>
-		        <td>${dis.refPrice}</td>
-		        <td>${dis.expectPrice}</td>
-        		<td>${dis.expectTime}</td>
-        		<td>${dis.orderTime}</td>
-        		<td>
-        		<c:choose>
-        			<c:when test="${dis.status==0}">初始</c:when>
-        			<c:when test="${dis.status==1}">处理</c:when>
-        			<c:when test="${dis.status==2}">拒绝</c:when>
-        		</c:choose>
-        		</td>
-		        <td><a href="deleteInquirySheet.do?id=${dis.id}" class="tablelink"> 删除 </a>
-		        	<a href="/ssm/main/toInquiryListUpdate.do?id=${dis.id}" class="tablelink">修改</a>
-		        </td>
-		      
-	        </tr> 
-        </c:forEach>
-         </tbody>
-    </table>
-     		 <!-- 分页 -->
-     		 <div class="message">
-			共<i style="color:blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i style="color:blue;">${page.currentPage}&nbsp;</i>页
-		</div>
-			<div class="pagin">
-			<!-- <div class="message">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">供应链系统</a></li>
+			<li><a href="#">询价单管理</a></li>
+		</ul>
+	</div>
+
+
+
+	<div class="tools">
+		<ul class="toolbar">
+			<li><a class="tablelink" href="/ssm/main/toInquiryListAdd.do?"><span><img
+						src="../images/t01.png" /></span>添加</a></li>
+
+
+
+			<li class="click2"><span><img
+					src="<%=path%>/images/t03.png" /></span> <a href="javascript:;"
+				onclick="getText();">删除</a></li>
+
+		</ul>
+
+	</div>
+
+
+	<table class="tablelist">
+		<thead>
+			<tr>
+				<th><input id="checkAll" type="checkbox" value=""
+					onclick="checkAll();" /></th>
+				<th style="display: none">ID<i class="sort"><img
+						src="<%=path%>/images/px.gif" /></i></th>
+				<th style="display: none">用户ID</th>
+				<th>用户名</th>
+				<th>询价单编号</th>
+				<th>币种</th>
+				<th>交货方式</th>
+				<th>产品型号</th>
+				<th>产品ID</th>
+				<th>产品数量</th>
+				<th>数量单位</th>
+				<th>参考单价</th>
+				<th>期望单价</th>
+				<th>期望交期</th>
+				<th>订单时间</th>
+				<th>状态</th>
+
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${dispatch}" var="dis">
+				<tr>
+					<td><input name="box" type="checkbox" value="${dis.id}" /></td>
+					<td style="display: none">${dis.id}</td>
+					<td style="display: none">${dis.userId}</td>
+					<td>${dis.users.userName}</td>
+					<td>${dis.inquiryId}</td>
+					<td>${dis.currency}</td>
+					<td>${dis.deliveryType}</td>
+					<td>${dis.productModel}</td>
+					<td>${dis.productID}</td>
+					<td>${dis.productQuantity}</td>
+					<td>${dis.productUnit}</td>
+					<td>${dis.refPrice}</td>
+					<td>${dis.expectPrice}</td>
+					<td>${dis.expectTime}</td>
+					<td>${dis.orderTime}</td>
+					<td><c:choose>
+							<c:when test="${dis.status==0}">初始</c:when>
+							<c:when test="${dis.status==1}">处理</c:when>
+							<c:when test="${dis.status==2}">拒绝</c:when>
+						</c:choose></td>
+					<td><a href="deleteInquirySheet.do?id=${dis.id}"
+						class="tablelink"> 删除 </a> <a
+						href="/ssm/main/toInquiryListUpdate.do?id=${dis.id}"
+						class="tablelink">修改</a></td>
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="message">
+		共<i style="color: blue;">${page.rows}</i>条记录，当前显示第&nbsp;<i
+			style="color: blue;">${page.currentPage}&nbsp;</i>页
+	</div>
+	<div class="pagin">
+		<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-   
-    <!-- 分页 -->
-    <%--  <div class="pagin">
+		<div id="Pagination" class="meneame" style="clear: left"></div>
+	</div>
+
+	<!-- 分页 -->
+	<%--  <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -260,11 +264,11 @@ div.meneame span {
         </ul>
     </div>
       --%>
-    
-    
-    
-    
-    <script type="text/javascript">
+
+
+
+
+	<script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 

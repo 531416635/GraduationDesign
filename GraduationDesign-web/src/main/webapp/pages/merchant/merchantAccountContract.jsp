@@ -32,25 +32,25 @@
 
 <body>
 	<div class="warp">
-			<div class="detail_list">
+		<div class="detail_list">
 			<ul id="tabs">
 				<li><a href="#">用户合作协议</a></li>
 			</ul>
 			<div id="content">
 				<div id="tab1">
-						<table style="border: 1px solid #d7d7d7;width: 100%;">
-							<tr>
-								<td colspan="5"><textarea id="content" cols="100"
-										style="width:90%; height: 300px;" name="productInfo"></textarea>
-								</td>
-							</tr>
-							
-						</table>
-			     </div>
-			 </div>
-		 </div>
+					<table style="border: 1px solid #d7d7d7; width: 100%;">
+						<tr>
+							<td colspan="5"><textarea id="content" cols="100"
+									style="width: 90%; height: 300px;" name="productInfo"></textarea>
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
 	<script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
 </body>
 </html>

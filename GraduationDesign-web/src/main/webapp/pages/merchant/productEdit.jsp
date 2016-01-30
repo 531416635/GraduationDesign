@@ -746,27 +746,47 @@ $(".input_text1").val($(".name").text().trim());
 	height: 229px;
 	/* overflow: hidden; */
 width
+
+
+
+
 :
+
+
  
+
+
 204
 px
-;
 
-	
+
+
+
+;
 margin-right
+
+
+
+
 :
+
+
  
+
+
 10
 px
+
+
+
+
 ;
-
-
 }
 * /
 	/* .gr_j{
     height: 229px;
 	width: 204px;
-} */ 
+} */   
 .gr_j {
 	height: 229px;
 	width: 180px;
@@ -784,7 +804,7 @@ px
 }
 
 #qr {
-/* 	background-color: #FF4030; */
+	/* 	background-color: #FF4030; */
 	height: 30px;
 	width: 120px;
 	margin-left: 2%;
@@ -849,7 +869,7 @@ px
 	border-top-right-radius: 5px;
 }
 
-.pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a
+.pagin .paginList .paginItem.current, .pagin .paginList .paginItem.current a
 	{
 	background: #f5f5f5;
 	cursor: default;
@@ -860,7 +880,7 @@ px
 	background: #f5f5f5;
 }
 
-.pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover
+.pagin .paginList .paginItem.more, .pagin .paginList .paginItem.more a:hover
 	{
 	cursor: default;
 }
@@ -892,46 +912,46 @@ px
 .j_1 {
 	text-align: center;
 }
-#qr1{
-	font-size:14px;
-	height:30px;
-	margin-left:2%;
-	margin-right:50px;
-	width:120px;
-	display:none;
+
+#qr1 {
+	font-size: 14px;
+	height: 30px;
+	margin-left: 2%;
+	margin-right: 50px;
+	width: 120px;
+	display: none;
 }
-.gray{
-	background-color:gray;
-	border:medium none;
-	border-radius:3px;
-	color:#fff;
-	}
+
+.gray {
+	background-color: gray;
+	border: medium none;
+	border-radius: 3px;
+	color: #fff;
+}
 </style>
 </head>
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span
 				class="lo2"> 商品供应</span>
 		</div>
 		<div class="detail_list">
 			<ul id="tabs">
-				<li><a href="#" title="tab1">商品选择</a>
-				</li>
-				<li><a href="#" title="tab2">商品详情</a>
-				</li>
-				<li><a href="#" title="tab3">商品资质</a>
-				</li>
+				<li><a href="#" title="tab1">商品选择</a></li>
+				<li><a href="#" title="tab2">商品详情</a></li>
+				<li><a href="#" title="tab3">商品资质</a></li>
 			</ul>
 			<div id="content">
 				<form id="form1" action="toProductEdit.do" method="post">
-					<input type="hidden" id="currentPage" name="currentPage" value="1"/>
+					<input type="hidden" id="currentPage" name="currentPage" value="1" />
 					<input type="hidden" id="productCategory" name="productCategory"
 						value="" />
 					<div id="tab1" class="nextDiv">
 						<span><b>条件(模糊)筛选</b> </span>
-						<table style="border: 1px solid #d7d7d7;width: 100%;">
+						<table style="border: 1px solid #d7d7d7; width: 100%;">
 
 							<tr>
 								<th>商品名称：</th>
@@ -940,16 +960,14 @@ px
 							</tr>
 							<tr>
 								<th>商品品类：</th>
-								<td id="selects" colspan="3">
-								<select
+								<td id="selects" colspan="3"><select
 									style="width: 100px; height: 20px;" name="select1" id="select1"
 									onchange=checkCategory(this.value)>
 										<option value="">请选择父品类</option>
 										<c:forEach items="${productCategorys}" var="pcs">
 											<option value="${pcs.id}">${pcs.cateGoryName}</option>
 										</c:forEach>
-								</select> 
-								<select style="width: 110px; height: 20px;" id="select2"
+								</select> <select style="width: 110px; height: 20px;" id="select2"
 									name="select2"
 									onchange="if(this.value==''){$('tdId').html('')};checkCategorysun(this.value);">
 										<option value="">请先选择父品类</option>
@@ -961,7 +979,7 @@ px
 							</tr>
 							<tr>
 								<th></th>
-								<td><input style="height:20px; width: 100px;"
+								<td><input style="height: 20px; width: 100px;"
 									class="orange" type="submit" onclick="change();" value="搜索" />
 								</td>
 							</tr>
@@ -982,16 +1000,15 @@ px
 											href="<%=path%>/web/toProductInfo.do?ProductId=${product.id}">${product.productName}</a>
 										</li>
 										<li class="j_1"><a
-											href="javascript:checksupply(${product.id});">我要供应</a>
-										</li>
+											href="javascript:checksupply(${product.id});">我要供应</a></li>
 										<%-- $('#tab2 span[class=name]').html(${product.productName}); --%>
 									</ul>
 								</div>
 							</c:forEach>
 						</div>
 						<!-- 分页 -->
-						<div class="pagin" style="clear:both">
-							<div id="Pagination" class="meneame" style="clear:left"></div>
+						<div class="pagin" style="clear: both">
+							<div id="Pagination" class="meneame" style="clear: left"></div>
 						</div>
 						<%-- <div class="pagin" style="clear:both">
 							<div class="message">
@@ -1068,14 +1085,17 @@ px
 						<p>
 							商品名字：<span class="name"></span>
 						</p>
-						<p style="background-color:#D0D0D0;">选择本地图片：
+						<p style="background-color: #D0D0D0;">选择本地图片：
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提示：1.图片大小不超过500KB&nbsp;&nbsp;2.本品类图片不超过10张</p>
-						<input type="button" id="btn_add" class="orange"  style="width: 80px; height:20px;margin-bottom: 5px;"value="新增图片"><span
-							class="tupian" style="color:red;display:none;">请新增合适图片</span><!-- <span
+						<input type="button" id="btn_add" class="orange"
+							style="width: 80px; height: 20px; margin-bottom: 5px;"
+							value="新增图片"><span class="tupian"
+							style="color: red; display: none;">请新增合适图片</span>
+						<!-- <span
 							style="float:right;margin-right:30%;font-size:16px;color:red;">是否提供商品小样&nbsp;<input
 							id="isSample" name="isSample" value="1" type="checkbox" /> </span> -->
 
-							<!-- class="tupian" style="color:red;display:none;">请新增合适图片</span>
+						<!-- class="tupian" style="color:red;display:none;">请新增合适图片</span>
 						</span> -->
 
 						<div id="newUpload2">
@@ -1090,15 +1110,15 @@ px
 							</div>
 						</div>
 
-						<p style="background-color:#D0D0D0;">价格编辑</p>
+						<p style="background-color: #D0D0D0;">价格编辑</p>
 						<p>
 							单价：<input type="text" name="unitPrice" id="unitPrice"
 								onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 								onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" /><span
-								class="hong1" style="color:red;display:none;">请输入合适的单价</span>
+								class="hong1" style="color: red; display: none;">请输入合适的单价</span>
 						</p>
 						<p>区间价：</p>
-						<table style="width: 80%;border:1px soild;color:gray;">
+						<table style="width: 80%; border: 1px soild; color: gray;">
 							<thead>
 								<tr>
 									<th>数量</th>
@@ -1114,7 +1134,7 @@ px
 										onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 										onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" />
 									</td>
-									<td><span class="hong2" style="color:red;display:none;">请输入合适的单价</span>
+									<td><span class="hong2" style="color: red; display: none;">请输入合适的单价</span>
 									</td>
 								</tr>
 								<tr>
@@ -1124,7 +1144,7 @@ px
 										onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 										onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" />
 									</td>
-									<td><span class="hong3" style="color:red;display:none;">请输入合适的单价</span>
+									<td><span class="hong3" style="color: red; display: none;">请输入合适的单价</span>
 									</td>
 								</tr>
 								<tr>
@@ -1134,7 +1154,7 @@ px
 										onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 										onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" />
 									</td>
-									<td><span class="hong4" style="color:red;display:none;">请输入合适的单价</span>
+									<td><span class="hong4" style="color: red; display: none;">请输入合适的单价</span>
 									</td>
 								</tr>
 								<tr>
@@ -1144,18 +1164,18 @@ px
 										onkeyup="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
 										onafterpaste="this.value=this.value.replace(/[^\d\.]/g,'').replace(/^\./g,'').replace(/\.{2,}/g,'.').replace('.','$#$').replace(/\./g,'').replace('$#$','.').replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" />
 									</td>
-									<td><span class="hong5" style="color:red;display:none;">请输入合适的单价</span>
+									<td><span class="hong5" style="color: red; display: none;">请输入合适的单价</span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 
-						<p style="background-color:#D0D0D0;">库存编辑</p>
+						<p style="background-color: #D0D0D0;">库存编辑</p>
 						<p>
 							库存数量&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="goodsNum"
 								value="0" onkeyup="this.value=this.value.replace(/\D/g,'')"
 								onafterpaste="this.value=this.value.replace(/\D/g,'')" /><span
-								class="hong6" style="color:red;display:none;">请输入合适的库存数量</span>
+								class="hong6" style="color: red; display: none;">请输入合适的库存数量</span>
 
 						</p>
 						<p>
@@ -1165,111 +1185,121 @@ px
 							存量过低通知&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" />&nbsp;&nbsp;
 							<input type="checkbox" checked="checked" />使用短信通知
 						</p>
-						<p style="height: 30px;background-color:#D0D0D0;"><span style="float:left;margin-right:30%;font-size:16px;color:red;">是否提供商品小样&nbsp;<input
-							id="isSample" name="isSample" value="1" type="checkbox" /></p>
-						<input type="button"  class="orange"value="下一步" onclick="next2()" id="bc" />
+						<p style="height: 30px; background-color: #D0D0D0;">
+							<span
+								style="float: left; margin-right: 30%; font-size: 16px; color: red;">是否提供商品小样&nbsp;<input
+								id="isSample" name="isSample" value="1" type="checkbox" />
+						</p>
+						<input type="button" class="orange" value="下一步" onclick="next2()"
+							id="bc" />
 						<!-- <input type="submit"  onclick="save();" value="确认提交" id="qr"/> -->
 						<input type="button" class="orange"
 							onclick="location.href='<%=path%>/merchant/toPurchaserList.do';"
 							value="取消返回" id="qx" />
-						<div style="clear:both"></div>
+						<div style="clear: both"></div>
 					</div>
 
 					<div id="tab3" class="nextDiv">
-						<p>					
+						<p>
 						<div id="safety0">
-						<div id="safety0_1">
-							食品安全资质上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety0_1"
-								name="file_safety0_1">
-						<div id="pimgdiv_safety0_1">
-							<img id="pimg_safety0_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety0_1">
+								食品安全资质上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety0_1" name="file_safety0_1">
+								<div id="pimgdiv_safety0_1">
+									<img id="pimg_safety0_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image1" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image1" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety0" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety0"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<p>					
+						<p>
 						<div id="safety1">
-						<div id="safety1_1">
-							生产许可证上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety1_1"
-								name="file_safety1_1">
-						<div id="pimgdiv_safety1_1">
-							<img id="pimg_safety1_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety1_1">
+								生产许可证上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety1_1" name="file_safety1_1">
+								<div id="pimgdiv_safety1_1">
+									<img id="pimg_safety1_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image2" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image2" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety1" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety1"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<p>					
+						<p>
 						<div id="safety2">
-						<div id="safety2_1">
-							QS商城许可证上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety2_1"
-								name="file_safety2_1">
-						<div id="pimgdiv_safety2_1">
-							<img id="pimg_safety2_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety2_1">
+								QS商城许可证上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety2_1" name="file_safety2_1">
+								<div id="pimgdiv_safety2_1">
+									<img id="pimg_safety2_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image3" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image3" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety2" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety2"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<p>					
+						<p>
 						<div id="safety3">
-						<div id="safety3_1">
-							检测报告上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety3_1"
-								name="file_safety3_1">
-						<div id="pimgdiv_safety3_1">
-							<img id="pimg_safety3_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety3_1">
+								检测报告上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety3_1" name="file_safety3_1">
+								<div id="pimgdiv_safety3_1">
+									<img id="pimg_safety3_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image4" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image4" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety3" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety3"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<p style="background-color:#D0D0D0;">品牌授权</p>
-						<p>					
+						<p style="background-color: #D0D0D0;">品牌授权</p>
+						<p>
 						<div id="safety4">
-						<div id="safety4_1">
-							品牌资质授权上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety4_1"
-								name="file_safety4_1">
-						<div id="pimgdiv_safety4_1">
-							<img id="pimg_safety4_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety4_1">
+								品牌资质授权上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety4_1" name="file_safety4_1">
+								<div id="pimgdiv_safety4_1">
+									<img id="pimg_safety4_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image5" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image5" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety4" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety4"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<p>					
+						<p>
 						<div id="safety5">
-						<div id="safety5_1">
-							厂家代理授权上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="file_safety5_1"
-								name="file_safety5_1">
-						<div id="pimgdiv_safety5_1">
-							<img id="pimg_safety5_1"
-								style="width: 200px; height: 200px; border: 1px solid #999;"
-								src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+							<div id="safety5_1">
+								厂家代理授权上传_1&nbsp;&nbsp;&nbsp;&nbsp;<input type="file"
+									id="file_safety5_1" name="file_safety5_1">
+								<div id="pimgdiv_safety5_1">
+									<img id="pimg_safety5_1"
+										style="width: 200px; height: 200px; border: 1px solid #999;"
+										src="<%=path%>/images/redimg/sctx.jpg" alt="请先选择浏览图片才可预览">
+								</div>
+								<span class="image6" style="color: red; display: none;">请选择合适的图片</span>
+							</div>
 						</div>
-						<span class="image6" style="color:red;display:none;">请选择合适的图片</span>						
-						</div>
-						</div>
-						<input class="orange input_but1" type="button" id="btn_addSafety5" style="width:100px;" value="新增该资质图片">
+						<input class="orange input_but1" type="button" id="btn_addSafety5"
+							style="width: 100px;" value="新增该资质图片">
 						</p>
-						<input type="submit" class="orange" onclick="save();" value="确认提交" id="qr" /> 
-							<input type="button" class="gray" value="确认提交" id="qr1" /><input
-							type="button" class="orange"
+						<input type="submit" class="orange" onclick="save();" value="确认提交"
+							id="qr" /> <input type="button" class="gray" value="确认提交"
+							id="qr1" /><input type="button" class="orange"
 							onclick="location.href='<%=path%>/merchant/toPurchaserList.do';"
 							value="取消返回" id="qx" />
 					</div>

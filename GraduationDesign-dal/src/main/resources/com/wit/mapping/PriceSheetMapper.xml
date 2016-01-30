@@ -16,8 +16,8 @@
 		select userName from Users where id=#{id}
 	</select>
 	<resultMap type="com.wit.model.PriceSheet" id="priceSheetMap">
-		<association property="users" column="id"
-			javaType="com.wit.model.Users" select="findUserName">
+		<association property="users" column="id" javaType="com.wit.model.Users"
+			select="findUserName">
 		</association>
 	</resultMap>
 
@@ -72,8 +72,7 @@
 	</select>
 
 	<!--根据用户ID显示其报价单 -->
-	<select id="findAll" parameterType="hashMap"
-		resultType="com.wit.model.PriceSheet">
+	<select id="findAll" parameterType="hashMap" resultType="com.wit.model.PriceSheet">
 		select
 		id,userId,priceSheetId,CompanyProductID,quantity,
 		productUnit,unitPrice,deliveryDate,validUntil,status,PriceSheetID
@@ -97,14 +96,19 @@
 		SELECT
 		ps.ID,p.ProductName,cp.ProductID,cp.CompanyID,cp.IsSample,p.ProductUnit,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.ValidUntil,ps.DeliveryDate,p.ProductModel,
 		ps.CompanyProductID,getCompanyProductPic(cp.ID) as
-		FilePath,getProductPic(cp.ProductID) AS productPic,ps.Status,ps.PriceSheetID,s.IsDefault,s.IsLock,c.CompanyTel,c.Salesman
+		FilePath,getProductPic(cp.ProductID) AS
+		productPic,ps.Status,ps.PriceSheetID,s.IsDefault,s.IsLock,c.CompanyTel,c.Salesman
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		= cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
-		LEFT JOIN Companys c ON cp.CompanyID = c.ID
+		LEFT JOIN Companys c
+		ON cp.CompanyID = c.ID
 		LEFT JOIN Users u on ps.UserID=u.ID
-		LEFT JOIN Suppliers s on s.BuyCompanyID=u.CompanyID and s.SellCompanyProductID=ps.CompanyProductID
-		WHERE ps.UserID = #{userId} 
+		LEFT JOIN
+		Suppliers s on s.BuyCompanyID=u.CompanyID and
+		s.SellCompanyProductID=ps.CompanyProductID
+		WHERE ps.UserID = #{userId}
 		<if test="status!=null and status!=''">
 			and FIND_IN_SET(ps.Status,#{status})>0
 		</if>
@@ -115,19 +119,19 @@
 			and ps.PriceSheetID like CONCAT('%',#{priceSheetId},'%')
 		</if>
 		<if test="productName != null and productName !=''">
-		and p.ProductName like CONCAT('%',#{productName},'%')
+			and p.ProductName like CONCAT('%',#{productName},'%')
 		</if>
 		<if test="createDateStart != null and createDateStart != ''">
-		and ps.CreateDate &gt;= #{createDateStart}
+			and ps.CreateDate &gt;= #{createDateStart}
 		</if>
 		<if test="createDateStop != null and createDateStop != ''">
-		and ps.CreateDate  &lt;= #{createDateStop}
+			and ps.CreateDate &lt;= #{createDateStop}
 		</if>
 		<if test="companyName != null and companyName != ''">
-		and c.CompanyName like CONCAT('%',#{companyName},'%')
+			and c.CompanyName like CONCAT('%',#{companyName},'%')
 		</if>
 		<if test="status1 != null and status1 != 10">
-		and ps.Status=#{status1}
+			and ps.Status=#{status1}
 		</if>
 		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
 	</select>
@@ -136,7 +140,8 @@
 		SELECT
 		count(ps.ID)
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		LEFT JOIN CompanyProducts cp ON
+		ps.CompanyProductID
 		= cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
 		LEFT JOIN Companys c
@@ -152,19 +157,19 @@
 			and ps.PriceSheetID like CONCAT('%',#{priceSheetId},'%')
 		</if>
 		<if test="productName != null and productName !=''">
-		and p.ProductName like CONCAT('%',#{productName},'%')
+			and p.ProductName like CONCAT('%',#{productName},'%')
 		</if>
 		<if test="createDateStart != null and createDateStart != ''">
-		and ps.CreateDate &gt;= #{createDateStart}
+			and ps.CreateDate &gt;= #{createDateStart}
 		</if>
 		<if test="createDateStop != null and createDateStop != ''">
-		and ps.CreateDate  &lt;= #{createDateStop}
+			and ps.CreateDate &lt;= #{createDateStop}
 		</if>
 		<if test="companyName != null and companyName != ''">
-		and c.CompanyName like CONCAT('%',#{companyName},'%')
+			and c.CompanyName like CONCAT('%',#{companyName},'%')
 		</if>
 		<if test="status1 != null and status1 != 10">
-		and ps.Status=#{status1}
+			and ps.Status=#{status1}
 		</if>
 		order by ps.ID;
 	</select>
@@ -173,20 +178,23 @@
 		SELECT
 		ps.ID,p.ProductName,cp.ProductID,cp.CompanyID,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.ValidUntil,ps.DeliveryDate,p.ProductModel,ps.Status,ps.PriceSheetID
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		= cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
-		WHERE ps.UserID = #{userId} 
+		WHERE ps.UserID =
+		#{userId}
 		<if test="page.priceSheetId!=null and page.priceSheetId!=''">
 			and FIND_IN_SET(ps.PriceSheetID,#{page.priceSheetId})>0
 		</if>
 		<if test="page.productName != null and page.productName !=''">
-		and FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
+			and
+			FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
 		</if>
 		<if test="page.createDateStart != null and page.createDateStart != ''">
-		and ps.CreateDate &gt;= #{page.createDateStart}
+			and ps.CreateDate &gt;= #{page.createDateStart}
 		</if>
 		<if test="page.createDateStop != null and page.createDateStop != ''">
-		and ps.CreateDate  &lt;= #{page.createDateStop}
+			and ps.CreateDate &lt;= #{page.createDateStop}
 		</if>
 		order by ps.ID DESC limit #{page.begin},#{page.pageNum};
 	</select>
@@ -195,20 +203,22 @@
 		SELECT
 		count(ps.ID)
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		LEFT JOIN CompanyProducts cp ON
+		ps.CompanyProductID = cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
 		WHERE ps.UserID = #{userId}
 		<if test="page.priceSheetId!=null and page.priceSheetId!=''">
 			and FIND_IN_SET(ps.PriceSheetID,#{page.priceSheetId})>0
 		</if>
 		<if test="page.productName != null and page.productName !=''">
-		and FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
+			and
+			FIND_IN_SET(p.ID,getProductIdByProductName(#{page.productName}))
 		</if>
 		<if test="page.createDateStart != null and page.createDateStart != ''">
-		and ps.CreateDate &gt;= #{page.createDateStart}
+			and ps.CreateDate &gt;= #{page.createDateStart}
 		</if>
 		<if test="page.createDateStop != null and page.createDateStop != ''">
-		and ps.CreateDate  &lt;= #{page.createDateStop}
+			and ps.CreateDate &lt;= #{page.createDateStop}
 		</if>
 		order by ps.ID;
 	</select>
@@ -218,11 +228,14 @@
 		SELECT
 		ps.ID,p.ProductName,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
 		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
-		as FilePath,c.CompanyTel,c.Salesman,getProductPic(cp.ProductID) AS productPic,p.ProductModel,
-		ps.Status,ps.PriceSheetID,getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress
+		as FilePath,c.CompanyTel,c.Salesman,getProductPic(cp.ProductID) AS
+		productPic,p.ProductModel,
+		ps.Status,ps.PriceSheetID,getInquirySheetAddress(ps.PriceSheetID) as
+		InquirySheetAddress
 		from PriceSheet ps
 		LEFT JOIN
-		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		CompanyProducts cp ON
+		ps.CompanyProductID = cp.ID
 		LEFT JOIN Products p
 		ON cp.ProductID = p.ID
 		LEFT JOIN Companys c ON cp.CompanyID = c.ID
@@ -240,7 +253,8 @@
 		SELECT
 		count(ps.ID)
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		LEFT JOIN CompanyProducts cp ON
+		ps.CompanyProductID
 		= cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
 		LEFT JOIN Companys c
@@ -260,16 +274,20 @@
 		ps.ID,p.ProductName,p.ProductModel,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
 		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
 		as FilePath,c.CompanyTel,c.Salesman,
-		getUserCompanyName(ps.UserID) as UserCompanyName,getProductPic(cp.ProductID) AS productPic,
+		getUserCompanyName(ps.UserID) as
+		UserCompanyName,getProductPic(cp.ProductID) AS productPic,
 		getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress,
 		ps.Status,ps.PriceSheetID
 		from PriceSheet ps
 		LEFT JOIN
-		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		CompanyProducts cp
+		ON ps.CompanyProductID = cp.ID
 		LEFT JOIN Products p
-		ON cp.ProductID = p.ID
+		ON cp.ProductID =
+		p.ID
 		LEFT JOIN Companys c ON cp.CompanyID = c.ID
-		WHERE cp.CompanyID = #{companyId}
+		WHERE cp.CompanyID =
+		#{companyId}
 		<if test="status!=null and status!=''">
 			and FIND_IN_SET(ps.Status,#{status})>0
 		</if>
@@ -283,12 +301,14 @@
 		SELECT
 		count(ps.ID)
 		from PriceSheet ps
-		LEFT JOIN CompanyProducts cp ON ps.CompanyProductID
+		LEFT JOIN CompanyProducts cp ON
+		ps.CompanyProductID
 		= cp.ID
 		LEFT JOIN Products p ON cp.ProductID = p.ID
 		LEFT JOIN Companys c
 		ON cp.CompanyID = c.ID
-		WHERE cp.CompanyID = #{companyId}
+		WHERE cp.CompanyID =
+		#{companyId}
 		<if test="status!=null and status!=''">
 			and FIND_IN_SET(ps.Status,#{status})>0
 		</if>
@@ -298,7 +318,7 @@
 		order by ps.ID;
 	</select>
 	<!-- 议价 -->
-	<update id="bargaining"  parameterType="hashMap">
+	<update id="bargaining" parameterType="hashMap">
 		UPDATE PriceSheet set Status=#{status}
 		<if test="status==2">
 			,BargainPrice=#{bargainPrice}
@@ -311,15 +331,15 @@
 		</if>
 		where id = #{id}
 		<choose>
-		<when test="status==2">
-		and status=0
-		</when>
-		<when test="status==3">
-		and status=2
-		</when>
-		<when test="status==4">
-		and status=2
-		</when>
+			<when test="status==2">
+				and status=0
+			</when>
+			<when test="status==3">
+				and status=2
+			</when>
+			<when test="status==4">
+				and status=2
+			</when>
 		</choose>
 	</update>
 
@@ -332,32 +352,38 @@
 	<update id="updateByIds" parameterType="hashMap">
 		update PriceSheet set
 		Status = #{status}
-		where FIND_IN_SET(ID,#{ids})>0 and FIND_IN_SET(status,'0,3')>0
+		where FIND_IN_SET(ID,#{ids})>0 and
+		FIND_IN_SET(status,'0,3')>0
 	</update>
 
-	<!--议价供应商已响应  -->
+	<!--议价供应商已响应 -->
 	<select id="bargainingResponse" resultType="int" parameterType="Integer">
-		SELECT COUNT(ID) from PriceSheet 
-		where status IN(3,4) and userId=#{userId}
+		SELECT COUNT(ID) from PriceSheet
+		where status IN(3,4) and
+		userId=#{userId}
 	</select>
-	
-	<!--议价等待处理  -->
+
+	<!--议价等待处理 -->
 	<select id="bargainingWait" resultType="int" parameterType="Integer">
 		SELECT COUNT(asd.id) from(
 		SELECT
 		ps.ID,p.ProductName,c.CompanyName,ps.UnitPrice,ps.Quantity,ps.CreateDate,ps.DeliveryDate,
 		ps.BargainPrice,ps.ValidUntil,ps.CompanyProductID,getCompanyProductPic(cp.ID)
 		as FilePath,c.CompanyTel,c.Salesman,
-		getUserCompanyName(ps.UserID) as UserCompanyName,getProductPic(cp.ProductID) AS productPic,
+		getUserCompanyName(ps.UserID) as
+		UserCompanyName,getProductPic(cp.ProductID) AS productPic,
 		getInquirySheetAddress(ps.PriceSheetID) as InquirySheetAddress,
 		ps.Status,ps.PriceSheetID
 		from PriceSheet ps
 		LEFT JOIN
-		CompanyProducts cp ON ps.CompanyProductID = cp.ID
+		CompanyProducts cp
+		ON ps.CompanyProductID = cp.ID
 		LEFT JOIN Products p
-		ON cp.ProductID = p.ID
+		ON cp.ProductID =
+		p.ID
 		LEFT JOIN Companys c ON cp.CompanyID = c.ID
-		WHERE cp.CompanyID =#{companyId}
+		WHERE cp.CompanyID
+		=#{companyId}
 		and ps.Status=2 ) asd
 	</select>
 </mapper>

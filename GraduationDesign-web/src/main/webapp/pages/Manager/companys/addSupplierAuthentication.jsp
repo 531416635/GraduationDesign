@@ -15,6 +15,7 @@ body {
 	background-color: #FFFFFF;
 	text-align: center;
 }
+
 div {
 	position: absolute;
 	top: 40%;
@@ -22,6 +23,7 @@ div {
 	left: 40%;
 	margin-left: -50px;
 }
+
 .input_txt {
 	width: 200px;
 	height: 20px;
@@ -47,67 +49,63 @@ div {
 </style>
 </head>
 <body>
-<div>
-	<form action="addSupplierAuthentication.do" method="post">
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tr style="display: none">
-				<th>认证ID:</th>
-				<td><input  name="id" value="${id}" />
-				</td>
-			</tr>
-			<tr>
-				<th>认证名称:</th>
-				<td><input  name="authenticationName" value="${authenticationName}"   required="required"  />
-				</td>
-			</tr>
-			<tr>
-				<th>认证文件:</th>
-				<td><input type="text" name="filePath" value="${filePath}"  required="required" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>企业名称ID:</th>
-				<td><input type="text" name="companyId" value="${companyId}"  required="required" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>企业类型:</th>
-				<td><input type="text" readonly="readonly" name="companyType" value="1"  required="required" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>状态:</th>
-				<td>
-				<select name='status' style="width:173px;">
+	<div>
+		<form action="addSupplierAuthentication.do" method="post">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr style="display: none">
+					<th>认证ID:</th>
+					<td><input name="id" value="${id}" /></td>
+				</tr>
+				<tr>
+					<th>认证名称:</th>
+					<td><input name="authenticationName"
+						value="${authenticationName}" required="required" /></td>
+				</tr>
+				<tr>
+					<th>认证文件:</th>
+					<td><input type="text" name="filePath" value="${filePath}"
+						required="required" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>企业名称ID:</th>
+					<td><input type="text" name="companyId" value="${companyId}"
+						required="required" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>企业类型:</th>
+					<td><input type="text" readonly="readonly" name="companyType"
+						value="1" required="required" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>状态:</th>
+					<td><select name='status' style="width: 173px;">
 							<option value="0">初始</option>
 							<option value="1">可用</option>
 							<option value="2">冻结</option>
 							<option value="3">结算</option>
-					</select>
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>上传时间:</th>
-				<td><input type="text" name="uploadTime"  required="required" 
-				onclick="WdatePicker()" readonly="readonly"
-				value="${uploadTime}" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>上传人:</th>
-				<td><input type="text" name="uploadBy" value="${companyId}"  required="required" />
-				</td>
-			</tr>
-			<tr style="display: none">
-				<th>文件类别:</th>
-				<td><input name="fileClass" value="${fileClass}"   required="required" />
-				</td>
-			</tr>
-			
-		</table>
-		<input type="submit" value="增加"/>
-		<input type="reset" value="取消" onclick="history.back()">
-	</form>
+					</select></td>
+				</tr>
+				<tr style="display: none">
+					<th>上传时间:</th>
+					<td><input type="text" name="uploadTime" required="required"
+						onclick="WdatePicker()" readonly="readonly" value="${uploadTime}" />
+					</td>
+				</tr>
+				<tr style="display: none">
+					<th>上传人:</th>
+					<td><input type="text" name="uploadBy" value="${companyId}"
+						required="required" /></td>
+				</tr>
+				<tr style="display: none">
+					<th>文件类别:</th>
+					<td><input name="fileClass" value="${fileClass}"
+						required="required" /></td>
+				</tr>
+
+			</table>
+			<input type="submit" value="增加" /> <input type="reset" value="取消"
+				onclick="history.back()">
+		</form>
 	</div>
 </body>
 </html>

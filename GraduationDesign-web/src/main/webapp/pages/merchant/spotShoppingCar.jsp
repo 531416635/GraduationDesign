@@ -306,7 +306,7 @@ function shoppingAddressClick(ShoppingCartId){
 	text-align: center;
 }
 
-#add,#jian {
+#add, #jian {
 	margin: 0px 1px;
 	padding: 0px;
 	float: none;
@@ -362,17 +362,17 @@ tr {
 			<div style="border:2px solid #F5F5F5;border-top:0px;height:25px;padding:10px;"><span style="font-size:18px;"><b>现货购物车</b></span><br />
 			</div>
 		</div> --%>
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2">商品管理 ></span><span
 				class="lo2">现货购物车</span>
 		</div>
 		<ul id="tabs">
 			<li><a title="tab1" href="<%=path%>/merchant/spotShoppingCar.do"
-				style="background:#9a1101 none repeat scroll 0 0;color:#fff;">现货购物车</a>
+				style="background: #9a1101 none repeat scroll 0 0; color: #fff;">现货购物车</a>
 			</li>
 			<li><a title="tab4"
-				href="<%=path%>/merchant/InquiryShoppingCar.do">我的购物车</a>
-			</li>
+				href="<%=path%>/merchant/InquiryShoppingCar.do">我的购物车</a></li>
 		</ul>
 		<div id="content">
 			<table width="100%" cellspacing="0" align="center">
@@ -402,8 +402,7 @@ tr {
 								value="${c.ShoppingCartId}" />--%> <input type="hidden"
 								name="productId" id="productId" value="${c.ID}" /></td>
 							<td><img src="<%=path%>${c.FilePath}"
-								style="height: 50px;width: 55px;">
-							</td>
+								style="height: 50px; width: 55px;"></td>
 							<td>
 								<%-- <input type="hidden" name="ProductName" id="ProductName"
 								value="${c.ProductName}" /> --%>${c.ProductName}</td>
@@ -419,18 +418,19 @@ tr {
 								value="+" onclick="addNum('${c.ShoppingCartId}')" /></td>
 							<td>${c.ProductBrand}</td>
 							<td><span
-								style="border:1px solid #ABADB3;background-color:#FFFFFF;padding:3px;"
+								style="border: 1px solid #ABADB3; background-color: #FFFFFF; padding: 3px;"
 								onclick="shoppingAddressClick('${c.ShoppingCartId}')"
-								id="shoppingCart1Id${c.ShoppingCartId}">${c.ShoppingAddressName}<img src="<%=path %>/images/redimg/btn20121210.png"/></span>
-								<p style="display:none;" id="address${c.ShoppingCartId}"
+								id="shoppingCart1Id${c.ShoppingCartId}">${c.ShoppingAddressName}<img
+									src="<%=path %>/images/redimg/btn20121210.png" /></span>
+								<p style="display: none;" id="address${c.ShoppingCartId}"
 									name="address${c.ShoppingCartId}">${c.ShoppingCartAddressName}</p>
 								<input type="hidden" id="addressShopping${c.ShoppingCartId}"
 								value="${c.Address}" name="addressShopping${c.ShoppingCartId}" />
 							</td>
 							<td><input class="orange button_sc" type="button"
-								style="margin-top:10px;" name="collect" value="收藏"
+								style="margin-top: 10px;" name="collect" value="收藏"
 								onclick="collect('${c.ID}','${c.ShoppingCartId}')"> <input
-								class="orange button_sc" type="button" style="margin-top:10px;"
+								class="orange button_sc" type="button" style="margin-top: 10px;"
 								name="collect" value="删除"
 								onclick="deleteShoppingCart('${c.ShoppingCartId}','${c.ProductQuantity}')">
 							</td>
@@ -445,7 +445,7 @@ tr {
 			<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div>
+			<div id="Pagination" class="meneame" style="clear: left"></div>
 		</div>
 		<div style="text-align: center; margin: 10px 0px;">
 			<input class="action orange" type="button" value="立即抢购"
@@ -461,7 +461,7 @@ tr {
 		</div>
 	</div>
 
-	<div style="height:1200px;"></div>
+	<div style="height: 1200px;"></div>
 
 
 

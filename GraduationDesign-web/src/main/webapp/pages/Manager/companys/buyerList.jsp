@@ -161,19 +161,16 @@ div.meneame span {
 				<li class=""><span><img src="images/t01.png" /> </span><a
 					href="/ssm/toAddBuyer.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
-							src="images/t03.png" />
-					</span>删除</a>
-				</li>
+							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
 			<form action="searchBuyerInfo.do" method="post">
-				<table style="border:1px solid #999;padding:3px;">
+				<table style="border: 1px solid #999; padding: 3px;">
 					<tr>
-						<td><input type="text" name="companyName" value="${companyName}" /><input
-							type="submit" value="搜索" />
-						</td>
+						<td><input type="text" name="companyName"
+							value="${companyName}" /><input type="submit" value="搜索" /></td>
 					</tr>
 				</table>
-		</form>
+			</form>
 		</div>
 
 
@@ -196,47 +193,40 @@ div.meneame span {
 
 				<c:forEach items="${buyer}" var="c">
 					<tr>
-						<td><input type="checkbox" name="box" value="${c.id}" />
-						</td>
+						<td><input type="checkbox" name="box" value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a>
 						</td>
-						<td>
-						<c:choose>
-						<c:when test="${c.companyScale == 1}">10人以下</c:when>
-						<c:when test="${c.companyScale == 2}">10-50(人)</c:when>
-						<c:when test="${c.companyScale == 3}">50-100(人)</c:when>
-						<c:when test="${c.companyScale == 4}">100人以上</c:when>
-						</c:choose>
-						</td>
+						<td><c:choose>
+								<c:when test="${c.companyScale == 1}">10人以下</c:when>
+								<c:when test="${c.companyScale == 2}">10-50(人)</c:when>
+								<c:when test="${c.companyScale == 3}">50-100(人)</c:when>
+								<c:when test="${c.companyScale == 4}">100人以上</c:when>
+							</c:choose></td>
 						<td>${c.companyTel}</td>
 						<td>${c.companyWebsite}</td>
-						<td>
-						<c:choose>
-							<c:when test="${c.status==0}">未认证</c:when>
-							<c:when test="${c.status==1}">已认证</c:when>
-							<c:when test="${c.status==3}">等待系统认证</c:when>
-							<c:when test="${c.status==2}">已删除</c:when>
-						</c:choose>
-						</td>
+						<td><c:choose>
+								<c:when test="${c.status==0}">未认证</c:when>
+								<c:when test="${c.status==1}">已认证</c:when>
+								<c:when test="${c.status==3}">等待系统认证</c:when>
+								<c:when test="${c.status==2}">已删除</c:when>
+							</c:choose></td>
 						<td>${c.companyContact}</td>
-						<td><a
-							class="tablelink" href="/ssm/toUpdateBuyer.do?id=${c.id}">修改</a>
-							<a
+						<td><a class="tablelink"
+							href="/ssm/toUpdateBuyer.do?id=${c.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 							<%-- <input type="button" value="删除"
-							onclick="location.href='deleteBuyer.do?id=${c.id}';" /> --%>
-						</td>
+							onclick="location.href='deleteBuyer.do?id=${c.id}';" /> --%></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-			<!-- 分页 -->
-			<div class="pagin">
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
+		<!-- 分页 -->
+		<div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
 
-	<%-- 	<div class="pagin">
+		<%-- 	<div class="pagin">
 			<div class="message">
 				共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页
 			</div>

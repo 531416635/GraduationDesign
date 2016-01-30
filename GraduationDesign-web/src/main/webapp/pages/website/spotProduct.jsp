@@ -335,12 +335,12 @@
 					varStatus="status1">
 					<c:if test="${pros1.parentCateGory==null}">
 						<div class="storey_box">
-							<div class="st_title" style="position: relative;width:80%;">
-								<div style="float: left; ">
+							<div class="st_title" style="position: relative; width: 80%;">
+								<div style="float: left;">
 									<b><span class="n${status1.count}"><img
 											src="<%=path%>/images/index/00_${status1.count}.png">
-												${status1.count}F/ 
-									</span><span class="nn1">${pros1.cateGoryName}</span> </b>
+												${status1.count}F/ </span><span class="nn1">${pros1.cateGoryName}</span>
+									</b>
 								</div>
 								<div class="st_intro">
 									<!--  精品推荐：品牌名称 | 品牌名称 -->
@@ -357,10 +357,10 @@
 										</c:if>
 									</c:forEach>
 								</div>
-								
+
 							</div>
 
-							
+
 							<div class="storey">
 
 								<!--中推荐商品展现-->
@@ -369,10 +369,11 @@
 										varStatus="status2">
 										<div class="grid_1">
 											<div class="banner_item">
-											<img src="<%=path %>${pros2.filePath }" height="90%" width="90%"/><br/>
-										原价：${pros2.unitPrice } |	${pros2.productName }	|${pros2.spotUnitPrice }	
+												<img src="<%=path %>${pros2.filePath }" height="90%"
+													width="90%" /><br /> 原价：${pros2.unitPrice } |
+												${pros2.productName } |${pros2.spotUnitPrice }
 											</div>
-											
+
 										</div>
 									</c:forEach>
 								</div>

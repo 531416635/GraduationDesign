@@ -81,7 +81,7 @@ body {
 
 		<form action="findSupplier.do" method="post">
 			<table border="0" cellpadding="0" cellspacing="0"
-				style="text-align:left;margin:0px;padding:0px;width: 90%;margin-bottom:30px;">
+				style="text-align: left; margin: 0px; padding: 0px; width: 90%; margin-bottom: 30px;">
 				<%-- <tr>
 				<th>商品ID:</th>
 				<td>
@@ -91,11 +91,9 @@ body {
 			</tr> --%>
 				<tr>
 					<th width="80px">商品名称：</th>
-					<td><span>${product.productName}</span>
-					</td>
+					<td><span>${product.productName}</span></td>
 					<th width="80px">商品单价：</th>
-					<td><span>${product.unitPrice}</span>
-					</td>
+					<td><span>${product.unitPrice}</span></td>
 
 				</tr>
 				<tr>
@@ -104,14 +102,12 @@ body {
 							test="${product.isHomeShow==0}">否</c:if></td>
 					<th>二级推荐：</th>
 					<td><c:if test="${product.isSubPageShow==1}">是</c:if> <c:if
-							test="${product.isSubPageShow==0}">否</c:if>
-					</td>
+							test="${product.isSubPageShow==0}">否</c:if></td>
 				</tr>
 				<tr>
 					<th>热销推荐：</th>
 					<td colspan="3"><c:if test="${product.isHotShow==1}">是</c:if>
-						<c:if test="${product.isHotShow==0}">否</c:if>
-					</td>
+						<c:if test="${product.isHotShow==0}">否</c:if></td>
 				</tr>
 				<tr>
 					<th>商品品类：</th>
@@ -126,15 +122,14 @@ body {
 									</c:if>
 								</c:forEach>
 							</c:if>
-						</c:forEach>
-					</td>
+						</c:forEach></td>
 					<th>计量单位：</th>
-					<td><span>${product.productUnit}</span>
-					</td>
+					<td><span>${product.productUnit}</span></td>
 				</tr>
 				<tr>
 					<th>商品类别：</th>
-					<td colspan="3"><c:forEach items="${productCategoryItems}" var="p3">
+					<td colspan="3"><c:forEach items="${productCategoryItems}"
+							var="p3">
 							<c:if test="${p3.parentCateGory==null}">
 								<c:forEach items="${productCategoryItems}" var="p4">
 									<c:if test="${p4.parentCateGory==p3.id}">
@@ -154,39 +149,43 @@ body {
 				</tr>
 				<tr>
 					<th>商品品牌：</th>
-					<td >${product.productBrand}</td>
+					<td>${product.productBrand}</td>
 					<th>商品产地：</th>
-					<td >${product.originPlaces}${product.detailAddress}</td>
+					<td>${product.originPlaces}${product.detailAddress}</td>
 
 				</tr>
 
 				<tr>
 					<th>图片展示：</th>
-					<td colspan="3"><c:forEach items="${productPic }" var="p3" varStatus="status">
+					<td colspan="3"><c:forEach items="${productPic }" var="p3"
+							varStatus="status">
 							<a href='#' class='cloud-zoom-gallery' title='Red'
 								rel="useZoom: 'zoom1', smallImage: '<%=path%>${p3.filePath}' ">
 								<img id="img${status.count}" src="<%=path%>${p3.filePath}"
 								alt="Thumbnail 1" width="92" height="88" class="zoom-tiny-image" />
 							</a>
-						</c:forEach>
-					</td>
+						</c:forEach></td>
 				</tr>
 
 				<tr>
-					<th valign= top>商品简介：</th>
+					<th valign=top>商品简介：</th>
 					<td colspan="4">
-					
+
 						<div id="content" cols="100"
-							style="width:90%; height:auto;min-height:300px;border: 1px solid #000;">${product.productInfo}</div>
+							style="width: 90%; height: auto; min-height: 300px; border: 1px solid #000;">${product.productInfo}</div>
 
 					</td>
 
 				</tr>
 				<tr>
-				<th>商品标题：</th>
-				<td><textarea name="productTitle" id="productTitle" disabled="disabled" style="height: 115px;  width: 248px; resize: none;">${product.productTitle}</textarea></td>
-				<th>商品简述：</th>
-				<td><textarea name="productDescription" id="productDescription" disabled="disabled" style="height: 115px;  width: 248px; resize: none; disabled:disabled;">${product.productDescription}</textarea></td>
+					<th>商品标题：</th>
+					<td><textarea name="productTitle" id="productTitle"
+							disabled="disabled"
+							style="height: 115px; width: 248px; resize: none;">${product.productTitle}</textarea></td>
+					<th>商品简述：</th>
+					<td><textarea name="productDescription"
+							id="productDescription" disabled="disabled"
+							style="height: 115px; width: 248px; resize: none; disabled: disabled;">${product.productDescription}</textarea></td>
 				</tr>
 				<%-- <tr>
 					<th>商品产地:</th>

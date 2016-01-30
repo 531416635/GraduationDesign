@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -152,53 +153,53 @@ div.meneame span {
 
 <body>
 
-    <div class="rightinfo">
-    
-    <div class="tools">
-    
-    	<ul class="toolbar">
-        <li><a class="tablelink" href="/ssm/productBrand/toAddProductBrand.do"><span><img src="../images/t01.png" /></span>添加</a></li>
-        </ul>
-    </div>
-    
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <!-- <th width="60"><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th> -->
-        <th >ID</th>
-        <th>品牌名称</th>
-        <th>首页显示</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        
-        <c:forEach items="${productBrands}" var="c">
-        <tr>
-        <%-- <td><input type="checkbox" name="box" onclick="checkBox();" value="${c.id}"/></td> --%>
-        <td>${c.id}</td>
-        <td>${c.brandName}</td>
-        <td>
-        <c:if test="${c.isHomeShow==1}" >是</c:if>
-        <c:if test="${c.isHomeShow!=1}" >否</c:if>
-        </td>
-        <td>
-        <a class="tablelink" href="/ssm/productBrand/toUpdateProductBrand.do?id=${c.id}">修改</a>
-       	<a class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
-        </td>
-        </tr> 
-        </c:forEach>
-        </tbody>
-    </table>
-   		<!-- 分页 -->
-			<div class="pagin">
-		<!-- 	<div class="message">
+	<div class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li><a class="tablelink"
+					href="/ssm/productBrand/toAddProductBrand.do"><span><img
+							src="../images/t01.png" /></span>添加</a></li>
+			</ul>
+		</div>
+
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<!-- <th width="60"><input name="" id="checkAll" type="checkbox"  onclick="checkAll();" />全选</th> -->
+					<th>ID</th>
+					<th>品牌名称</th>
+					<th>首页显示</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach items="${productBrands}" var="c">
+					<tr>
+						<%-- <td><input type="checkbox" name="box" onclick="checkBox();" value="${c.id}"/></td> --%>
+						<td>${c.id}</td>
+						<td>${c.brandName}</td>
+						<td><c:if test="${c.isHomeShow==1}">是</c:if> <c:if
+								test="${c.isHomeShow!=1}">否</c:if></td>
+						<td><a class="tablelink"
+							href="/ssm/productBrand/toUpdateProductBrand.do?id=${c.id}">修改</a>
+							<a class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="pagin">
+			<!-- 	<div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
-			</div>
-   <%-- <div class="pagin">
+			<div id="Pagination" class="meneame" style="clear: left"></div>
+		</div>
+		<%-- <div class="pagin">
     	<div class="message">共<i class="blue">${page.rows}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}&nbsp;</i>页</div>
         <ul class="paginList">
         		<c:choose>
@@ -229,32 +230,34 @@ div.meneame span {
                 </c:choose>    
         </ul>
     </div> --%>
-    
-    
-    <div class="tip">
-    	<div class="tiptop"><span>提示信息</span><a></a></div>
-        
-      <div class="tipinfo">
-        <span><img src="../images/ticon.png" /></span>
-        <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
-        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-        </div>
-        </div>
-        
-        <div class="tipbtn">
-        <input name="" type="button"  class="sure" value="确定" />&nbsp;
-        <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    
-    </div>
-    
-    
-    
-    
-    </div>
-    
-   <!-- <script type="text/javascript">
+
+
+		<div class="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+
+			<div class="tipinfo">
+				<span><img src="../images/ticon.png" /></span>
+				<div class="tipright">
+					<p>是否确认对信息的修改 ？</p>
+					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				</div>
+			</div>
+
+			<div class="tipbtn">
+				<input name="" type="button" class="sure" value="确定" />&nbsp; <input
+					name="" type="button" class="cancel" value="取消" />
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
+	<!-- <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd')
 	</script> -->
 

@@ -15,8 +15,7 @@
 <html>
 <!-- 这里就是装饰页面 -->
 <head>
-<title><decorator:title default="一起采团餐平台" />
-</title>
+<title><decorator:title default="一起采团餐平台" /></title>
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/public.css" />
 <link rel="stylesheet" href="<%=path%>/css/frontcss/shouye.css"
@@ -214,7 +213,6 @@ $(document).ready(function(){
 });
 </script>
 <style type="text/css">
-
 ul {
 	list-style-type: none
 }
@@ -273,9 +271,10 @@ ul {
 	width: 100px;
 	font-size: 12px;
 }
-#wel_div_tou a{
-    color: #666;
-    text-decoration: none;
+
+#wel_div_tou a {
+	color: #666;
+	text-decoration: none;
 }
 
 /* 设置图像圆圈  */
@@ -345,12 +344,13 @@ ul {
 	line-height: 29px;
 	color: #B00000;
 }
-.news_div a{
+
+.news_div a {
 	color: #999;
 	text-decoration: none;
 }
 
-.news_div a:hover{
+.news_div a:hover {
 	color: #999;
 	text-decoration: none;
 }
@@ -365,7 +365,8 @@ ul {
 				</c:if> <c:if test="${user !=null }">
 					<a href="/ssm/web/toLogin.do">${user.userName }</a>&nbsp;
 			<a href="/ssm/web/cancel.do">退出</a>
-				</c:if> | <a href="#" id="favorites">加入收藏 </a>|  <a href="#" id="favorites">联系客服</a></span>&nbsp;&nbsp;
+				</c:if> | <a href="#" id="favorites">加入收藏 </a>| <a href="#" id="favorites">联系客服</a>
+			</span>&nbsp;&nbsp;
 		</div>
 	</div>
 	<div class="header">
@@ -384,24 +385,26 @@ ul {
 	</div>
 	<div class="nav">
 		<div class="navdiv">
-			<div class="sort" style="background-color: #9d0100;width: 240px;">
+			<div class="sort" style="background-color: #9d0100; width: 240px;">
 				<img class="all_img"
-					style=" float: left;height: 20px;margin: 10px;width: 20px;"
+					style="float: left; height: 20px; margin: 10px; width: 20px;"
 					src="<%=path%>/images/index/splb.png"> <a class="all"
-					href="/ssm/merchant/toPurchaserList.do" style="width:180px;"><span
+					href="/ssm/merchant/toPurchaserList.do" style="width: 180px;"><span
 					style="color: white;">采供首页</span> </a>
 			</div>
 			<div id="divMenu" class="sort_rig" style="padding-left: 5px;">
 				<ul id="nav">
 				</ul>
 			</div>
-			<div style="float: right;height: 45px;width: 190px;">
+			<div style="float: right; height: 45px; width: 190px;">
 				<!--  class="navdiv_rig" -->
-				 <a href="/ssm/merchant/InquiryShoppingCar.do"> <img style="float: left; margin-top: 8px;"
+				<a href="/ssm/merchant/InquiryShoppingCar.do"> <img
+					style="float: left; margin-top: 8px;"
 					src="<%=path%>/images/index/gwc.png"></a>
 				<div class="purchasemk">
 					<div class="mb">
-						<a href="/ssm/web/toIndex.do"><img style="float: left;" src="<%=path %>/images/index/return_03.png"></a>
+						<a href="/ssm/web/toIndex.do"><img style="float: left;"
+							src="<%=path %>/images/index/return_03.png"></a>
 						<%--  <img style="float: left;" src="<%=path %>/images/index/cggl.png"> --%>
 					</div>
 					<%--
@@ -428,9 +431,8 @@ ul {
 							class="round_photo" />
 					</div>
 					<div class="user_div_name">
-						<span style="color: #D27474;font-size: 18px;font-weight: bold;">供应商</span>
-						<span>供应部</span>
-						<br /> 欢迎登录！<br />
+						<span style="color: #D27474; font-size: 18px; font-weight: bold;">供应商</span>
+						<span>供应部</span> <br /> 欢迎登录！<br />
 						<!-- 工作提醒<span style="color: #BF2F2F;">(5条)</span> -->
 					</div>
 					<div style="clear: both;"></div>
@@ -441,12 +443,13 @@ ul {
 				</div>
 
 				<table id="tbUser"
-					style="margin-left:15px;height:230px; width:230px; border:0px solid #d6d6d6; float:left;">
-					
-					<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8"></script>
-						
+					style="margin-left: 15px; height: 230px; width: 230px; border: 0px solid #d6d6d6; float: left;">
+
+					<script type="text/javascript"
+						src="http://www.qq.com/404/search_children.js" charset="utf-8"></script>
+
 				</table>
-				
+
 			</div>
 			<div class="news_div"
 				style="background: #fff url('<%=path%>/images/index/news_board.png') no-repeat scroll center top;">

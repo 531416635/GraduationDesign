@@ -21,7 +21,8 @@
 	src="<%=path%>/js/jquery.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/css/frontcss/public.css" />
-<script type="text/javascript" src="<%=path%>/js/redjs/jquery.pagination.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/js/redjs/jquery.pagination.js"></script>
 <link rel="stylesheet" href="<%=path%>/css/redcss/pagination.css" />
 <style type="text/css">
 #img2 {
@@ -80,39 +81,39 @@ tr {
 <body>
 
 	<div class="inner_div">
-	
-		<hr style="color: red;border: 1px solid;" />
+
+		<hr style="color: red; border: 1px solid;" />
 		<br />
 		<div></div>
 		<c:if test="${!empty workflowLogsAndNodes}">
-			<table width="100%" cellspacing="1" align="center">			
-					<c:forEach items="${workflowLogsAndNodes}" var="w">
-						<tr>
-							<td><b>处理人：</b>&nbsp;${w.UserName}<br></td>
-							<td><b>处理环节：</b>${w.NodeName}<br></td>
-							<td><b>处理结果：</b> <c:choose>
-									<c:when test="${w.ProcessResult==1}">同意</c:when>
-									<c:when test="${w.ProcessResult!=1}">退回</c:when>
-								</c:choose> <br></td>
-							<td><b>处理时间：</b>${w.ProcessDate}<br></td>
-						</tr>
-						<tr>
-							<td><b>处理信息：</b></td>
-							<td colspan="3"><textarea disabled="disabled"
-									style="float: left; width: 95%; height: 50px; line-height: 2; font-size: 12px;  resize: none;">${w.ProcessContent}</textarea>
-							</td>
-						</tr>
-						<tr style="border-bottom: 3px solid #D0D0D0;">
-							<td colspan="4">&nbsp;</td>
-						</tr>
-					</c:forEach>
+			<table width="100%" cellspacing="1" align="center">
+				<c:forEach items="${workflowLogsAndNodes}" var="w">
+					<tr>
+						<td><b>处理人：</b>&nbsp;${w.UserName}<br></td>
+						<td><b>处理环节：</b>${w.NodeName}<br></td>
+						<td><b>处理结果：</b> <c:choose>
+								<c:when test="${w.ProcessResult==1}">同意</c:when>
+								<c:when test="${w.ProcessResult!=1}">退回</c:when>
+							</c:choose> <br></td>
+						<td><b>处理时间：</b>${w.ProcessDate}<br></td>
+					</tr>
+					<tr>
+						<td><b>处理信息：</b></td>
+						<td colspan="3"><textarea disabled="disabled"
+								style="float: left; width: 95%; height: 50px; line-height: 2; font-size: 12px; resize: none;">${w.ProcessContent}</textarea>
+						</td>
+					</tr>
+					<tr style="border-bottom: 3px solid #D0D0D0;">
+						<td colspan="4">&nbsp;</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<!-- 分页 -->
 			<div class="pagin">
-			<!-- <div class="message">
+				<!-- <div class="message">
 				共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage" class="blue"></i>页
 			</div> -->
-			<div id="Pagination" class="meneame" style="clear:left"></div> 	
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 			</div>
 		</c:if>
 	</div>

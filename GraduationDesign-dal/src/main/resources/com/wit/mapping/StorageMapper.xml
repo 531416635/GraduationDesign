@@ -4,11 +4,11 @@
 <mapper namespace="com.wit.dao.StorageDao">
 	<!--添加 -->
 	<insert id="insert" parameterType="com.wit.model.Storage">
-	<selectKey keyProperty="id" resultType="Integer" 
-			order="AFTER">
-				SELECT LAST_INSERT_ID()
-	</selectKey>
-		insert into Storage(storageCode,storageName,supplierId,goodsId,goodsNum,goodsUnit,goodsPrice)
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		Storage(storageCode,storageName,supplierId,goodsId,goodsNum,goodsUnit,goodsPrice)
 		values(#{storageCode},#{storageName},#{supplierId},#{goodsId},#{goodsNum},#{goodsUnit},#{goodsPrice})
 	</insert>
 </mapper>

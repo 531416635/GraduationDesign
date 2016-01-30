@@ -292,7 +292,6 @@ td {
 	padding-left: 8px;
 }
 
-
 .span_name {
 	color: #000;
 	font-size: 12px;
@@ -342,57 +341,60 @@ td {
 <body>
 
 	<div class="inner_div">
-		<div style="height:45px; line-height:45px; border-bottom:1px solid #D1D1D1; font-size:14px; padding-left:15px;">
+		<div
+			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页 </span>> <span class="lo2">询价管理 ></span><span
-
-				class="lo2"> 我的询价单</span><br/>
+				class="lo2"> 我的询价单</span><br />
 		</div>
 		<div
-			style="border:1px solid #D6D6D6;margin:5px 0;height:80px;line-height:40px;">
+			style="border: 1px solid #D6D6D6; margin: 5px 0; height: 80px; line-height: 40px;">
 			<input type="hidden" id="inquiryId1" value="${inquiryId }" /> <input
 				type="hidden" id="productName1" value="${productName }" /> <input
-				type="hidden" id="orderTime1" value="${orderTime }" />
-				<input type="hidden" id="status1" value="${status }" />
+				type="hidden" id="orderTime1" value="${orderTime }" /> <input
+				type="hidden" id="status1" value="${status }" />
 			<form action="myInquiry.do" method="post">
-				<span style="margin-left:15px;font-size:18px;">询价单查询</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				询价单号：<input name="inquiryId2" type="text" style="height:20px;width:150px;"
-					id="inquiryId2" value="${inquiryId }" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品：<input
-					name="productName" type="text" style="height:20px;width:150px;"
-					id="productName" value="${productName }" /><br>
-					<span style="margin-left:120px;">询价日期：</span><input
-					name="orderTime" type="text" id="orderTime" value="${orderTime }"
-					style="height:20px;width:150px;" readonly="readonly" onclick="WdatePicker()" />
-					<%-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<select
+				<span style="margin-left: 15px; font-size: 18px;">询价单查询</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				询价单号：<input name="inquiryId2" type="text"
+					style="height: 20px; width: 150px;" id="inquiryId2"
+					value="${inquiryId }" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品：<input
+					name="productName" type="text" style="height: 20px; width: 150px;"
+					id="productName" value="${productName }" /><br> <span
+					style="margin-left: 120px;">询价日期：</span><input name="orderTime"
+					type="text" id="orderTime" value="${orderTime }"
+					style="height: 20px; width: 150px;" readonly="readonly"
+					onclick="WdatePicker()" />
+				<%-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<select
 						name="status" type="text" id="status" style="height:20px;width:65px;">
 						<option value="10" <c:if test="${status==10 }">selected="selected"</c:if>>全部</option>
 						<option value="0" <c:if test="${status==0 }">selected="selected"</c:if> >初始</option>
 						<option value="1" <c:if test="${status==1 }">selected="selected"</c:if> >已询价</option>
 						
 						</select> --%>
-					<span style="margin-left:200px;"><input
-					name="submitButton" class="orange" type="submit" id="submitButton"
-					value="查询" /></span>
+				<span style="margin-left: 200px;"><input name="submitButton"
+					class="orange" type="submit" id="submitButton" value="查询" /></span>
 			</form>
 			<c:if test="${empty inquirySheet}">
-			<script type="text/javascript">
+				<script type="text/javascript">
 			alert("查询结果为空,请重新输入！");
 			</script>
 			</c:if>
-			
+
 		</div>
 		<c:if test="${!empty inquirySheet}">
 			<div>
 				<table width="100%" border="0" cellspacing="0" align="center">
 
 					<c:forEach items="${inquirySheet}" var="c">
-						<tr style="background-color:#FAFAFA;">
-							<td colspan="6" style="height:35px; line-height:35px;">
-								<p style="margin:0; font-size:14px; color:#2a2a2a;">
-									<span style="float:left;">询价单编号： <c:if
+						<tr style="background-color: #FAFAFA;">
+							<td colspan="6" style="height: 35px; line-height: 35px;">
+								<p style="margin: 0; font-size: 14px; color: #2a2a2a;">
+									<span style="float: left;">询价单编号： <c:if
 											test="${c.status==1 }">
 											<a href="myPriceSheet.do?ids=${c.inquiryId}">${c.inquiryId}</a>
-										</c:if> <c:if test="${c.status!=1 }">${c.inquiryId}</c:if> </span>
-								</p></td>
+										</c:if> <c:if test="${c.status!=1 }">${c.inquiryId}</c:if>
+									</span>
+								</p>
+							</td>
 							<td style="text-align: center"><c:choose>
 									<c:when test="${c.status==0}">
 										<span class="span_zt zt_dcl">初始</span>
@@ -406,36 +408,32 @@ td {
 							<td colspan="5">&nbsp;</td>
 						</tr>
 						<tr>
-							<td rowspan="2" style="width:50px; text-align:center;"><input
+							<td rowspan="2" style="width: 50px; text-align: center;"><input
 								type="radio" name="box" value="${c.inquiryId}" /></td>
-							<td rowspan="2" style="width:90px;"><c:if
+							<td rowspan="2" style="width: 90px;"><c:if
 									test="${c.productPic!=null && c.productPic!=''}">
 									<div
-										style="width:79px; height:64px; padding:1px; border:1px solid  #d9d9d9;">
-										<img style="width:79px; height:64px;"
+										style="width: 79px; height: 64px; padding: 1px; border: 1px solid #d9d9d9;">
+										<img style="width: 79px; height: 64px;"
 											src="<%=path%>${c.productPic}" />
 									</div>
 								</c:if></td>
-							<td style="width:190px;"><span class="span_name">产品名称：</span><span
-								class="span_value">${c.productName}</span>
-							</td>
-							<td style="width:250px;"><span class="span_name">询价时间：
+							<td style="width: 190px;"><span class="span_name">产品名称：</span><span
+								class="span_value">${c.productName}</span></td>
+							<td style="width: 250px;"><span class="span_name">询价时间：
 							</span> <span class="span_value" id="orderTime_${c.id}"><jsp:useBean
 										id="date" class="java.util.Date" /> <fmt:formatDate
 										value="${c.orderTime}" type="both"
-										pattern="yyyy-MM-dd HH:mm:ss" />
-							</span></td>
+										pattern="yyyy-MM-dd HH:mm:ss" /> </span></td>
 							<%-- <td>币种:</td>
 							<td>${c.currency}</td> --%>
-							<td  style="width:115px;"><span class="span_name">配送区域：</span></td><td> <span
-								class="span_value"
-								style="border:1px solid #ABADB3;background-color:#FFFFFF;
-								overflow:hidden;white-space:nowrap; 
-								display:block;padding:2px;width:115px;"
+							<td style="width: 115px;"><span class="span_name">配送区域：</span></td>
+							<td><span class="span_value"
+								style="border: 1px solid #ABADB3; background-color: #FFFFFF; overflow: hidden; white-space: nowrap; display: block; padding: 2px; width: 115px;"
 								onclick="shoppingAddressClick('${c.inquiryId}')"
 								id="shoppingCart1Id${c.inquiryId}">${c.inquiryAddressName}
 							</span>
-								<p style="display:none;" id="address${c.inquiryId}"
+								<p style="display: none;" id="address${c.inquiryId}"
 									name="address${c.inquiryId}">${c.inquiryAddressNames}</p> <input
 								type="hidden" id="addressShopping${c.inquiryId}"
 								value="${c.address}" name="addressShopping${c.inquiryId}" /></td>
@@ -443,29 +441,27 @@ td {
 						<tr>
 
 							<td><span class="span_name">产品规格：</span><span
-								class="span_value">${c.productModel}</span>
-							</td>
+								class="span_value">${c.productModel}</span></td>
 							<td><span class="span_name">购买数量：</span> <span
 								class="span_value"><input class="input_text" type="text"
 									name="productQuantity" id="txtProductQuantity_${c.inquiryId}"
-									style="width:70px;text-align: right;"
+									style="width: 70px; text-align: right;"
 									onkeyup="this.value=this.value.replace(/^[0]/g,'').replace(/\D/g,'')"
 									onafterpaste="this.value=this.value.replace(/^[0]/g,'').replace(/\D/g,'')"
-									value="${c.productQuantity}">${c.productUnit}</span>
-							</td>
-							<td><span class="span_name">期望交期：</span></td><td> <span
-								class="span_value"><c:if test="${c.status==0 }">
-										<input style="height: 20px;width:120px;" onclick="WdatePicker()"
+									value="${c.productQuantity}">${c.productUnit}</span></td>
+							<td><span class="span_name">期望交期：</span></td>
+							<td><span class="span_value"><c:if
+										test="${c.status==0 }">
+										<input style="height: 20px; width: 120px;"
+											onclick="WdatePicker()"
 											onchange="changeExpectTime('${c.inquiryId}')"
 											id="txtExpectTime_${c.inquiryId}" value="${c.expectTime}" />
-									</c:if> <c:if test="${c.status!=0 }">${c.expectTime}</c:if>
-							</span>
-							</td>
+									</c:if> <c:if test="${c.status!=0 }">${c.expectTime}</c:if> </span></td>
 
 						</tr>
 						<tr>
-            	<td colspan="5">&nbsp;</td>
-            </tr>
+							<td colspan="5">&nbsp;</td>
+						</tr>
 					</c:forEach>
 				</table>
 			</div>
@@ -475,9 +471,9 @@ td {
 					共<i id="rows" class="blue"></i>条记录，当前显示第&nbsp;<i id="currentPage"
 						class="blue"></i>页
 				</div> -->
-				<div id="Pagination" class="meneame" style="clear:left"></div>
+				<div id="Pagination" class="meneame" style="clear: left"></div>
 			</div>
-			<div class="demo" style="text-align: center;margin-top: 10px;">
+			<div class="demo" style="text-align: center; margin-top: 10px;">
 				<input type="button" value="确认提交" id="qrtj" class="action orange"
 					onclick="baojia();" /> <input type="button" value="取消返回" id="qxfh"
 					class="orange" onclick="history.back()" />
@@ -540,6 +536,6 @@ td {
 		</div>
 	</div>
 
-	<div style="height:1200px;"></div>
+	<div style="height: 1200px;"></div>
 </body>
 </html>

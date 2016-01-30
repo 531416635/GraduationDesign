@@ -14,15 +14,14 @@
 <head>
 </head>
 <body>
-	<div style="width:100%; float:left; margin-top:5px; height:800px; border-top:#d7d7d7 solid 2px; overflow:hidden;" >
-						<ul>
-							<c:forEach items="${productsList}" var="pros2"
-								varStatus="status2">
-								<li style="float:left; padding-left:2px;"><a href="#"><img src="${pros2.productPic.filePath}" />
-								</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
+	<div
+		style="width: 100%; float: left; margin-top: 5px; height: 800px; border-top: #d7d7d7 solid 2px; overflow: hidden;">
+		<ul>
+			<c:forEach items="${productsList}" var="pros2" varStatus="status2">
+				<li style="float: left; padding-left: 2px;"><a href="#"><img
+						src="${pros2.productPic.filePath}" /> </a></li>
+			</c:forEach>
+		</ul>
+	</div>
 </body>
 </html>
