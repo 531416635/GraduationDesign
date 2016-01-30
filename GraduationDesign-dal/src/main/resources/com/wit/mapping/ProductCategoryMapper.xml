@@ -107,7 +107,7 @@
 		parentCateGory=#{id}
 	</select>
 	<select id="findProductCategorysSun" resultType="com.wit.model.ProductCategory"
-		parameterType="Integer">
+		parameterType="java.lang.String">
 		SELECT id, cateGoryName,parentCateGory,cateGoryCode FROM
 		ProductCategory WHERE
 		parentCateGory = #{cateGoryId} OR (
