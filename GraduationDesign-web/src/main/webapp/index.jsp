@@ -8,7 +8,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript">
 	function bodyload(){
-	window.location="/GraduationDesign-web/web/toIndex.do";
+	window.location="/GraduationDesign/web/toIndex.do";
 	}
   </script>
 
