@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,11 +31,8 @@ import com.wit.model.FiltratePage;
 import com.wit.model.InquirySheet;
 import com.wit.model.Menus;
 import com.wit.model.News;
-
 import com.wit.model.Page;
-
 import com.wit.model.Orders;
-
 import com.wit.model.ProductBrand;
 import com.wit.model.ProductCategory;
 import com.wit.model.ProductPic;
@@ -343,6 +341,9 @@ public class WebController {
 		// 获取二级页面商品
 		String cateGoryLevel = request.getParameter("cateGoryLevel");
 		String products = request.getParameter("products");
+		if (!StringUtils.isEmpty(products)) {
+			products=new String(products.getBytes("ISO-8859-1"), "UTF-8"); 
+		}
 		String superclass = "";
 		String subclass = "5";
 		String json = "";
