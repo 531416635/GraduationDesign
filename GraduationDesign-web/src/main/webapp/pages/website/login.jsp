@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	function reloadcode() {
 		var verify = document.getElementById('code');
-		verify.setAttribute('src', '/ssm/pages/website/makeCertPic.jsp?it='
+		verify.setAttribute('src', '/GraduationDesign/pages/website/makeCertPic.jsp?it='
 				+ Math.random());
 	}
 	$(document).keydown(function(event) {
@@ -50,11 +50,11 @@
 				} else if (data == "typeError") {
 					$("#msg").text("登录平台错误");
 				} else if (data == "success") {
-					location.href = "/ssm/web/toIndex.do";
+					location.href = "/GraduationDesign/web/toIndex.do";
 				} else if (data == "companyError") {
 					$("#msg").text("未找到公司信息");
 				} else if (data == "authenticationError") {
-					location.href = "/ssm/merchant/toCompanyAuthentication.do";
+					location.href = "/GraduationDesign/merchant/toCompanyAuthentication.do";
 				} else if (data == "freeze") {
 					$("#msg").text("账户已冻结");
 				} else if (data == "delete") {
@@ -170,14 +170,14 @@
 						<tr>
 							<td><input id="yzm" type="text" name="yzm"
 								placeholder="&nbsp;请输入验证码" /></td>
-							<td><img src="/ssm/pages/website/makeCertPic.jsp" id="code"
+							<td><img src="<%=path %>/pages/website/makeCertPic.jsp" id="code"
 								onclick="reloadcode()" style="cursor: pointer;" alt="换一张"></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="font-size: 12px;"><input id="denglu"
 								type="button" value="登   录" onclick="check_login();" /><br />
-								还不是会员？<a href="/ssm/web/toReg.do" style="color: red;">立即注册</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ssm/web/toWjmm.do"
+								还不是会员？<a href="<%=path %>/web/toReg.do" style="color: red;">立即注册</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%=path %>/web/toWjmm.do"
 								style="color: #606060;">忘记密码</a></td>
 						</tr>
 					</table>

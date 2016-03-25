@@ -72,7 +72,7 @@ $(document).ready(function(){
 						<td>${c.publishers}</td>
 						<td>${c.status}</td>
 						<td><a class="tablelink" href="#">修改</a> <a class="tablelink"
-							href="/ssm/news/deleteNew.do?id=${c.id}">删除</a></td>
+							href="/GraduationDesign/news/deleteNew.do?id=${c.id}">删除</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

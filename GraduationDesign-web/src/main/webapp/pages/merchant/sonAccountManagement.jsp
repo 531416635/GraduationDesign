@@ -598,7 +598,7 @@ tr {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/users/departments.do?currentPage=${page.currentPage-1}"><span
+										href="/GraduationDesign/users/departments.do?currentPage=${page.currentPage-1}"><span
 											class="pagepre"></span> </a></li>
 								</c:otherwise>
 							</c:choose>
@@ -609,7 +609,7 @@ tr {
 									</c:when>
 									<c:otherwise>
 										<li class="paginItem"><a
-											href="/ssm/users/departments.do?currentPage=${s3}">${s3}</a>
+											href="/GraduationDesign/users/departments.do?currentPage=${s3}">${s3}</a>
 										</li>
 									</c:otherwise>
 								</c:choose>
@@ -621,7 +621,7 @@ tr {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/users/departments.do?currentPage=${page.currentPage+1}"><span
+										href="/GraduationDesign/users/departments.do?currentPage=${page.currentPage+1}"><span
 											class="pagenxt"></span> </a></li>
 								</c:otherwise>
 							</c:choose>

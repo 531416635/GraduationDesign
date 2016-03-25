@@ -459,7 +459,7 @@ $(".input_text1").val($(".name").text().trim());
 	function checkCategory(productCategoryId) {
 		$.ajax({
 			type : "POST",
-			url : "/ssm/products/listProductCategoryson.do",
+			url : "/GraduationDesign/products/listProductCategoryson.do",
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			data : {
 				productCategoryId : productCategoryId
@@ -494,7 +494,7 @@ $(".input_text1").val($(".name").text().trim());
 	function checkCategorysun(productCategoryId) {
 		$.ajax({
 			type : "POST",
-			url : "/ssm/products/listProductTypes.do",
+			url : "/GraduationDesign/products/listProductTypes.do",
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			data : {
 				"productCategoryId" : productCategoryId
@@ -553,7 +553,7 @@ $(".input_text1").val($(".name").text().trim());
 	function checkSs(id, s) {
 		$.ajax({
 			type : "POST",
-			url : "/ssm/merchant/provinceUrbanLinkage.do",
+			url : "/GraduationDesign/merchant/provinceUrbanLinkage.do",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			data : {
 				id : id
@@ -573,7 +573,7 @@ $(".input_text1").val($(".name").text().trim());
 	function checkss(id, s) {
 		$.ajax({
 			type : "POST",
-			url : "/ssm/merchant/provinceUrbanLinkage.do",
+			url : "/GraduationDesign/merchant/provinceUrbanLinkage.do",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			data : {
 				"id" : id

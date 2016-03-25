@@ -103,7 +103,7 @@ th {
 		<!-- <div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toInsertSupplierBalance.do">添加</a></li>
+					href="/GraduationDesign/toInsertSupplierBalance.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
 							src="images/t03.png" />
 					</span>删除</a>
@@ -203,7 +203,7 @@ th {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyBalanceLog.do?currentPage=${page.currentPage-1}&&id=${companyId}"><span
+							href="/GraduationDesign/companyBalanceLog.do?currentPage=${page.currentPage-1}&&id=${companyId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -214,7 +214,7 @@ th {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/companyBalanceLog.do?currentPage=${s3}&&id=${companyId}">${s3}</a></li>
+								href="/GraduationDesign/companyBalanceLog.do?currentPage=${s3}&&id=${companyId}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -225,7 +225,7 @@ th {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyBalanceLog.do?currentPage=${page.currentPage+1}&&id=${companyId}"><span
+							href="/GraduationDesign/companyBalanceLog.do?currentPage=${page.currentPage+1}&&id=${companyId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

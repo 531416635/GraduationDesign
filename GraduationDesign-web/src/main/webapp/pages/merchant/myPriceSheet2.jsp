@@ -418,7 +418,7 @@ td {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/
+								href="/GraduationDesign/merchant/
 							<c:choose>
 							<c:when test="${status=='2'}">
 							Bargaining.do
@@ -443,7 +443,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/
+									href="/GraduationDesign/merchant/
 							<c:choose>
 							<c:when test="${status=='2'}">
 							Bargaining.do
@@ -468,7 +468,7 @@ td {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/
+								href="/GraduationDesign/merchant/
 							<c:choose>
 							<c:when test="${status=='2'}">
 							Bargaining.do

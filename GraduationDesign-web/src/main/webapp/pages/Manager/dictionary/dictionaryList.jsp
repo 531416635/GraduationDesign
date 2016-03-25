@@ -163,7 +163,7 @@ div.meneame span {
 			<div class="tools">
 				<ul class="toolbar">
 					<li><a class="tablelink"
-						href="/ssm/dictionary/toDictionaryAdd.do"><span><img
+						href="/GraduationDesign/dictionary/toDictionaryAdd.do"><span><img
 								src="../images/t01.png" /> </span>添加</a></li>
 					<li><a class="tablelink" href="javascript:checkDeletes();"><span><img
 								src="../images/t03.png" /> </span>删除</a></li>
@@ -207,7 +207,7 @@ div.meneame span {
 							<td>${f.dicParentName}</td>
 							<td>${f.typeName}</td>
 							<td><a class="tablelink"
-								href="/ssm/dictionary/toDictionaryUpdate.do?id=${f.id}">修改</a> <a
+								href="/GraduationDesign/dictionary/toDictionaryUpdate.do?id=${f.id}">修改</a> <a
 								class="tablelink" href="#" onclick="checkDelete(${f.id});">删除</a>
 							</td>
 						</tr>
@@ -237,7 +237,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/dictionary/dictionaryList.do?currentPage=${dictionaryPage.currentPage-1}"><span
+								href="/GraduationDesign/dictionary/dictionaryList.do?currentPage=${dictionaryPage.currentPage-1}"><span
 									class="pagepre"></span>
 							</a>
 							</li>
@@ -251,7 +251,7 @@ div.meneame span {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/dictionary/dictionaryList.do?currentPage=${s3}">${s3}</a>
+									href="/GraduationDesign/dictionary/dictionaryList.do?currentPage=${s3}">${s3}</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
@@ -266,7 +266,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/dictionary/dictionaryList.do?currentPage=${dictionaryPage.currentPage+1}"><span
+								href="/GraduationDesign/dictionary/dictionaryList.do?currentPage=${dictionaryPage.currentPage+1}"><span
 									class="pagenxt"></span>
 							</a>
 							</li>

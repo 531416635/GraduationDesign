@@ -150,7 +150,7 @@ div.meneame span {
 	<div class="tools">
 		<ul class="toolbar">
 			<li><a class="tablelink"
-				href="/ssm/main/toPriceSheetListAdd.do?"><span><img
+				href="/GraduationDesign/main/toPriceSheetListAdd.do?"><span><img
 						src="../images/t01.png" /> </span>添加</a></li>
 			<li class="click2"><span><img
 					src="<%=path%>/images/t03.png" /> </span> <a href="javascript:;"
@@ -233,7 +233,7 @@ div.meneame span {
 				</c:when>
 				<c:otherwise>
 					<li class="paginItem"><a
-						href="/ssm/main/PriceSheet.do?currentPage=${page.currentPage-1}"><span
+						href="/GraduationDesign/main/PriceSheet.do?currentPage=${page.currentPage-1}"><span
 							class="pagepre"></span>
 					</a>
 				</c:otherwise>
@@ -245,7 +245,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/main/PriceSheet.do?currentPage=${s3}">${s3}</a>
+							href="/GraduationDesign/main/PriceSheet.do?currentPage=${s3}">${s3}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -257,7 +257,7 @@ div.meneame span {
 				</c:when>
 				<c:otherwise>
 					<li class="paginItem"><a
-						href="/ssm/main/PriceSheet.do?currentPage=${page.currentPage+1}"><span
+						href="/GraduationDesign/main/PriceSheet.do?currentPage=${page.currentPage+1}"><span
 							class="pagenxt"></span>
 					</a>
 				</c:otherwise>

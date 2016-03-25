@@ -74,7 +74,7 @@ $(function(){
 	function changeProduct(productModel){
 	$.ajax({
 			type : "POST",
-			url : "/ssm/products/findProductByModel.do",
+			url : "/GraduationDesign/products/findProductByModel.do",
 			dataType : "text",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			data : {

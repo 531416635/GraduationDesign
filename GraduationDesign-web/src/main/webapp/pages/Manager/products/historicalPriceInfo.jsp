@@ -115,7 +115,7 @@ div {
 					<th>供应商公司名：</th>
 					<c:forEach items="${product.companys}" var="c">
 						<td><span><a
-								href="/ssm/grossMarginPrice/toCompanyProductPrice.do?productId=${product.id}&&companyId=${c.id}">${c.companyName}</a></span>
+								href="/GraduationDesign/grossMarginPrice/toCompanyProductPrice.do?productId=${product.id}&&companyId=${c.id}">${c.companyName}</a></span>
 						</td>
 
 					</c:forEach>

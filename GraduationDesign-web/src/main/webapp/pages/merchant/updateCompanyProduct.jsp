@@ -40,7 +40,7 @@ table {
 		<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span
 			class="lo2"> 商品上货</span><span class="lo2"> 商品编辑</span>
 	</div>
-	<form action="/ssm/merchant/updateCompanyProductsInfo.do" method="post">
+	<form action="/GraduationDesign/merchant/updateCompanyProductsInfo.do" method="post">
 		<table border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<th>商品编码：</th>

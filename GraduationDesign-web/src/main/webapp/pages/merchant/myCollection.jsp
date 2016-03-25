@@ -227,7 +227,7 @@ td {
 	 };  
 	function pageselectCallback(page_index, jq){  //此函数为分页动态按钮展现的回调函数，即分页展现商品
 		if(flag){
-		location.href="/ssm/merchant/myCollection.do?favoriteType=1&&currentPage1="+(page_index+1)+"&&show=1";
+		location.href="/GraduationDesign/merchant/myCollection.do?favoriteType=1&&currentPage1="+(page_index+1)+"&&show=1";
 		}
 		flag=true;
 		return false;	
@@ -252,7 +252,7 @@ td {
 	 };  
 	function pageselectCallback(page_index, jq){  //此函数为分页动态按钮展现的回调函数，即分页展现商品
 		if(flag){
-		location.href="/ssm/merchant/myCollection.do?favoriteType=1&&currentPage2="+(page_index+1)+"&&show=2";
+		location.href="/GraduationDesign/merchant/myCollection.do?favoriteType=1&&currentPage2="+(page_index+1)+"&&show=2";
 		}
 		flag=true;
 		return false;	
@@ -570,7 +570,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myCollection.do?currentPage=${page1.currentPage-1}&&show=1"><span
+									href="/GraduationDesign/merchant/myCollection.do?currentPage=${page1.currentPage-1}&&show=1"><span
 										class="pagepre"></span> </a></li>
 							</c:otherwise>
 						</c:choose>
@@ -581,7 +581,7 @@ td {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/merchant/myCollection.do?currentPage=${s3}&&show=1">${s3}</a>
+										href="/GraduationDesign/merchant/myCollection.do?currentPage=${s3}&&show=1">${s3}</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -593,7 +593,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myCollection.do?currentPage=${page1.currentPage+1}&&show=1"><span
+									href="/GraduationDesign/merchant/myCollection.do?currentPage=${page1.currentPage+1}&&show=1"><span
 										class="pagenxt"></span> </a></li>
 							</c:otherwise>
 						</c:choose>
@@ -611,7 +611,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myCollection.do?currentPage=${page2.currentPage-1}&&show=2"><span
+									href="/GraduationDesign/merchant/myCollection.do?currentPage=${page2.currentPage-1}&&show=2"><span
 										class="pagepre"></span> </a></li>
 							</c:otherwise>
 						</c:choose>
@@ -622,7 +622,7 @@ td {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/merchant/myCollection.do?currentPage=${s3}&&show=2">${s3}</a>
+										href="/GraduationDesign/merchant/myCollection.do?currentPage=${s3}&&show=2">${s3}</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -634,7 +634,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myCollection.do?currentPage=${page2.currentPage+1}&&show=2"><span
+									href="/GraduationDesign/merchant/myCollection.do?currentPage=${page2.currentPage+1}&&show=2"><span
 										class="pagenxt"></span> </a></li>
 							</c:otherwise>
 						</c:choose>

@@ -302,7 +302,7 @@ select {
 			<div id="content">
 				<div id="tab1">
 					<input type="hidden" id="ele1" value="">
-					<form name="orders" action="/ssm/merchant/myOrder.do" method="post">
+					<form name="orders" action="/GraduationDesign/merchant/myOrder.do" method="post">
 						<table id="table_1">
 							<tr>
 								<td>订单号：</td>
@@ -517,7 +517,7 @@ select {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myOrder.do?currentPage1=${page1.currentPage-1}&&show=1"><span
+									href="/GraduationDesign/merchant/myOrder.do?currentPage1=${page1.currentPage-1}&&show=1"><span
 										class="pagepre"></span> </a>
 								</li>
 							</c:otherwise>
@@ -530,7 +530,7 @@ select {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/merchant/myOrder.do?currentPage1=${s3}&&show=1">${s3}</a>
+										href="/GraduationDesign/merchant/myOrder.do?currentPage1=${s3}&&show=1">${s3}</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -543,7 +543,7 @@ select {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myOrder.do?currentPage1=${orderPage1.currentPage+1}&&show=1"><span
+									href="/GraduationDesign/merchant/myOrder.do?currentPage1=${orderPage1.currentPage+1}&&show=1"><span
 										class="pagenxt"></span> </a>
 								</li>
 							</c:otherwise>
@@ -564,7 +564,7 @@ select {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myOrder.do?currentPage2=${orderPage2.currentPage-1}&&show=2"><span
+									href="/GraduationDesign/merchant/myOrder.do?currentPage2=${orderPage2.currentPage-1}&&show=2"><span
 										class="pagepre"></span> </a>
 								</li>
 							</c:otherwise>
@@ -577,7 +577,7 @@ select {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/merchant/myOrder.do?currentPage2=${s3}&&show=2">${s3}</a>
+										href="/GraduationDesign/merchant/myOrder.do?currentPage2=${s3}&&show=2">${s3}</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -590,7 +590,7 @@ select {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myOrder.do?currentPage2=${orderPage2.currentPage+1}&&show=2"><span
+									href="/GraduationDesign/merchant/myOrder.do?currentPage2=${orderPage2.currentPage+1}&&show=2"><span
 										class="pagenxt"></span> </a>
 								</li>
 							</c:otherwise>

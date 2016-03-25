@@ -70,7 +70,7 @@ div.meneame span {
 
 		<div class="tools">
 			<ul class="toolbar">
-				<li class=""><a href="/ssm/supplys/toInvoiceAdd.do">&nbsp;申请发票</a>
+				<li class=""><a href="/GraduationDesign/supplys/toInvoiceAdd.do">&nbsp;申请发票</a>
 				</li>
 			</ul>
 		</div>
@@ -148,7 +148,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/invoiceList.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
+							href="/GraduationDesign/supplys/invoiceList.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -159,7 +159,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/supplys/invoiceList.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
+								href="/GraduationDesign/supplys/invoiceList.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -171,7 +171,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/invoiceList.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
+							href="/GraduationDesign/supplys/invoiceList.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

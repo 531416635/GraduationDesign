@@ -25,7 +25,7 @@ public class ElkHelper implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
+	/*	// TODO Auto-generated method stub
 		Settings settings = Settings.settingsBuilder()
 				.put("cluster.name", "yaoyuxiao-cluster").build();
 		Builder builder = TransportClient.builder();
@@ -40,7 +40,7 @@ public class ElkHelper implements InitializingBean {
 				.addTransportAddress(
 						new InetSocketTransportAddress(InetAddress
 								.getByName("10.10.19.172"), 9302));
-
+*/
 	}
 
 	/**

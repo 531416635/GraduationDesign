@@ -99,7 +99,7 @@
 		<div class="tools">
 			<ul class="toolbar">
 				<li class=""><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddBuyer.do">添加</a></li>
+					href="/GraduationDesign/toAddBuyer.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
@@ -129,7 +129,7 @@
 						<td style="display: none">${s.companyId}</td>
 						<td>${s.OrderID}</td>
 						<td>${s.UserID}</td>
-						<td><a href="/ssm/findBalanceById.do?id=${s.CompanyID}">${s.CompanyName}</a>
+						<td><a href="/GraduationDesign/findBalanceById.do?id=${s.CompanyID}">${s.CompanyName}</a>
 						</td>
 						<td>${s.OrderTime}</td>
 						<td><c:choose>
@@ -144,7 +144,7 @@
 							</c:when>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyer.do?id=${s.ID}">修改</a> <input
+							href="/GraduationDesign/toUpdateBuyer.do?id=${s.ID}">修改</a> <input
 							type="button" value="删除"
 							onclick="location.href='deleteBuyer.do?id=${s.ID}';" /></td>
 					</tr>
@@ -167,7 +167,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyer.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findBuyer.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -178,7 +178,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findBuyer.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/findBuyer.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -189,7 +189,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyer.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findBuyer.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

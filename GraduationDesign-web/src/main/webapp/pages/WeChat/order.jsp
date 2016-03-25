@@ -64,7 +64,7 @@ span {
 	<div class="login">
 		<div class="login-top">
 			<form style="width: 85%; margin: 0 auto;"
-				action="/ssm/weChat/order.do" method="post" id="form1">
+				action="/GraduationDesign/weChat/order.do" method="post" id="form1">
 				<div class="order_input">
 					<span>日期：</span>
 					<!-- <input type="text"> -->

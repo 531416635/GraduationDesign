@@ -157,7 +157,7 @@ tr {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/toSonAccountManagement.do?currentPage=${page.currentPage-1}"><span
+								href="/GraduationDesign/merchant/toSonAccountManagement.do?currentPage=${page.currentPage-1}"><span
 									class="pagepre"></span> </a></li>
 						</c:otherwise>
 					</c:choose>
@@ -168,7 +168,7 @@ tr {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/toSonAccountManagement.do?currentPage=${s3}">${s3}</a></li>
+									href="/GraduationDesign/merchant/toSonAccountManagement.do?currentPage=${s3}">${s3}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -179,7 +179,7 @@ tr {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/toSonAccountManagement.do?currentPage=${page.currentPage+1}"><span
+								href="/GraduationDesign/merchant/toSonAccountManagement.do?currentPage=${page.currentPage+1}"><span
 									class="pagenxt"></span> </a></li>
 						</c:otherwise>
 					</c:choose>

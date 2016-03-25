@@ -51,7 +51,7 @@ body {
 </head>
 <body>
 
-	<form action="/ssm/main/addMenusList.do" name="menuForm" method="post">
+	<form action="/GraduationDesign/main/addMenusList.do" name="menuForm" method="post">
 		<!--  <input  type="hidden"  name="id"  id="id"    />  -->
 		<table border="0" cellpadding="0" cellspacing="0">
 

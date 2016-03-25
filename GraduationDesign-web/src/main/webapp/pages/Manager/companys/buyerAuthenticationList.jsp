@@ -91,7 +91,7 @@ div.meneame span {
 				<c:forEach items="${companys}" var="c">
 					<tr>
 						<td>${c.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
 						<td>${c.companyScale}</td>
 						<td>${c.registeredCapital}</td>
 						<td>${c.companyTel}</td>
@@ -103,9 +103,9 @@ div.meneame span {
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/buyerAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
+							href="/GraduationDesign/buyerAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
 							&nbsp;&nbsp;&nbsp;<a class="tablelink"
-							href="/ssm/merchantAuthentication.do?tmpCompanyId=${c.id}">认证</a>
+							href="/GraduationDesign/merchantAuthentication.do?tmpCompanyId=${c.id}">认证</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -131,7 +131,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerAuthentication.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/buyerAuthentication.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span>
 						</a>
 						</li>
@@ -145,7 +145,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/buyerAuthentication.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/buyerAuthentication.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -159,7 +159,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerAuthentication.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/buyerAuthentication.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span>
 						</a>
 						</li>

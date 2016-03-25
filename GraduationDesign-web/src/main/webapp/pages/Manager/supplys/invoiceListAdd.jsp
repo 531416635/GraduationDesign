@@ -32,7 +32,7 @@
 	
 	function addInvoiceTitle(companyId,title){
 		alert("添加成功，请重新申请发票");
-		location.href="/ssm/supplys/sysAddTitle.do?companyId="+companyId+"&&title="+encodeURI(encodeURI(title));
+		location.href="/GraduationDesign/supplys/sysAddTitle.do?companyId="+companyId+"&&title="+encodeURI(encodeURI(title));
 	}
 </script>
 <!-- <style type="text/css">

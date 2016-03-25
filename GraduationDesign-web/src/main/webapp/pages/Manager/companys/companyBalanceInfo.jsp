@@ -68,7 +68,7 @@ div {
 				<tr>
 					<th>账户金额:</th>
 					<td><span><a
-							href="/ssm/CompanyBalanceLog.do?id=${c.companyId}">${c.balance}</a></span></td>
+							href="/GraduationDesign/CompanyBalanceLog.do?id=${c.companyId}">${c.balance}</a></span></td>
 				</tr>
 				<tr>
 					<th>账户状态:</th>

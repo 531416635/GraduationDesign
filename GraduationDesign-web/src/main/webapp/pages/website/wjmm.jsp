@@ -13,13 +13,13 @@
 <script type="text/javascript">
 	function reloadcode() {
 		var verify = document.getElementById('code');
-		verify.setAttribute('src', '/ssm/pages/website/makeCertPic.jsp?it='
+		verify.setAttribute('src', '/GraduationDesign/pages/website/makeCertPic.jsp?it='
 				+ Math.random());
 	}
 	function check() {
 		$.ajax({
 			type : "POST",
-			url : "/ssm/web/wjmm.do",
+			url : "/GraduationDesign/web/wjmm.do",
 			dataType : "text",
 			data : $("#form").serialize(),
 			success : function(data) {
@@ -58,14 +58,14 @@ input[type=text] {
 			</div>
 
 			<div class="formdiv">
-				<form action="/ssm/web/wjmm.do" method="post" id="form">
+				<form action="/GraduationDesign/web/wjmm.do" method="post" id="form">
 					<p style="font-size: 16px;">
 						用户名 : <input type="text" name=userCode " class="search-input" />
 					</p>
 					<br />
 					<p style="font-size: 16px;">
 						验证码 : <input type="text" name="yzm" class="search-input1" />&nbsp;&nbsp;
-						<img src="/ssm/pages/website/makeCertPic.jsp" id="code"
+						<img src="/GraduationDesign/pages/website/makeCertPic.jsp" id="code"
 							onclick="reloadcode()" style="cursor: pointer;" alt="换一张">
 					</p>
 					<span style="color: red;" id="msg"></span><br /> <input

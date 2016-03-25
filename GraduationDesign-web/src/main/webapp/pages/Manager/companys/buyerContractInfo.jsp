@@ -80,7 +80,7 @@
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddBuyerContract.do?companyId=${companyId}">添加</a></li>
+					href="/GraduationDesign/toAddBuyerContract.do?companyId=${companyId}">添加</a></li>
 				<li><a class="tablelink" href="#"
 					onclick="getText('${companyId}');"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
@@ -119,9 +119,9 @@
 								<c:when test="${c.status==1}">签订</c:when>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/contractInfo.do?id=${c.id}">合同详情</a> <a
+							href="/GraduationDesign/contractInfo.do?id=${c.id}">合同详情</a> <a
 							class="tablelink"
-							href="/ssm/updateContractStatus.do?id=${c.id}&&companyId=${c.companyId}">审核</a>
+							href="/GraduationDesign/updateContractStatus.do?id=${c.id}&&companyId=${c.companyId}">审核</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -141,7 +141,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerContractInfo.do?currentPage=${page.currentPage-1}&&companyId=${companyId}"><span
+							href="/GraduationDesign/buyerContractInfo.do?currentPage=${page.currentPage-1}&&companyId=${companyId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -152,7 +152,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/buyerContractInfo.do?currentPage=${s3}&&companyId=${companyId}">${s3}</a></li>
+								href="/GraduationDesign/buyerContractInfo.do?currentPage=${s3}&&companyId=${companyId}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -163,7 +163,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerContractInfo.do?currentPage=${page.currentPage+1}&&companyId=${companyId}"><span
+							href="/GraduationDesign/buyerContractInfo.do?currentPage=${page.currentPage+1}&&companyId=${companyId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

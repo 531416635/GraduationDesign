@@ -88,7 +88,7 @@
 
 		if (window.confirm("确定要删除吗?")) {
 			var countId = getId();
-			$.post("/ssm/main/allDeleteMenus.do", {
+			$.post("/GraduationDesign/main/allDeleteMenus.do", {
 				Uid : countId
 			}, function(result) {
 
@@ -108,7 +108,7 @@
 					window.location.reload(true);
 				}
 			};
-			xhr.open("post", "/ssm/main/allDeleteMenus.do", true);
+			xhr.open("post", "/GraduationDesign/main/allDeleteMenus.do", true);
 			xhr.setRequestHeader('content-type',
 					'application/x-www-form-urlencoded');
 			var countId = getId();
@@ -120,7 +120,7 @@
 
 	function clickPage(url, currentPage, menuName, patform) {
 
-		/* 	<a href="/ssm/main/manegerMenus.do?currentPage=${page.currentPage-1}&&txtMenuName=${menuName}&&patform=${patform}"><span
+		/* 	<a href="/GraduationDesign/main/manegerMenus.do?currentPage=${page.currentPage-1}&&txtMenuName=${menuName}&&patform=${patform}"><span
 										class="pagepre"></span> </a> */
 		window.location.href = url + "?currentPage=" + currentPage
 				+ "&txtMenuName=" + encodeURI(encodeURI(menuName))
@@ -165,9 +165,9 @@ div.meneame span {
 <body>
 	<div class="rightinfo">
 		<div class="tools">
-			<form action="/ssm/main/SearchMenu.do" name="userForm" method="post">
+			<form action="/GraduationDesign/main/SearchMenu.do" name="userForm" method="post">
 				<ul class="toolbar">
-					<li><a class="tablelink" href="/ssm/main/toMenusAdd.do?"><span><img
+					<li><a class="tablelink" href="/GraduationDesign/main/toMenusAdd.do?"><span><img
 								src="../images/t01.png" /> </span>添加</a></li>
 					<li class="click2"><span><img
 							src="<%=path%>/images/t03.png" /> </span> <a href="javascript:;"
@@ -294,17 +294,17 @@ div.meneame span {
 						<li class="paginItem"><c:choose>
 								<c:when test="${patform==1}">
 									<a
-										href=" javascript:clickPage('/ssm/main/manegerMenus.do',''${page.currentPage-1}',''${menuName}',''${patform}')"><span
+										href=" javascript:clickPage('/GraduationDesign/main/manegerMenus.do',''${page.currentPage-1}',''${menuName}',''${patform}')"><span
 										class="pagepre"></span> </a>
 								</c:when>
 								<c:when test="${patform==2}">
 									<a
-										href="javascript:clickPage('/ssm/main/purchaserMenus.do','${page.currentPage-1}','${menuName}','${patform}')"><span
+										href="javascript:clickPage('/GraduationDesign/main/purchaserMenus.do','${page.currentPage-1}','${menuName}','${patform}')"><span
 										class="pagepre"></span> </a>
 								</c:when>
 								<c:when test="${patform==3}">
 									<a
-										href="javascript:clickPage('/ssm/main/supplierMenus.do','${page.currentPage-1}','${menuName}','${patform}')"><span
+										href="javascript:clickPage('/GraduationDesign/main/supplierMenus.do','${page.currentPage-1}','${menuName}','${patform}')"><span
 										class="pagepre"></span> </a>
 								</c:when>
 							</c:choose>
@@ -323,15 +323,15 @@ div.meneame span {
 								<c:if  test="${patform ne 1}">${patform}=2</c:if>
 							<c:choose>
 									<c:when test="${patform eq '1'}">
-										<a href="javascript:clickPage('/ssm/main/manegerMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
+										<a href="javascript:clickPage('/GraduationDesign/main/manegerMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
 									</c:when>
 									<c:when test="${patform eq '2'}">
 										<a
-											href="javascript:clickPage('/ssm/main/purchaserMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
+											href="javascript:clickPage('/GraduationDesign/main/purchaserMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
 									</c:when>
 									<c:when test="${patform eq '3'}">
 										<a
-											href="javascript:clickPage('/ssm/main/supplierMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
+											href="javascript:clickPage('/GraduationDesign/main/supplierMenus.do','${s3}','${menuName}','${patform}')">${s3}</a>
 									</c:when>
 									<c:otherwise>
 										<a href="#">${s3}</a>
@@ -350,17 +350,17 @@ div.meneame span {
 						<li class="paginItem"><c:choose>
 								<c:when test="${patform==1}">
 									<a
-										href="javascript:clickPage('/ssm/main/manegerMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
+										href="javascript:clickPage('/GraduationDesign/main/manegerMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
 										class="pagenxt"></span> </a>
 								</c:when>
 								<c:when test="${patform==2}">
 									<a
-										href="javascript:clickPage('/ssm/main/purchaserMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
+										href="javascript:clickPage('/GraduationDesign/main/purchaserMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
 										class="pagenxt"></span> </a>
 								</c:when>
 								<c:when test="${patform==3}">
 									<a
-										href="javascript:clickPage('/ssm/main/supplierMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
+										href="javascript:clickPage('/GraduationDesign/main/supplierMenus.do','${page.currentPage+1}','${menuName}','${patform}')"><span
 										class="pagenxt"></span> </a>
 								</c:when>
 							</c:choose></li>

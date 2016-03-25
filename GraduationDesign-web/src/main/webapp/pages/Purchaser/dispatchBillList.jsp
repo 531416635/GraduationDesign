@@ -110,7 +110,7 @@
 		<div class="tools">
 
 			<ul class="toolbar">
-				<!--   <li><a class="tablelink" href="/ssm/products/toAddProduct.do"><span><img src="../images/t01.png" /></span>添加</a></li>
+				<!--   <li><a class="tablelink" href="/GraduationDesign/products/toAddProduct.do"><span><img src="../images/t01.png" /></span>添加</a></li>
         <li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img src="../images/t03.png" /></span>删除</a></li> -->
 			</ul>
 		</div>
@@ -161,7 +161,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/dispatchBillList.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
+							href="/GraduationDesign/supplys/dispatchBillList.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -172,7 +172,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/supplys/dispatchBillList.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
+								href="/GraduationDesign/supplys/dispatchBillList.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -184,7 +184,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/dispatchBillList.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
+							href="/GraduationDesign/supplys/dispatchBillList.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -108,7 +108,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此公司信息？");
 	 if(r){
-             location.href="/ssm/deleteBuyer.do?id="+id;
+             location.href="/GraduationDesign/deleteBuyer.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -159,7 +159,7 @@ div.meneame span {
 		<div class="tools">
 			<ul class="toolbar">
 				<li class=""><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddBuyer.do">添加</a></li>
+					href="/GraduationDesign/toAddBuyer.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
@@ -195,7 +195,7 @@ div.meneame span {
 					<tr>
 						<td><input type="checkbox" name="box" value="${c.id}" /></td>
 						<td>${c.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.id}">${c.companyName}</a>
 						</td>
 						<td><c:choose>
 								<c:when test="${c.companyScale == 1}">10人以下</c:when>
@@ -213,7 +213,7 @@ div.meneame span {
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyer.do?id=${c.id}">修改</a> <a
+							href="/GraduationDesign/toUpdateBuyer.do?id=${c.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 							<%-- <input type="button" value="删除"
 							onclick="location.href='deleteBuyer.do?id=${c.id}';" /> --%></td>
@@ -238,7 +238,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyer.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findBuyer.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -249,7 +249,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findBuyer.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/findBuyer.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -260,7 +260,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyer.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findBuyer.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

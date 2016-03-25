@@ -676,7 +676,7 @@ td {
 							<div>
 								<a href="toProductInfo.do?ProductId=${pros.id}"> <!--   -->
 									<img width="170" height="165" src="<%=path%>${pros.filePath}" /></a>
-								<%--  /ssm/img/167/104.jpg  --%>
+								<%--  /GraduationDesign/img/167/104.jpg  --%>
 
 								<%-- 灰色半透明遮罩层<div class="zzcs_li_txt" style="width: 171px; border: 0px;">
 									<div class="span_mr_txt"><a href="toProductInfo.do?ProductId=${pros.id}">${pros.productName}</a></div>

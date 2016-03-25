@@ -23,7 +23,7 @@
 <script type="text/javascript">
 	function reloadcode() {
 		var verify = document.getElementById('code');
-		verify.setAttribute('src', '/ssm/pages/website/makeCertPic.jsp?it='
+		verify.setAttribute('src', '/GraduationDesign/pages/website/makeCertPic.jsp?it='
 				+ Math.random());
 	}
 

@@ -78,7 +78,7 @@ function getId() {
            var countId = getId();
            xhr.send("Uid="+countId);*/
 $.ajax({
-  url: "/ssm/FAQ/allDeleteIds.do",
+  url: "/GraduationDesign/FAQ/allDeleteIds.do",
   data: {
 Uid:countId
   },
@@ -172,7 +172,7 @@ div.meneame span {
 			<div class="tools">
 				<ul class="toolbar">
 					<li class=""><span><img src="images/t01.png" /></span> <a
-						href="/ssm/FAQ/toFAQAdd.do">添加</a></li>
+						href="/GraduationDesign/FAQ/toFAQAdd.do">添加</a></li>
 					<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 								src="images/t03.png" /> </span>删除</a></li>
 				</ul>
@@ -199,7 +199,7 @@ div.meneame span {
 						<tr>
 							<td><input type="checkbox" name="box" value="${c.id}" /></td>
 							<td style="display: none">${c.id}</td>
-							<td><a href="/ssm/FAQ/FAQInfo.do?id=${c.id}">${c.title}</a></td>
+							<td><a href="/GraduationDesign/FAQ/FAQInfo.do?id=${c.id}">${c.title}</a></td>
 							<td><c:forEach items="${questionType }" var="q">
 
 									<c:if test="${q.id ==c.questionType }">${q.typeName }</c:if>
@@ -211,7 +211,7 @@ div.meneame span {
 
 							<td>${c.createByName}</td>
 							<td><a class="tablelink"
-								href="/ssm/FAQ/toFAQUpdate.do?id=${c.id}">修改</a> <a
+								href="/GraduationDesign/FAQ/toFAQUpdate.do?id=${c.id}">修改</a> <a
 								class="tablelink" href="javascript:void(0)"
 								onclick="checkDelete(${c.id});">删除</a> <%-- <input type="button" value="删除"
 							onclick="location.href='deleteBuyer.do?id=${c.id}';" /> --%></td>
@@ -240,7 +240,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/FAQ/FAQList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/FAQ/FAQList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -251,7 +251,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/FAQ/FAQList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/FAQ/FAQList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -262,7 +262,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/FAQ/FAQList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/FAQ/FAQList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -116,7 +116,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此商品信息吗？");
 	 if(r){
-             location.href="/ssm/products/deleteProduct.do?id="+id;
+             location.href="/GraduationDesign/products/deleteProduct.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -185,7 +185,7 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 		<div class="tools">
 
 			<ul class="toolbar">
-				<li><a class="tablelink" href="/ssm/products/toAddProduct.do"><span><img
+				<li><a class="tablelink" href="/GraduationDesign/products/toAddProduct.do"><span><img
 							src="../images/t01.png" /> </span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /> </span>删除</a></li>
@@ -237,9 +237,9 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 								</c:choose>
 							</c:forEach></td>
 						<td><a class="tablelink"
-							href="/ssm/products/toProductInfo.do?id=${c.id}">商品详情</a> <a
+							href="/GraduationDesign/products/toProductInfo.do?id=${c.id}">商品详情</a> <a
 							class="tablelink"
-							href="/ssm/products/toUpdateProduct.do?id=${c.id}">修改</a> <a
+							href="/GraduationDesign/products/toUpdateProduct.do?id=${c.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 							<a class="tablelink" href="#" onclick="spotProduct(${c.id},1);">现货上架</a>
 							<a class="tablelink" href="#" onclick="spotProduct(${c.id},2);">现货下架</a>
@@ -269,7 +269,7 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span>
 						</a>
 						</li>
@@ -283,7 +283,7 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/products/productsList.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/products/productsList.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -297,7 +297,7 @@ location.href="<%=path%>/products/spotProduct.do?id="+id+"&&productType="+produc
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span>
 						</a>
 						</li>

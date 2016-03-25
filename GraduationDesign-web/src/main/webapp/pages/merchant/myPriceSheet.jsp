@@ -573,7 +573,7 @@ td {
 
 								<%-- <td>${c.DeliveryDate}</td> --%>
 								<td colspan="2"><a class="span_red"
-									href="/ssm/merchant/productsCertificate.do?id=${c.ProductID}&&companyID=${c.CompanyID}">查看商品资质</a>
+									href="/GraduationDesign/merchant/productsCertificate.do?id=${c.ProductID}&&companyID=${c.CompanyID}">查看商品资质</a>
 								</td>
 							</tr>
 							<tr>
@@ -652,7 +652,7 @@ td {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/myPriceSheet.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
+								href="/GraduationDesign/merchant/myPriceSheet.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
 									class="pagepre"></span> </a>
 							</li>
 						</c:otherwise>
@@ -665,7 +665,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/myPriceSheet.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
+									href="/GraduationDesign/merchant/myPriceSheet.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
@@ -678,7 +678,7 @@ td {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/myPriceSheet.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
+								href="/GraduationDesign/merchant/myPriceSheet.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
 									class="pagenxt"></span> </a>
 							</li>
 						</c:otherwise>

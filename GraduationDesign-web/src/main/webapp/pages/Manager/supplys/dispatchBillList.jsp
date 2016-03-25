@@ -224,7 +224,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/supply.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/supplys/supply.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -235,7 +235,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/supplys/supply.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/supplys/supply.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -246,7 +246,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplys/supply.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/supplys/supply.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

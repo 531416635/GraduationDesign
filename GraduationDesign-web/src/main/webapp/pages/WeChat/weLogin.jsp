@@ -71,11 +71,11 @@ function check_login() {
 				} else if(data=="typeError"){
 				   $("#msg").text("登录平台错误");
 				}else if (data == "success"){
-					location.href = "/ssm/web/toIndex.do";
+					location.href = "/GraduationDesign/web/toIndex.do";
 				}else if(data == "companyError"){
 					$("#msg").text("未找到公司信息");
 				}else if(data == "authenticationError"){
-					location.href = "/ssm/merchant/toCompanyAuthentication.do";
+					location.href = "/GraduationDesign/merchant/toCompanyAuthentication.do";
 				}else if(data == "freeze"){
 					$("#msg").text("账户已冻结");
 				}else if(data == "delete"){
@@ -91,7 +91,7 @@ function check_login() {
 <body>
 	<div id="div_body" class="login-top">
 		<div style="height: 320px; padding-top: 20px;">
-			<form action="/ssm/weChat/login.do" method="post" id="form">
+			<form action="/GraduationDesign/weChat/login.do" method="post" id="form">
 				<div>
 					<span id="msg" style="color: red;"></span>
 				</div>
@@ -108,8 +108,8 @@ function check_login() {
 			</form>
 			<div class="forgot">
 				<p>
-					没有一起采账号<a href="/ssm/web/toReg.do">点击这里进行注册</a><a
-						style="float: right" id="pw" href="/ssm/web/toWjmm.do">忘记密码</a>
+					没有一起采账号<a href="/GraduationDesign/web/toReg.do">点击这里进行注册</a><a
+						style="float: right" id="pw" href="/GraduationDesign/web/toWjmm.do">忘记密码</a>
 				</p>
 			</div>
 		</div>

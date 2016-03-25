@@ -38,11 +38,11 @@ function doit(para,id){
 }	
 //--------上架
 function sjia(id){
-	location.href="/ssm/merchant/grounding.do?id="+id;
+	location.href="/GraduationDesign/merchant/grounding.do?id="+id;
 }
 //--------下架
 function xjia(id){
-	location.href="/ssm/merchant/undercarriage.do?id="+id;
+	location.href="/GraduationDesign/merchant/undercarriage.do?id="+id;
 }
 //----------询价
 function xunjia(id,ProductID){

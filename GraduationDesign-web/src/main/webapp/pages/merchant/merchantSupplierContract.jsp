@@ -111,7 +111,7 @@ th {
 									<c:when test="${c.status==1}">签订</c:when>
 								</c:choose></td>
 							<td><a class="tablelink"
-								href="/ssm/merchant/merchantSupplierContract.do?id=${c.id}">合同详情</a>
+								href="/GraduationDesign/merchant/merchantSupplierContract.do?id=${c.id}">合同详情</a>
 							</td>
 						</tr>
 					</c:forEach>

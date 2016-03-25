@@ -46,7 +46,7 @@
 				<c:forEach items="${companys}" var="c">
 					<tr>
 						<td style="display: none">${c.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
 						<td>${c.companyScale}</td>
 						<td>${c.companyTel}</td>
 						<td>${c.companyWebsite}</td>
@@ -57,7 +57,7 @@
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/supplierAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
+							href="/GraduationDesign/supplierAuthenticationInfo.do?companyId=${c.id}">认证信息</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -77,7 +77,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplierAuthentication.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/supplierAuthentication.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -88,7 +88,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/supplierAuthentication.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/supplierAuthentication.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -100,7 +100,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/supplierAuthentication.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/supplierAuthentication.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -111,7 +111,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此商品信息吗？");
 	 if(r){
-             location.href="/ssm/products/deleteProduct.do?id="+id;
+             location.href="/GraduationDesign/products/deleteProduct.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -168,7 +168,7 @@ div.meneame span {
 		<div class="tools">
 
 			<ul class="toolbar">
-				<li><a class="tablelink" href="/ssm/products/toAddProduct.do"><span><img
+				<li><a class="tablelink" href="/GraduationDesign/products/toAddProduct.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -219,10 +219,10 @@ div.meneame span {
 							</c:otherwise>
 						</c:choose>
 						<td><a class="tablelink"
-							href="/ssm/products/approveCheck.do?id=${c.id}">批准通过</a> <a
+							href="/GraduationDesign/products/approveCheck.do?id=${c.id}">批准通过</a> <a
 							class="tablelink"
-							href="/ssm/products/disapproveCheck.do?id=${c.id}">未通过</a> <a
-							class="tablelink" href="/ssm/products/deleteCheck.do?id=${c.id}">下架</a>
+							href="/GraduationDesign/products/disapproveCheck.do?id=${c.id}">未通过</a> <a
+							class="tablelink" href="/GraduationDesign/products/deleteCheck.do?id=${c.id}">下架</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -241,7 +241,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/products/productsCheckList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/products/productsCheckList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -250,7 +250,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a></li>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/products/productsCheckList.do?currentPage=${s3}">${s3}</a></li>
+                    		<li class="paginItem"><a href="/GraduationDesign/products/productsCheckList.do?currentPage=${s3}">${s3}</a></li>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -259,7 +259,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/products/productsCheckList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/products/productsCheckList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

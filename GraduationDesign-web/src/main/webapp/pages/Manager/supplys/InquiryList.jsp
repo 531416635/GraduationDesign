@@ -148,7 +148,7 @@ div.meneame span {
 
 	<div class="tools">
 		<ul class="toolbar">
-			<li><a class="tablelink" href="/ssm/main/toInquiryListAdd.do?"><span><img
+			<li><a class="tablelink" href="/GraduationDesign/main/toInquiryListAdd.do?"><span><img
 						src="../images/t01.png" /></span>添加</a></li>
 
 
@@ -212,7 +212,7 @@ div.meneame span {
 						</c:choose></td>
 					<td><a href="deleteInquirySheet.do?id=${dis.id}"
 						class="tablelink"> 删除 </a> <a
-						href="/ssm/main/toInquiryListUpdate.do?id=${dis.id}"
+						href="/GraduationDesign/main/toInquiryListUpdate.do?id=${dis.id}"
 						class="tablelink">修改</a></td>
 
 				</tr>
@@ -240,7 +240,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/main/inquiry.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a>
+                		 <li class="paginItem"><a href="/GraduationDesign/main/inquiry.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -249,7 +249,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/main/inquiry.do?currentPage=${s3}">${s3}</a>
+                    		<li class="paginItem"><a href="/GraduationDesign/main/inquiry.do?currentPage=${s3}">${s3}</a>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -258,7 +258,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/main/inquiry.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a>
+                		 <li class="paginItem"><a href="/GraduationDesign/main/inquiry.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

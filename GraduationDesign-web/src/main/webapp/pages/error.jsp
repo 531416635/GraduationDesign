@@ -36,7 +36,7 @@
 		<h2>非常遗憾，您访问的页面暂时无法访问！</h2>
 		<p>请及时联系客服，联系电话：400 991 3966</p>
 		<div class="reindex">
-			<a href="/ssm/web/toIndex.do" target="_parent">返回首页</a>
+			<a href="/GraduationDesign/web/toIndex.do" target="_parent">返回首页</a>
 		</div>
 
 	</div>

@@ -286,7 +286,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/users/userManager.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/users/userManager.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span>
 						</a>
 						</li>
@@ -300,7 +300,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/users/userManager.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/users/userManager.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -314,7 +314,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/users/userManagers.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/users/userManagers.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span>
 						</a>
 						</li>

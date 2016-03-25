@@ -158,7 +158,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/main/SystemLogs.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a>
+                		 <li class="paginItem"><a href="/GraduationDesign/main/SystemLogs.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -167,7 +167,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/main/SystemLogs.do?currentPage=${s3}">${s3}</a>
+                    		<li class="paginItem"><a href="/GraduationDesign/main/SystemLogs.do?currentPage=${s3}">${s3}</a>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -176,7 +176,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/main/SystemLogs.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a>
+                		 <li class="paginItem"><a href="/GraduationDesign/main/SystemLogs.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

@@ -44,7 +44,7 @@
 			</div>
 
 			<div class="formdiv">
-				<form action="/ssm/web/ljdl.do" method="post">
+				<form action="/GraduationDesign/web/ljdl.do" method="post">
 					<input type="submit" name="czmm" id="cg" value="点击登录" /><br /> <br />
 					<p id="pp">重置密码成功！请记下您的密码以防丢失</p>
 				</form>

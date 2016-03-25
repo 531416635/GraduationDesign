@@ -45,7 +45,7 @@ img {
 					<img id="img" src="<%=path%>${c1.filePath }" alt="Thumbnail 1"
 						class="zoom-tiny-image" />
 					<a
-						href="/ssm/companyProducts/downloadFile.do?filePath=${c1.filePath }&id=${companyProductId}">下载</a>
+						href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c1.filePath }&id=${companyProductId}">下载</a>
 				</c:if>
 
 			</c:forEach>
@@ -57,33 +57,33 @@ img {
 			<c:if test="${c.fileClass==2 }">食品安全资质：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 			</c:if>
 			<c:if test="${c.fileClass==3 }">生产许可证：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 
 			</c:if>
 			<c:if test="${c.fileClass==4 }">QS商城许可证：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 			</c:if>
 			<c:if test="${c.fileClass==5 }">检测报告：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 			</c:if>
 			<c:if test="${c.fileClass==6 }">品牌资质授权：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 			</c:if>
 			<c:if test="${c.fileClass==7 }">厂家代理授权：
 				<img id="img" src="<%=path%>${c.filePath }" alt="Thumbnail 1" />
 				<a
-					href="/ssm/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
+					href="/GraduationDesign/companyProducts/downloadFile.do?filePath=${c.filePath }&id=${companyProductId}"">下载</a>
 			</c:if>
 		</c:forEach>
 	</div>

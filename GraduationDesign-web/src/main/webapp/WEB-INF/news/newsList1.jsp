@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 			<ul class="toolbar">
 				<li class="click"><a class="tablelink"
-					href="/ssm/news/toAddNew.do?newType=1"><span><img
+					href="/GraduationDesign/news/toAddNew.do?newType=1"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><span><img src="../images/t03.png" /></span>删除</li>
 			</ul>
@@ -75,7 +75,7 @@ $(document).ready(function(){
 						<td>${c.publishers}</td>
 						<td>${c.status}</td>
 						<td><a class="tablelink" href="#">修改</a> <a class="tablelink"
-							href="/ssm/news/deleteNew.do?id=${c.id}&&newType=${c.newType}">删除</a>
+							href="/GraduationDesign/news/deleteNew.do?id=${c.id}&&newType=${c.newType}">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

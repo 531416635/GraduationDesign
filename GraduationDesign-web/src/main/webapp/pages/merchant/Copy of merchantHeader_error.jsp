@@ -202,9 +202,9 @@ $(document).ready(function(){
 	$("#favorites").click(function(){
 		var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
 		if(document.all){
-			window.external.addFavorite('<%=path%>/ssm/merchant/toPurchaserList.do', '一起采商城');
+			window.external.addFavorite('<%=path%>/GraduationDesign/merchant/toPurchaserList.do', '一起采商城');
 		}else if(window.sidebar){
-			window.sidebar.addPanel('一起采商城', '<%=path%>	/ssm/merchant/toPurchaserList.do',"");
+			window.sidebar.addPanel('一起采商城', '<%=path%>	/GraduationDesign/merchant/toPurchaserList.do',"");
 		} else {
 			alert('您可以通过快捷键' + ctrl
 					+ ' + D 加入到收藏夹');
@@ -361,10 +361,10 @@ ul {
 		<div id="wel_div_tou" class="wel">
 			&nbsp; <span class="wel1">你好！欢迎来到一起采网！</span> <span class="wel2">
 				<c:if test="${user ==null }">
-					<a href="/ssm/web/toLogin.do">登录</a>
+					<a href="/GraduationDesign/web/toLogin.do">登录</a>
 				</c:if> <c:if test="${user !=null }">
-					<a href="/ssm/web/toLogin.do">${user.userName }</a>&nbsp;
-			<a href="/ssm/web/cancel.do">退出</a>
+					<a href="/GraduationDesign/web/toLogin.do">${user.userName }</a>&nbsp;
+			<a href="/GraduationDesign/web/cancel.do">退出</a>
 				</c:if> | <a href="#" id="favorites">加入收藏 </a>| <a href="#" id="favorites">联系客服</a>
 			</span>&nbsp;&nbsp;
 		</div>
@@ -389,7 +389,7 @@ ul {
 				<img class="all_img"
 					style="float: left; height: 20px; margin: 10px; width: 20px;"
 					src="<%=path%>/images/index/splb.png"> <a class="all"
-					href="/ssm/merchant/toPurchaserList.do" style="width: 180px;"><span
+					href="/GraduationDesign/merchant/toPurchaserList.do" style="width: 180px;"><span
 					style="color: white;">采供首页</span> </a>
 			</div>
 			<div id="divMenu" class="sort_rig" style="padding-left: 5px;">
@@ -398,12 +398,12 @@ ul {
 			</div>
 			<div style="float: right; height: 45px; width: 190px;">
 				<!--  class="navdiv_rig" -->
-				<a href="/ssm/merchant/InquiryShoppingCar.do"> <img
+				<a href="/GraduationDesign/merchant/InquiryShoppingCar.do"> <img
 					style="float: left; margin-top: 8px;"
 					src="<%=path%>/images/index/gwc.png"></a>
 				<div class="purchasemk">
 					<div class="mb">
-						<a href="/ssm/web/toIndex.do"><img style="float: left;"
+						<a href="/GraduationDesign/web/toIndex.do"><img style="float: left;"
 							src="<%=path %>/images/index/return_03.png"></a>
 						<%--  <img style="float: left;" src="<%=path %>/images/index/cggl.png"> --%>
 					</div>
@@ -414,7 +414,7 @@ ul {
 					</div>
 					 --%>
 					<!-- 
-					<span style="color: white;"><a href="/ssm/web/toIndex.do">返回网站首页
+					<span style="color: white;"><a href="/GraduationDesign/web/toIndex.do">返回网站首页
 					</a></span> -->
 				</div>
 			</div>

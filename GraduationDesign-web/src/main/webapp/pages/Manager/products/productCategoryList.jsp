@@ -165,7 +165,7 @@
                         var contentBody='<div><form action="#" method="post">增添品牌：<select id="cateGoryName">';
                         	$.ajax({
 								type : "POST",
-								url : "/ssm/products/findProductBrand.do",
+								url : "/GraduationDesign/products/findProductBrand.do",
 								async : false,
 								dataType : "text",
 								contentType : "application/x-www-form-urlencoded; charset=UTF-8",
@@ -237,7 +237,7 @@
     var cateGoryName= $("#cateGoryName").val();
 	    $.ajax({
 						type : "POST",
-						url : "/ssm/products/addProductBrand.do",
+						url : "/GraduationDesign/products/addProductBrand.do",
 						async : false,
 						dataType : "text",
 						data : {

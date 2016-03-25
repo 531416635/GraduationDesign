@@ -133,7 +133,7 @@
 			$
 					.ajax({
 						type : "POST",
-						url : "/ssm/merchant/addShoppingAddress.do",
+						url : "/GraduationDesign/merchant/addShoppingAddress.do",
 						contentType : "application/x-www-form-urlencoded; charset=utf-8",
 						dataType : "text",
 						data : {

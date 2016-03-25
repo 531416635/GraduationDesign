@@ -56,7 +56,7 @@ body {
 </style>
 </head>
 <body onload='s3()'>
-	<form action="/ssm/main/addInquiryList.do" name="userForm"
+	<form action="/GraduationDesign/main/addInquiryList.do" name="userForm"
 		method="post">
 		<input type="hidden" name="id" id="id" value="" />
 		<table border="0" cellpadding="0" cellspacing="0">

@@ -46,7 +46,7 @@
 		</ul>
 	</div>
 
-	<form action="/ssm/main/toMain.do" method="post">
+	<form action="/GraduationDesign/main/toMain.do" method="post">
 		<div class="loginbody">
 
 			<span class="systemlogo"></span>

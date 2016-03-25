@@ -22,7 +22,7 @@
 	src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript">
 	function check() {
-		location.href = "/ssm/merchant/merchantAccountManager.do";
+		location.href = "/GraduationDesign/merchant/merchantAccountManager.do";
 	}
 </script>
 </head>

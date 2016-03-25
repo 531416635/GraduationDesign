@@ -101,7 +101,7 @@ function discheckallbox() {
 		<div class="tools">
 			<ul class="toolbar">
 				<li class=""><span><img src="images/t01.png" /></span><a
-					href="/ssm/toAddSupplier.do">添加</a></li>
+					href="/GraduationDesign/toAddSupplier.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
 							src="images/t03.png" /></span>删除</a></li>
 			</ul>
@@ -139,7 +139,7 @@ function discheckallbox() {
 					<tr>
 						<td><input type="checkbox" name="box" value="${c.id}" /></td>
 						<td style="display: none">${c.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.id}">${c.companyName}</a></td>
 						<td>${c.companyScale}</td>
 						<td>${c.companyTel}</td>
 						<td>${c.companyWebsite}</td>
@@ -149,7 +149,7 @@ function discheckallbox() {
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateSupplier.do?id=${c.id}">修改</a> <input
+							href="/GraduationDesign/toUpdateSupplier.do?id=${c.id}">修改</a> <input
 							type="button" value="删除"
 							onclick="location.href='deleteSupplier.do?id=${c.id}';" /></td>
 					</tr>
@@ -170,7 +170,7 @@ function discheckallbox() {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/searthBuyerInfo.do?currentPage=${page.currentPage-1}&&companyName=${companyName}"><span
+							href="/GraduationDesign/searthBuyerInfo.do?currentPage=${page.currentPage-1}&&companyName=${companyName}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -181,7 +181,7 @@ function discheckallbox() {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/searthBuyerInfo.do?currentPage=${s3}&&companyName=${companyName}">${s3}</a>
+								href="/GraduationDesign/searthBuyerInfo.do?currentPage=${s3}&&companyName=${companyName}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -193,7 +193,7 @@ function discheckallbox() {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/searthBuyerInfo.do?currentPage=${page.currentPage+1}&&companyName=${companyName}"><span
+							href="/GraduationDesign/searthBuyerInfo.do?currentPage=${page.currentPage+1}&&companyName=${companyName}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -903,7 +903,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><strong><a
-										href='/ssm/merchant/<c:choose>
+										href='/GraduationDesign/merchant/<c:choose>
 								<c:when test="${userRole=='PurchaseUser'}">
 								myDispatchBill.do
 								</c:when>
@@ -942,7 +942,7 @@ td {
 								</c:when>
 								<c:otherwise>
 									<li class="paginItem"><a
-										href="/ssm/merchant/<c:choose>
+										href="/GraduationDesign/merchant/<c:choose>
 								<c:when test="${userRole=='PurchaseUser'}">
 								myDispatchBill.do
 								</c:when>
@@ -980,7 +980,7 @@ td {
 							</c:when>
 							<c:otherwise>
 								<li class="paginItem"><a
-									href="/ssm/merchant/<c:choose>
+									href="/GraduationDesign/merchant/<c:choose>
 								<c:when test="${userRole=='PurchaseUser'}">
 								myDispatchBill.do
 								</c:when>

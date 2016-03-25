@@ -109,7 +109,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此新闻信息吗？");
 	 if(r){
-             location.href="/ssm/news/deleteNew.do?id="+id;
+             location.href="/GraduationDesign/news/deleteNew.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -161,7 +161,7 @@ div.meneame span {
 		<div class="tools">
 
 			<ul class="toolbar">
-				<li><a class="tablelink" href="/ssm/news/toAddNew.do?newType=1"><span><img
+				<li><a class="tablelink" href="/GraduationDesign/news/toAddNew.do?newType=1"><span><img
 							src="../images/t01.png" /> </span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /> </span>删除</a></li>
@@ -209,7 +209,7 @@ div.meneame span {
 							</c:otherwise>
 						</c:choose>
 						<td><a class="tablelink"
-							href="/ssm/news/toUpdateNew.do?id=${c.id}">修改</a> <a
+							href="/GraduationDesign/news/toUpdateNew.do?id=${c.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 						</td>
 					</tr>
@@ -229,7 +229,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/news/newsList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/news/newsList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -239,7 +239,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a></li>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/news/newsList.do?currentPage=${s3}">${s3}</a></li>
+                    		<li class="paginItem"><a href="/GraduationDesign/news/newsList.do?currentPage=${s3}">${s3}</a></li>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -248,7 +248,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/news/newsList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/news/newsList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

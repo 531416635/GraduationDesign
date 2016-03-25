@@ -104,7 +104,7 @@ div.meneame span {
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/buyerContractInfo.do?companyId=${c.id}">合同信息</a></td>
+							href="/GraduationDesign/buyerContractInfo.do?companyId=${c.id}">合同信息</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -128,7 +128,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerContract.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findBuyerContract.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span>
 						</a>
 						</li>
@@ -142,7 +142,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findBuyerContract.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/findBuyerContract.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -156,7 +156,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerContract.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findBuyerContract.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span>
 						</a>
 						</li>

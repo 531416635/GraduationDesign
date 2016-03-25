@@ -106,7 +106,7 @@ function checkDeletes(){
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddBuyerAuthentication.do?companyId=${companyId}">添加</a></li>
+					href="/GraduationDesign/toAddBuyerAuthentication.do?companyId=${companyId}">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
@@ -154,7 +154,7 @@ function checkDeletes(){
 						<td style="display: none">${au.uploadBy}</td>
 						<td>${au.fileClass}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyerAuthentication.do?id=${au.id}">修改</a> <a
+							href="/GraduationDesign/toUpdateBuyerAuthentication.do?id=${au.id}">修改</a> <a
 							class="tablelink" href="#"
 							onclick="checkDelete(${au.id},${companyId});">删除</a> <%-- <input
 							type="button" value="删除"
@@ -178,7 +178,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerAuthenticationInfo.do?currentPage=${page.currentPage-1}&&companyId=${companyId}"><span
+							href="/GraduationDesign/buyerAuthenticationInfo.do?currentPage=${page.currentPage-1}&&companyId=${companyId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -189,7 +189,7 @@ function checkDeletes(){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/buyerAuthenticationInfo.do?currentPage=${s3}&&companyId=${companyId}">${s3}</a></li>
+								href="/GraduationDesign/buyerAuthenticationInfo.do?currentPage=${s3}&&companyId=${companyId}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -200,7 +200,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/buyerAuthenticationInfo.do?currentPage=${page.currentPage+1}&&companyId=${companyId}"><span
+							href="/GraduationDesign/buyerAuthenticationInfo.do?currentPage=${page.currentPage+1}&&companyId=${companyId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

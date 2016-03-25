@@ -145,7 +145,7 @@ div.meneame span {
 		<!-- < <div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toInsertBuyerBalance.do">添加</a></li>
+					href="/GraduationDesign/toInsertBuyerBalance.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="images/t03.png" /> </span>删除</a>
 				</li>
@@ -172,7 +172,7 @@ div.meneame span {
 					<tr>
 						<td><input name="box" type="checkbox" value="${c.id}" /></td>
 						<td>${c.companys.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.id}">${c.companys.companyName}</a>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.id}">${c.companys.companyName}</a>
 						</td>
 						<td>${c.currency}</td>
 						<td align="right">${c.balance}</td>
@@ -191,10 +191,10 @@ div.meneame span {
                         		</c:otherwise> --%>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyerBalance.do?id=${c.id}">修改</a> <%-- <a
+							href="/GraduationDesign/toUpdateBuyerBalance.do?id=${c.id}">修改</a> <%-- <a
 							class="tablelink" href="#"
 							onclick="checkDelete(${c.id},${c.balance})">删除</a> --%> <a
-							href="/ssm/frozenBuyerBalance.do?id=${c.id}">冻结</a> <a
+							href="/GraduationDesign/frozenBuyerBalance.do?id=${c.id}">冻结</a> <a
 							class="tablelink" href="companyBalanceLog.do?id=${c.id}">历史流水</a>
 							<a class="tablelink"
 							href="findCompanyBalanceStatement.do?companyId=${c.companys.id}">查看对账单</a>
@@ -220,7 +220,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerBalance.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findBuyerBalance.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -231,7 +231,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findBuyerBalance.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/findBuyerBalance.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -242,7 +242,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerBalance.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findBuyerBalance.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

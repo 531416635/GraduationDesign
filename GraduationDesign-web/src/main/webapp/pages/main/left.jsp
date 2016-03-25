@@ -103,7 +103,7 @@ $(function(){
    
 });	 */
 function link(){
- window.parent.rightFrame.location.href="/ssm/users/userManager.do";
+ window.parent.rightFrame.location.href="/GraduationDesign/users/userManager.do";
 }
 
 function showmenu(menuid) {

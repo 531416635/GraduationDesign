@@ -438,11 +438,11 @@ ul {
 			</ul>
 			&nbsp; <span class="wel1">你好！欢迎来到一起采网！</span> <span class="wel2">
 				<c:if test="${user ==null }">
-					<a href="/ssm/web/toLogin.do">登录</a>
+					<a href="/GraduationDesign/web/toLogin.do">登录</a>
 				</c:if> <c:if test="${user !=null }">
-					<a href="/ssm/web/toLogin.do">${user.userName }</a>
+					<a href="/GraduationDesign/web/toLogin.do">${user.userName }</a>
 						 |
-					<a href="/ssm/web/cancel.do">退出</a>
+					<a href="/GraduationDesign/web/cancel.do">退出</a>
 				</c:if> | <a rel="sidebar" href="#"
 				style="cursor: pointer; 
 				background: transparent url('<%=path%>/images/redimg/ico_01.png') no-repeat scroll left center;
@@ -471,7 +471,7 @@ ul {
 				<img class="all_img"
 					style="float: left; height: 20px; margin: 10px; width: 20px;"
 					src="<%=path%>/images/index/splb.png"> <a class="all"
-					href="/ssm/merchant/toPurchaserList.do" style="width: 180px;"><span
+					href="/GraduationDesign/merchant/toPurchaserList.do" style="width: 180px;"><span
 					style="color: white;">采供首页</span> </a>
 			</div>
 			<div id="divMenu" class="sort_rig" style="padding-left: 5px;">
@@ -480,12 +480,12 @@ ul {
 			</div>
 			<div style="float: right; height: 45px; width: 190px;">
 				<!--  class="navdiv_rig" -->
-				<a href="/ssm/merchant/InquiryShoppingCar.do"> <img
+				<a href="/GraduationDesign/merchant/InquiryShoppingCar.do"> <img
 					style="float: left; margin-top: 8px;"
 					src="<%=path%>/images/index/gwc.png"></a>
 				<div class="purchasemk">
 					<div class="mb">
-						<a href="/ssm/web/toIndex.do"><img style="float: left;"
+						<a href="/GraduationDesign/web/toIndex.do"><img style="float: left;"
 							src="<%=path%>/images/index/return_03.png"></a>
 						<%--  <img style="float: left;" src="<%=path %>/images/index/cggl.png"> --%>
 					</div>

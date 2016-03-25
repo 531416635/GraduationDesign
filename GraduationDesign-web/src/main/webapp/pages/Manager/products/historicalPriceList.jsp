@@ -101,7 +101,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此商品信息吗？");
 	 if(r){
-             location.href="/ssm/historicalPrice/deleteHistoricalPrice.do?id="+id;
+             location.href="/GraduationDesign/historicalPrice/deleteHistoricalPrice.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -125,7 +125,7 @@ function checkDeletes(){
 
 			<ul class="toolbar">
 				<li><a class="tablelink"
-					href="/ssm/historicalPrice/toAddHistoricalPrice.do"><span><img
+					href="/GraduationDesign/historicalPrice/toAddHistoricalPrice.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -175,9 +175,9 @@ function checkDeletes(){
 						<%--  <td>${c.producingArea}</td> --%>
 						<%-- <td>${c.productCategorys.cateGoryName}</td> --%>
 						<td><a class="tablelink"
-							href="/ssm/historicalPrice/toHistoricalPriceInfo.do?id=${c.id}">历史详情</a>
+							href="/GraduationDesign/historicalPrice/toHistoricalPriceInfo.do?id=${c.id}">历史详情</a>
 							<a class="tablelink"
-							href="/ssm/products/toUpdateProduct.do?id=${c.id}">修改</a> <a
+							href="/GraduationDesign/products/toUpdateProduct.do?id=${c.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 						</td>
 					</tr>
@@ -196,7 +196,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -207,7 +207,7 @@ function checkDeletes(){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/products/productsList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/products/productsList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -218,7 +218,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

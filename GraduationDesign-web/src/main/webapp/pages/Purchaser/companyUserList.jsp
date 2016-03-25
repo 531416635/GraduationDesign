@@ -100,7 +100,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此商品信息吗？");
 	 if(r){
-             location.href="/ssm/users/deleteCompanyUser.do?id="+id;
+             location.href="/GraduationDesign/users/deleteCompanyUser.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -123,7 +123,7 @@ function checkDeletes(){
 		<div class="tools">
 
 			<ul class="toolbar">
-				<li><a class="tablelink" href="/ssm/users/toCompanyAddUser.do"><span><img
+				<li><a class="tablelink" href="/GraduationDesign/users/toCompanyAddUser.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -199,7 +199,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -210,7 +210,7 @@ function checkDeletes(){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/products/productsList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/products/productsList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -221,7 +221,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/products/productsList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/products/productsList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

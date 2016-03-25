@@ -109,7 +109,7 @@ function checkDeletes(){
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toInsertSupplierBalance.do">添加</a></li>
+					href="/GraduationDesign/toInsertSupplierBalance.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="images/t03.png" /> </span>删除</a></li>
 			</ul>
@@ -136,7 +136,7 @@ function checkDeletes(){
 						<td><input name="box" type="checkbox"
 							value="${c.companys.id}" /></td>
 						<td style="display: none">${c.companys.id}</td>
-						<td><a href="/ssm/findSupplierInfo.do?id=${c.companys.id}">${c.companys.companyName}</a>
+						<td><a href="/GraduationDesign/findSupplierInfo.do?id=${c.companys.id}">${c.companys.companyName}</a>
 						</td>
 						<td>${c.currency}</td>
 						<td align="right">${c.balance}</td>
@@ -155,12 +155,12 @@ function checkDeletes(){
                         		</c:when>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateSupplierBalance.do?id=${c.companys.id}">修改</a>
+							href="/GraduationDesign/toUpdateSupplierBalance.do?id=${c.companys.id}">修改</a>
 							<a class="tablelink" href="#"
 							onclick="checkDelete(${c.companys.id},${c.balance})">删除</a> <a
-							href="/ssm/frozenSupplierBalance.do?id=${c.companys.id}">冻结</a> <a
+							href="/GraduationDesign/frozenSupplierBalance.do?id=${c.companys.id}">冻结</a> <a
 							class="tablelink"
-							href="/ssm/companyBalanceLog.do?id=${c.companys.id}">历史流水</a> <a
+							href="/GraduationDesign/companyBalanceLog.do?id=${c.companys.id}">历史流水</a> <a
 							class="tablelink"
 							href="findCompanyBalanceStatement.do?companyId=${c.companys.id}">查看对账单</a>
 						</td>
@@ -182,7 +182,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierBalance.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findSupplierBalance.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -193,7 +193,7 @@ function checkDeletes(){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findSupplierBalance.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/findSupplierBalance.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -204,7 +204,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierBalance.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findSupplierBalance.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

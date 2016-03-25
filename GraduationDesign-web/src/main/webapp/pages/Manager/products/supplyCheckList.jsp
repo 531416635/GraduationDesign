@@ -113,7 +113,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此公司商品信息吗？");
 	 if(r){
-             location.href="/ssm/supplyCompanyProducts/deleteCompanyProducts.do?id="+id;
+             location.href="/GraduationDesign/supplyCompanyProducts/deleteCompanyProducts.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -127,7 +127,7 @@ function productCheck(id,productId,status){
 	$.ajax({
 			dataType : "text",
 			type : "POST",
-			url : "/ssm/products/toProductCheck.do",
+			url : "/GraduationDesign/products/toProductCheck.do",
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			data : {
 				id : productId
@@ -166,13 +166,13 @@ function productCheck(id,productId,status){
 					
 				}
 				if(status==1&&flag){
-				location.href="/ssm/products/supplyapproveCheckUp.do?id="+id;
+				location.href="/GraduationDesign/products/supplyapproveCheckUp.do?id="+id;
 				}else if(status==0&&flag){
-				location.href="/ssm/products/supplyapproveCheckDown.do?id="+id;
+				location.href="/GraduationDesign/products/supplyapproveCheckDown.do?id="+id;
 				}else if(status==4){
-				location.href="/ssm/products/supplydisapproveCheck.do?id="+id;
+				location.href="/GraduationDesign/products/supplydisapproveCheck.do?id="+id;
 				}else if(status==2){
-				location.href="/ssm/products/supplydeleteCheck.do?id="+id;
+				location.href="/GraduationDesign/products/supplydeleteCheck.do?id="+id;
 				}
 			}
 			},
@@ -234,8 +234,8 @@ $(function(){
 	case 1: fileStatus = '通过'; break;
 	case 2: fileStatus = '无效'; break;
 	}
-	contents1+='<tr><td>'+fileStyle+'</td><td>'+fileStatus+'</td><td><a id="product'+productLists[i].companyProductPics[j].id+'" href="javascript:void(0)" onclick="changePPSStatus('+productLists[i].companyProductPics[j].id+',1,this);">通过</a> <a href="javascript:void(0)" onclick="changePPSStatus('+productLists[i].companyProductPics[j].id+',2,this);">无效</a> <a href="/ssm/companyProducts/downloadFile.do?filePath='+productLists[i].companyProductPics[j].filePath+'&&id='+productLists[i].id+'">下载</a></td></tr>';
-/* 	contents1+='<tr><td>'+fileStyle+'</td><td><img width="50" height="50" src="/ssm'+productLists[i].companyProductPics[j].filePath+'"/><a href="/ssm/companyProducts/downloadFile.do?filePath='+productLists[i].companyProductPics[j].filePath+'&&id='+productLists[i].id+'">下载</a></td><td>'+fileStatus+'</td></tr>'; */
+	contents1+='<tr><td>'+fileStyle+'</td><td>'+fileStatus+'</td><td><a id="product'+productLists[i].companyProductPics[j].id+'" href="javascript:void(0)" onclick="changePPSStatus('+productLists[i].companyProductPics[j].id+',1,this);">通过</a> <a href="javascript:void(0)" onclick="changePPSStatus('+productLists[i].companyProductPics[j].id+',2,this);">无效</a> <a href="/GraduationDesign/companyProducts/downloadFile.do?filePath='+productLists[i].companyProductPics[j].filePath+'&&id='+productLists[i].id+'">下载</a></td></tr>';
+/* 	contents1+='<tr><td>'+fileStyle+'</td><td><img width="50" height="50" src="/ssm'+productLists[i].companyProductPics[j].filePath+'"/><a href="/GraduationDesign/companyProducts/downloadFile.do?filePath='+productLists[i].companyProductPics[j].filePath+'&&id='+productLists[i].id+'">下载</a></td><td>'+fileStatus+'</td></tr>'; */
 	};
 	};
 	}
@@ -257,7 +257,7 @@ $(function(){
 			async : false,
 			dataType : "text",
 			type : "POST",
-			url : "/ssm/products/changePPSStatus.do",
+			url : "/GraduationDesign/products/changePPSStatus.do",
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			data : {
 				id : id,
@@ -300,7 +300,7 @@ div.meneame span {
 
 			<ul class="toolbar">
 				<li><a class="tablelink"
-					href="/ssm/supplyCompanyProducts/toAddCompanyProducts.do"><span><img
+					href="/GraduationDesign/supplyCompanyProducts/toAddCompanyProducts.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -383,7 +383,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/products/supplyCheckList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/products/supplyCheckList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -392,7 +392,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a></li>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/products/supplyCheckList.do?currentPage=${s3}">${s3}</a></li>
+                    		<li class="paginItem"><a href="/GraduationDesign/products/supplyCheckList.do?currentPage=${s3}">${s3}</a></li>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -401,7 +401,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/products/supplyCheckList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/products/supplyCheckList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

@@ -108,7 +108,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/web/myInquiry.do?.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
+							href="/GraduationDesign/web/myInquiry.do?.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -119,7 +119,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/web/myInquiry.do?.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
+								href="/GraduationDesign/web/myInquiry.do?.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -131,7 +131,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/web/myInquiry.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
+							href="/GraduationDesign/web/myInquiry.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

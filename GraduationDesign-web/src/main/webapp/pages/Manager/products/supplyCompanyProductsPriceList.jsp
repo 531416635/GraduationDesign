@@ -96,7 +96,7 @@ function checkBox(){
 function checkDelete(companyProductId,id,grossmMarginPriceId){
 	 var r = window.confirm("确定删除此公司商品信息吗？");
 	 if(r){
-             location.href="/ssm/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
+             location.href="/GraduationDesign/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
           }
 }
 function checkDeletes(companyProductId){
@@ -197,9 +197,9 @@ body {
 						<td>${c.grossMargins.grossMargin}</td>
 						<td>${c.companyProductCode}</td>
 						<td>
-							<%--  <a class="tablelink" href="/ssm/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">历史价格</a> --%>
+							<%--  <a class="tablelink" href="/GraduationDesign/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">历史价格</a> --%>
 							<a class="tablelink"
-							href="/ssm/supplyCompanyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
+							href="/GraduationDesign/supplyCompanyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
 							<%-- <a class="tablelink" href="#" onclick="checkDelete(${c.companyProductId},${c.id},${c.grossMargins.id});">删除</a> --%>
 						</td>
 					</tr>
@@ -231,8 +231,8 @@ body {
 						<td>${c.priceDate}</td>
 						<td>${c.companyProductCode}</td>
 						<%-- <td>
-        <a class="tablelink" href="/ssm/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">历史价格</a>
-        <a class="tablelink" href="/ssm/supplyCompanyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
+        <a class="tablelink" href="/GraduationDesign/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">历史价格</a>
+        <a class="tablelink" href="/GraduationDesign/supplyCompanyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
        	<a class="tablelink" href="#" onclick="checkDelete(${c.companyProductId},${c.id},${c.grossMargins.id});">删除</a>
         </td> --%>
 					</tr>
@@ -253,7 +253,7 @@ body {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -264,7 +264,7 @@ body {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -275,7 +275,7 @@ body {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

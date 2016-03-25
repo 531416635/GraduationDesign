@@ -87,7 +87,7 @@
 		/* fileIds = fileIds.substring(0, fileIds.length - 1); */
 		$.ajax({
 			type : "POST",
-			url : "/ssm/merchant/reconciliation.do",
+			url : "/GraduationDesign/merchant/reconciliation.do",
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			dataType : "text",
 			data : {
@@ -306,7 +306,7 @@ th {
 								</c:choose></td>
 
 							<td align="center"><a style="color: #666;"
-								href="/ssm/merchant/financialSettlement.do?id=${c.id}">对账详情</a>
+								href="/GraduationDesign/merchant/financialSettlement.do?id=${c.id}">对账详情</a>
 								<c:if test="${c.stateType==2}">
 									<%--<c:if test="${c.status==2}">
 									<a href="#" onclick="openwin(${c.id},${c.settledAmount})">申请发票</a>

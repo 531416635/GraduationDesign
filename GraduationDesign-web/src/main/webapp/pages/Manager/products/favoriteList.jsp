@@ -124,7 +124,7 @@ function checkDeletes(){
 		<div class="tools">
 
 			<ul class="toolbar">
-				<li><a class="tablelink" href="/ssm/favorite/tofavoriteAdd.do"><span><img
+				<li><a class="tablelink" href="/GraduationDesign/favorite/tofavoriteAdd.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -162,9 +162,9 @@ function checkDeletes(){
         </c:when>
 							</c:choose></td>
 						<td><a class="tablelink"
-							href="/ssm/favorite/favoriteProductInfo.do?id=${f.product.id}">商品详情</a>
+							href="/GraduationDesign/favorite/favoriteProductInfo.do?id=${f.product.id}">商品详情</a>
 							<a class="tablelink"
-							href="/ssm/favorite/tofovoriteUpdate.do?id=${f.id}">修改</a> <a
+							href="/GraduationDesign/favorite/tofovoriteUpdate.do?id=${f.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${f.id});">删除</a>
 						</td>
 					</tr>
@@ -183,7 +183,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/favorite/favoriteList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/favorite/favoriteList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -194,7 +194,7 @@ function checkDeletes(){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/favorite/favoriteList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/favorite/favoriteList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -205,7 +205,7 @@ function checkDeletes(){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/favorite/favoriteList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/favorite/favoriteList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

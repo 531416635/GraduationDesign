@@ -226,7 +226,7 @@ th {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/merchant/financialSettlement.do?id=${id}&&currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/merchant/financialSettlement.do?id=${id}&&currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -237,7 +237,7 @@ th {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/financialSettlement.do?id=${id}&&currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/merchant/financialSettlement.do?id=${id}&&currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -249,7 +249,7 @@ th {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/merchant/financialSettlement.do?id=${id}&&currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/merchant/financialSettlement.do?id=${id}&&currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

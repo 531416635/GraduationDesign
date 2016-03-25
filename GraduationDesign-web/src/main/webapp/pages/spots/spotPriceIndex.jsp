@@ -139,7 +139,7 @@
 <body>
 	<!--  轮播 -->
 	<div
-		style="width: 100%; height: 497px; background: url(/ssm/images/spots/xianhuo_02.jpg); background-size: cover;">
+		style="width: 100%; height: 497px; background: url(/GraduationDesign/images/spots/xianhuo_02.jpg); background-size: cover;">
 		<div style="width: 1128px; height: 100%; margin: 0 auto;">
 			<img style="width: 100%; height: 100%"
 				src="<%=path%>/images/spots/xianhuo_04.png">

@@ -96,7 +96,7 @@ function checkBox(){
 function checkDelete(companyProductId,id,grossmMarginPriceId){
 	 var r = window.confirm("确定删除此公司商品信息吗？");
 	 if(r){
-             location.href="/ssm/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
+             location.href="/GraduationDesign/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
           }
 }
 function checkDeletes(companyProductId){
@@ -120,7 +120,7 @@ function checkDeletes(companyProductId){
 
 			<ul class="toolbar">
 				<li><a class="tablelink"
-					href="/ssm/companyProducts/toCompanyProductPriceAdd.do?companyProductId=${companyProductId}"><span><img
+					href="/GraduationDesign/companyProducts/toCompanyProductPriceAdd.do?companyProductId=${companyProductId}"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#"
 					onclick="checkDeletes(${companyProductId});"><span><img
@@ -158,7 +158,7 @@ function checkDeletes(companyProductId){
 						<td>${c.userId}</td>
 						<td>${c.companyProductCode}</td>
 						<td><a class="tablelink"
-							href="/ssm/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
+							href="/GraduationDesign/companyProducts/toCompanyProductPriceUpdate.do?id=${c.id}">修改</a>
 							<a class="tablelink" href="#"
 							onclick="checkDelete(${c.companyProductId},${c.id},${c.grossMargins.id});">删除</a>
 						</td>
@@ -180,7 +180,7 @@ function checkDeletes(companyProductId){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -191,7 +191,7 @@ function checkDeletes(companyProductId){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -202,7 +202,7 @@ function checkDeletes(companyProductId){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

@@ -116,7 +116,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此商品信息吗？");
 	 if(r){
-             location.href="/ssm/products/deleteGroup.do?id="+id;
+             location.href="/GraduationDesign/products/deleteGroup.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -213,9 +213,9 @@ function checkDeletes(){
 						<td><c:if test="${g.Status==2}">是</c:if> <c:if
 								test="${g.Status!=2}">否</c:if></td>
 						<td><a class="tablelink"
-							href="/ssm/products/toGrouponInfo.do?id=${g.id}">团购详情</a> <a
+							href="/GraduationDesign/products/toGrouponInfo.do?id=${g.id}">团购详情</a> <a
 							class="tablelink"
-							href="/ssm/products/toGrouponUpdate.do?id=${g.id}">修改</a> <a
+							href="/GraduationDesign/products/toGrouponUpdate.do?id=${g.id}">修改</a> <a
 							class="tablelink" href="#" onclick="checkDelete(${g.id});">删除</a>
 
 						</td>

@@ -58,7 +58,7 @@
 							</c:choose></td>
 						<td>${c.companyContact}</td>
 						<td><a class="tablelink"
-							href="/ssm/supplierContractInfo.do?companyId=${c.id}">合同信息</a></td>
+							href="/GraduationDesign/supplierContractInfo.do?companyId=${c.id}">合同信息</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -77,7 +77,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierContract.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findSupplierContract.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -88,7 +88,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findSupplierContract.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/findSupplierContract.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -100,7 +100,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierContract.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findSupplierContract.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -318,7 +318,7 @@
 					<%-- <a href="javascript:void(0)">${user.userName }</a> --%>
 					<a href="toLogin.do">${user.userName }</a>
 					<span> |</span>
-					<a href="/ssm/web/cancel.do">退出</a>
+					<a href="/GraduationDesign/web/cancel.do">退出</a>
 				</c:if>
 				<span> |</span><a class="collect" rel="sidebar" href="#"
 					style="cursor: pointer" onclick="favorites();">收藏我们</a><span>|
@@ -364,10 +364,10 @@
 						<a href="#">我的采供后台</a>
 					</p>
 					<ul class="listUl">
-						<li><a href="/ssm/merchant/myInquiry.do">询单历史</a></li>
-						<li><a href="/ssm/merchant/xiadan.do">下订单</a></li>
-						<li><a href="/ssm/merchant/myOrder.do">我的订单</a></li>
-						<li><a href="/ssm/merchant/myDispatchBill.do">发货单</a></li>
+						<li><a href="/GraduationDesign/merchant/myInquiry.do">询单历史</a></li>
+						<li><a href="/GraduationDesign/merchant/xiadan.do">下订单</a></li>
+						<li><a href="/GraduationDesign/merchant/myOrder.do">我的订单</a></li>
+						<li><a href="/GraduationDesign/merchant/myDispatchBill.do">发货单</a></li>
 						<li><a href="">我的发票</a></li>
 					</ul>
 				</div>
@@ -404,10 +404,10 @@
       </span>
     </div> -->
 			<div class="purchase">
-				<a href="/ssm/merchant/InquiryShoppingCar.do"> <img
+				<a href="/GraduationDesign/merchant/InquiryShoppingCar.do"> <img
 					src="<%=path%>/images/index/gwc.png" style="float: left;"></a>
 				<div>
-					<a href="/ssm/merchant/toPurchaserList.do"><img
+					<a href="/GraduationDesign/merchant/toPurchaserList.do"><img
 						src="<%=path%>/images/index/cggl.png" style="float: right;"></a>
 				</div>
 			</div>

@@ -47,7 +47,7 @@
 	 };  
 	function pageselectCallback(page_index, jq){  //此函数为分页动态按钮展现的回调函数，即分页展现商品
 		if(flag){
-		location.href="/ssm/merchant/toProductEdit4.do?currentPage="+(page_index+1);
+		location.href="/GraduationDesign/merchant/toProductEdit4.do?currentPage="+(page_index+1);
 		}
 		flag=true;
 		return false;	

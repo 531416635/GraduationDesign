@@ -95,7 +95,7 @@ function checkBox(){
 function checkDelete(companyProductId,id,grossmMarginPriceId){
 	 var r = window.confirm("确定删除此公司商品信息吗？");
 	 if(r){
-             location.href="/ssm/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
+             location.href="/GraduationDesign/companyProducts/deleteCompanyProductPrice.do?companyProductId="+companyProductId+"&&id="+id+"&&grossMarginPriceId="+grossmMarginPriceId;
           }
 }
 function checkDeletes(companyProductId){
@@ -181,7 +181,7 @@ body {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span></a></li>
 					</c:otherwise>
 				</c:choose>
@@ -192,7 +192,7 @@ body {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${s3}">${s3}</a></li>
+								href="/GraduationDesign/historicalPrice/toHistoricalPriceInfo.do?currentPage=${s3}">${s3}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -203,7 +203,7 @@ body {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/historicalPrice/toHistoricalPriceInfo.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span></a></li>
 					</c:otherwise>
 				</c:choose>

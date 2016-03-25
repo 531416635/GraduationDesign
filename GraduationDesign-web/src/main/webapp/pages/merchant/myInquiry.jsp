@@ -491,7 +491,7 @@ td {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/merchant/myInquiry.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
+							href="/GraduationDesign/merchant/myInquiry.do?currentPage=${page.currentPage-1}&&userId=${userId}"><span
 								class="pagepre"></span> </a>
 						</li>
 					</c:otherwise>
@@ -504,7 +504,7 @@ td {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/merchant/myInquiry.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
+								href="/GraduationDesign/merchant/myInquiry.do?currentPage=${s3}&&userId=${userId}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -517,7 +517,7 @@ td {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/merchant/myInquiry.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
+							href="/GraduationDesign/merchant/myInquiry.do?currentPage=${page.currentPage+1}&&userId=${userId}"><span
 								class="pagenxt"></span> </a>
 						</li>
 					</c:otherwise>

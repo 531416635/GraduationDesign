@@ -217,7 +217,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/users/departments.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/users/departments.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -226,7 +226,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a></li>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/users/departments.do?currentPage=${s3}">${s3}</a></li>
+                    		<li class="paginItem"><a href="/GraduationDesign/users/departments.do?currentPage=${s3}">${s3}</a></li>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -235,7 +235,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/users/departments.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/users/departments.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

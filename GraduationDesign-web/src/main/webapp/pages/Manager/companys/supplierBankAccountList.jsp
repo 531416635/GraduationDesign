@@ -87,7 +87,7 @@ function checkDelete(id){
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddSupplierBankAccount.do">添加</a></li>
+					href="/GraduationDesign/toAddSupplierBankAccount.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
 							src="images/t03.png" /></span>删除</a></li>
 			</ul>
@@ -134,7 +134,7 @@ function checkDelete(id){
 							</c:choose></td>
 						<td>${c.createTime}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateSupplierBankAccount.do?id=${c.companyId}">修改</a>
+							href="/GraduationDesign/toUpdateSupplierBankAccount.do?id=${c.companyId}">修改</a>
 							<a class="tablelink" href="#"
 							onclick="checkDelete(${c.companyId})">删除</a> <%-- <input type="button" value="删除"
 							onclick="location.href='deleteSupplierBankAccount.do?id=${c.companyId}';" /> --%>
@@ -157,7 +157,7 @@ function checkDelete(id){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierBankAccount.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findSupplierBankAccount.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span> </a></li>
 					</c:otherwise>
 				</c:choose>
@@ -168,7 +168,7 @@ function checkDelete(id){
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findSupplierBankAccount.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/findSupplierBankAccount.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -180,7 +180,7 @@ function checkDelete(id){
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findSupplierBankAccount.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findSupplierBankAccount.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span> </a></li>
 					</c:otherwise>
 				</c:choose>

@@ -106,7 +106,7 @@ function checkBox(){
 function checkDelete(id){
 	 var r = window.confirm("确定删除此公司商品信息吗？");
 	 if(r){
-             location.href="/ssm/companyProducts/deleteCompanyProducts.do?id="+id;
+             location.href="/GraduationDesign/companyProducts/deleteCompanyProducts.do?id="+id;
           }
 }
 function checkDeletes(){
@@ -159,7 +159,7 @@ div.meneame span {
 
 			<ul class="toolbar">
 				<li><a class="tablelink"
-					href="/ssm/companyProducts/toAddCompanyProducts.do"><span><img
+					href="/GraduationDesign/companyProducts/toAddCompanyProducts.do"><span><img
 							src="../images/t01.png" /></span>添加</a></li>
 				<li><a class="tablelink" href="#" onclick="checkDeletes();"><span><img
 							src="../images/t03.png" /></span>删除</a></li>
@@ -187,11 +187,11 @@ div.meneame span {
 							value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td><a class="tablelink"
-							href="/ssm/companyProducts/toCompanyInfo.do?id=${c.company.id}">${c.company.companyName}</a></td>
+							href="/GraduationDesign/companyProducts/toCompanyInfo.do?id=${c.company.id}">${c.company.companyName}</a></td>
 						<td>
-							<%-- <a class="tablelink" href="/ssm/companyProducts/toProductInfos.do?id=${c.product.id}">${c.product.productName}</a> --%>
+							<%-- <a class="tablelink" href="/GraduationDesign/companyProducts/toProductInfos.do?id=${c.product.id}">${c.product.productName}</a> --%>
 							<a class="tablelink"
-							href="/ssm/companyProducts/toCompanyProductPicInfo.do?id=${c.id}&productId=${c.product.id}">${c.product.productName}</a>
+							href="/GraduationDesign/companyProducts/toCompanyProductPicInfo.do?id=${c.id}&productId=${c.product.id}">${c.product.productName}</a>
 						</td>
 						<c:choose>
 							<c:when test="${c.status==0 }">
@@ -208,11 +208,11 @@ div.meneame span {
 							</c:otherwise>
 						</c:choose>
 						<td><a class="tablelink"
-							href="/ssm/companyProducts/toCompanyProductPriceInfo.do?id=${c.id}">价格详情</a>
+							href="/GraduationDesign/companyProducts/toCompanyProductPriceInfo.do?id=${c.id}">价格详情</a>
 							<a class="tablelink"
-							href="/ssm/companyProducts/toProductTransfer.do?id=${c.id}">物流追朔</a>
+							href="/GraduationDesign/companyProducts/toProductTransfer.do?id=${c.id}">物流追朔</a>
 							<a class="tablelink"
-							href="/ssm/companyProducts/toUpdateCompanyProducts.do?id=${c.id}">修改</a>
+							href="/GraduationDesign/companyProducts/toUpdateCompanyProducts.do?id=${c.id}">修改</a>
 							<a class="tablelink" href="#" onclick="checkDelete(${c.id});">删除</a>
 						</td>
 					</tr>
@@ -232,7 +232,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagepre"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage-1}"><span class="pagepre"></span></a></li>
                 		</c:otherwise>
                 </c:choose>
         		<c:forEach begin="1" end="${page.totalPage}" var="s3">
@@ -241,7 +241,7 @@ div.meneame span {
                     		 <li class="paginItem current"><a href="#">${s3}</a></li>
                     		</c:when>
                     		<c:otherwise>
-                    		<li class="paginItem"><a href="/ssm/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
+                    		<li class="paginItem"><a href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${s3}">${s3}</a></li>
                     		</c:otherwise>
                     	</c:choose>
 				</c:forEach>
@@ -250,7 +250,7 @@ div.meneame span {
                 		 <li class="paginItem current"><a href="#"><span class="pagenxt"></span></a></li>
                 		</c:when>
                 		<c:otherwise>
-                		 <li class="paginItem"><a href="/ssm/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
+                		 <li class="paginItem"><a href="/GraduationDesign/companyProducts/companyProductsList.do?currentPage=${page.currentPage+1}"><span class="pagenxt"></span></a></li>
                 		</c:otherwise>
                 </c:choose>    
         </ul>

@@ -340,7 +340,7 @@ public class CompanyProductsController extends BaseController {
 
 				PrintWriter out = response.getWriter();
 				out.println("<script language='javascript'>alert('本地图片不存在！');</script>");
-				out.println("<script language='javascript'>window.location='/ssm/companyProducts/toCompanyProductPicInfo.do?id="+id+"';</script>");
+				out.println("<script language='javascript'>window.location='/GraduationDesign/companyProducts/toCompanyProductPicInfo.do?id="+id+"';</script>");
 				out.flush();
 				out.close();
 

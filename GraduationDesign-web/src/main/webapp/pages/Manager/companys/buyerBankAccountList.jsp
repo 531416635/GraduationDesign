@@ -121,7 +121,7 @@ div.meneame span {
 		<div class="tools">
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /> </span><a
-					href="/ssm/toAddBuyerBankAccount.do">添加</a></li>
+					href="/GraduationDesign/toAddBuyerBankAccount.do">添加</a></li>
 				<li><a class="tablelink" href="#" onclick="getText();"><span><img
 							src="images/t03.png" /></span>删除</a></li>
 			</ul>
@@ -168,7 +168,7 @@ div.meneame span {
 							</c:choose></td>
 						<td>${c.createTime}</td>
 						<td><a class="tablelink"
-							href="/ssm/toUpdateBuyerBankAccount.do?id=${c.companyId}">修改</a>
+							href="/GraduationDesign/toUpdateBuyerBankAccount.do?id=${c.companyId}">修改</a>
 							<input type="button" value="删除"
 							onclick="location.href='deleteBuyerBankAccount.do?id=${c.companyId}';" />
 						</td>
@@ -195,7 +195,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerBankAccount.do?currentPage=${page.currentPage-1}"><span
+							href="/GraduationDesign/findBuyerBankAccount.do?currentPage=${page.currentPage-1}"><span
 								class="pagepre"></span>
 						</a>
 						</li>
@@ -209,7 +209,7 @@ div.meneame span {
 						</c:when>
 						<c:otherwise>
 							<li class="paginItem"><a
-								href="/ssm/findBuyerBankAccount.do?currentPage=${s3}">${s3}</a>
+								href="/GraduationDesign/findBuyerBankAccount.do?currentPage=${s3}">${s3}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -223,7 +223,7 @@ div.meneame span {
 					</c:when>
 					<c:otherwise>
 						<li class="paginItem"><a
-							href="/ssm/findBuyerBankAccount.do?currentPage=${page.currentPage+1}"><span
+							href="/GraduationDesign/findBuyerBankAccount.do?currentPage=${page.currentPage+1}"><span
 								class="pagenxt"></span>
 						</a>
 						</li>
