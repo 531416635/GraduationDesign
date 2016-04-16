@@ -159,7 +159,7 @@
 		]]>
 	</insert>
 	<!-- 根据公司ID查询账户资金 -->
-	<select id="findBalanceByCompanyId" parameterType="Integer"
+	<select id="findBalanceByCompanyId" parameterType="hashMap"
 		resultType="BigDecimal">
 		SELECT IFNULL(Balance,0) FROM CompanyBalance WHERE
 		CompanyID=#{companyId} and Currency=#{currency}
