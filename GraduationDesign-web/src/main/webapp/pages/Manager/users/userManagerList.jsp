@@ -103,27 +103,30 @@ function  getXhr(){
            xhr.send("Uid="+countId);
   }
   
-   window.onload = function(){
-        var tab = document.getElementsByTagName('table')[0];
-       
-            var trs = tab.rows;
-            for(var i = 0, len = trs.length; i < len; i++){
-               for(var j=9; j<=20;j++){
-                var cell = trs[i].cells[j];
-                  cell.style.display = 'none';
-                  }
-            }
-   };
-    
   
-   function hid(){
-            var tab = document.getElementsByTagName('table')[0];
-            var trs = tab.rows;
-           
-        };
-        $(function(){
-	 	var flag = false; //标识生成分页时是否生成查询默认页商品
-	  	var json = eval(<%=json%>);
+	window.onload = function() {
+		var tab = document.getElementsByTagName('table')[0];
+
+		var trs = tab.rows;
+		for (var i = 0, len = trs.length; i < len; i++) {
+			for (var j = 9; j <= 20; j++) {
+				if (j != 14) {
+					var cell = trs[i].cells[j];
+					cell.style.display = 'none';
+				}
+			}
+		}
+	};
+
+	function hid() {
+		var tab = document.getElementsByTagName('table')[0];
+		var trs = tab.rows;
+
+	};
+	$(function() {
+		var flag = false; //标识生成分页时是否生成查询默认页商品
+		var json = eval(
+<%=json%>);
 	  	$("#rows").html(json.rows);
 	  	$("#currentPage").html(json.currentPage);
 		var initPagination = function() { //此函数为分页动态按钮展现
@@ -194,7 +197,7 @@ div.meneame span {
 					<th>固定电话</th>
 					<th>传真</th>
 					<th>状态</th>
-					<th>角色ID</th>
+					<th>角色ID22</th>
 					<th>邮箱验证</th>
 					<th>电话验证</th>
 					<th>公司ID</th>
@@ -236,10 +239,10 @@ div.meneame span {
                      			已认证
                      		</c:when>
 								<c:when test="${userManager.status==2}">
-                     			冻结
+                     			已冻结
                      		</c:when>
 								<c:otherwise>
-                     			删除
+                     			已删除
                      		</c:otherwise>
 							</c:choose></td>
 						<td>${userManager.roleId}</td>
