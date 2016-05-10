@@ -274,8 +274,7 @@ public class WebController {
 		String json = "false";
 		try {
 			List<Products> products = null;
-			Cache tmpCache = CacheManager.getCacheInfo("products"
-					+ cateGorySunId.toString());
+			Cache tmpCache = CacheManager.getCacheInfo("products"+ cateGorySunId.toString());
 			if (tmpCache != null) {
 				products = (List<Products>) (tmpCache.getValue());
 			} else {

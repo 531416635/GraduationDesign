@@ -99,6 +99,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
+	 <!-- 声明式事务管理 -->
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* com.wit.service..*Impl.*(..))" />
