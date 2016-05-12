@@ -25,7 +25,7 @@ public interface OrdersDao {
 	// 添加
 	int add(Orders orders);
 
-	Orders getOrderByID(String ids);
+	Orders getOrderByID(Integer ids);
 
 	// 根据ID查询
 	Orders findbyId(Integer id);

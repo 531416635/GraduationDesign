@@ -750,7 +750,7 @@ public class WebPurchaserController extends BaseController {
 		try {
 			Integer orderId = orderService.findbyOrderId(Integer.valueOf(ids));
 			if (orderId == null || orderId <= 0) {
-				Orders order = orderService.getOrderByID(ids);
+				Orders order = orderService.getOrderByID(Integer.valueOf(ids));
 				order.setOrderType(1);// 订单类型设置1，表示普通询价单
 				int i = orderService.add(order);
 				if (i > 0) {

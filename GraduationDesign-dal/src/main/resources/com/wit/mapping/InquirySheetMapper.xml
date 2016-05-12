@@ -57,7 +57,7 @@
 	</select>
 	<!--根据Id查询 -->
 	<select id="findByInquiryId" resultType="com.wit.model.InquirySheet"
-		parameterType="Integer">
+		parameterType="String">
 		select
 		id,userId,inquiryId,currency,deliveryType,productModel,productID,
 		productQuantity,productUnit,refPrice,expectPrice,expectTime,orderTime,status,address

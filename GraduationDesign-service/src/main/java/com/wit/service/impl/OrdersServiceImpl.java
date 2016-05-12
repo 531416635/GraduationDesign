@@ -34,7 +34,7 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public Orders getOrderByID(String ids) {
+	public Orders getOrderByID(Integer ids) {
 		return ordersDao.getOrderByID(ids);
 	}
 

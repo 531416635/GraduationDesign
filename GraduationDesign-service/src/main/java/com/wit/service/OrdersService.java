@@ -19,7 +19,7 @@ public interface OrdersService {
 	// 打印查询所有
 	List<Orders> getAlljExcel(Integer id);
 
-	Orders getOrderByID(String ids);
+	Orders getOrderByID(Integer ids);
 
 	// 删除
 	void delete(Integer id);

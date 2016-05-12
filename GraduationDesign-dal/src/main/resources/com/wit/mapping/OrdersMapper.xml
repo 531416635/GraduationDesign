@@ -72,18 +72,14 @@
 	</insert>
 	<select id="getOrderByID" parameterType="int" resultType="com.wit.model.Orders">
 		select
-		now() as OrderTime,0 as Status,PriceSheetID as
-		OrderID,UserID,CompanyProductID,Quantity,ProductUnit,
-		UnitPrice,(Quantity*UnitPrice)as
-		TotolAmount,(Quantity*UnitPrice*ccs.Earnest) as
-		EarnestAmount,DeliveryDate,
-		ValidUntil from PriceSheet ps
-		LEFT JOIN
-		Users u on ps.UserID=u.ID
-		LEFT JOIN CompanyContracts ccs on
-		u.CompanyID=ccs.CompanyID and
-		ccs.Status=1
-		where ps.id=#{id} limit 1
+		now() as OrderTime,0 as Status,ps.PriceSheetID as
+		OrderID,ps.UserID,ps.CompanyProductID,ps.Quantity,ps.ProductUnit,
+		ps.UnitPrice,(Quantity*UnitPrice) as TotolAmount,
+		(Quantity*UnitPrice*ccs.Earnest) as EarnestAmount,ps.DeliveryDate,
+		ps.ValidUntil from PriceSheet ps
+		LEFT JOIN Users u on ps.UserID=u.ID
+		LEFT JOIN CompanyContracts ccs on u.CompanyID=ccs.CompanyID and
+		ccs.Status=1 where ps.id=#{ids} LIMIT 1;
 	</select>
 
 	<!--根据Id查询 -->
