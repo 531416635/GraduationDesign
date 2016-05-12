@@ -352,9 +352,9 @@
 				fileIds = '[' + fileIds + ']';
 				//alert(fileIds);
 				editPackagesNumber(roleName, processResult, fileIds, 3);
+				$("#btnSub").attr('disabled', "true");
+				$("#btnSub").css('background-color', '#E3E3E3');
 			}
-			$("#btnSub").attr('disabled', "true");
-			$("#btnSub").css('background-color', '#E3E3E3');
 			break;
 		case 'Accepter'://财务审核人员
 			fileIds = getId();

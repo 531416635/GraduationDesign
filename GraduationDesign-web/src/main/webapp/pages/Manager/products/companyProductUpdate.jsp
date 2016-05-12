@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	String json = (String) request.getAttribute("json");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,18 +58,17 @@ div {
 </head>
 <body>
 	<div>
-		<form action="updateCompanyProducts.do" name="userForm" method="post">
-			<input type="hidden" name="id" id="userId"
-				value="${companyProduct.id}" />
+		<form action="<%=path %>/companyProducts/updateCompanyProducts.do" name="userForm" method="post">
+			<input type="hidden" name="id" id="id" value="${companyProduct.id}" />
 			<table border="0" cellpadding="0" cellspacing="0">
 				<tr class="info">
 					<th>公司名:</th>
-					<td><input type="text" name="companyId" readonly
+					<td><input type="text" name="companyName" readonly
 						value="${companyProduct.company.companyName}" /></td>
 				</tr>
 				<tr class="info">
 					<th>商品名:</th>
-					<td><input type="text" name="productId" readonly
+					<td><input type="text" name="productName" readonly
 						value="${companyProduct.product.productName}" /></td>
 				</tr>
 				<tr class="info">

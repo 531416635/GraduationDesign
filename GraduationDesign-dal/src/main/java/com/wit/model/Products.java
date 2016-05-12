@@ -103,10 +103,10 @@ public class Products {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getProductModel() {
+	public Integer  getProductModel() {
 		return productModel;
 	}
-	public void setProductModel(Integer productModel) {
+	public void setProductModel(Integer  productModel) {
 		this.productModel = productModel;
 	}
 	public List<ProductPic> getProductPics() {

@@ -52,52 +52,9 @@ $(function(){
 		});
 		$("[name='productCategory']").val(productCategory);
 
-		//拼接多个省市区字符串
-		/* var spans = $("#tab2 p span[id]");
-		address = "";
-		//多个省市区及详细地址
-		$.each(spans, function(i, node1) {
-			var node2 = $(node1).children("select,input[id]");
-			//省市区中的多个select
-			$.each(node2, function(j, node3) {
-				//将省市区拼成一个字符串以‘,’分割
-				address += $(node3).val()
-						+ ((j >= node2.length - 1) ? "" : ",");				
-			});
-			//多个省市区拼成一个字符串以‘;’分割
-			address +=(i >= spans.length - 1) ? "" : ";";
-		});
-		alert(address);
-		$("#address").val(address.substring(1));
-		//验证新增省市区是否与该供应商数据库地址一致
 		
-		
-		
-		//验证新增省市区是否不一致
-		if($("#address").val().match(";")){
-		var addrs = address.split(";");
-		var flag = true;
-		for(var i = 0;i<addrs.length-1;i++){
-		for(var j = i+1;j<addrs.length;j++){
-		if(addrs[i].substring(0,addrs[i].lastIndexOf(",")).match(addrs[j].substring(0,addrs[j].lastIndexOf(",")))!=null){
-		alert($("#msg").text());
-		flag = false;
-		$("#msg").show();  
-		}
-		}
-		}
-		 if(flag){
-		$("#msg").hide();
-		 return;
-		}
-		} */
 		//拼接图片默认显示集
 		var isDefault = "";
-		/* var isDefaultNode = $("#newUpload2 :radio:checked"); */
-	/* 	$.each(isDefaultNode, function(i, node) {
-			isDefault += node.value
-					+ ((i >= isDefaultNode.length - 1) ? "" : ",");
-		}); */
 		var isDefaultNode = $("#newUpload2 div :radio");
 		$.each(isDefaultNode, function(i, node) {
 			isDefault += "," + ($(node).attr("checked")==true||$(node).attr("checked")=="checked"?1:node.value);
@@ -114,15 +71,6 @@ $(function(){
 									: ",");
 				});
 		$("#priceRange").val(PriceRange);
-
-		//拼接安全认证成json
-		/* var safetys = "{";
-		$.each($("#tab3 input[name]"), function(i, next) {
-			var val = $(next).val();
-			safetys += "\"" + $(next).attr("id") + "\"" + ":" + "\""
-					+ ((val == "") ? "null" : val) + "\""
-					+ ((i >= $("#tab3 input[name]").length - 1) ? "}" : ",");
-		}); */
 		var safetys="";
 		for(var i=0;i<=5;i++){
 		$.each($("#safety"+i+" input[name]"), function(j, next) {
@@ -131,9 +79,10 @@ $(function(){
 		}	
 		$("#safetys").val(safetys);
 		//商品规格
-		$("#productModel").val($(".规格:checked").attr("title"));
+		$("#productModel").val($(".规格:checked").val());
 		//商品品牌
-		$("#productBrandId").val($(".品牌:checked").attr("title"));
+		$("#productBrandId").val($(".品牌:checked").val());
+		
 	}
 	//二级子品类ajax获取数据
 	function checkCategory(productCategoryId) {
@@ -751,7 +700,7 @@ $(function(){
 		<div
 			style="height: 45px; line-height: 45px; border-bottom: 1px solid #D1D1D1; font-size: 14px; padding-left: 15px;">
 			<span class="lo1">首页</span> > <span class="lo2"> 商品管理 ></span><span
-				class="lo2"> 商品申请</span>
+				class="lo2">新品申请</span>
 		</div>
 		<form id="form" action="productEdit.do" enctype="multipart/form-data"
 			method="post">
@@ -827,24 +776,6 @@ $(function(){
 					</div>
 
 					<div id="tab2" class="div1" style="height: auto;">
-						<%-- <p style="background-color:#D0D0D0;">请提供供应地域          <span id="msg" style="color:red;">*新增地址重复，请更改！*</span></p>		
-				<p ><!-- <input type="radio"/> 全选   <input type="button" value="删除"/> --><input type="button" id="sele_add" value="新增地址"> </p>
-				<p><span id="span0"><select id="province0" name="province"
-							onchange="checkSs(this.value,0)">
-								<option value="">请选择省份</option>
-								<c:forEach items="${dictionarys}" var="d">
-									<option value="${d.id}">${d.dicName}</option>
-								</c:forEach>
-						</select> <select id="city0" name="city"
-							onchange="if(this.value!=1){checkss(this.value,0);}">
-								<option value="1">请选择城市</option>
-						</select> <select id="district0" name="district"
-							onchange="if(this.value!=1){checkss(this.value,0);}">
-								<option value="1">请选择地区</option>
-						</select>&nbsp;<input type="text"  id="shoppingAddress0" name="shoppingAddress0" value="三环以外不配送"/>
-					</span>
-				</p> --%>
-						<!-- <p><input type="radio"/>&nbsp;<select><option>湖北省</option></select>&nbsp;<select><option>武汉市</option></select>&nbsp;<select><option>洪山区</option></select>&nbsp;<input type="text" value="三环以外不配送"/></p> -->
 
 						<p style="background-color: #D0D0D0;">选择本地图片：
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提示：1.图片大小不超过500KB&nbsp;&nbsp;2.本品类图片不超过10张</p>

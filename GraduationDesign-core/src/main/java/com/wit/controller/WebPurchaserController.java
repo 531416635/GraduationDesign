@@ -1288,7 +1288,7 @@ public class WebPurchaserController extends BaseController {
 
 	// 新增商品编辑
 	@RequestMapping("productEdit")
-	public String productEdit(Products product, HttpServletRequest request) {
+	public String productEdit(HttpServletRequest request,Products product ) {
 		try {
 			Users user = (Users) request.getSession().getAttribute("user");
 			// 保存商品相对应信息
