@@ -1,7 +1,6 @@
 package com.wit.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,20 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wit.comm.Cache;
 import com.wit.comm.CacheManager;
 import com.wit.comm.Common;
-import com.wit.model.Companys;
 import com.wit.model.Dictionarys;
 import com.wit.model.FAQ;
 import com.wit.model.FiltratePage;
-import com.wit.model.InquirySheet;
-import com.wit.model.Menus;
 import com.wit.model.News;
 import com.wit.model.Page;
-import com.wit.model.Orders;
-import com.wit.model.ProductBrand;
 import com.wit.model.ProductCategory;
 import com.wit.model.ProductPic;
-import com.wit.model.ProductReview;
-import com.wit.model.ProductType;
 import com.wit.model.Products;
 import com.wit.model.QuestionType;
 import com.wit.model.SecondPage;
