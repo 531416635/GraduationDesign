@@ -157,19 +157,6 @@ function checkDeletes(){
 							value="${c.id}" /></td>
 						<td>${c.id}</td>
 						<td>${c.productName}</td>
-						<td>
-							<%-- ${c.productTypee.typeName} --%> <%-- <c:forEach items="${c.productTypes}" var="m" varStatus="s">
-                            		<c:choose>
-                            			<c:when test="${s.last}">
-                            				${m.typeName}
-                            			</c:when>
-                            			<c:otherwise>
-                            				${m.typeName}、
-                            			</c:otherwise>
-                            		</c:choose>
-                            	</c:forEach>  --%>
-						</td>
-						<%--   <td>${c.commodityBrand}</td> --%>
 						<td>${c.unitPrice}</td>
 						<td>${c.productInfo}</td>
 						<%--  <td>${c.producingArea}</td> --%>

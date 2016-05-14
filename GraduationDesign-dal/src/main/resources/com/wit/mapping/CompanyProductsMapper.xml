@@ -36,7 +36,7 @@
 		SELECT
 		ID, CompanyID, ProductID, Status
 		FROM CompanyProducts
-		order by ID limit #{begin},#{pageNum};
+		order by ID DESC limit #{begin},#{pageNum};
 	</select>
 	<!--门户中商品管理中商品上架商品列表 -->
 	<select id="findProductsbyCompanyId" parameterType="hashMap"

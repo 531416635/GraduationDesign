@@ -63,13 +63,13 @@ div {
 			<table border="0" cellpadding="0" cellspacing="0">
 				<tr class="info">
 					<th>公司名:</th>
-					<td><input type="text" name="companyName" readonly
-						value="${companyProduct.company.companyName}" /></td>
+					<td><input type="hidden" name="companyId" readonly
+						value="${companyProduct.company.id}" />${companyProduct.company.companyName}</td>
 				</tr>
 				<tr class="info">
 					<th>商品名:</th>
-					<td><input type="text" name="productName" readonly
-						value="${companyProduct.product.productName}" /></td>
+					<td><input type="hidden" name="productId" readonly
+						value="${companyProduct.product.id}" />${companyProduct.product.productName}</td>
 				</tr>
 				<tr class="info">
 					<th>状态:</th>

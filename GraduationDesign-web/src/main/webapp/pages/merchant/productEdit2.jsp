@@ -164,10 +164,10 @@ $(function(){
 						As = "";
 					}
 					//所属栏的每个值
-					if(json[i].cateGoryName=="规格"){
+					/* if(json[i].cateGoryName=="规格"){
 					checkboxss += "<input type='checkbox' "+As+"title='"+jsons[j].cateGoryName+"' name='name"+i+"' value='"+jsons[j].id+"'/>"+"<input type='radio' "+As+"class='"+json[i].cateGoryName+"' title='"+jsons[j].cateGoryName+"' name='name"+i+"' value='"+jsons[j].id+"'/>";
 					checkboxss += jsons[j].cateGoryName+'&nbsp;&nbsp;&nbsp;';
-					}else if(json[i].cateGoryName=="品牌"){
+					}else */ if(json[i].cateGoryName=="品牌"){
 					checkboxss += "<input type='radio' "+As+"class='"+json[i].cateGoryName+"' title='"+jsons[j].cateGoryCode+"' name='name"+i+"' value='"+jsons[j].id+"'/>";
 					checkboxss += jsons[j].cateGoryName;
 					}else{

@@ -101,16 +101,13 @@ public class AuthenticationManagerController extends BaseController {
 				Map<String,Object> parm = new HashMap<>();
 				parm.put("companyId", companyId);
 				parm.put("page", page);
-				System.out.println(companyId);
 				List<AuthenticationManager> au = authenticationManagerService
 						.findByCompanyId(parm);
-				System.out.println(au);
 				request.setAttribute("au",au);
 				request.setAttribute("companyId", companyId);
 				int rows = authenticationManagerService.rows(companyId);
 				page.setRows(rows);
 				request.setAttribute("page", page);
-				System.out.println(companyId);
 				return "Manager/companys/buyerAuthenticationInfo";
 			} catch (Exception e) {
 				e.printStackTrace();

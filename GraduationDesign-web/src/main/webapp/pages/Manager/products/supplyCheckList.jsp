@@ -140,28 +140,25 @@ function productCheck(id,productId,status){
 					alert("该商品尚未审核通过不能对其进行此操作，请待商品审核通过！");
 				}else if(data == "true") {
 				for(var i=0;i<productLists.length;i++){
-					
 					if(id==productLists[i].id){
-					for(var k=2;k<8;k++){
-					for(var j=0;j<productLists[i].companyProductPics.length;j++){
-					if(productLists[i].companyProductPics[j].fileClass==k){
-					if(productLists[i].companyProductPics[j].status==1){
-					l+='1';
-					break;
-					}else if(j==(productLists[i].companyProductPics.length-1)){
-					l+='0';
-					}
-					
-					}
-					
-					}
-					}
-					if(l=='111111'){
-					flag=true;
-					}else{
-					flag=false;
-					alert("该商品的所有资质认证类型通过才能进行此操作,请进行资质认证！");
-					}
+						for(var k=2;k<8;k++){
+							for(var j=0;j<productLists[i].companyProductPics.length;j++){
+								if(productLists[i].companyProductPics[j].fileClass==k){
+									if(productLists[i].companyProductPics[j].status==1){
+										l+='1';
+										break;
+									}else if(j==(productLists[i].companyProductPics.length-1)){
+									l+='0';
+									}
+								}
+							}
+						}
+						if(l=='111111'){
+							flag=true;
+						}else{
+						flag=false;
+						alert("该商品的所有资质认证类型通过才能进行此操作,请进行资质认证！");
+						}
 					}
 					
 				}
